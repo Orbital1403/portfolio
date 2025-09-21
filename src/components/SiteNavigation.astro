@@ -1,0 +1,44 @@
+---
+import { themeConfig } from '~/.config'
+import ThemeToggle from '~/components/ThemeToggle.astro' // ⬅️ OVO DODAJ
+
+const site = themeConfig?.site ?? { navLinks: [], socialLinks: [] }
+const navLinks = site.navLinks ?? []
+const socialLinks = site.socialLinks ?? []
+
+const t = (Astro.locals?.translate ?? ((k: string) => k)) as (k: string) => string
+const current = new URL(Astro.url).pathname
+---
+
+<nav class="text-center font-bold" flex="~ col gap-4">
+  <ul lg="flex-col items-start text-4" class="text-3.5" flex="~ row gap-2 justify-center">
+    {
+      navLinks.map((nav) => (
+        <li>
+          <a href={nav.href} class:list={['nav-link', { underline: current === nav.href }]}>
+            {t(nav.name)}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <ul class="social" flex="~ row gap-1 justify-center">
+    {
+      socialLinks.map(({ href, name }) => (
+        <li>
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={name}
+            data-no-swup
+            class="nav-link not-underline-hover inline-flex items-center"
+          >
+            <span class:list={[`i-mdi-${name}`, 'w-6 h-6']} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

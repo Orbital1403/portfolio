@@ -1,0 +1,14 @@
+---
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { getEntry, render } from 'astro:content'
+
+const entry = await getEntry('spec', 'contact')
+if (!entry) throw new Error('No contact content')
+const { Content } = await render(entry)
+---
+
+<LayoutDefault>
+  <article class="prose">
+    <Content />
+  </article>
+</LayoutDefault>

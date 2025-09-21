@@ -1,0 +1,37 @@
+---
+import { themeConfig } from '~/.config'
+const configTheme = themeConfig.appearance.theme ?? 'system' // 'light' | 'dark' | 'system'
+---
+
+<script is:inline define:vars={{ configTheme }}>
+  // Globalna funkcija – koristi je i toggle
+  window.applyTheme = function (theme) {
+    if (theme === 'system') {
+      const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches
+      document.documentElement.classList.toggle('dark', prefers)
+    } else {
+      document.documentElement.classList.toggle('dark', theme === 'dark')
+    }
+  }
+  ;(function initTheme() {
+    try {
+      // 1) uzmi korisnički izbor ili konfiguraciju
+      const saved = localStorage.getItem('theme') || configTheme
+      window.applyTheme(saved)
+
+      // 2) ako je 'system', prati promjene OS-a
+      const mq = window.matchMedia('(prefers-color-scheme: dark)')
+      mq.addEventListener?.('change', () => {
+        if ((localStorage.getItem('theme') || configTheme) === 'system') {
+          window.applyTheme('system')
+        }
+      })
+
+      // 3) SWUP: nakon svake zamjene sadržaja ponovno primijeni trenutno stanje
+      document.addEventListener('swup:contentReplaced', () => {
+        const current = localStorage.getItem('theme') || configTheme
+        window.applyTheme(current)
+      })
+    } catch (_) {}
+  })()
+</script>

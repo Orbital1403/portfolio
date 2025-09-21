@@ -1,0 +1,59 @@
+---
+/**
+ * Swiper Web Components – radi bez framework plugina
+ * https://swiperjs.com/element
+ */
+import 'swiper/element/bundle'
+
+interface ImgItem {
+  src: string
+  alt?: string
+}
+interface Props {
+  images: ImgItem[]
+  autoplay?: boolean
+}
+const { images = [], autoplay = true } = Astro.props
+---
+
+<swiper-container
+  class="rounded-xl overflow-hidden shadow-md block"
+  slides-per-view="1"
+  space-between="16"
+  loop="true"
+  navigation="true"
+  pagination="true"
+  auto-height="true"
+>
+  {
+    images.map((img) => (
+      <swiper-slide>
+        <img src={img.src} alt={img.alt ?? ''} loading="lazy" class="w-full h-64 sm:h-72 lg:h-80 object-cover" />
+      </swiper-slide>
+    ))
+  }
+</swiper-container>
+
+{
+  /*
+  Post-init: podesimo naprednije opcije (autoplay + breakpoints) preko skripte.
+  Ovo je najstabilnije u Element načinu.
+*/
+}
+<script is:inline>
+  const root = document.currentScript.closest('swiper-container')
+  if (root) {
+    Object.assign(root, {
+      breakpoints: {
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+      autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    })
+    // ako korisnik želi isključiti autoplay, poštuj to
+    if (!{ autoplay }) 
+root.autoplay = false
+    root.initialize?.() // sigurnosno: inicijaliziraj ako još nije
+  }
+</script>
