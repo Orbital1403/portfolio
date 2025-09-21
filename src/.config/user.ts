@@ -14,6 +14,7 @@ export const userConfig: Partial<UserConfig> = {
       { name: 'ABOUT', href: '/about' },
       { name: 'SKILLS', href: '/skills' },
       { name: 'PROJECT', href: '/project' },
+      { name: 'Hobbies', href: '/hobbies' },
       { name: 'CONTACT', href: 'mailto:gordan.grgic@gmail.com' },
     ],
 
@@ -22,7 +23,6 @@ export const userConfig: Partial<UserConfig> = {
       { name: 'github', href: 'https://github.com/Orbital1403' },
       { name: 'linkedin', href: 'https://www.linkedin.com/in/gordan-grgic-0ba40a354/' },
       { name: 'twitter', href: 'https://x.com/orbital1403' },
-      { name: 'facebook', href: 'https://www.facebook.com/gordan.grgic/' },
     ],
 
     // 🔹 4) Kategorije (uređeni URL-ovi)

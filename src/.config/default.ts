@@ -42,8 +42,6 @@ export const defaultConfig: ThemeConfig = {
     categoryMap: [{ name: 'Gordan', path: 'hu-shi' }],
     footer: [
       '© %year <a target="_blank" href="%website">%author</a>',
-      'Theme <a target="_blank" href="https://github.com/Orbital1403">Typography</a> by <a target="_blank" href="https://gordangrgic.com">Grga</a>',
-      'Proudly published with <a target="_blank" href="https://astro.build/">Astro</a>',
     ],
   },
   appearance: {
