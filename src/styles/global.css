@@ -3,6 +3,7 @@
   src: url('/fonts/myfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
 :root {
   --uno-colors-primary: theme('colors.primary');
@@ -204,4 +205,20 @@ html.is-leaving .transition-swup-footer {
 /* spriječi da se maska ikone izgubi pri hover animaciji */
 .social a > span {
   display: inline-block;
+}
+a:focus,
+a:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+/* Navigacija koristi poseban font */
+.nav-link {
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #38bdf8; /* svjetlija plava */
+  transform: translateY(-2px);
 }

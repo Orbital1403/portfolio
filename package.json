@@ -29,6 +29,7 @@
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
     "giscus": "^1.6.0",
+    "nodemailer": "^7.0.6",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
   },
@@ -37,6 +38,7 @@
     "@iconify-json/mdi": "^1.2.3",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^22.16.4",
+    "@types/nodemailer": "^7.0.1",
     "@types/sanitize-html": "^2.16.0",
     "@unocss/eslint-plugin": "^66.3.3",
     "@unocss/preset-attributify": "^66.3.3",
