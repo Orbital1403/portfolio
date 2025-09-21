@@ -10,9 +10,9 @@ categories: ["About", "Personal"]
 Hello! I’m **Gordan Grgić**. I build things for the web.
 
 - Born in **Zagreb**, back when Yugoslavia was still around.
-- Spent my career in **industrial electronics** – Siemens (production & quality control) and ALTPRO (railway safety systems).
+- Spent my career in **industrial electronics**
 - Today I live in **Belgium**, focusing on **Java backend (Java, Spring)** and **web technologies** (HTML/CSS/JS).
-- I also dabble in **DevOps** (Docker, Linux). This site is built with **Astro** and the **Typography theme**.
-- Outside of work: cycling and music (from jazz to electronic).
+- I also explore **Linux** and enjoy improving workflows and systems.
+- Outside of work: Hi-Fi audio (discovering new bands), cycling, coding (Java projects, GitHub tinkering), reading (tech, science, personal development) and traveling.
 
 From **industrial circuits** to **coding web apps**, it’s been quite a journey — and I’m still learning every day.

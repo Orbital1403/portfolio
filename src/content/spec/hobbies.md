@@ -1,7 +1,7 @@
-## 🎯 Hobbies - Comming Soon...
+---
+title: "Hobbies"
+description: "in progress"
+---
 
-- 🎵 Listening to music (Hi-Fi audio, vinyl records)
-- 🚴‍♂️ Cycling and outdoor activities
-- 💻 Web development & coding projects
-- 📚 Reading tech and science books
-- ✈️ Traveling and exploring new cultures
+comming soon...
+
