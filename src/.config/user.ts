@@ -14,7 +14,7 @@ export const userConfig: Partial<UserConfig> = {
       { name: 'ABOUT', href: '/about' },
       { name: 'SKILLS', href: '/skills' },
       { name: 'PROJECT', href: '/project' },
-      { name: 'Hobbies', href: '/hobbies' },
+      { name: 'HOBBIES', href: '/hobbies' },
       { name: 'CONTACT', href: 'mailto:gordan.grgic@gmail.com' },
     ],
 
