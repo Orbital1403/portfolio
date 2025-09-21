@@ -7,7 +7,7 @@ export const userConfig: Partial<UserConfig> = {
     subtitle: 'Java Developer & Webmaster',
     author: 'Gordan Grgic',
     description: 'Portfolio and blog of Gordan Grgić, Java Developer & Webmaster.',
-    website: 'https://gordan.grgic.com',
+    website: 'https://gordangrgic.com',
 
     // 🔹 2) Navigacija (možeš dodati/skinuti stavke po želji)
     navLinks: [
