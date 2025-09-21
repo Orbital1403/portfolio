@@ -222,3 +222,25 @@ a:focus-visible {
   color: #38bdf8; /* svjetlija plava */
   transform: translateY(-2px);
 }
+/* Navigacija – osnovni font */
+.nav-link {
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+  color: inherit; /* preuzima iz roditelja (crna u light, bijela u dark) */
+}
+
+/* Hover efekt u light modu */
+html:not(.dark) .nav-link:hover {
+  color: #38bdf8; /* svjetlija plava */
+  transform: translateY(-2px);
+}
+
+/* Hover efekt u dark modu */
+html.dark .nav-link {
+  color: #e7ecf3 !important; /* osnovna boja u dark modu → bijela */
+}
+html.dark .nav-link:hover {
+  color: #cbd5e1 !important; /* malo svjetlija siva na hover, ne plava */
+  transform: translateY(-2px);
+}
