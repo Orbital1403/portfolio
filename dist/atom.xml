@@ -1,38 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Gordan Grgić</title><description>Portfolio and blog of Gordan Grgić, Java Developer &amp; Webmaster.</description><link>https://gordan.grgic.com/</link><item><title>Java Desktop Application Development (JAD)</title><link>https://gordan.grgic.com/posts/java-desktop-application-development/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/java-desktop-application-development/</guid><description>Building GUI-based applications with Swing, AWT, event handling, and database connectivity.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Java Desktop Application Development (JAD)&lt;/h1&gt;
-&lt;p&gt;After completing Core and Advanced Java, this subject introduced me to building &lt;strong&gt;desktop applications&lt;/strong&gt; with graphical user interfaces (GUIs).
-It gave me practical knowledge on how to combine Java logic with user-friendly windows, forms, and database integration.&lt;/p&gt;
-&lt;h2&gt;Topics I studied&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Swing and AWT components (buttons, text fields, menus, tables)&lt;/li&gt;
-&lt;li&gt;Layout managers (BorderLayout, FlowLayout, GridLayout)&lt;/li&gt;
-&lt;li&gt;Event handling and listeners&lt;/li&gt;
-&lt;li&gt;Dialog boxes and forms&lt;/li&gt;
-&lt;li&gt;Working with images and custom rendering&lt;/li&gt;
-&lt;li&gt;JDBC (Java Database Connectivity) for database integration&lt;/li&gt;
-&lt;li&gt;MVC pattern in desktop applications&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;My experience&lt;/h2&gt;
-&lt;p&gt;At first, understanding layout managers and how they affect component placement was challenging.
-But once I practiced with real examples, it became clearer.
-The most valuable part was connecting applications to a &lt;strong&gt;MySQL database&lt;/strong&gt; using JDBC — this made the apps truly interactive and practical.&lt;/p&gt;
-&lt;h2&gt;Code Example (Simple Swing App)&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;import javax.swing.*;
-
-public class Main {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame(&quot;Hello Desktop App&quot;);
-        JButton button = new JButton(&quot;Click me!&quot;);
-
-        button.addActionListener(e -&amp;gt; JOptionPane.showMessageDialog(frame, &quot;Hello, Gordan!&quot;));
-
-        frame.add(button);
-        frame.setSize(300, 200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</content:encoded><category>Java</category><category>ITAcademy</category><category>Desktop Apps</category><author>Gordan Grgic</author></item><item><title>Programming in HTML5 with JavaScript and CSS3</title><link>https://gordan.grgic.com/posts/html5-javascript-css3/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/html5-javascript-css3/</guid><description>Introduction to building modern web pages using HTML5 structure, CSS3 styling, and JavaScript interactivity.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Programming in HTML5 with JavaScript and CSS3&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Gordan Grgić</title><description>Portfolio and blog of Gordan Grgić, Java Developer &amp; Webmaster.</description><link>https://gordan.grgic.com/</link><item><title>Programming in HTML5 with JavaScript and CSS3</title><link>https://gordan.grgic.com/posts/html5-javascript-css3/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/html5-javascript-css3/</guid><description>Introduction to building modern web pages using HTML5 structure, CSS3 styling, and JavaScript interactivity.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Programming in HTML5 with JavaScript and CSS3&lt;/h1&gt;
 &lt;p&gt;This subject introduced me to the fundamentals of &lt;strong&gt;frontend web development&lt;/strong&gt;: creating structured web pages with HTML, styling them with CSS, and adding interactivity using JavaScript.&lt;/p&gt;
 &lt;h2&gt;Topics I studied&lt;/h2&gt;
 &lt;ul&gt;
@@ -84,30 +50,7 @@ Later, working with &lt;strong&gt;JavaScript events&lt;/strong&gt; and DOM updat
   &amp;lt;/body&amp;gt;
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-</content:encoded><category>Web Development</category><category>HTML5</category><category>CSS3</category><category>JavaScript</category><category>ITAcademy</category><author>Gordan Grgic</author></item><item><title>Core Java Programming (JCP)</title><link>https://gordan.grgic.com/posts/core-advanced-programming/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/core-advanced-programming/</guid><description>Basics of OOP, collections, working with classes and objects.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Core Java Programming (JCP)&lt;/h1&gt;
-&lt;p&gt;This was my first serious subject at ITAcademy and also my introduction to Java.
-I learned the basics of object-oriented programming:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Classes and objects&lt;/li&gt;
-&lt;li&gt;Inheritance and polymorphism&lt;/li&gt;
-&lt;li&gt;Abstract classes and interfaces&lt;/li&gt;
-&lt;li&gt;Collections (List, Set, Map)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Code Example&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;class Animal {
-    void sound() { System.out.println(&quot;Some sound...&quot;); }
-}
-class Dog extends Animal {
-    @Override void sound() { System.out.println(&quot;Woof!&quot;); }
-}
-public class Main {
-    public static void main(String[] args) {
-        Animal dog = new Dog();
-        dog.sound(); // Woof!
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</content:encoded><category>Java</category><category>ITAcademy</category><category>Programming</category><author>Gordan Grgic</author></item><item><title>Java Web Application Development</title><link>https://gordan.grgic.com/posts/java-web-application-development/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/java-web-application-development/</guid><description>Building dynamic web applications with Servlets, JSP, JSTL, sessions, and MVC architecture.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Java Web Application Development&lt;/h1&gt;
+</content:encoded><category>Web Development</category><category>HTML5</category><category>CSS3</category><category>JavaScript</category><category>ITAcademy</category><author>Gordan Grgic</author></item><item><title>Java Web Application Development</title><link>https://gordan.grgic.com/posts/java-web-application-development/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/java-web-application-development/</guid><description>Building dynamic web applications with Servlets, JSP, JSTL, sessions, and MVC architecture.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Java Web Application Development&lt;/h1&gt;
 &lt;p&gt;This subject introduced me to the fundamentals of creating &lt;strong&gt;dynamic web applications&lt;/strong&gt; in Java.
 It was the first step towards understanding how backend Java interacts with the web browser.&lt;/p&gt;
 &lt;h2&gt;Topics I studied&lt;/h2&gt;
@@ -153,7 +96,64 @@ Copy code
   &amp;lt;/body&amp;gt;
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-</content:encoded><category>Java</category><category>Web Development</category><category>ITAcademy</category><author>Gordan Grgic</author></item><item><title>Advanced Java Programming (AJP)</title><link>https://gordan.grgic.com/posts/advanced-java-programming/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/advanced-java-programming/</guid><description>Collections, lambda expressions, streams, multithreading, and advanced OOP concepts.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Advanced Java Programming (AJP)&lt;/h1&gt;
+</content:encoded><category>Java</category><category>Web Development</category><category>ITAcademy</category><author>Gordan Grgic</author></item><item><title>Java Desktop Application Development (JAD)</title><link>https://gordan.grgic.com/posts/java-desktop-application-development/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/java-desktop-application-development/</guid><description>Building GUI-based applications with Swing, AWT, event handling, and database connectivity.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Java Desktop Application Development (JAD)&lt;/h1&gt;
+&lt;p&gt;After completing Core and Advanced Java, this subject introduced me to building &lt;strong&gt;desktop applications&lt;/strong&gt; with graphical user interfaces (GUIs).
+It gave me practical knowledge on how to combine Java logic with user-friendly windows, forms, and database integration.&lt;/p&gt;
+&lt;h2&gt;Topics I studied&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Swing and AWT components (buttons, text fields, menus, tables)&lt;/li&gt;
+&lt;li&gt;Layout managers (BorderLayout, FlowLayout, GridLayout)&lt;/li&gt;
+&lt;li&gt;Event handling and listeners&lt;/li&gt;
+&lt;li&gt;Dialog boxes and forms&lt;/li&gt;
+&lt;li&gt;Working with images and custom rendering&lt;/li&gt;
+&lt;li&gt;JDBC (Java Database Connectivity) for database integration&lt;/li&gt;
+&lt;li&gt;MVC pattern in desktop applications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;My experience&lt;/h2&gt;
+&lt;p&gt;At first, understanding layout managers and how they affect component placement was challenging.
+But once I practiced with real examples, it became clearer.
+The most valuable part was connecting applications to a &lt;strong&gt;MySQL database&lt;/strong&gt; using JDBC — this made the apps truly interactive and practical.&lt;/p&gt;
+&lt;h2&gt;Code Example (Simple Swing App)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;import javax.swing.*;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame(&quot;Hello Desktop App&quot;);
+        JButton button = new JButton(&quot;Click me!&quot;);
+
+        button.addActionListener(e -&amp;gt; JOptionPane.showMessageDialog(frame, &quot;Hello, Gordan!&quot;));
+
+        frame.add(button);
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded><category>Java</category><category>ITAcademy</category><category>Desktop Apps</category><author>Gordan Grgic</author></item><item><title>Core Java Programming (JCP)</title><link>https://gordan.grgic.com/posts/core-advanced-programming/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/core-advanced-programming/</guid><description>Basics of OOP, collections, working with classes and objects.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Core Java Programming (JCP)&lt;/h1&gt;
+&lt;p&gt;This was my first serious subject at ITAcademy and also my introduction to Java.
+I learned the basics of object-oriented programming:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Classes and objects&lt;/li&gt;
+&lt;li&gt;Inheritance and polymorphism&lt;/li&gt;
+&lt;li&gt;Abstract classes and interfaces&lt;/li&gt;
+&lt;li&gt;Collections (List, Set, Map)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Code Example&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;class Animal {
+    void sound() { System.out.println(&quot;Some sound...&quot;); }
+}
+class Dog extends Animal {
+    @Override void sound() { System.out.println(&quot;Woof!&quot;); }
+}
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog();
+        dog.sound(); // Woof!
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded><category>Java</category><category>ITAcademy</category><category>Programming</category><author>Gordan Grgic</author></item><item><title>Advanced Java Programming (AJP)</title><link>https://gordan.grgic.com/posts/advanced-java-programming/</link><guid isPermaLink="true">https://gordan.grgic.com/posts/advanced-java-programming/</guid><description>Collections, lambda expressions, streams, multithreading, and advanced OOP concepts.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Advanced Java Programming (AJP)&lt;/h1&gt;
 &lt;p&gt;After completing Core Java, this subject introduced me to more advanced features of the Java language and the JDK.
 It deepened my understanding of object-oriented programming and modern Java practices.&lt;/p&gt;
 &lt;h2&gt;Topics I studied&lt;/h2&gt;
