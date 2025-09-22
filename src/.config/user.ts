@@ -3,7 +3,7 @@ import type { UserConfig } from '~/types'
 export const userConfig: Partial<UserConfig> = {
   // 🔹 1) Osnovno — naslov i meta
   site: {
-    title: 'Gordan Grgić',
+    title: 'Gordan Grgic',
     subtitle: 'Java Developer & Webmaster',
     author: 'Gordan Grgic',
     description:
@@ -14,7 +14,7 @@ export const userConfig: Partial<UserConfig> = {
     navLinks: [
       { name: 'ABOUT', href: '/about' },
       { name: 'SKILLS', href: '/skills' },
-      { name: 'PROJECT', href: '/project' },
+      { name: 'PROJECTS', href: '/projects' },
       { name: 'HOBBIES', href: '/hobbies' },
       { name: 'CONTACT', href: 'mailto:gordan.grgic@gmail.com' },
     ],
