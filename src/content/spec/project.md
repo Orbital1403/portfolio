@@ -1,5 +1,5 @@
 ---
-title: "Project"
+title: "Projects"
 description: "in progress"
 ---
 
