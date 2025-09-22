@@ -177,7 +177,11 @@ declare module 'astro:content' {
   id: string;
   body?: string;
   collection: "posts";
+<<<<<<< HEAD
   data: InferEntrySchema<"posts">;
+=======
+  data: any;
+>>>>>>> ca884514 (Initial commit)
   rendered?: RenderedContent;
   filePath?: string;
 }>;
