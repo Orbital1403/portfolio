@@ -4,7 +4,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import { formatDate } from '~/utils'
 
 const { translate: t } = Astro.locals
-const projectPost = await getEntry('spec', 'project')
+const projectPost = await getEntry('spec', 'projects')
 if (!projectPost) {
   throw new Error('No project post found')
 }
