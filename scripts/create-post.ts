@@ -14,9 +14,17 @@ createPost()
 async function createPost(): Promise<void> {
   consola.start('Ready to create a new post!')
 
-  const filename: string = await consola.prompt('Enter file name: ', { type: 'text' })
-  const extension: string = await consola.prompt('Select file extension: ', { type: 'select', options: ['.md', '.mdx'] })
-  const isDraft: boolean = await consola.prompt('Is this a draft?', { type: 'confirm', initial: true })
+  const filename: string = await consola.prompt('Enter file name: ', {
+    type: 'text',
+  })
+  const extension: string = await consola.prompt('Select file extension: ', {
+    type: 'select',
+    options: ['.md', '.mdx'],
+  })
+  const isDraft: boolean = await consola.prompt('Is this a draft?', {
+    type: 'confirm',
+    initial: true,
+  })
 
   const targetDir = './src/content/posts/'
   const fullPath: string = path.join(targetDir, `${filename}${extension}`)
@@ -34,7 +42,10 @@ async function createPost(): Promise<void> {
     fs.writeFileSync(fullPath, frontmatter)
     consola.success('New post created successfully!')
 
-    const open: boolean = await consola.prompt('Open the new post?', { type: 'confirm', initial: true })
+    const open: boolean = await consola.prompt('Open the new post?', {
+      type: 'confirm',
+      initial: true,
+    })
     if (open) {
       consola.info(`Opening ${fullPath}...`)
       execSync(`code "${fullPath}"`)

@@ -85,8 +85,8 @@ Typography has built-in support for adding links to your social media accounts t
 socials: [
   {
     name: 'github',
-    href: 'https://github.com/moeyua/astro-theme-typography'
-  }
+    href: 'https://github.com/moeyua/astro-theme-typography',
+  },
 ]
 ```
 
@@ -104,8 +104,8 @@ By default, the navigation are `Posts`, `Archive`, `Categories` and `About`. You
   navs: [
     {
       name: 'Categories',
-      href: '/categories'
-    }
+      href: '/categories',
+    },
   ]
 }
 ```

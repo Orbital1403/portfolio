@@ -7,11 +7,6 @@
       "~/*": ["src/*"]
     }
   },
-  "include": [
-    "src/**/*.astro",
-    "src/**/*.ts",
-    ".astro/types.d.ts",
-    "**/*"
-  ],
+  "include": ["src/**/*.astro", "src/**/*.ts", ".astro/types.d.ts", "**/*"],
   "exclude": ["dist"]
 }

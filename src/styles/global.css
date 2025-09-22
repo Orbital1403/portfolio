@@ -1,8 +1,12 @@
-/*@font-face {
+@font-face {
   font-family: 'MyFont';
   src: url('/fonts/myfont.ttf') format('truetype');
   font-weight: normal;
-  font-style: normal; */
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
 :root {
@@ -26,9 +30,12 @@ html {
 /* 🌙 Dark mode override — promijeni samo boje */
 html.dark {
   /* Pozadina i tekst */
-  --uno-colors-background: #0b0f13; /* tamna (nije čista crna) */
-  --uno-colors-primary: #e7ecf3; /* glavni tekst u darku */
-  --uno-colors-shadow: rgba(231, 236, 243, 0.06); /* "mrežica"/sjena slabija u darku */
+  --uno-colors-background: #0b0f13;
+  /* tamna (nije čista crna) */
+  --uno-colors-primary: #e7ecf3;
+  /* glavni tekst u darku */
+  --uno-colors-shadow: rgba(231, 236, 243, 0.06);
+  /* "mrežica"/sjena slabija u darku */
 
   /* Ako želiš još manje vidljivu mrežicu, smanji alpha npr. 0.04 */
   text-shadow: 1px 1px 1px var(--uno-colors-shadow);
@@ -38,7 +45,8 @@ html.dark {
 
   /* Forsiraj tekst u dark modu */
   color: #e7ecf3 !important;
-  background-color: #0b0f13; /* suptilna tamna podloga, ali bez !important */
+  background-color: #0b0f13;
+  /* suptilna tamna podloga, ali bez !important */
 }
 
 /* Ako body ima sliku, ostavi je i u darku */
@@ -48,16 +56,20 @@ html.dark body {
 
 /* Linkovi u darku — malo svjetliji, bez prejakog invertiranja pozadine */
 html.dark :where(a):not(.not-underline-hover) {
-  color: #7dd3fc; /* ~ sky-300 */
+  color: #7dd3fc;
+  /* ~ sky-300 */
   text-decoration-color: #7dd3fc;
 }
+
 html.dark :where(a):not(.not-underline-hover):hover {
-  color: #38bdf8; /* ~ sky-400 */
+  color: #38bdf8;
+  /* ~ sky-400 */
   text-decoration-color: #38bdf8;
-  background: transparent; /* ukini bg-primary na hover */
+  background: transparent;
+  /* ukini bg-primary na hover */
 }
 
-:where(a):not(.not-underline-hover) {
++ :where(a):not(.nav-link):not(.not-underline-hover) {
   --at-apply: 'p-1.5px';
   --at-apply: 'decoration-underline decoration-0.1em decoration-offset-2px';
   --at-apply: 'ease-in-out duration-300ms';
@@ -69,18 +81,23 @@ html.dark .prose,
 html.dark .prose :where(p, li, blockquote, strong, em, code) {
   color: #e7ecf3 !important;
 }
+
 html.dark .prose :where(h1, h2, h3, h4, h5, h6) {
   color: #e7ecf3 !important;
 }
+
 html.dark .prose a {
   color: #7dd3fc !important;
 }
+
 html.dark .prose a:hover {
   color: #38bdf8 !important;
 }
+
 html.dark .prose hr {
   border-color: #1f2937 !important;
 }
+
 html.dark .prose blockquote {
   color: #e7ecf3 !important;
   border-left-color: #1f2937 !important;
@@ -91,13 +108,16 @@ html.dark .card {
   background: #11161c !important;
   border-color: #1f2937 !important;
 }
+
 html.dark .border,
 html.dark hr {
   border-color: #1f2937 !important;
 }
+
 html.dark table {
   border-color: #1f2937 !important;
 }
+
 html.dark th,
 html.dark td {
   border-color: #1f2937 !important;
@@ -112,6 +132,7 @@ html.dark samp {
   background: #0f172a !important;
   border-color: #1f2937 !important;
 }
+
 html.dark pre {
   padding: 12px 14px;
   border: 1px solid #1f2937;
@@ -140,10 +161,12 @@ html.dark .c-gray-800 {
 :where(a):not(.not-underline-hover):hover {
   border-radius: 6px;
 }
+
 /* 🌀 Blagi nagib (tilt) na hover za navigacijske linkove */
 /* 🌀 Blagi nagib (tilt) na hover za navigacijske linkove */
 .nav-link {
-  display: inline-block; /* potrebno za transform */
+  display: inline-block;
+  /* potrebno za transform */
   transition: transform 180ms ease;
   transform-origin: 50% 60%;
 }
@@ -162,23 +185,27 @@ a[aria-current='page'].nav-link:hover {
   transform: none;
   text-shadow: none;
 }
+
 /* Makni automatski '>' ispred aktivnog linka */
 a[aria-current='page']::before,
 a[aria-current='true']::before {
   content: none !important;
 }
+
 /* 🚫 LIGHT MODE: nav linkovi bez markiranja na hover (ostaje samo tilt) */
 html:not(.dark) .nav-link:hover {
   background: transparent !important;
   color: inherit !important;
   text-decoration-color: currentColor !important;
 }
+
 /* Gumb tema uvijek iznad i klikabilan */
 #theme-toggle {
   position: relative;
   z-index: 9999;
   pointer-events: auto;
 }
+
 /* SWUP: da ima definirano trajanje i da ne javlja warning */
 [class*='transition-swup-'] {
   transition-property: opacity, transform;
@@ -198,49 +225,82 @@ html.is-leaving .transition-swup-footer {
 .social a {
   color: inherit !important;
 }
+
 .social a:hover {
   background: transparent !important;
   text-decoration-color: currentColor !important;
 }
+
 /* spriječi da se maska ikone izgubi pri hover animaciji */
 .social a > span {
   display: inline-block;
 }
+
 a:focus,
 a:focus-visible {
   outline: none;
   box-shadow: none;
 }
+
 /* Navigacija koristi poseban font */
 .nav-link {
   font-family: 'Roboto Mono', monospace;
   letter-spacing: 0.5px;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .nav-link:hover {
-  color: #38bdf8; /* svjetlija plava */
+  color: #38bdf8;
+  /* svjetlija plava */
   transform: translateY(-2px);
 }
+
 /* Navigacija – osnovni font */
 .nav-link {
   font-family: 'Roboto Mono', monospace;
   letter-spacing: 0.5px;
-  transition: color 0.3s ease, transform 0.2s ease;
-  color: inherit; /* preuzima iz roditelja (crna u light, bijela u dark) */
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease;
+  color: inherit;
+  /* preuzima iz roditelja (crna u light, bijela u dark) */
 }
 
 /* Hover efekt u light modu */
 html:not(.dark) .nav-link:hover {
-  color: #38bdf8; /* svjetlija plava */
+  color: #38bdf8;
+  /* svjetlija plava */
   transform: translateY(-2px);
 }
 
 /* Hover efekt u dark modu */
 html.dark .nav-link {
-  color: #e7ecf3 !important; /* osnovna boja u dark modu → bijela */
+  color: #e7ecf3 !important;
+  /* osnovna boja u dark modu → bijela */
 }
+
 html.dark .nav-link:hover {
-  color: #cbd5e1 !important; /* malo svjetlija siva na hover, ne plava */
+  color: #cbd5e1 !important;
+  /* malo svjetlija siva na hover, ne plava */
   transform: translateY(-2px);
+}
+
+.job-title {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  /* ili 400, ovisno o stilu koji želiš */
+}
+
+.job-title {
+  font-family: 'MyFont', monospace;
+  font-weight: 700;
+  /* ili 400 ako želiš tanje */
+}
+
+.main-title {
+  font-family: 'MyFont', monospace;
+  font-weight: 700;
+  /* ili 400 ako želiš tanje */
 }

@@ -22,12 +22,8 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [
-      remarkMath,
-    ],
-    rehypePlugins: [
-      rehypeKatex,
-    ],
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
     shikiConfig: {
       theme: 'dracula',
       wrap: true,

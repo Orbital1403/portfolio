@@ -49,7 +49,9 @@ export default defineConfig({
     ],
     [
       /^scrollbar-hide$/,
-      ([_]) => `.scrollbar-hide { scrollbar-width:none;-ms-overflow-style: none; }
+      ([
+        _,
+      ]) => `.scrollbar-hide { scrollbar-width:none;-ms-overflow-style: none; }
       .scrollbar-hide::-webkit-scrollbar {display:none;}`,
     ],
   ],
@@ -70,9 +72,7 @@ export default defineConfig({
     colors: { ...colorsLight, shadow: '#0000000A' },
     fontFamily: fonts,
   },
-  shortcuts: [
-    ['post-title', 'text-5 font-bold lh-7.5 m-0'],
-  ],
+  shortcuts: [['post-title', 'text-5 font-bold lh-7.5 m-0']],
   transformers: [transformerDirectives(), transformerVariantGroup()],
   safelist: [
     'i-mdi-github',

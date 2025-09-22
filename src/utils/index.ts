@@ -29,8 +29,12 @@ export async function getPosts(isArchivePage = false) {
       return dayjs(a.data.pubDate).isBefore(dayjs(b.data.pubDate)) ? 1 : -1
     }
 
-    const aDate = a.data.modDate ? dayjs(a.data.modDate) : dayjs(a.data.pubDate)
-    const bDate = b.data.modDate ? dayjs(b.data.modDate) : dayjs(b.data.pubDate)
+    const aDate = a.data.modDate
+      ? dayjs(a.data.modDate)
+      : dayjs(a.data.pubDate)
+    const bDate = b.data.modDate
+      ? dayjs(b.data.modDate)
+      : dayjs(b.data.pubDate)
 
     return aDate.isBefore(bDate) ? 1 : -1
   })

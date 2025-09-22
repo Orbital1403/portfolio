@@ -2,7 +2,7 @@
 title: "Programming in HTML5 with JavaScript and CSS3"
 pubDate: 2025-09-18
 description: "Introduction to building modern web pages using HTML5 structure, CSS3 styling, and JavaScript interactivity."
-categories: ["Web Development", "HTML5", "CSS3", "JavaScript","ITAcademy"]
+categories: ["Web Development", "HTML5", "CSS3", "JavaScript", "ITAcademy"]
 slug: html5-javascript-css3
 ---
 

@@ -8,3 +8,4 @@ dist/
 .astro/
 .wrangler/
 .env*
+.DS_Store

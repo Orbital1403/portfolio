@@ -15,7 +15,12 @@ const { title, subtitle } = themeConfig.site
     hover:lg=" bg-primary color-background"
     href="/"
   >
-    <h3 class="text-5 font-extrabold font-header">{subtitle}</h3>
-    <h1 class="text-8 font-extrabold font-header">{title}</h1>
+    <!-- Subtitle s typing efektom -->
+    <h3 class="text-7 font-extrabold job-title typing" style="--chars: 27">
+      {subtitle}
+    </h3>
+
+    <!-- Title -->
+    <h1 class="text-9 font-extrabold main-title">{title}</h1>
   </a>
 </hgroup>

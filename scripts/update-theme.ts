@@ -5,10 +5,7 @@ try {
   execSync('git remote | grep template', { stdio: 'ignore' })
 }
 catch {
-  execSync(
-    'git remote add template ',
-    { stdio: 'inherit' },
-  )
+  execSync('git remote add template ', { stdio: 'inherit' })
 }
 
 try {

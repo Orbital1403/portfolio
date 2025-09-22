@@ -40,9 +40,7 @@ export const defaultConfig: ThemeConfig = {
       },
     ],
     categoryMap: [{ name: 'Gordan', path: 'hu-shi' }],
-    footer: [
-      '© %year <a target="_blank" href="%website">%author</a>',
-    ],
+    footer: ['© %year <a target="_blank" href="%website">%author</a>'],
   },
   appearance: {
     theme: 'system',

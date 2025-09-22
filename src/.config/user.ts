@@ -6,7 +6,8 @@ export const userConfig: Partial<UserConfig> = {
     title: 'Gordan Grgić',
     subtitle: 'Java Developer & Webmaster',
     author: 'Gordan Grgic',
-    description: 'Portfolio and blog of Gordan Grgić, Java Developer & Webmaster.',
+    description:
+      'Portfolio and blog of Gordan Grgić, Java Developer & Webmaster.',
     website: 'https://gordangrgic.com',
 
     // 🔹 2) Navigacija (možeš dodati/skinuti stavke po želji)
@@ -21,7 +22,10 @@ export const userConfig: Partial<UserConfig> = {
     // 🔹 3) Social (samo one koje želiš prikazati)
     socialLinks: [
       { name: 'github', href: 'https://github.com/Orbital1403' },
-      { name: 'linkedin', href: 'https://www.linkedin.com/in/gordan-grgic-0ba40a354/' },
+      {
+        name: 'linkedin',
+        href: 'https://www.linkedin.com/in/gordan-grgic-0ba40a354/',
+      },
       { name: 'twitter', href: 'https://x.com/orbital1403' },
     ],
 
@@ -33,7 +37,10 @@ export const userConfig: Partial<UserConfig> = {
       { name: 'CSS', path: 'css' },
       { name: 'JavaScript', path: 'javascript' },
       { name: 'MySQL', path: 'mysql' },
-      { name: 'Java Desktop Application Development', path: 'java-desktop-application-development' },
+      {
+        name: 'Java Desktop Application Development',
+        path: 'java-desktop-application-development',
+      },
     ],
   },
   // 🔹 5) Jezik i tema (ostalo uzmi iz defaulta)
