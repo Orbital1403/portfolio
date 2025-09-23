@@ -28,41 +28,44 @@ const dark = themeConfig.appearance.theme === 'dark'
     lg="grid gap-x-6 cols-[3fr_1fr] rows-[1fr_9rem]"
   >
     <header
-      class="transition-swup-header flex flex-col gap-2.5 relative"
+      class="transition-swup-header flex flex-col gap-2.5 relative pt-12 lg:pt-0"
       m="7.5 lg:(x-0 t-20 b-4)"
       lg="row-1-2 col-2-3 justify-between items-start"
     >
       <div
-  class="absolute top-3 -right-11 lg:-top-15 lg:-right-10 z-[10000]
-         flex flex-col items-center gap-2 text-gray-900 dark:text-white"
-  style="isolation:isolate"
->
-  <!-- Sun/Moon toggle -->
-  <ThemeToggle />
+        class="absolute
+    -right-12 top-[calc(env(safe-area-inset-top,0px)-40px)] /* mob: skroz gore, uz safe-area (iPhone notch) */
+    lg:-right-39 lg:-top-15 /* desktop: ostaje kao prije */
+    z-[10000]
+    flex flex-row items-center gap-3
+    text-gray-900 dark:text-white"
+        style="isolation:isolate"
+      >
+        <ThemeToggle />
 
-  <!-- Home button (ispod sunca) -->
-  <button
-    type="button"
-    aria-label="Početna"
-    title="Početna"
-    onclick="location.href='/'"
-    class="icon-home group w-7 h-7 p-0 m-0 bg-transparent border-0
-           inline-flex items-center justify-center
+        <a
+          href="/"
+          aria-label="Početna"
+          title="Početna"
+          class="icon-home group w-7 h-7 inline-flex items-center justify-center
            transition-transform duration-200 ease-in-out
-           hover:scale-105 active:scale-95
-           focus:outline-none"
-    style="color: inherit;"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-6 h-6 transition-transform duration-200 ease-in-out group-hover:rotate-12"
-      viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-    >
-      <path d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V9.75z"/>
-    </svg>
-  </button>
-</div>
+           hover:scale-105 active:scale-95 focus:outline-none"
+          style="color: inherit;"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 transition-transform duration-200 ease-in-out group-hover:rotate-12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V9.75z"></path>
+          </svg>
+        </a>
+      </div>
 
       <SiteTitle />
       <SiteNavigation />
