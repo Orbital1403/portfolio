@@ -22,8 +22,7 @@ html {
 
   text-shadow: 1px 1px 1px var(--uno-colors-shadow);
   background-size: 7px 7px;
-  background-image:
-    linear-gradient(to right, var(--uno-colors-shadow) 1px, transparent 1px),
+  background-image: linear-gradient(to right, var(--uno-colors-shadow) 1px, transparent 1px),
     linear-gradient(to bottom, var(--uno-colors-shadow) 1px, transparent 1px);
 }
 
@@ -39,8 +38,7 @@ html.dark {
 
   /* Ako želiš još manje vidljivu mrežicu, smanji alpha npr. 0.04 */
   text-shadow: 1px 1px 1px var(--uno-colors-shadow);
-  background-image:
-    linear-gradient(to right, var(--uno-colors-shadow) 1px, transparent 1px),
+  background-image: linear-gradient(to right, var(--uno-colors-shadow) 1px, transparent 1px),
     linear-gradient(to bottom, var(--uno-colors-shadow) 1px, transparent 1px);
 
   /* Forsiraj tekst u dark modu */
