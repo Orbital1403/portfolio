@@ -4,10 +4,21 @@ import { getCollection } from 'astro:content'
 import { formatDate } from '~/utils'
 import { toSlug } from '~/utils/slug'
 
+/** Encode svakog segmenta putanje (space, & itd.) */
+const esc = (p?: string) => {
+  if (!p) return ''
+  const lead = p.startsWith('/')
+  const parts = p
+    .split('/')
+    .filter(Boolean)
+    .map((s) => encodeURIComponent(decodeURIComponent(s)))
+  return (lead ? '/' : '') + parts.join('/')
+}
+
 const entries = await getCollection('hobbies')
 entries.sort((a, b) => {
-  const da = a.data.date ? new Date(a.data.date).getTime() : 0
-  const db = b.data.date ? new Date(b.data.date).getTime() : 0
+  const da = a.data.date ? new Date(a.data.date as unknown as string).getTime() : 0
+  const db = b.data.date ? new Date(b.data.date as unknown as string).getTime() : 0
   return db - da
 })
 ---
@@ -38,7 +49,7 @@ entries.sort((a, b) => {
                 >
                   {cover ? (
                     <img
-                      src={cover}
+                      src={esc(cover)}
                       alt={`${title} cover`}
                       loading="lazy"
                       class="w-full h-44 object-cover rounded-t-xl cursor-zoom-in"
@@ -79,32 +90,4 @@ entries.sort((a, b) => {
       )
     }
   </section>
-
-  <!-- NEMA lokalnog modala: globalni je u layoutu -->
-  <style>
-    /* ništa posebno ovdje */
-  </style>
-
-  <script is:inline>
-    // Globalni lightbox je u layoutu; ovdje samo event-delegation za cover
-    document.addEventListener('click', (e) => {
-      const t = e.target
-      if (!(t instanceof Element)) {
-        return
-      }
-      const img = t.closest('img[data-cover]')
-      if (!img) {
-        return
-      }
-
-      // spriječi <a> navigaciju oko slike
-      e.preventDefault()
-      e.stopPropagation()
-
-      // Triger – globalna skripta u layoutu hvata isti click u capture fazi,
-      // tako da ovdje ne moramo ništa dodatno raditi.
-    })
-
-    // (nema dodatnih inline if-one-liners)
-  </script>
 </LayoutDefault>
