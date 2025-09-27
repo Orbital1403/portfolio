@@ -7,31 +7,44 @@ const configTheme = themeConfig.appearance.theme ?? 'system' // 'light' | 'dark'
   // Globalna funkcija – koristi je i toggle
   window.applyTheme = function (theme) {
     if (theme === 'system') {
-      const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+      const prefers = !!(mql && mql.matches)
       document.documentElement.classList.toggle('dark', prefers)
-    } else {
-      document.documentElement.classList.toggle('dark', theme === 'dark')
+      return
     }
+    document.documentElement.classList.toggle('dark', theme === 'dark')
   }
   ;(function initTheme() {
+    // prettier-ignore
     try {
       // 1) uzmi korisnički izbor ili konfiguraciju
-      const saved = localStorage.getItem('theme') || configTheme
-      window.applyTheme(saved)
+      const saved = localStorage.getItem('theme') || configTheme;
+      window.applyTheme(saved);
 
       // 2) ako je 'system', prati promjene OS-a
-      const mq = window.matchMedia('(prefers-color-scheme: dark)')
-      mq.addEventListener?.('change', () => {
-        if ((localStorage.getItem('theme') || configTheme) === 'system') {
-          window.applyTheme('system')
-        }
-      })
+      const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      const onChange = function () {
+      const mode = localStorage.getItem('theme') || configTheme;
+      if (mode === 'system') {
+        window.applyTheme('system');
+      }
+    };
+      if (mq && typeof mq.addEventListener === 'function') {
+        mq.addEventListener('change', onChange);
+      }
+      if (mq && typeof mq.addListener === 'function') {
+        // stari Safari (deprecated, ali još prisutan)
+        mq.addListener(onChange);
+      }
 
       // 3) SWUP: nakon svake zamjene sadržaja ponovno primijeni trenutno stanje
       document.addEventListener('swup:contentReplaced', () => {
-        const current = localStorage.getItem('theme') || configTheme
-        window.applyTheme(current)
-      })
-    } catch (_) {}
+        const current = localStorage.getItem('theme') || configTheme;
+        window.applyTheme(current);
+      });
+    }
+    catch {
+      /* silent */
+    }
   })()
 </script>
