@@ -26,8 +26,8 @@ steps:
   - title: Painting
     caption: First coat, final coat — pretending it’s not just a fancy excuse to play with spray paint.
     images:
-      - /images/hobbies/pc_on_wall/Painting/first_coat.jpg
-      - /images/hobbies/pc_on_wall/Painting/final_texture.jpg
+      - /images/hobbies/pc_on_wall/painting/first_coat.jpg
+      - /images/hobbies/pc_on_wall/painting/final_texture.jpg
 
   - title: Component Mounting
     caption: GPU standoffs, HDD/SSD mounts, and the eternal fight against cable spaghetti.
