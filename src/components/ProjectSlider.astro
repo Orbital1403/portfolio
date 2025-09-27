@@ -13,7 +13,9 @@ interface Props {
   images: ImgItem[]
   autoplay?: boolean
 }
-const { images = [], autoplay = true } = Astro.props
+
+// ako autoplay ne koristiš → makni ga ili ga prefiksi s "_"
+const { images = [], autoplay: _autoplay = true } = Astro.props as Props
 ---
 
 <swiper-container
@@ -34,12 +36,6 @@ const { images = [], autoplay = true } = Astro.props
   }
 </swiper-container>
 
-{
-  /*
-  Post-init: podesimo naprednije opcije (autoplay + breakpoints) preko skripte.
-  Ovo je najstabilnije u Element načinu.
-*/
-}
 <script is:inline>
   const root = document.currentScript.closest('swiper-container')
   if (root) {
@@ -49,11 +45,18 @@ const { images = [], autoplay = true } = Astro.props
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },
       },
-      autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
     })
+
     // ako korisnik želi isključiti autoplay, poštuj to
-    if (!{ autoplay }) 
-root.autoplay = false
-    root.initialize?.() // sigurnosno: inicijaliziraj ako još nije
+    if (!_autoplay) {
+      root.autoplay = false
+    }
+
+    root.initialize?.()
   }
 </script>

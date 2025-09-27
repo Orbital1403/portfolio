@@ -1,28 +1,110 @@
 ---
-import { getEntry, render } from 'astro:content'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { getCollection } from 'astro:content'
 import { formatDate } from '~/utils'
+import { toSlug } from '~/utils/slug'
 
-const { translate: t } = Astro.locals
-const page = await getEntry('spec', 'hobbies')
-if (!page) {
-  throw new Error('No skills page found')
-}
-const { Content } = await render(page)
+const entries = await getCollection('hobbies')
+entries.sort((a, b) => {
+  const da = a.data.date ? new Date(a.data.date).getTime() : 0
+  const db = b.data.date ? new Date(b.data.date).getTime() : 0
+  return db - da
+})
 ---
 
 <LayoutDefault>
-  <header flex="~ col gap-2">
-    <h1 class="post-title">
-      <a class="not-prose">{page.data.title}</a>
-    </h1>
-    <div class="text-3.5">
-      <span>{t('posted_at')}</span>
-      <time>{formatDate(page.data.pubDate)}</time>
-    </div>
-  </header>
+  <section class="max-w-6xl mx-auto">
+    <h1 class="text-2xl font-700 mb-1">Hobbies</h1>
+    <p class="text-slate6 mb-6">My hobbies and DIY projects.</p>
 
-  <article class="prose">
-    <Content />
-  </article>
+    {
+      entries.length === 0 ? (
+        <p class="text-slate6">Nothing here yet. Time to build something! 🔧</p>
+      ) : (
+        <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {entries.map((entry) => {
+            const href = `/hobbies/${toSlug(entry.id)}/`
+            const cover = entry.data.cover
+            const title = entry.data.title
+            const summary = entry.data.summary
+            const date = entry.data.date ? formatDate(entry.data.date) : null
+            const tags = entry.data.tags ?? []
+
+            return (
+              <li class="rounded-xl border border-slate3 bg-white/70 dark:bg-slate-900/50 shadow-md hover:shadow-lg transition">
+                <a
+                  href={href}
+                  class="block p-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-xl"
+                >
+                  {cover ? (
+                    <img
+                      src={cover}
+                      alt={`${title} cover`}
+                      loading="lazy"
+                      class="w-full h-44 object-cover rounded-t-xl cursor-zoom-in"
+                      data-cover
+                    />
+                  ) : (
+                    <div class="w-full h-44 flex items-center justify-center bg-slate2 rounded-t-xl text-slate7">
+                      <span class="text-3xl">🧰</span>
+                    </div>
+                  )}
+
+                  <div class="p-4">
+                    <h2 class="text-lg font-700 mb-1">{title}</h2>
+
+                    {(date || tags.length) && (
+                      <div class="text-xs text-slate6 mb-2">
+                        {date && <span>Posted at {date}</span>}
+                        {date && tags.length ? <span> · </span> : null}
+                        {tags.length ? <span>{tags.join(', ')}</span> : null}
+                      </div>
+                    )}
+
+                    {summary && <p class="text-sm text-slate7 line-clamp-3">{summary}</p>}
+
+                    {tags.length > 0 && (
+                      <div class="mt-3 flex flex-wrap gap-2">
+                        {tags.map((t) => (
+                          <span class="text-2.5 px-2 py-1 rounded border border-slate3 text-slate7 bg-slate1">{t}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      )
+    }
+  </section>
+
+  <!-- NEMA lokalnog modala: globalni je u layoutu -->
+  <style>
+    /* ništa posebno ovdje */
+  </style>
+
+  <script is:inline>
+    // Globalni lightbox je u layoutu; ovdje samo event-delegation za cover
+    document.addEventListener('click', (e) => {
+      const t = e.target
+      if (!(t instanceof Element)) {
+        return
+      }
+      const img = t.closest('img[data-cover]')
+      if (!img) {
+        return
+      }
+
+      // spriječi <a> navigaciju oko slike
+      e.preventDefault()
+      e.stopPropagation()
+
+      // Triger – globalna skripta u layoutu hvata isti click u capture fazi,
+      // tako da ovdje ne moramo ništa dodatno raditi.
+    })
+
+    // (nema dodatnih inline if-one-liners)
+  </script>
 </LayoutDefault>

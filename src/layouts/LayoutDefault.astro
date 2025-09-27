@@ -7,19 +7,31 @@ import SiteSeo from '~/components/SiteSeo.astro'
 import LaTeX from '~/components/LaTeX.astro'
 import Analytics from '~/components/Analytics.astro'
 import ThemeScript from '~/components/ThemeScript.astro'
-import ThemeToggle from '~/components/ThemeToggle.astro' // ⬅️ OVO DODAJ
+import ThemeToggle from '~/components/ThemeToggle.astro'
 import '~/styles/global.css'
 
 const lang = themeConfig.appearance.locale ?? 'en-us'
-const dark = themeConfig.appearance.theme === 'dark'
 ---
 
 <html lang={lang} class:list={['animation-prepared']}>
   <head>
-    <slot name="seo"> <SiteSeo /> </slot>
+    <!-- Osnovni meta tagovi -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- SEO slot + default komponenta -->
+    <slot name="seo"><SiteSeo /></slot>
+
+    <!-- Dodatne head-komponente -->
     <LaTeX />
     <Analytics />
     <ThemeScript />
+
+    <!-- Google Fonts (bez @import u CSS-u) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
   </head>
 
   <body
@@ -27,18 +39,20 @@ const dark = themeConfig.appearance.theme === 'dark'
     p="7.5 lg:(y-0 x-20)"
     lg="grid gap-x-6 cols-[3fr_1fr] rows-[1fr_9rem]"
   >
+    <!-- Skip link za pristupačnost -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2"> Skip to content </a>
+
     <header
       class="transition-swup-header flex flex-col gap-2.5 relative pt-12 lg:pt-0"
       m="7.5 lg:(x-0 t-20 b-4)"
       lg="row-1-2 col-2-3 justify-between items-start"
     >
+      <!-- Theme toggle + Home ikona -->
       <div
-        class="absolute
-    -right-12 top-[calc(env(safe-area-inset-top,0px)-40px)] /* mob: skroz gore, uz safe-area (iPhone notch) */
-    lg:-right-39 lg:-top-15 /* desktop: ostaje kao prije */
-    z-[10000]
-    flex flex-row items-center gap-3
-    text-gray-900 dark:text-white"
+        class="absolute -right-12 top-[calc(env(safe-area-inset-top,0px)-40px)]
+               lg:-right-39 lg:-top-15 z-[10000]
+               flex flex-row items-center gap-3
+               text-gray-900 dark:text-white"
         style="isolation:isolate"
       >
         <ThemeToggle />
@@ -48,8 +62,8 @@ const dark = themeConfig.appearance.theme === 'dark'
           aria-label="Početna"
           title="Početna"
           class="icon-home group w-7 h-7 inline-flex items-center justify-center
-           transition-transform duration-200 ease-in-out
-           hover:scale-105 active:scale-95 focus:outline-none"
+                 transition-transform duration-200 ease-in-out
+                 hover:scale-105 active:scale-95 focus:outline-none"
           style="color: inherit;"
         >
           <svg
@@ -61,6 +75,8 @@ const dark = themeConfig.appearance.theme === 'dark'
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
           >
             <path d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V9.75z"></path>
           </svg>
@@ -71,7 +87,12 @@ const dark = themeConfig.appearance.theme === 'dark'
       <SiteNavigation />
     </header>
 
-    <main class="transition-swup-main overflow-y-scroll scrollbar-hide outline-none" lg="row-1-3 col-1-2 py-20 ">
+    <main
+      id="main"
+      class="transition-swup-main overflow-y-scroll scrollbar-hide outline-none"
+      lg="row-1-3 col-1-2 py-20"
+      tabindex="-1"
+    >
       <slot />
     </main>
 
@@ -79,6 +100,7 @@ const dark = themeConfig.appearance.theme === 'dark'
       <SiteFooter />
     </footer>
 
+    <!-- Ukloni 'animation-prepared' kad završi prva animacija -->
     <script>
       document.addEventListener('animationend', removeAnimation, false)
       function removeAnimation() {
@@ -86,8 +108,10 @@ const dark = themeConfig.appearance.theme === 'dark'
         document.removeEventListener('animationend', removeAnimation, false)
       }
     </script>
+
+    <!-- (Ako imaš lokalni stil za ovaj layout, stavi ga ovdje) -->
     <style>
-      /* … (tvoj postojeći CSS ostaje) … */
+      /* place-holder: može ostati prazan ili dodaj svoje sitne override-ove */
     </style>
   </body>
 </html>

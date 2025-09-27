@@ -1,0 +1,112 @@
+---
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { getCollection, render, type CollectionEntry } from 'astro:content'
+import { formatDate } from '~/utils'
+import { toSlug } from '~/utils/slug'
+
+type Hobby = CollectionEntry<'hobbies'>
+
+export async function getStaticPaths() {
+  const all = await getCollection('hobbies')
+  return all.map((e) => ({ params: { slug: toSlug(e.id) } }))
+}
+
+const { slug } = Astro.params
+if (!slug) {
+  throw new Error('Missing slug')
+}
+
+const all = await getCollection('hobbies')
+const post = all.find((e) => toSlug(e.id) === slug)
+if (!post) {
+  throw new Error(`Hobby not found: ${slug}`)
+}
+
+const data = post.data as Hobby['data']
+const { Content } = await render(post)
+type Step = NonNullable<Hobby['data']['steps']>[number]
+---
+
+<LayoutDefault>
+  <header flex="~ col gap-2">
+    <a href="/hobbies" class="text-$blue6 hover:underline">Back to Hobbies</a>
+    <h1 class="post-title m-0"><a class="not-prose">{data.title}</a></h1>
+
+    {
+      (data.date || data.tags) && (
+        <div class="text-3.5 text-slate5">
+          {data.date && (
+            <>
+              <span>Posted at </span>
+              <time>{formatDate(data.date)}</time>
+            </>
+          )}
+          {data.tags?.length ? <span class="ml-2">• {data.tags.join(', ')}</span> : null}
+        </div>
+      )
+    }
+  </header>
+
+  {
+    data.cover && (
+      <figure class="my-4">
+        <img
+          src={encodeURI(data.cover)}
+          alt={`${data.title} cover`}
+          class="rounded-2 w-full h-auto cursor-zoom-in"
+          data-group="cover"
+          data-index="0"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </figure>
+    )
+  }
+
+  <article class="prose">
+    <Content />
+  </article>
+
+  {
+    data.steps?.length ? (
+      <section class="mt-8 space-y-8">
+        {data.steps.map((step: Step, sIdx: number) => (
+          <div class="space-y-3">
+            <h2 class="text-xl font-600">{step.title}</h2>
+            {step.caption && <p class="text-3.5">{step.caption}</p>}
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+              {step.images.map((img: string, i: number) => (
+                <img
+                  src={encodeURI(img)}
+                  alt={`${step.title} – ${i + 1}`}
+                  class="rounded-2 w-full h-auto cursor-zoom-in"
+                  loading="lazy"
+                  data-group={String(sIdx)}
+                  data-index={String(i)}
+                  data-src={encodeURI(img)}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+    ) : null
+  }
+
+  <script is:inline>
+    // Nema lokalnog lightbox JS – globalni u layoutu hvata klikove.
+    // Ovdje je samo helper za encodeURI u markup-u; event handling je centraliziran.
+    document.addEventListener('click', (e) => {
+      const t = e.target
+      if (!(t instanceof Element)) {
+        return
+      }
+      // samo osiguraj da spriječimo default na klik po thumbu unutar <a> (ako postoji)
+      const img = t.closest('img[data-group][data-index]')
+      if (!img) {
+        return
+      }
+      e.preventDefault()
+    })
+  </script>
+</LayoutDefault>
