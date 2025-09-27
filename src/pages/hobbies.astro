@@ -42,24 +42,31 @@ entries.sort((a, b) => {
             const tags = entry.data.tags ?? []
 
             return (
-              <li class="rounded-xl border border-slate3 bg-white/70 dark:bg-slate-900/50 shadow-md hover:shadow-lg transition">
+              <li>
                 <a
                   href={href}
-                  class="block p-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-xl"
+                  class="group block rounded-xl border border-slate3 bg-white/70 dark:bg-slate-900/50 shadow-md
+           transition-all duration-300 ease-out
+           hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-lg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-400
+           focus-visible:-translate-y-0.5 focus-visible:scale-[1.02] focus-visible:shadow-lg"
                 >
-                  {cover ? (
-                    <img
-                      src={esc(cover)}
-                      alt={`${title} cover`}
-                      loading="lazy"
-                      class="w-full h-44 object-cover rounded-t-xl cursor-zoom-in"
-                      data-cover
-                    />
-                  ) : (
-                    <div class="w-full h-44 flex items-center justify-center bg-slate2 rounded-t-xl text-slate7">
-                      <span class="text-3xl">🧰</span>
-                    </div>
-                  )}
+                  <figure class="overflow-hidden rounded-t-xl">
+                    {cover ? (
+                      <img
+                        src={esc(cover)}
+                        alt={`${title} cover`}
+                        loading="lazy"
+                        class="w-full aspect-[4/3] object-cover
+                 transition-transform duration-300 ease-out will-change-transform
+                 group-hover:scale-105 group-focus-visible:scale-105"
+                      />
+                    ) : (
+                      <div class="w-full aspect-[4/3] flex items-center justify-center bg-slate2 text-slate7">
+                        <span class="text-3xl">🧰</span>
+                      </div>
+                    )}
+                  </figure>
 
                   <div class="p-4">
                     <h2 class="text-lg font-700 mb-1">{title}</h2>

@@ -299,3 +299,9 @@ html.dark .nav-link:hover {
   font-weight: 700;
   /* ili 400 ako želiš tanje */
 }
+@media (prefers-reduced-motion: reduce) {
+  .group:hover img,
+  .group:focus-visible img {
+    transform: none !important;
+  }
+}
