@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en-us" class="animation-prepared" data-astro-cid-e5lvscu2> <head><!-- Osnovni meta tagovi --><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light dark"><!-- SEO slot + default komponenta --><title>Java Web Application Development</title><meta charset="utf-8"><link rel="canonical" href="https://gordangrgic.com/posts/java-web-application-development/"><meta name="description" content="Building dynamic web applications with Servlets, JSP, JSTL, sessions, and MVC architecture."><meta name="robots" content="index, follow"><meta property="og:title" content="Java Web Application Development"><meta property="og:type" content="article"><meta property="og:image" content="https://gordangrgic.com/placeholder.png"><meta property="og:url" content="https://gordangrgic.com"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="Gordan Grgic" href="https://gordangrgic.com/atom.xml"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.13.10"><meta name="twitter:image:src" content="https://gordangrgic.com/placeholder.png"><meta name="twitter:image:alt" content="Building dynamic web applications with Servlets, JSP, JSTL, sessions, and MVC architecture."><meta name="twitter:creator" content="@moeyua13"><meta name="twitter:site" content="@moeyua13"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Java Web Application Development"><meta name="twitter:description" content="Building dynamic web applications with Servlets, JSP, JSTL, sessions, and MVC architecture."><!-- Dodatne head-komponente --><script>(function(){const configTheme = "system";
+
+  // Globalna funkcija – koristi je i toggle
+  window.applyTheme = function (theme) {
+    if (theme === 'system') {
+      const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+      const prefers = !!(mql && mql.matches)
+      document.documentElement.classList.toggle('dark', prefers)
+      return
+    }
+    document.documentElement.classList.toggle('dark', theme === 'dark')
+  }
+  ;(function initTheme() {
+    // prettier-ignore
+    try {
+      // 1) uzmi korisnički izbor ili konfiguraciju
+      const saved = localStorage.getItem('theme') || configTheme;
+      window.applyTheme(saved);
+
+      // 2) ako je 'system', prati promjene OS-a
+      const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      const onChange = function () {
+      const mode = localStorage.getItem('theme') || configTheme;
+      if (mode === 'system') {
+        window.applyTheme('system');
+      }
+    };
+      if (mq && typeof mq.addEventListener === 'function') {
+        mq.addEventListener('change', onChange);
+      }
+      if (mq && typeof mq.addListener === 'function') {
+        // stari Safari (deprecated, ali još prisutan)
+        mq.addListener(onChange);
+      }
+
+      // 3) SWUP: nakon svake zamjene sadržaja ponovno primijeni trenutno stanje
+      document.addEventListener('swup:contentReplaced', () => {
+        const current = localStorage.getItem('theme') || configTheme;
+        window.applyTheme(current);
+      });
+    }
+    catch {
+      /* silent */
+    }
+  })()
+})();</script><!-- Google Fonts (bez @import u CSS-u) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/_page_.oaWdfGjw.css">
+<style>.tk-meta-input{background-color:#fff}.code-container{position:relative}.clipboard-copy{position:absolute;top:.5rem;right:.5rem;width:1.75rem;height:1.75rem;display:flex;justify-content:center;align-items:center;border-radius:.25rem}.clipboard-copy:hover{background-color:#30363d}
+</style><script type="module" src="/_astro/page.1Imge0uX.js"></script></head> <body class="h-100vh max-w-1200px min-w-390px mx-a" p="7.5 lg:y-0 lg:x-20" lg="grid gap-x-6 cols-[3fr_1fr] rows-[1fr_9rem]" data-astro-cid-e5lvscu2> <!-- Skip link za pristupačnost --> <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2" data-astro-cid-e5lvscu2> Skip to content </a> <header class="transition-swup-header flex flex-col gap-2.5 relative pt-12 lg:pt-0" m="7.5 lg:x-0 lg:t-20 lg:b-4" lg="row-1-2 col-2-3 justify-between items-start" data-astro-cid-e5lvscu2> <!-- Theme toggle + Home ikona --> <div class="absolute -right-12 top-[calc(env(safe-area-inset-top,0px)-40px)]
+               lg:-right-39 lg:-top-15 z-[10000]
+               flex flex-row items-center gap-3
+               text-gray-900 dark:text-white" style="isolation:isolate" data-astro-cid-e5lvscu2> <button id="theme-toggle" type="button" aria-label="Toggle theme" class="w-7 h-7 cursor-pointer inline-flex items-center justify-center" title="Toggle theme" onclick="(function(){
+    const d = document.documentElement;
+    const next = d.classList.contains('dark') ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    if (window.applyTheme) window.applyTheme(next);
+  })()" data-astro-cid-x3pjskd3> <!-- Sun (vidljiv u light) --> <svg class="w-7 h-7 dark:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-x3pjskd3> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m16.95 6.95l-1.414-1.414M6.464 6.464L5.05 5.05m13.9 0l-1.414 1.414M6.464 17.536L5.05 18.95M16 12a4 4 0 11-8 0 4 4 0 018 0z" data-astro-cid-x3pjskd3></path> </svg> <!-- Moon (vidljiv u dark) --> <svg class="w-7 h-7 hidden dark:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-x3pjskd3> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" data-astro-cid-x3pjskd3></path> </svg> </button>  <a href="/" aria-label="Početna" title="Početna" class="icon-home group w-7 h-7 inline-flex items-center justify-center
+                 transition-transform duration-200 ease-in-out
+                 hover:scale-105 active:scale-95 focus:outline-none" style="color: inherit;" data-astro-cid-e5lvscu2> <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 transition-transform duration-200 ease-in-out group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-astro-cid-e5lvscu2> <path d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V9.75z" data-astro-cid-e5lvscu2></path> </svg> </a> </div> <hgroup lg="write-vertical-right items-start b-l-2px b-l-primary text-left" flex="~ col gap-2.5" class="cursor-pointer text-center duration-800 ease-in-out"> <a class="not-underline-hover duration-800 ease-in-out" lg:p="x-2.5 b-12 hover:t-3.75 hover:b-8.75" hover:lg=" bg-primary color-background" href="/"> <!-- Subtitle s typing efektom --> <h3 class="text-7 font-extrabold job-title typing" style="--chars: 27"> Java Developer &amp; Webmaster </h3> <!-- Title --> <h1 class="text-9 font-extrabold main-title">Gordan Grgic</h1> </a> </hgroup> <nav class="text-center font-bold" flex="~ col gap-4"> <ul lg="flex-col items-start text-4" class="text-3.5" flex="~ row gap-2 justify-center"> <li> <a href="/about" class="nav-link"> ABOUT </a> </li><li> <a href="/skills" class="nav-link"> SKILLS </a> </li><li> <a href="/projects" class="nav-link"> PROJECTS </a> </li><li> <a href="/hobbies" class="nav-link"> HOBBIES </a> </li><li> <a href="mailto:gordan.grgic@gmail.com" class="nav-link"> CONTACT </a> </li> </ul> <ul class="social" flex="~ row gap-1 justify-center"> <li> <a href="https://github.com/Orbital1403" target="_blank" rel="noopener noreferrer" title="github" data-no-swup class="nav-link not-underline-hover inline-flex items-center"> <span class="i-mdi-github w-6 h-6"></span> </a> </li><li> <a href="https://www.linkedin.com/in/gordan-grgic-0ba40a354/" target="_blank" rel="noopener noreferrer" title="linkedin" data-no-swup class="nav-link not-underline-hover inline-flex items-center"> <span class="i-mdi-linkedin w-6 h-6"></span> </a> </li><li> <a href="https://x.com/orbital1403" target="_blank" rel="noopener noreferrer" title="twitter" data-no-swup class="nav-link not-underline-hover inline-flex items-center"> <span class="i-mdi-twitter w-6 h-6"></span> </a> </li> </ul> </nav> </header> <main id="main" class="transition-swup-main overflow-y-scroll scrollbar-hide outline-none" lg="row-1-3 col-1-2 py-20" tabindex="-1" data-astro-cid-e5lvscu2>   <article class="prose"> <header flex="~ col gap-2"> <h1 class="post-title"> <a class="not-prose" href="/posts/java-web-application-development/">Java Web Application Development</a> </h1> <div class="text-3.5"> <span>Posted at</span> <time>2025</time> <a href="/categories/Java">
+# Java </a><a href="/categories/Web Development">
+# Web Development </a><a href="/categories/ITAcademy">
+# ITAcademy </a> </div> </header>  <h1 id="java-web-application-development">Java Web Application Development</h1>
+<p>This subject introduced me to the fundamentals of creating <strong>dynamic web applications</strong> in Java.
+It was the first step towards understanding how backend Java interacts with the web browser.</p>
+<h2 id="topics-i-studied">Topics I studied</h2>
+<ul>
+<li>Introduction to Java EE and web application architecture</li>
+<li>HTTP protocol basics (requests, responses, GET/POST methods)</li>
+<li>Servlets and deployment descriptor (<code>web.xml</code>)</li>
+<li>Annotations for simplifying configuration</li>
+<li>JavaServer Pages (JSP) for dynamic HTML generation</li>
+<li>Expression Language (EL) and JSTL (JSP Standard Tag Library)</li>
+<li>Custom tags in JSP</li>
+<li>HTML forms processing in Java</li>
+<li>Session and cookie management</li>
+<li>MVC design pattern in web applications</li>
+<li>Introduction to frameworks: Spring Web MVC and JSF basics</li>
+</ul>
+<h2 id="my-experience">My experience</h2>
+<p>At first, working directly with <strong>Servlets</strong> and manually handling requests and responses felt very low-level.
+Learning <strong>JSP + JSTL</strong> made it much easier to build dynamic pages.
+The concept of <strong>sessions</strong> was a turning point — I finally understood how user login and shopping carts work.</p>
+<h2 id="example-simple-servlet">Example: Simple Servlet</h2>
+<pre class="astro-code dracula" style="background-color:#282A36;color:#F8F8F2; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#FF79C6">import</span><span style="color:#F8F8F2"> java.io.</span><span style="color:#BD93F9;font-style:italic">*</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#FF79C6">import</span><span style="color:#F8F8F2"> jakarta.servlet.</span><span style="color:#BD93F9;font-style:italic">*</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#FF79C6">import</span><span style="color:#F8F8F2"> jakarta.servlet.http.</span><span style="color:#BD93F9;font-style:italic">*</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FF79C6">public</span><span style="color:#FF79C6"> class</span><span style="color:#8BE9FD"> HelloServlet</span><span style="color:#FF79C6"> extends</span><span style="color:#8BE9FD;font-style:italic"> HttpServlet</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">    @</span><span style="color:#8BE9FD;font-style:italic">Override</span></span>
+<span class="line"><span style="color:#FF79C6">    protected</span><span style="color:#8BE9FD;font-style:italic"> void</span><span style="color:#50FA7B"> doGet</span><span style="color:#F8F8F2">(</span><span style="color:#8BE9FD;font-style:italic">HttpServletRequest</span><span style="color:#FFB86C;font-style:italic"> req</span><span style="color:#F8F8F2">, </span><span style="color:#8BE9FD;font-style:italic">HttpServletResponse</span><span style="color:#FFB86C;font-style:italic"> resp</span><span style="color:#F8F8F2">)</span></span>
+<span class="line"><span style="color:#FF79C6">        throws</span><span style="color:#8BE9FD;font-style:italic"> ServletException</span><span style="color:#F8F8F2">, </span><span style="color:#8BE9FD;font-style:italic">IOException</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">        resp.</span><span style="color:#50FA7B">setContentType</span><span style="color:#F8F8F2">(</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">text/html</span><span style="color:#E9F284">"</span><span style="color:#F8F8F2">);</span></span>
+<span class="line"><span style="color:#8BE9FD;font-style:italic">        PrintWriter</span><span style="color:#F8F8F2"> out </span><span style="color:#FF79C6">=</span><span style="color:#F8F8F2"> resp.</span><span style="color:#50FA7B">getWriter</span><span style="color:#F8F8F2">();</span></span>
+<span class="line"><span style="color:#F8F8F2">        out.</span><span style="color:#50FA7B">println</span><span style="color:#F8F8F2">(</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">&#x3C;h1>Hello from my first Servlet!&#x3C;/h1></span><span style="color:#E9F284">"</span><span style="color:#F8F8F2">);</span></span>
+<span class="line"><span style="color:#F8F8F2">    }</span></span>
+<span class="line"><span style="color:#F8F8F2">}</span></span>
+<span class="line"><span style="color:#F8F8F2">Example</span><span style="color:#FF79C6">:</span><span style="color:#8BE9FD;font-style:italic"> JSP</span><span style="color:#F8F8F2"> with </span><span style="color:#8BE9FD;font-style:italic">Expression</span><span style="color:#8BE9FD;font-style:italic"> Language</span></span>
+<span class="line"><span style="color:#F8F8F2">jsp</span></span>
+<span class="line"><span style="color:#8BE9FD;font-style:italic">Copy</span><span style="color:#F8F8F2"> code</span></span>
+<span class="line"><span style="color:#FF79C6">&#x3C;%</span><span style="color:#F8F8F2">@ </span><span style="color:#8BE9FD;font-style:italic">page</span><span style="color:#F8F8F2"> contentType</span><span style="color:#FF79C6">=</span><span style="color:#E9F284">"</span><span style="color:#F1FA8C">text/html;charset=UTF-8</span><span style="color:#E9F284">"</span><span style="color:#FF79C6"> %></span></span>
+<span class="line"><span style="color:#FF79C6">&#x3C;</span><span style="color:#F8F8F2">html</span><span style="color:#FF79C6">></span></span>
+<span class="line"><span style="color:#FF79C6">  &#x3C;</span><span style="color:#F8F8F2">body</span><span style="color:#FF79C6">></span></span>
+<span class="line"><span style="color:#FF79C6">    &#x3C;</span><span style="color:#F8F8F2">h2</span><span style="color:#FF79C6">></span><span style="color:#F8F8F2">Welcome, ${user.name}</span><span style="color:#FF79C6">!&#x3C;/</span><span style="color:#F8F8F2">h2</span><span style="color:#FF79C6">></span></span>
+<span class="line"><span style="color:#FF79C6">    &#x3C;</span><span style="color:#F8F8F2">p</span><span style="color:#FF79C6">></span><span style="color:#8BE9FD;font-style:italic">Your</span><span style="color:#F8F8F2"> session ID</span><span style="color:#FF79C6">:</span><span style="color:#F8F8F2"> ${pageContext.session.id}</span><span style="color:#FF79C6">&#x3C;/</span><span style="color:#F8F8F2">p</span><span style="color:#FF79C6">></span></span>
+<span class="line"><span style="color:#FF79C6">  &#x3C;/</span><span style="color:#F8F8F2">body</span><span style="color:#FF79C6">></span></span>
+<span class="line"><span style="color:#FF79C6">&#x3C;/</span><span style="color:#F8F8F2">html</span><span style="color:#FF79C6">></span></span></code></pre>  </article> <footer class="mt-5">  <div class="flex items-center gap-2"> <a title="Previous post: Programming in HTML5 with JavaScript and CSS3" href="/posts/html5-javascript-css3"> <span class="inline-block vertical-mid i-mdi-chevron-double-left w-4 h-4"></span> Previous post: Programming in HTML5 with JavaScript and CSS3 </a> <a title="Next post: Java Desktop Application Development (JAD)" href="/posts/java-desktop-application-development"> Next post: Java Desktop Application Development (JAD) <span class="inline-block vertical-mid i-mdi-chevron-double-right w-4 h-4"></span> </a> </div> </footer>    </main> <footer class="transition-swup-footer py-7.5" lg="row-2-3 col-2-3" data-astro-cid-e5lvscu2> <p data-astro-cid-gcn2mc3v>© 2025 <a target="_blank" href="https://gordangrgic.com">Gordan Grgic</a></p> </footer> <!-- Ukloni 'animation-prepared' kad završi prva animacija --> <script type="module">document.addEventListener("animationend",e,!1);function e(){document.documentElement.classList.remove("animation-prepared"),document.removeEventListener("animationend",e,!1)}</script> <!-- (Ako imaš lokalni stil za ovaj layout, stavi ga ovdje) -->  </body> </html> <script type="module">function u(e){const t=document.createElement("pre");return t.style.width="1px",t.style.height="1px",t.style.position="fixed",t.style.top="5px",t.textContent=e,t}function a(e){if("clipboard"in navigator)return navigator.clipboard.writeText(e.textContent||"");const t=getSelection();if(t==null)return Promise.reject(new Error);t.removeAllRanges();const n=document.createRange();return n.selectNodeContents(e),t.addRange(n),document.execCommand("copy"),t.removeAllRanges(),Promise.resolve()}function i(e){if("clipboard"in navigator)return navigator.clipboard.writeText(e);const t=document.body;if(!t)return Promise.reject(new Error);const n=u(e);return t.appendChild(n),a(n),t.removeChild(n),Promise.resolve()}async function d(e){const t=e.getAttribute("for"),n=e.getAttribute("value");function o(){e.dispatchEvent(new CustomEvent("clipboard-copy",{bubbles:!0}))}if(e.getAttribute("aria-disabled")!=="true"){if(n)await i(n),o();else if(t){const r="getRootNode"in Element.prototype?e.getRootNode():e.ownerDocument;if(!(r instanceof Document||"ShadowRoot"in window&&r instanceof ShadowRoot))return;const c=r.getElementById(t);c&&(await p(c),o())}}}function p(e){return e instanceof HTMLInputElement||e instanceof HTMLTextAreaElement?i(e.value):e instanceof HTMLAnchorElement&&e.hasAttribute("href")?i(e.href):a(e)}function f(e){const t=e.currentTarget;t instanceof HTMLElement&&d(t)}function l(e){if(e.key===" "||e.key==="Enter"){const t=e.currentTarget;t instanceof HTMLElement&&(e.preventDefault(),d(t))}}function m(e){e.currentTarget.addEventListener("keydown",l)}function y(e){e.currentTarget.removeEventListener("keydown",l)}class h extends HTMLElement{static define(t="clipboard-copy",n=customElements){return n.define(t,this),this}constructor(){super(),this.addEventListener("click",f),this.addEventListener("focus",m),this.addEventListener("blur",y)}connectedCallback(){this.hasAttribute("tabindex")||this.setAttribute("tabindex","0"),this.hasAttribute("role")||this.setAttribute("role","button")}get value(){return this.getAttribute("value")||""}set value(t){this.setAttribute("value",t)}}const s=typeof globalThis<"u"?globalThis:window;try{s.ClipboardCopyElement=h.define()}catch(e){if(!(s.DOMException&&e instanceof DOMException&&e.name==="NotSupportedError")&&!(e instanceof ReferenceError))throw e}document.addEventListener("clipboard-copy",e=>{const n=e.target.querySelector(".icon");n.classList.replace("i-mdi-content-copy","i-mdi-check"),setTimeout(()=>{n.classList.replace("i-mdi-check","i-mdi-content-copy")},1500)});const b=Array.from(document.querySelectorAll("pre")),g="<div class='i-mdi-content-copy icon text-white'></div>";for(const e of b){const t=document.createElement("div");t.className="code-container";const n=document.createElement("clipboard-copy"),o=e.querySelector("code");n.value=o?.textContent??"",n.className="clipboard-copy",n.innerHTML=g,e.appendChild(n),e.parentNode?.insertBefore(t,e),t.appendChild(e)}</script> 
