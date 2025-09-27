@@ -37,7 +37,6 @@ steps:
       - /images/hobbies/garden-makeover/patio-waterproofing/self-levelling-done.jpg
       - /images/hobbies/garden-makeover/patio-waterproofing/layers-cross-section.jpg
       - /images/hobbies/garden-makeover/patio-waterproofing/waterproof-flashing-band.jpg
-      - /images/hobbies/garden-makeover/patio-waterproofing/wall-drain-sealing.jpg
 
   - title: Drainage & Edging
     caption: Trenches, aggregates, and proper edges for water and aesthetics.
