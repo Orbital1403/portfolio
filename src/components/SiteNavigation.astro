@@ -1,6 +1,7 @@
 ---
 import { themeConfig } from '~/.config'
 import Icon from '~/components/Icon.astro'
+import ThemeToggle from '~/components/ThemeToggle.astro'
 const navIcons: Record<string,string>={HOME:'home',ABOUT:'about',PROJECTS:'projects',SKILLS:'skills',HOBBIES:'hobbies',CONTACT:'mail'}
 
 const site = themeConfig?.site ?? { navLinks: [], socialLinks: [] }
@@ -42,6 +43,7 @@ const selected = (href: string) => current === href || (href !== '/' && current.
         </li>
       ))
     }
+    <li class="social-theme"><ThemeToggle /></li>
   </ul>
 </nav>
 

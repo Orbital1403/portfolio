@@ -3,9 +3,9 @@ import type { UserConfig } from '~/types'
 export const userConfig: Partial<UserConfig> = {
   // 🔹 1) Osnovno — naslov i meta
   site: {
-    title: 'Gordan Grgic',
+    title: 'Gordan Grgić',
     subtitle: 'Problem Solver',
-    author: 'Gordan Grgic',
+    author: 'Gordan Grgić',
     description:
       'Portfolio of Gordan Grgić: practical technical experience, computers and electronics, and MILA*, a personal audio streamer in development. Based in Brussels.',
     website: 'https://orbital1403.github.io/portfolio/',

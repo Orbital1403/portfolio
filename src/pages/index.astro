@@ -12,7 +12,7 @@ import Icon from '~/components/Icon.astro'
       <p class="folio-label">PERSONAL FIELD NOTES / ZAGREB → BRUSSELS</p>
       <h1>Curiosity.<br />A practical mind.</h1>
       <p class="lead">I'm Gordan, from Zagreb and now based in Brussels. Computers, electronics and music have been part of my life for years. I enjoy understanding how things work, spotting problems and finding a way forward.</p>
-      <p class="intro-links"><a href="/about/">My story <Icon name="external" /></a><a href="/contact/">Get in touch <Icon name="external" /></a></p>
+      <p class="intro-links"><a class="cta not-underline-hover" href="/contact/">Get in touch <Icon name="arrow" /></a><a href="/about/">My story <Icon name="arrow" /></a></p>
     </section>
 
     <section class="featured" aria-labelledby="streamer-title">
@@ -87,18 +87,22 @@ import Icon from '~/components/Icon.astro'
     </section>
 
     <section class="learning"><div class="section-heading"><span class="folio-label">04 / SKILLS & LEARNING</span></div><h2>Learning by doing.</h2><p>PC assembly and diagnostics. Linux, macOS and Windows. Quality control and calibration. Completed Java studies. My next learning focus is Python, alongside the development of MILA*.</p><a class="text-action" href="/skills/">Skills & course certificates <Icon name="arrow" /></a></section>
-    <section class="contact-note"><p class="folio-label">NEXT CHAPTER</p><h2>Ready for the next<br />technical challenge.</h2><p>Quality, testing, technical support and integration — especially where hardware meets software.</p><a class="text-action" href="/contact/">Send a message <Icon name="external" /></a></section>
+    <section class="contact-note"><p class="folio-label">NEXT CHAPTER</p><h2>Ready for the next<br />technical challenge.</h2><p>Quality, testing, technical support and integration — especially where hardware meets software.</p><a class="text-action" href="/contact/">Send a message <Icon name="arrow" /></a></section>
   </div>
 </LayoutDefault>
 <style>
-.notebook{--ink:#26333b;--muted:#647078;--accent:#39776c;color:var(--ink);padding-right:8px;font-family:'Roboto Mono',monospace;}
+.notebook{--ink:#26333b;--muted:#647078;--accent:#39776c;color:var(--ink);padding-right:8px;font-family:'IBM Plex Mono',monospace;}
 :global(html.dark) .notebook{--ink:#e7ecf3;--muted:#a6b2ba;--accent:#9ad7c7;}
 .notebook section{margin-bottom:56px;} .folio-label{font-size:10px;letter-spacing:1.6px;font-weight:500;color:var(--muted);line-height:1.7;} .intro{padding:12px 0 28px;border-bottom:1px solid currentColor;}
 h1{font-family:'MyFont',monospace;font-size:clamp(34px,4.1vw,49px);line-height:1.17;letter-spacing:-1.5px;margin:23px 0;}h2{font-size:23px;line-height:1.4;letter-spacing:-.7px;margin:18px 0;}h3{font-size:17px;margin:0 0 6px;}p{font-size:13px;line-height:1.9;margin:12px 0;} .lead{font-size:14px;max-width:590px;}
-.intro-links{display:flex;gap:26px;margin-top:26px;}
+.intro-links{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:28px;}
 .intro-links a{display:inline-flex;align-items:center;gap:6px;transition:color .18s ease;}
 .intro-links a svg{transition:transform .2s cubic-bezier(.16,1,.3,1);}
-.intro-links a:hover svg{transform:translateX(3px) translateY(-1px);}
+.intro-links a:hover svg{transform:translateX(4px);}
+.intro-links .cta{gap:12px;padding:12px 18px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;transition:background-color .18s ease;}
+.intro-links .cta:hover{background:#2e6359;color:#fff;}
+:global(html.dark) .intro-links .cta{background:#aed1c2;color:#24313b;}
+:global(html.dark) .intro-links .cta:hover{background:#c6e2d6;}
 a{color:inherit;}
 .section-heading{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid color-mix(in srgb,currentColor 22%,transparent);padding-bottom:13px;margin-bottom:22px;gap:8px;}
 .status{font-size:12px;white-space:nowrap;color:var(--accent);}

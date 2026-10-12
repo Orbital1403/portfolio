@@ -1,38 +1,24 @@
 ---
-/* Default: light mode, pamti u localStorage */
+/* Follows the visitor's system setting until they choose a theme with the toggle. */
 ---
 
 <script is:inline>
   window.applyTheme = function (theme) {
     const html = document.documentElement
-    if (theme === 'dark') {
-      html.classList.add('dark')
-      html.dataset.theme = 'dark'
-    } else {
-      html.classList.remove('dark')
-      html.dataset.theme = 'light'
-    }
+    html.classList.toggle('dark', theme === 'dark')
+    html.dataset.theme = theme
   }
-
   ;(function initTheme() {
-    try {
-      // ako nema spremljene teme — koristi light
-      let saved = localStorage.getItem('theme')
-      if (!saved) {
-        saved = 'light'
-        localStorage.setItem('theme', saved)
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const chosen = () => {
+      try {
+        return localStorage.getItem('theme-choice')
+      } catch {
+        return null
       }
-
-      // primijeni temu
-      window.applyTheme(saved)
-
-      // nakon SWUP reload-a ponovno primijeni trenutno stanje
-      document.addEventListener('swup:contentReplaced', () => {
-        const current = localStorage.getItem('theme') || 'light'
-        window.applyTheme(current)
-      })
-    } catch (e) {
-      console.warn('Theme init error', e)
     }
+    const current = () => chosen() || (media.matches ? 'dark' : 'light')
+    window.applyTheme(current())
+    media.addEventListener('change', () => chosen() || window.applyTheme(current()))
   })()
 </script>

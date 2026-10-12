@@ -32,6 +32,7 @@ export default defineConfig({
     sitemap(),
     swup({
       theme: false,
+      containers: ['main', '#page-aside'],
       animationClass: 'transition-swup-',
       cache: true,
       preload: true,

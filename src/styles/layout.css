@@ -1,12 +1,12 @@
 /* Page frame: the whole document scrolls; on large screens the identity and
    navigation stay beside the content as a sticky column. */
-.site-body{box-sizing:border-box;min-height:100vh;max-width:1200px;margin:0 auto;padding:0 20px 24px;}
+.site-body{box-sizing:border-box;min-height:100vh;max-width:1200px;margin:0 auto;padding:0 20px 24px;font-family:var(--body-font);}
 main#main{min-width:0;}
 
 /* Navigation */
 .site-nav{width:100%;}
 .site-nav .nav-menu{list-style:none;padding:0;margin:0;}
-.site-nav .nav-menu .nav-link{position:relative;display:inline-flex;align-items:center;gap:10px;color:inherit;text-decoration:none!important;font-family:var(--note-font,'Roboto Mono',monospace);letter-spacing:.5px;transition:color .18s ease,transform .18s ease;}
+.site-nav .nav-menu .nav-link{position:relative;display:inline-flex;align-items:center;gap:10px;color:inherit;text-decoration:none!important;font-family:var(--note-font,'IBM Plex Mono',monospace);letter-spacing:.5px;transition:color .18s ease,transform .18s ease;}
 .site-nav .nav-menu .nav-link .technical-icon{width:20px;height:20px;flex-shrink:0;}
 .site-nav .nav-menu .nav-link[aria-current="page"]::before{content:'';position:absolute;top:50%;transform:translateY(-50%);width:3px;height:15px;background:#39776c;}
 html.dark .site-nav .nav-menu .nav-link[aria-current="page"]::before{background:#aed1c2;}
@@ -19,7 +19,7 @@ html.dark .site-nav .nav-menu .nav-link[aria-current="page"]::before{background:
 .site-header .site-identity a{gap:4px;}
 .site-header .site-identity .identity-name{font-size:24px;}
 .site-tools{display:flex;align-items:center;gap:6px;}
-.site-tools #theme-toggle{width:44px;height:44px;}
+.site-tools .theme-toggle{width:44px;height:44px;}
 .menu-toggle{display:inline-grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid color-mix(in srgb,currentColor 25%,transparent);background:transparent;color:inherit;cursor:pointer;}
 .menu-toggle:focus-visible{outline:2px solid #39776c;outline-offset:3px;}
 html:not(.js) .menu-toggle{display:none;}
@@ -33,6 +33,8 @@ html.js .site-header:not([data-menu="open"]) .site-menu{display:none;}
 .site-menu .nav-menu .nav-link{min-height:44px;padding:0 0 0 10px;}
 .site-menu .nav-menu .nav-link[aria-current="page"]::before{left:0;}
 .site-menu .social{margin-top:10px;}
+.social-theme{display:none;}
+.page-aside{display:none;}
 .site-footer{padding:28px 0 0;}
 
 @media (prefers-reduced-motion:reduce){.menu-icon i{transition:none;}}
@@ -41,20 +43,39 @@ html.js .site-header:not([data-menu="open"]) .site-menu{display:none;}
 @media (min-width:1024px){
   .site-body{display:grid;grid-template-columns:3fr 1fr;grid-template-rows:auto 1fr;column-gap:24px;padding:0 80px;}
   main#main{grid-column:1;grid-row:1/3;padding:80px 0;}
-  .site-header{grid-column:2;grid-row:1;align-self:start;position:sticky;top:0;display:flex;flex-direction:column;gap:28px;padding:80px 0 16px;margin:0;border-bottom:0;}
+  .site-header{grid-column:2;grid-row:1;align-self:start;position:sticky;top:0;display:flex;flex-direction:column;gap:28px;padding:80px 0 16px 14px;margin:0 0 0 -14px;border-bottom:0;max-height:100vh;box-sizing:border-box;overflow-y:auto;scrollbar-width:none;}
+  .site-header::-webkit-scrollbar{display:none;}
   .site-header-bar{display:block;}
   .site-header .site-identity{width:100%;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent);padding-bottom:22px;}
   .site-header .site-identity a{gap:10px;}
   .site-header .site-identity .identity-name{font-size:30px;}
-  .site-tools{position:fixed;top:16px;right:16px;z-index:100;}
-  .site-tools #theme-toggle{width:28px;height:28px;}
-  .menu-toggle{display:none;}
+  .site-tools{display:none;}
   .site-menu,html.js .site-header:not([data-menu="open"]) .site-menu{display:block;padding:0;}
   .site-menu .nav-menu{display:flex;flex-direction:column;align-items:flex-start;gap:12px;}
   .site-menu .nav-menu .nav-link{min-height:0;padding:3px 0;}
   .site-menu .nav-menu .nav-link[aria-current="page"]::before{left:-12px;}
   .site-nav .nav-menu .nav-link:hover{transform:translateX(4px);color:#39776c;}
   .site-footer{grid-column:2;grid-row:2;align-self:end;padding:28px 0;}
+  /* Theme toggle sits with the profile links. */
+  .social-theme{display:block;}
+  .social .theme-toggle{width:32px;height:32px;padding:0;border:1px solid color-mix(in srgb,currentColor 22%,transparent);background:none;color:inherit;}
+  .social .theme-toggle .technical-icon{width:18px;height:18px;}
+  html.dark .social .theme-toggle{border-color:#607581;}
+  /* Contents of long pages, highlighted while reading. */
+  .page-aside{display:block;}
+  .page-aside:empty{display:none;}
+  .page-contents{display:flex;flex-direction:column;border-top:1px solid color-mix(in srgb,currentColor 22%,transparent);padding-top:18px;}
+  .page-contents p{font:11px/1.6 var(--note-font);letter-spacing:1.6px;color:var(--note-color);margin:0 0 8px;}
+  .page-contents a{font:13px/1.5 var(--note-font);color:inherit;text-decoration:none;padding:4px 0 4px 12px;border-left:2px solid color-mix(in srgb,currentColor 14%,transparent);transition:color .15s ease,border-color .15s ease;}
+  .page-contents a:hover{color:#39776c;background:none;}
+  .page-contents a[aria-current]{color:#39776c;border-left-color:#39776c;font-weight:600;}
+  html.dark .page-contents a:hover,html.dark .page-contents a[aria-current]{color:#aed1c2;border-left-color:#aed1c2;}
+  /* The side column replaces the jump links at the top of Projects. */
+  #main .project-contents{display:none;}
+}
+/* Laptop-height screens: start the side column higher. */
+@media (min-width:1024px) and (max-height:820px){
+  .site-header{padding-top:40px;gap:20px;}
 }
 /* Short landscape screens: let the side column scroll with the page. */
 @media (min-width:1024px) and (max-height:540px){

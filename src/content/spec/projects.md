@@ -77,35 +77,38 @@ The playback foundation comes from Lyrion and Squeezelite; my application connec
 
 The work is iterative: notice a problem, reproduce it, investigate the cause, make a change and check the result. The examples below follow that pattern. I am also using the project to deepen my understanding of Python after completing my Java studies.
 
-### Development example: keeping favourites consistent
+<section class="case-file" aria-labelledby="development-example-keeping-favourites-consistent">
+<p class="case-label">Development example · 01</p>
+<h3 id="development-example-keeping-favourites-consistent">Keeping favourites consistent</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>A single action could add the same favourite twice. A slow response could also arrive after a newer change and bring an older list back into view.</dd></div>
+<div><dt>02 / Investigation</dt><dd>The development review found that two list views shared the same underlying collection. It also identified places where older responses could still overwrite current favourites.</dd></div>
+<div><dt>03 / Change</dt><dd>The lists were separated, and newer confirmed changes now take priority over earlier responses. An uncertain operation is reported rather than automatically repeated.</dd></div>
+<div><dt>04 / Check</dt><dd>Targeted automated checks covered duplicate additions, late responses and confirmed changes. The documented update was installed and the Favourites view was inspected on the Pi. Longer use and simultaneous-client checks remain part of ongoing validation.</dd></div>
+</dl>
+</section>
 
-**The problem.** A single action could add the same favourite twice. A slow response could also arrive after a newer change and bring an older list back into view.
+<section class="case-file" aria-labelledby="development-example-commands-that-only-looked-successful">
+<p class="case-label">Development example · 02</p>
+<h3 id="development-example-commands-that-only-looked-successful">Commands that only looked successful</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>Play, Pause and Next could fail without the interface saying so. Rejected commands were silently ignored, and an error-shaped reply from the music server could be read as a success.</dd></div>
+<div><dt>02 / Investigation</dt><dd>The review followed a command from the touch button through the backend to Lyrion's JSON-RPC interface. A missing result was being turned into an empty "success". A response lost on the network also says nothing about whether the command actually ran.</dd></div>
+<div><dt>03 / Change</dt><dd>Every command now ends in one of three outcomes: confirmed, rejected or unknown. An unknown outcome shows a warning that the command may already have run. Commands are deliberately not repeated automatically: repeating a Play/Pause toggle could undo a command that had in fact succeeded.</dd></div>
+<div><dt>04 / Check</dt><dd>New automated cases covered rejected, malformed and lost responses. The update was installed with a fresh backup; the music server kept running and the player reported playback before and after the installation.</dd></div>
+</dl>
+</section>
 
-**The investigation.** The development review found that two list views shared the same underlying collection. It also identified places where older responses could still overwrite current favourites.
-
-**The change.** The lists were separated, and newer confirmed changes now take priority over earlier responses. An uncertain operation is reported rather than automatically repeated.
-
-**The check.** Targeted automated checks covered duplicate additions, late responses and confirmed changes. The documented update was installed and the Favourites view was inspected on the Pi. Longer use and simultaneous-client checks remain part of ongoing validation.
-
-### Development example: commands that only looked successful
-
-**The problem.** Play, Pause and Next could fail without the interface saying so. Rejected commands were silently ignored, and an error-shaped reply from the music server could be read as a success.
-
-**The investigation.** The review followed a command from the touch button through the backend to Lyrion's JSON-RPC interface. A missing result was being turned into an empty "success". A response lost on the network also says nothing about whether the command actually ran.
-
-**The change.** Every command now ends in one of three outcomes: confirmed, rejected or unknown. An unknown outcome shows a warning that the command may already have run. Commands are deliberately not repeated automatically: repeating a Play/Pause toggle could undo a command that had in fact succeeded.
-
-**The check.** New automated cases covered rejected, malformed and lost responses. The update was installed with a fresh backup; the music server kept running and the player reported playback before and after the installation.
-
-### Development example: a lost connection without false alarms
-
-**The problem.** When the interface lost contact with the player, the screen simply kept showing the last known state, with no sign that it might be out of date.
-
-**The investigation.** Status polling already handled timeouts and late responses correctly, so the gap was feedback, not data. The real question was which failures should count: a single slow reply or a browser tab in the background should not raise an alarm.
-
-**The change.** Two consecutive failed status checks now show a quiet notice that the status is unavailable and that the player is showing the last known playback. When contact returns, a short recovery message appears and then disappears. The notice never restarts or repeats anything, so it cannot interrupt playback.
-
-**The check.** Five new automated cases covered an outage, recovery, single failures and a hidden page. On the Pi the notice stays hidden during normal polling; its appearance was reviewed in an isolated preview. I have not yet caused a real network fault on the device to see it there.
+<section class="case-file" aria-labelledby="development-example-a-lost-connection-without-false-alarms">
+<p class="case-label">Development example · 03</p>
+<h3 id="development-example-a-lost-connection-without-false-alarms">A lost connection without false alarms</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>When the interface lost contact with the player, the screen simply kept showing the last known state, with no sign that it might be out of date.</dd></div>
+<div><dt>02 / Investigation</dt><dd>Status polling already handled timeouts and late responses correctly, so the gap was feedback, not data. The real question was which failures should count: a single slow reply or a browser tab in the background should not raise an alarm.</dd></div>
+<div><dt>03 / Change</dt><dd>Two consecutive failed status checks now show a quiet notice that the status is unavailable and that the player is showing the last known playback. When contact returns, a short recovery message appears and then disappears. The notice never restarts or repeats anything, so it cannot interrupt playback.</dd></div>
+<div><dt>04 / Check</dt><dd>Five new automated cases covered an outage, recovery, single failures and a hidden page. On the Pi the notice stays hidden during normal polling; its appearance was reviewed in an isolated preview. I have not yet caused a real network fault on the device to see it there.</dd></div>
+</dl>
+</section>
 
 These examples show the approach I bring from quality control: work through the cause, document the change and check the result, including saying clearly what has not been checked yet.
 
