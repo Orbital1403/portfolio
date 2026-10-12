@@ -1,0 +1,114 @@
+---
+import { themeConfig } from '~/.config'
+import SiteFooter from '~/components/SiteFooter.astro'
+import SiteNavigation from '~/components/SiteNavigation.astro'
+import SiteTitle from '~/components/SiteTitle.astro'
+import SiteSeo from '~/components/SiteSeo.astro'
+import ThemeScript from '~/components/ThemeScript.astro'
+import ThemeToggle from '~/components/ThemeToggle.astro'
+import '~/styles/global.css'
+import '~/styles/refinement.css'
+import '~/styles/layout.css'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+  imageAlt?: string
+  noindex?: boolean
+}
+
+const { title, description, image, imageAlt, noindex } = Astro.props
+const lang = themeConfig.appearance.locale ?? 'en-us'
+---
+
+<html lang={lang} class:list={['animation-prepared']}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <slot name="seo"
+      ><SiteSeo title={title} desc={description} image={image} imageAlt={imageAlt} noindex={noindex} /></slot
+    >
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+    <ThemeScript />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="/favicon-g.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/myfont.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+
+  <body class="site-body">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2"> Skip to content </a>
+
+    <header class="site-header">
+      <div class="site-header-bar">
+        <SiteTitle />
+        <div class="site-tools">
+          <ThemeToggle />
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-menu"
+            aria-label="Open menu"
+          >
+            <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+        </div>
+      </div>
+      <div id="site-menu" class="site-menu">
+        <SiteNavigation />
+      </div>
+    </header>
+
+    <main id="main" class="transition-swup-main outline-none" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <SiteFooter />
+    </footer>
+
+    <script>
+      document.addEventListener('animationend', removeAnimation, false)
+      function removeAnimation() {
+        document.documentElement.classList.remove('animation-prepared')
+        document.removeEventListener('animationend', removeAnimation, false)
+      }
+
+      // Compact menu below 1024 px. The header stays in place between Swup page
+      // changes, so this runs once and closes the menu after every navigation.
+      const header = document.querySelector<HTMLElement>('.site-header')
+      const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle')
+      if (header && toggle) {
+        const setMenu = (open: boolean) => {
+          header.dataset.menu = open ? 'open' : 'closed'
+          toggle.setAttribute('aria-expanded', String(open))
+          toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+        }
+        setMenu(false)
+        toggle.addEventListener('click', () => setMenu(header.dataset.menu !== 'open'))
+        const menu = header.querySelector('.site-menu')
+        menu?.addEventListener('click', (event) => {
+          const link = (event.target as Element).closest('a')
+          link && setMenu(false)
+        })
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && header.dataset.menu === 'open') {
+            setMenu(false)
+            toggle.focus()
+          }
+        })
+        document.addEventListener('astro:page-load', () => setMenu(false))
+      }
+    </script>
+    <script is:inline src="/scripts/gallery.js?v=20261012-album2" defer></script>
+  </body>
+</html>

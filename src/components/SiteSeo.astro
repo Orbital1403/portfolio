@@ -1,0 +1,115 @@
+---
+import { SEO, type SEOProps } from 'astro-seo'
+import { themeConfig } from '~/.config'
+
+interface Props {
+  title?: string
+  desc?: string
+  /** Root-relative path of a 1200×630 share image. */
+  image?: string
+  imageAlt?: string
+  noindex?: boolean
+}
+
+const props = Astro.props
+
+const configSEO = themeConfig.seo
+const configSite = themeConfig.site
+
+const title = props.title ?? configSite.title
+const desc = props.desc ?? configSite.description
+const canonical = new URL(Astro.url.pathname, configSite.website).toString()
+const twitter = configSEO.twitter
+const shareImage = new URL(props.image ?? '/og/default.jpg', Astro.url).toString()
+const shareImageAlt =
+  props.imageAlt ?? 'Gordan Grgić — quality, testing and hardware/software work, with the MILA* audio streamer'
+
+const seoLinks = [...configSEO.link]
+
+const seoMeta = [
+  { name: 'generator', content: Astro.generator },
+  { name: 'twitter:image', content: shareImage },
+  { name: 'twitter:image:alt', content: shareImageAlt },
+  { name: 'twitter:creator', content: twitter },
+  { name: 'twitter:site', content: twitter },
+  { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:title', content: title },
+  { name: 'twitter:description', content: desc },
+  ...configSEO.meta,
+]
+
+const openGraph: SEOProps['openGraph'] = {
+  basic: {
+    title,
+    type: 'website',
+    image: shareImage,
+    url: canonical,
+  },
+  optional: {
+    description: desc,
+    siteName: 'Gordan Grgić',
+  },
+  image: {
+    url: shareImage,
+    secureUrl: shareImage,
+    type: 'image/jpeg',
+    width: 1200,
+    height: 630,
+    alt: shareImageAlt,
+  },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${configSite.website}#person`,
+      name: configSite.author,
+      url: configSite.website,
+      jobTitle: 'Quality Control & Hardware/Software Technician',
+      description: configSite.description,
+      sameAs: [
+        'https://github.com/Orbital1403',
+        'https://www.linkedin.com/in/gordan-grgic-0ba40a354/',
+        'https://x.com/orbital1403',
+      ],
+      knowsAbout: [
+        'Quality Control',
+        'Failure Analysis',
+        'Hardware Diagnostics',
+        'Calibration',
+        'Linux & Raspberry Pi',
+        'Audio Systems',
+        'Java',
+        'Python',
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Brussels',
+        addressCountry: 'Belgium',
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${configSite.website}#website`,
+      url: configSite.website,
+      name: configSite.title,
+      description: configSite.description,
+      publisher: {
+        '@id': `${configSite.website}#person`,
+      },
+    },
+  ],
+}
+---
+
+<SEO
+  title={title}
+  description={desc}
+  canonical={canonical}
+  noindex={props.noindex}
+  extend={{ link: seoLinks, meta: seoMeta }}
+  openGraph={openGraph}
+/>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

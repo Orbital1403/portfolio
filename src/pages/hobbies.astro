@@ -1,0 +1,9 @@
+---
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import HobbyCards from '~/components/HobbyCards.astro'
+---
+<LayoutDefault title="Hobbies & practical work — Gordan Grgić" description="Hands-on projects documented stage by stage: a wall-mounted PC and a garden renovation." image="/og/hobbies.jpg" imageAlt="The finished wall-mounted PC">
+ <section class="hobbies-intro page-heading"><p class="folio-label">PERSONAL FIELD NOTES / HANDS-ON PROJECTS</p><h1>Hobbies & practical work</h1><p>Projects I have made for myself. A place to explore ideas, learn unfamiliar skills and work through the details.</p></section>
+ <HobbyCards />
+</LayoutDefault>
+<style>.hobbies-intro{margin-bottom:30px;font-family:'Roboto Mono',monospace;}.folio-label{font-size:10px;letter-spacing:1.5px;opacity:.6;}h1{font-size:28px;letter-spacing:-1px;line-height:1.4;margin:20px 0 14px;}p{font-size:13px;line-height:1.9;}</style>

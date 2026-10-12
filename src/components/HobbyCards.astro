@@ -1,0 +1,34 @@
+---
+import Icon from '~/components/Icon.astro'
+import { thumbnail } from '~/utils/images'
+const cards = [
+ {number:'01',title:'PC on the wall',category:'COMPUTERS / HARDWARE',image:'/images/hobbies/pc_on_wall/final-look/cover-page.jpg',alt:'Completed wall-mounted PC with exposed components',href:'/hobbies/pc-wall/',description:'A custom computer build, from the mounting board and component layout to wiring and the first power-on.'},
+ {number:'02',title:'Garden makeover',category:'OUTDOORS / PRACTICAL WORK',image:'/images/hobbies/garden-makeover/final-look/cover-page.jpeg',alt:'Finished garden renovation',href:'/hobbies/garden-makeover/',description:'My first garden renovation: soil preparation, drainage, waterproofing and the finishing details.'},
+]
+---
+<div class="hobby-cards">
+ {cards.map(card => <a class="hobby-card" href={card.href}>
+  <div class="card-photo"><img src={thumbnail(card.image)} alt={card.alt} loading="lazy" decoding="async" width="800" height="600"/><span class="card-number">{card.number}</span></div>
+  <div class="card-copy"><span class="category">{card.category}</span><h3>{card.title}</h3><p>{card.description}</p><span class="card-link">See the project <Icon name="external" /></span></div>
+ </a>)}
+</div>
+<style>
+.hobby-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;font-family:'Roboto Mono',monospace;}
+.hobby-card{color:inherit;text-decoration:none!important;border:1px solid color-mix(in srgb,currentColor 25%,transparent);background:color-mix(in srgb,var(--uno-colors-background) 92%,transparent);display:flex;flex-direction:column;transition:border-color .2s ease,transform .22s ease,box-shadow .22s ease;}
+.hobby-card:hover{border-color:#39776c;background:color-mix(in srgb,#39776c 4%,var(--uno-colors-background))!important;color:inherit!important;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08);}
+:global(html.dark) .hobby-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.35);}
+.card-photo{position:relative;overflow:hidden;margin:7px;}
+.card-photo img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;transition:transform .35s cubic-bezier(.16,1,.3,1);}
+.hobby-card:hover .card-photo img{transform:scale(1.025);}
+.card-number{position:absolute;top:8px;left:8px;background:#26333b;color:#fff;padding:5px 8px;font-size:10px;z-index:2;}
+.card-copy{padding:15px 18px 18px;display:flex;flex-direction:column;flex:1;}
+.category{font-size:9px;letter-spacing:1px;opacity:.65;line-height:1.7;}
+h3{font-size:19px;line-height:1.4;margin:12px 0 8px;letter-spacing:-.7px;}
+p{font-size:12px;line-height:1.85;margin:0 0 20px;opacity:.8;}
+.card-link{display:flex;justify-content:space-between;align-items:center;font-size:11px;border-top:1px solid color-mix(in srgb,currentColor 20%,transparent);padding-top:12px;margin-top:auto;}
+.card-link svg{transition:transform .2s cubic-bezier(.16,1,.3,1);}
+.hobby-card:hover .card-link svg{transform:translateX(3px) translateY(-1px);}
+.card-link span{font-size:20px;}
+.hobby-card:focus-visible{outline:2px solid #39776c;outline-offset:4px;}
+@media(max-width:600px){.hobby-cards{grid-template-columns:1fr;}}
+</style>

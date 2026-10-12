@@ -1,0 +1,57 @@
+{
+  "name": "gordangrgic-portfolio",
+  "type": "module",
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "Personal portfolio of Gordan Grgić: quality, testing and hardware/software work, and the MILA* audio streamer. Built on the Astro Typography theme.",
+  "author": "Gordan Grgic <gordan.grgic@gmail.com> (https://github.com/Orbital1403)",
+  "license": "MIT",
+  "repository": "https://github.com/Orbital1403/portfolio",
+  "scripts": {
+    "dev": "astro check && astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "build:pages": "node scripts/build-pages.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/sitemap": "^3.4.1",
+    "@swup/astro": "^1.6.0",
+    "astro": "^5.13.10",
+    "astro-robots-txt": "^1.0.0",
+    "astro-seo": "^0.8.4"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.17.0",
+    "@iconify-json/mdi": "^1.2.3",
+    "@types/node": "^22.16.4",
+    "@unocss/eslint-plugin": "^66.3.3",
+    "@unocss/preset-attributify": "^66.3.3",
+    "@unocss/reset": "^66.3.3",
+    "@unocss/transformer-directives": "^66.3.3",
+    "astro-eslint-parser": "^1.2.2",
+    "eslint": "^9.31.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "eslint-plugin-format": "^1.0.1",
+    "lint-staged": "^16.1.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "sharp": "^0.34.4",
+    "simple-git-hooks": "^2.13.0",
+    "typescript": "~5.8.3",
+    "unocss": "^66.3.3",
+    "unocss-preset-theme": "^0.14.1",
+    "vite-plugin-devtools-json": "^0.3.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
+  "private": true
+}

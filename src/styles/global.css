@@ -1,0 +1,326 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('/fonts/myfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --uno-colors-primary: theme('colors.primary');
+  --uno-colors-background: theme('colors.background');
+  --uno-fonts-ui: theme('fontFamily.ui');
+  --uno-colors-shadow: theme('colors.shadow');
+}
+
+html {
+  --at-apply: antialiased;
+  --at-apply: 'bg-background c-primary font-ui text-shadow-color-shadow';
+
+  text-shadow: 1px 1px 1px var(--uno-colors-shadow);
+  background-size: 7px 7px;
+  background-image: linear-gradient(to right, var(--uno-colors-shadow) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--uno-colors-shadow) 1px, transparent 1px);
+}
+
+/* 🌙 Dark mode override — promijeni samo boje */
+html.dark {
+  --uno-colors-background: #24313b;
+  --uno-colors-primary: #e7ecf3;
+  --uno-colors-shadow: rgba(231, 236, 243, 0.06);
+
+  text-shadow: 1px 1px 1px var(--uno-colors-shadow);
+  background-image: linear-gradient(to right, var(--uno-colors-shadow) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--uno-colors-shadow) 1px, transparent 1px);
+
+  color: #e7ecf3 !important;
+  background-color: #24313b;
+}
+
+html.dark body {
+  background-color: transparent !important;
+}
+
+/* Linkovi u darku */
+html.dark :where(a):not(.not-underline-hover) {
+  color: #7dd3fc;
+  text-decoration-color: #7dd3fc;
+}
+
+html.dark :where(a):not(.not-underline-hover):hover {
+  color: #38bdf8;
+  text-decoration-color: #38bdf8;
+  background: transparent;
+}
+
++ :where(a):not(.nav-link):not(.not-underline-hover) {
+  --at-apply: 'p-1.5px';
+  --at-apply: 'decoration-underline decoration-0.1em decoration-offset-2px';
+  --at-apply: 'ease-in-out duration-300ms';
+  --at-apply: 'hover:(c-background bg-primary decoration-primary)';
+}
+
+/* 🌙 Typography (.prose) i headingi */
+html.dark .prose,
+html.dark .prose :where(p, li, blockquote, strong, em, code) {
+  color: #e7ecf3 !important;
+}
+
+html.dark .prose :where(h1, h2, h3, h4, h5, h6) {
+  color: #e7ecf3 !important;
+}
+
+html.dark .prose a {
+  color: #7dd3fc !important;
+}
+
+html.dark .prose a:hover {
+  color: #38bdf8 !important;
+}
+
+html.dark .prose hr {
+  border-color: #1f2937 !important;
+}
+
+html.dark .prose blockquote {
+  color: #e7ecf3 !important;
+  border-left-color: #1f2937 !important;
+}
+
+/* Granice/kartice/tables */
+html.dark .card {
+  background: #2c3b46 !important;
+  border-color: #1f2937 !important;
+}
+
+html.dark .border,
+html.dark hr {
+  border-color: #1f2937 !important;
+}
+
+html.dark table {
+  border-color: #1f2937 !important;
+}
+
+html.dark th,
+html.dark td {
+  border-color: #1f2937 !important;
+}
+
+/* Code blokovi */
+html.dark pre,
+html.dark code,
+html.dark kbd,
+html.dark samp {
+  color: #e7ecf3 !important;
+  background: #1e2a33 !important;
+  border-color: #1f2937 !important;
+}
+
+html.dark pre {
+  padding: 12px 14px;
+  border: 1px solid #1f2937;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+/* Utility */
+html.dark .bg-white,
+html.dark .bg-#fff,
+html.dark .bg-#ffffff {
+  background-color: #2c3b46 !important;
+}
+
+html.dark .text-black,
+html.dark .c-black {
+  color: #e7ecf3 !important;
+}
+
+html.dark .text-gray-800,
+html.dark .c-gray-800 {
+  color: #d5dbe6 !important;
+}
+
+:where(a):not(.not-underline-hover):hover {
+  border-radius: 6px;
+}
+
+/* Nav transition */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 180ms ease, color 180ms ease;
+}
+
+/* Light-mode nav hover */
+html:not(.dark) .nav-link:hover {
+  background: transparent !important;
+  color: inherit !important;
+  text-decoration-color: currentColor !important;
+}
+
+/* Theme toggle iznad svega */
+#theme-toggle {
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+/* SWUP transitions */
+[class*='transition-swup-'] {
+  transition-property: opacity, transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+html.is-leaving .transition-swup-main {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* Social ikone */
+.social a {
+  color: inherit !important;
+}
+
+.social a:hover {
+  background: transparent !important;
+  text-decoration-color: currentColor !important;
+}
+
+.social a>span {
+  display: inline-block;
+}
+
+a:focus,
+a:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Nav font */
+.nav-link {
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: .5px;
+  transition: color .3s ease, transform .2s ease;
+  color: inherit;
+}
+
+html:not(.dark) .nav-link:hover {
+  color: #38bdf8;
+  transform: translateY(-2px);
+}
+
+html.dark .nav-link {
+  color: #e7ecf3 !important;
+}
+
+html.dark .nav-link:hover {
+  color: #cbd5e1 !important;
+  transform: translateY(-2px);
+}
+
+.job-title {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+}
+
+.job-title {
+  font-family: 'MyFont', monospace;
+  font-weight: 700;
+}
+
+.main-title {
+  font-family: 'MyFont', monospace;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .group:hover img,
+  .group:focus-visible img {
+    transform: none !important;
+  }
+}
+
+/* ——— Lightbox (Google Photos stil) ——— */
+.gg-lightbox{
+  position:fixed; inset:0; background:rgba(0,0,0,.9);
+  display:none; z-index:20000; /* iznad headera */
+}
+.gg-lightbox.open{display:block}
+
+.gg-lb-stage{position:absolute; inset:0; display:grid; place-items:center}
+
+.gg-lb-img{
+  max-width:92vw; max-height:88vh;
+  width:auto; height:auto;
+  display:block; user-select:none;
+  transition:transform .2s ease;
+}
+
+.gg-lb-backdrop{position:absolute; inset:0}
+
+.gg-lb-btn{
+  position:absolute; display:grid; place-items:center;
+  width:42px; height:42px; border-radius:999px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff; cursor:pointer; z-index:1;
+}
+.gg-lb-btn:hover{background:rgba(255,255,255,.2)}
+
+.gg-lightbox .gg-lb-prev{
+  top:50%;
+  left: max(12px, env(safe-area-inset-left) + 12px);
+  transform:translateY(-50%);
+}
+.gg-lightbox .gg-lb-next{
+  top:50%;
+  right: max(12px, env(safe-area-inset-right) + 12px);
+  transform:translateY(-50%);
+}
+
+/* ✅ FIKSNI, KOMPAKTNI X (uvijek isti položaj na ekranu) */
+.gg-lb-close{
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 12px);
+  right: calc(env(safe-area-inset-right) + 12px);
+  width: clamp(32px, 4.5vw, 44px);
+  height: clamp(32px, 4.5vw, 44px);
+  border-radius: 999px;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff; z-index:2;
+  backdrop-filter: blur(2px);
+}
+@media (hover:hover){
+  .gg-lb-close:hover{ background: rgba(0,0,0,.7); }
+}
+
+/* (opcionalno) isključi pointer kursor na slikama s data-nozoom */
+img[data-nozoom]{ cursor: default !important; }
+
+/* Fallback za starije browsere bez env() */
+@supports not (padding: env(safe-area-inset-left)){
+  .gg-lightbox .gg-lb-prev{ left: 12px; }
+  .gg-lightbox .gg-lb-next{ right: 12px; }
+}
+a:focus-visible{outline:2px solid #39776c;outline-offset:4px;}
+
+.project-figure img { cursor:zoom-in; border:1px solid #87939b; padding:5px; }
+.project-figure figcaption { font:11px 'Roboto Mono',monospace; color:#647078; margin-top:10px; }
+.gg-lb-btn[hidden]{display:none;}
+
+.technical-icon{display:inline-block;width:20px;height:20px;flex-shrink:0;vertical-align:middle;}
+.nav-link:has(.technical-icon){display:inline-flex;align-items:center;gap:9px;}
+.social a{width:32px;height:32px;justify-content:center;border:1px solid color-mix(in srgb,currentColor 22%,transparent);}
+.skill-icon{margin-right:9px;}
+#theme-toggle .technical-icon{width:23px;height:23px;}
+
+.intro-links a{display:inline-flex;align-items:center;gap:7px;}.intro-links .technical-icon{width:15px;height:15px;}
+#theme-toggle .theme-moon{display:none;} html.dark #theme-toggle .theme-moon{display:inline-block;} html.dark #theme-toggle .theme-sun{display:none;}
+
+.prose h2#mila{font-family:'MyFont',monospace;font-size:58px;font-weight:400;line-height:1.1;letter-spacing:1px;margin:32px 0 18px;}
+.prose :is(h2,h3){scroll-margin-top:24px;}
+@media(max-width:1023px){.prose h2#mila{font-size:44px;margin-top:24px;}}

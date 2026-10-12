@@ -1,0 +1,12 @@
+---
+import { themeConfig } from '~/.config'
+
+const { title, subtitle } = themeConfig.site
+---
+
+<div class="site-identity">
+  <a class="not-underline-hover" href="/">
+    <span class="identity-name">{title.toLowerCase()}</span>
+    <span class="identity-role">{subtitle}</span>
+  </a>
+</div>

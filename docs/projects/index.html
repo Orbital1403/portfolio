@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en-us" class="animation-prepared"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light dark"><title>Projects — MILA* audio streamer — Gordan Grgić</title><link rel="canonical" href="https://orbital1403.github.io/portfolio/projects/"><meta name="description" content="MILA*: a Raspberry Pi audio streamer for hi-res FLAC, radio and streaming. Requirements, development examples, automated testing and safe releases with rollback."><meta name="robots" content="index, follow"><meta property="og:title" content="Projects — MILA* audio streamer — Gordan Grgić"><meta property="og:type" content="website"><meta property="og:image" content="https://orbital1403.github.io/portfolio/og/default.jpg"><meta property="og:url" content="https://orbital1403.github.io/portfolio/projects/"><meta property="og:description" content="MILA*: a Raspberry Pi audio streamer for hi-res FLAC, radio and streaming. Requirements, development examples, automated testing and safe releases with rollback."><meta property="og:site_name" content="Gordan Grgić"><meta property="og:image:url" content="https://orbital1403.github.io/portfolio/og/default.jpg"><meta property="og:image:secure_url" content="https://orbital1403.github.io/portfolio/og/default.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Gordan Grgić — quality, testing and hardware/software work, with the MILA* audio streamer"><meta name="generator" content="Astro v5.16.11"><meta name="twitter:image" content="https://orbital1403.github.io/portfolio/og/default.jpg"><meta name="twitter:image:alt" content="Gordan Grgić — quality, testing and hardware/software work, with the MILA* audio streamer"><meta name="twitter:creator" content="@orbital1403"><meta name="twitter:site" content="@orbital1403"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Projects — MILA* audio streamer — Gordan Grgić"><meta name="twitter:description" content="MILA*: a Raspberry Pi audio streamer for hi-res FLAC, radio and streaming. Requirements, development examples, automated testing and safe releases with rollback."> <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://orbital1403.github.io/portfolio/#person","name":"Gordan Grgic","url":"https://orbital1403.github.io/portfolio/","jobTitle":"Quality Control & Hardware/Software Technician","description":"Portfolio of Gordan Grgić: practical technical experience, computers and electronics, and MILA*, a personal audio streamer in development. Based in Brussels.","sameAs":["https://github.com/Orbital1403","https://www.linkedin.com/in/gordan-grgic-0ba40a354/","https://x.com/orbital1403"],"knowsAbout":["Quality Control","Failure Analysis","Hardware Diagnostics","Calibration","Linux & Raspberry Pi","Audio Systems","Java","Python"],"address":{"@type":"PostalAddress","addressLocality":"Brussels","addressCountry":"Belgium"}},{"@type":"WebSite","@id":"https://orbital1403.github.io/portfolio/#website","url":"https://orbital1403.github.io/portfolio/","name":"Gordan Grgic","description":"Portfolio of Gordan Grgić: practical technical experience, computers and electronics, and MILA*, a personal audio streamer in development. Based in Brussels.","publisher":{"@id":"https://orbital1403.github.io/portfolio/#person"}}]}</script><script>
+      document.documentElement.classList.add('js')
+    </script><script>
+  window.applyTheme = function (theme) {
+    const html = document.documentElement
+    if (theme === 'dark') {
+      html.classList.add('dark')
+      html.dataset.theme = 'dark'
+    } else {
+      html.classList.remove('dark')
+      html.dataset.theme = 'light'
+    }
+  }
+
+  ;(function initTheme() {
+    try {
+      // ako nema spremljene teme — koristi light
+      let saved = localStorage.getItem('theme')
+      if (!saved) {
+        saved = 'light'
+        localStorage.setItem('theme', saved)
+      }
+
+      // primijeni temu
+      window.applyTheme(saved)
+
+      // nakon SWUP reload-a ponovno primijeni trenutno stanje
+      document.addEventListener('swup:contentReplaced', () => {
+        const current = localStorage.getItem('theme') || 'light'
+        window.applyTheme(current)
+      })
+    } catch (e) {
+      console.warn('Theme init error', e)
+    }
+  })()
+</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet"><link rel="icon" href="/portfolio/favicon-g.svg" type="image/svg+xml"><link rel="preload" href="/portfolio/fonts/myfont.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/portfolio/_astro/about.Ddxw45V2.css">
+<style>.project-contents[data-astro-cid-aid3sr62]{display:flex;flex-wrap:wrap;gap:8px 22px;padding:14px 0;margin-bottom:25px;border-top:1px solid color-mix(in srgb,currentColor 20%,transparent);border-bottom:1px solid color-mix(in srgb,currentColor 20%,transparent);font:11px Roboto Mono,monospace}.project-contents[data-astro-cid-aid3sr62] a[data-astro-cid-aid3sr62]{color:inherit;text-decoration:none;padding:4px 0}.project-contents[data-astro-cid-aid3sr62] a[data-astro-cid-aid3sr62]:hover{color:#39776c;background:none}
+</style><script type="module" src="/portfolio/_astro/page.DO64F8uK.js"></script></head> <body class="site-body"> <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2"> Skip to content </a> <header class="site-header"> <div class="site-header-bar"> <div class="site-identity"> <a class="not-underline-hover" href="/portfolio/"> <span class="identity-name">gordan grgic</span> <span class="identity-role">Problem Solver</span> </a> </div> <div class="site-tools"> <button id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme" class="w-7 h-7 inline-flex items-center justify-center cursor-pointer" onclick="(function(){
+    const html = document.documentElement;
+    const next = html.classList.contains('dark') ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    if (window.applyTheme) window.applyTheme(next);
+  })()" data-astro-cid-x3pjskd3> <svg class="technical-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#sun"></use></svg> <svg class="technical-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#moon"></use></svg> </button>   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu"> <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span> </button> </div> </div> <div id="site-menu" class="site-menu"> <nav class="site-nav font-bold" flex="~ col gap-4" aria-label="Main"> <ul class="nav-menu text-3.5" lg="flex-col items-start text-4"> <li> <a href="/portfolio/" class="nav-link"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#home"></use></svg><span>HOME</span> </a> </li><li> <a href="/portfolio/about/" class="nav-link"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#about"></use></svg><span>ABOUT</span> </a> </li><li> <a href="/portfolio/projects/" class="nav-link"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#projects"></use></svg><span>PROJECTS</span> </a> </li><li> <a href="/portfolio/skills/" class="nav-link"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#skills"></use></svg><span>SKILLS</span> </a> </li><li> <a href="/portfolio/hobbies/" class="nav-link"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#hobbies"></use></svg><span>HOBBIES</span> </a> </li><li> <a href="/portfolio/contact/" class="nav-link"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#mail"></use></svg><span>CONTACT</span> </a> </li> </ul> <ul class="social" flex="~ row gap-1 justify-center"> <li> <a href="https://github.com/Orbital1403" target="_blank" rel="noopener noreferrer" title="github" data-no-swup class="social-link not-underline-hover inline-flex items-center"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#github"></use></svg> </a> </li><li> <a href="https://www.linkedin.com/in/gordan-grgic-0ba40a354/" target="_blank" rel="noopener noreferrer" title="linkedin" data-no-swup class="social-link not-underline-hover inline-flex items-center"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#linkedin"></use></svg> </a> </li><li> <a href="https://x.com/orbital1403" target="_blank" rel="noopener noreferrer" title="twitter" data-no-swup class="social-link not-underline-hover inline-flex items-center"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#x"></use></svg> </a> </li> </ul> </nav> <script type="module">function a(){const r=window.location.pathname.replace(/\/$/,"")||"/";document.querySelectorAll(".site-header nav > ul:first-child a").forEach(e=>{const t=new URL(e.href).pathname.replace(/\/$/,"")||"/";r===t||t!=="/"&&r.startsWith(t+"/")?e.setAttribute("aria-current","page"):e.removeAttribute("aria-current")})}a();document.addEventListener("swup:page:view",a);document.addEventListener("astro:page-load",a);</script> </div> </header> <main id="main" class="transition-swup-main outline-none" tabindex="-1"> <header class="page-heading" data-astro-cid-aid3sr62><p class="folio-label" data-astro-cid-aid3sr62>PERSONAL FIELD NOTES / PROJECTS</p><h1 data-astro-cid-aid3sr62>Project notes</h1></header><nav class="project-picker" aria-label="Choose a project" data-astro-cid-aid3sr62><a data-no-swup href="#mila" data-astro-cid-aid3sr62>01 / MILA*</a><a data-no-swup href="#02--this-portfolio" data-astro-cid-aid3sr62>02 / This portfolio</a></nav><nav class="project-contents" aria-label="Project contents" data-astro-cid-aid3sr62><a data-no-swup href="#from-frustration-to-a-project" data-astro-cid-aid3sr62>Idea</a><a data-no-swup href="#one-interface-for-everyday-listening" data-astro-cid-aid3sr62>Features</a><a data-no-swup href="#my-role-and-how-i-work" data-astro-cid-aid3sr62>Development</a><a data-no-swup href="#testing-and-releases" data-astro-cid-aid3sr62>Testing</a><a data-no-swup href="#hardware--foundation" data-astro-cid-aid3sr62>Hardware</a></nav><article class="prose" data-astro-cid-aid3sr62><h2 id="mila">MILA*</h2>
+<p><strong>Personal audio streamer · In development</strong></p>
+<p>A music project that brings together my interest in computers, practical problem-solving and everyday listening. MILA* combines existing hardware with an interface I can shape around my own needs.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-player.png" alt="The current MILA* player interface" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* player screenshot" loading="lazy">
+<figcaption>Player — current source, playback controls and music collection · Click to enlarge</figcaption>
+</figure>
+<h3 id="from-frustration-to-a-project">From frustration to a project</h3>
+<p>I listen to music every day, with a large personal library of hi-res FLAC files alongside internet radio and streaming. The streamers I used frustrated me: slow menus when browsing larger collections, occasional connection drops, and limited ways to adapt the system. I also wanted direct control over audio processing — ensuring bit-perfect delivery for high-resolution files, avoiding unwanted resampling, and verifying what the DAC actually receives.</p>
+<p>I set out to build a true all-rounder: a dedicated player that unites high-resolution local playback, internet radio, and streaming without compromise. Rather than keeping my main computer running, I looked at the hardware I already had: a Raspberry Pi 5, touch display, fast NVMe disk for local audio storage, USB DAC and linear power supply. I put my requirements on paper and began shaping a streamer around them.</p>
+<p>The goal was straightforward: make an all-rounder player that handles high-resolution FLAC albums effortlessly, keeps radio and streaming within easy reach, and remains completely responsive and transparent in how it behaves.</p>
+<h3 id="one-interface-for-everyday-listening">One interface for everyday listening</h3>
+<p>The Player brings playback controls together with the queue, favourites and recently played or added content. Source filters let me move between local music, radio and streaming without switching to a different interface.</p>
+<p>The built-in touch display is the main control surface. The same web interface can also be opened from a phone or computer on the local network. Playback stays on the streamer; those other devices act as remote controls.</p>
+<h3 id="a-library-i-can-explore">A library I can explore</h3>
+<p>Navigating a large collection of hi-res FLAC files requires an interface that stays swift and intuitive. Local music can be browsed by album, artist, genre or folder, supported by search, sorting and alphabet navigation. High-speed NVMe storage on the Pi keeps album art and metadata loading instantly.</p>
+<p>I want browsing to feel connected to listening: inspect an album, choose a track, return to the collection and manage the queue without losing my place.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-library.png" alt="MILA* local music library with album artwork and browsing controls" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* library screenshot" loading="lazy">
+<figcaption>Library — albums, artists, folders and persistent playback controls · Click to enlarge</figcaption>
+</figure>
+<h3 id="radio-without-the-clutter">Radio without the clutter</h3>
+<p>The radio view separates my own station collection from discovery. It brings together saved stations, search, recently played content and filters for country, genre and quality. Personal streams can also be added.</p>
+<p>Reliable background listening is a central development goal. When a stream or connection fails, the interface should explain what happened and provide a clear way to recover. Long listening sessions and recovery checks are part of the remaining validation.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-radio.png" alt="MILA* internet radio view with saved stations" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* radio screenshot" loading="lazy">
+<figcaption>Radio — personal stations and discovery in one view · Click to enlarge</figcaption>
+</figure>
+<h3 id="streaming-and-audio-control">Streaming and audio control</h3>
+<p>Qobuz browsing is integrated through Lyrion Music Server. AirPlay, Spotify Connect and Bluetooth are also part of the receiver work, with individual support and validation tracked during development.</p>
+<p>The main playback path uses <strong>Lyrion Music Server → Squeezelite → USB DAC</strong>. My aim is to avoid unnecessary resampling and digital volume changes for supported content. The interface distinguishes source quality from the format currently reported at the DAC output.</p>
+<p>That distinction matters: an output shown as 32-bit does not turn a compressed radio stream into higher-quality source material. The format display supports investigation; it is not, by itself, proof of bit-perfect reproduction.</p>
+<h3 id="settings-that-belong-with-the-player">Settings that belong with the player</h3>
+<p>Appearance, audio and services, music storage, and system maintenance are organised into four sections. The project includes theme and display options, meters, device information and user-data backup tools. Sensitive system actions use protected controls.</p>
+<p>Screensavers and visual details are part of the experience, but they share the same design language as the listening and browsing screens.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-settings.png" alt="MILA* settings organised into four sections" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* settings screenshot" loading="lazy">
+<figcaption>Settings — appearance, audio, storage and maintenance · Click to enlarge</figcaption>
+</figure>
+<h3 id="my-role-and-how-i-work">My role and how I work</h3>
+<p>My background is in hardware, quality control and failure analysis, and I run MILA* the same way. I lead the project: I define the requirements, decide how it should behave, test every change on the real device and decide what is released. AI coding assistants write much of the implementation under that direction. Directing that work and verifying the result is a skill in its own right.</p>
+<p>The playback foundation comes from Lyrion and Squeezelite; my application connects the sources, controls and device functions into a coherent experience.</p>
+<p>The work is iterative: notice a problem, reproduce it, investigate the cause, make a change and check the result. The examples below follow that pattern. I am also using the project to deepen my understanding of Python after completing my Java studies.</p>
+<h3 id="development-example-keeping-favourites-consistent">Development example: keeping favourites consistent</h3>
+<p><strong>The problem.</strong> A single action could add the same favourite twice. A slow response could also arrive after a newer change and bring an older list back into view.</p>
+<p><strong>The investigation.</strong> The development review found that two list views shared the same underlying collection. It also identified places where older responses could still overwrite current favourites.</p>
+<p><strong>The change.</strong> The lists were separated, and newer confirmed changes now take priority over earlier responses. An uncertain operation is reported rather than automatically repeated.</p>
+<p><strong>The check.</strong> Targeted automated checks covered duplicate additions, late responses and confirmed changes. The documented update was installed and the Favourites view was inspected on the Pi. Longer use and simultaneous-client checks remain part of ongoing validation.</p>
+<h3 id="development-example-commands-that-only-looked-successful">Development example: commands that only looked successful</h3>
+<p><strong>The problem.</strong> Play, Pause and Next could fail without the interface saying so. Rejected commands were silently ignored, and an error-shaped reply from the music server could be read as a success.</p>
+<p><strong>The investigation.</strong> The review followed a command from the touch button through the backend to Lyrion’s JSON-RPC interface. A missing result was being turned into an empty “success”. A response lost on the network also says nothing about whether the command actually ran.</p>
+<p><strong>The change.</strong> Every command now ends in one of three outcomes: confirmed, rejected or unknown. An unknown outcome shows a warning that the command may already have run. Commands are deliberately not repeated automatically: repeating a Play/Pause toggle could undo a command that had in fact succeeded.</p>
+<p><strong>The check.</strong> New automated cases covered rejected, malformed and lost responses. The update was installed with a fresh backup; the music server kept running and the player reported playback before and after the installation.</p>
+<h3 id="development-example-a-lost-connection-without-false-alarms">Development example: a lost connection without false alarms</h3>
+<p><strong>The problem.</strong> When the interface lost contact with the player, the screen simply kept showing the last known state, with no sign that it might be out of date.</p>
+<p><strong>The investigation.</strong> Status polling already handled timeouts and late responses correctly, so the gap was feedback, not data. The real question was which failures should count: a single slow reply or a browser tab in the background should not raise an alarm.</p>
+<p><strong>The change.</strong> Two consecutive failed status checks now show a quiet notice that the status is unavailable and that the player is showing the last known playback. When contact returns, a short recovery message appears and then disappears. The notice never restarts or repeats anything, so it cannot interrupt playback.</p>
+<p><strong>The check.</strong> Five new automated cases covered an outage, recovery, single failures and a hidden page. On the Pi the notice stays hidden during normal polling; its appearance was reviewed in an isolated preview. I have not yet caused a real network fault on the device to see it there.</p>
+<p>These examples show the approach I bring from quality control: work through the cause, document the change and check the result, including saying clearly what has not been checked yet.</p>
+<h3 id="testing-and-releases">Testing and releases</h3>
+<p>MILA* runs on a device I listen to every day, so a change is only finished once it has been checked.</p>
+<ul>
+<li><strong>Automated tests.</strong> More than 1,100 automated tests cover the Python backend and the JavaScript interface: playback commands, library and queue, radio, favourites, settings and the installation tool itself. They are run before changes are installed.</li>
+<li><strong>Safe installation with rollback.</strong> Updates go through an installation tool. It first creates a backup and verifies the copy on my computer by checksum. It then replaces only the program files, and checks that the interface starts, that every installed file matches the release and that every page resource is served correctly. If a check fails, the previous version is restored automatically. The music services keep running during an update.</li>
+<li><strong>Checks on the real device.</strong> After an update I check status, library, queue and radio on the Pi, and finally listening and touch. Passing tests are not treated as proof that the sound is right.</li>
+</ul>
+<p>The rollback path is covered by targeted tests; a controlled rollback on real hardware is still on the list.</p>
+<h3 id="hardware--foundation">Hardware &#x26; foundation</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Component</th><th>Role</th></tr></thead><tbody><tr><td>Raspberry Pi 5</td><td>Dedicated computer running the streamer</td></tr><tr><td>NVMe disk</td><td>Local music storage</td></tr><tr><td>Topping E50 USB DAC</td><td>Audio output</td></tr><tr><td>10-inch touch display</td><td>Built-in control interface</td></tr><tr><td>Dedicated linear power supply</td><td>DAC power</td></tr><tr><td>Edifier MR5 speakers</td><td>My listening setup</td></tr></tbody></table>
+<p><strong>Software:</strong> Raspberry Pi OS · Lyrion Music Server · Squeezelite · Python · HTML/CSS/JavaScript</p>
+<h3 id="current-state">Current state</h3>
+<p>MILA* is a working personal prototype in active development. The current focus is stable listening, recovery after interruptions and consistent behaviour across screen sizes. Some integrations and workflows still need refinement and real-world validation before a stable release.</p>
+<p>The source code is in a private repository. I am happy to walk through it, the tests and the release history in a conversation.</p>
+<hr>
+<h3 id="02--this-portfolio">02 / This portfolio</h3>
+<p><strong>Personal website · In development</strong></p>
+<p>This website is also one of my projects. I am adapting an existing Astro theme into a portfolio that connects my experience, practical work and current interests.</p>
+<p>The technical-paper background and distinctive typography are retained from the original theme. I am refining the structure, writing, project presentation, responsive layouts and small interactions.</p>
+<p>The aim is a clear, honest account of what I have done and what I am learning, with photographs and project notes that make the work tangible.</p>
+<p><strong>Foundation:</strong> Astro · HTML/CSS · JavaScript · Markdown · <a href="https://github.com/moeyua/astro-theme-typography">Typography theme</a></p>
+<hr>
+<h3 id="03--coursework--continued-learning">03 / Coursework &#x26; continued learning</h3>
+<p>I have completed my Java studies and now want to deepen my understanding of Python through practical work on MILA*. Course summaries and certificates are on the <a href="/portfolio/skills/">Skills</a> page.</p></article> </main> <footer class="site-footer"> <p data-astro-cid-gcn2mc3v>© 2026 <a target="_blank" href="https://orbital1403.github.io/portfolio/">Gordan Grgic</a></p> </footer> <script type="module">document.addEventListener("animationend",s,!1);function s(){document.documentElement.classList.remove("animation-prepared"),document.removeEventListener("animationend",s,!1)}const t=document.querySelector(".site-header"),a=t?.querySelector(".menu-toggle");if(t&&a){const n=e=>{t.dataset.menu=e?"open":"closed",a.setAttribute("aria-expanded",String(e)),a.setAttribute("aria-label",e?"Close menu":"Open menu")};n(!1),a.addEventListener("click",()=>n(t.dataset.menu!=="open")),t.querySelector(".site-menu")?.addEventListener("click",e=>{e.target.closest("a")&&n(!1)}),document.addEventListener("keydown",e=>{e.key==="Escape"&&t.dataset.menu==="open"&&(n(!1),a.focus())}),document.addEventListener("astro:page-load",()=>n(!1))}</script> <script src="/portfolio/scripts/gallery.f1e134c42f35.js" defer></script> </body> </html> 

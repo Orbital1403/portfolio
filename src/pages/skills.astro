@@ -1,0 +1,8 @@
+---
+import { getEntry, render } from 'astro:content'
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+const entry=await getEntry('spec','skills')
+if(!entry) throw new Error('Missing skills content')
+const {Content}=await render(entry)
+---
+<LayoutDefault title="Skills & certificates — Gordan Grgić" description={entry.data.description}><header class="page-heading"><p class="folio-label">PERSONAL FIELD NOTES / EXPERIENCE & EDUCATION</p><h1>Skills & learning</h1></header><article class="prose"><Content /></article></LayoutDefault>

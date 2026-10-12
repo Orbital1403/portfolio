@@ -1,0 +1,13 @@
+# Cloudflare Pages: former blog/theme pages now covered by Skills and Contact.
+/learning /skills/ 301
+/learning/* /skills/ 301
+/posts/* /skills/ 301
+/categories /skills/ 301
+/categories/* /skills/ 301
+/archive /skills/ 301
+/archive/ /skills/ 301
+/contact-form /contact/ 301
+/contact-form/ /contact/ 301
+/thank-you /contact/ 301
+/thank-you/ /contact/ 301
+/atom.xml / 301

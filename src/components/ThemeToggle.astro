@@ -1,0 +1,34 @@
+---
+import Icon from '~/components/Icon.astro'
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle theme"
+  title="Toggle theme"
+  class="w-7 h-7 inline-flex items-center justify-center cursor-pointer"
+  onclick="(function(){
+    const html = document.documentElement;
+    const next = html.classList.contains('dark') ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    if (window.applyTheme) window.applyTheme(next);
+  })()"
+>
+  <Icon name="sun" class="theme-sun" />
+  <Icon name="moon" class="theme-moon" />
+</button>
+
+<style>
+  #theme-toggle {
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  #theme-toggle:hover {
+    transform: rotate(15deg) scale(1.05);
+  }
+  #theme-toggle:active {
+    transform: scale(0.95);
+    opacity: 0.85;
+  }
+</style>
+<style>.theme-moon{display:none;} :global(html.dark) .theme-sun{display:none;} :global(html.dark) .theme-moon{display:block;}</style>

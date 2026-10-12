@@ -1,0 +1,38 @@
+---
+/* Default: light mode, pamti u localStorage */
+---
+
+<script is:inline>
+  window.applyTheme = function (theme) {
+    const html = document.documentElement
+    if (theme === 'dark') {
+      html.classList.add('dark')
+      html.dataset.theme = 'dark'
+    } else {
+      html.classList.remove('dark')
+      html.dataset.theme = 'light'
+    }
+  }
+
+  ;(function initTheme() {
+    try {
+      // ako nema spremljene teme — koristi light
+      let saved = localStorage.getItem('theme')
+      if (!saved) {
+        saved = 'light'
+        localStorage.setItem('theme', saved)
+      }
+
+      // primijeni temu
+      window.applyTheme(saved)
+
+      // nakon SWUP reload-a ponovno primijeni trenutno stanje
+      document.addEventListener('swup:contentReplaced', () => {
+        const current = localStorage.getItem('theme') || 'light'
+        window.applyTheme(current)
+      })
+    } catch (e) {
+      console.warn('Theme init error', e)
+    }
+  })()
+</script>

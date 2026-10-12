@@ -1,0 +1,61 @@
+---
+import { themeConfig } from '~/.config'
+import Icon from '~/components/Icon.astro'
+const navIcons: Record<string,string>={HOME:'home',ABOUT:'about',PROJECTS:'projects',SKILLS:'skills',HOBBIES:'hobbies',CONTACT:'mail'}
+
+const site = themeConfig?.site ?? { navLinks: [], socialLinks: [] }
+const navLinks = site.navLinks ?? []
+const socialLinks = site.socialLinks ?? []
+
+const t = (Astro.locals?.translate ?? ((k: string) => k)) as (k: string) => string
+const current = new URL(Astro.url).pathname.replace(/^\/portfolio(?=\/|$)/, '').replace(/\/$/, '') || '/'
+const selected = (href: string) => current === href || (href !== '/' && current.startsWith(href + '/'))
+---
+
+<nav class="site-nav font-bold" flex="~ col gap-4" aria-label="Main">
+  <ul class="nav-menu text-3.5" lg="flex-col items-start text-4">
+    {
+      navLinks.map((nav) => (
+        <li>
+          <a href={nav.href} class="nav-link" aria-current={selected(nav.href) ? 'page' : undefined}>
+            <Icon name={navIcons[nav.name] ?? 'projects'} /><span>{t(nav.name)}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <ul class="social" flex="~ row gap-1 justify-center">
+    {
+      socialLinks.map(({ href, name }) => (
+        <li>
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={name}
+            data-no-swup
+            class="social-link not-underline-hover inline-flex items-center"
+          >
+            <Icon name={name === 'twitter' ? 'x' : name} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  function updateNavigation() {
+    const path = window.location.pathname.replace(/\/$/, '') || '/'
+    document.querySelectorAll<HTMLAnchorElement>('.site-header nav > ul:first-child a').forEach((link) => {
+      const target = new URL(link.href).pathname.replace(/\/$/, '') || '/'
+      const active = path === target || (target !== '/' && path.startsWith(target + '/'))
+      if (active) link.setAttribute('aria-current', 'page')
+      else link.removeAttribute('aria-current')
+    })
+  }
+  updateNavigation()
+  document.addEventListener('swup:page:view', updateNavigation)
+  document.addEventListener('astro:page-load', updateNavigation)
+</script>
