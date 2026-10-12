@@ -16,10 +16,6 @@ export const defaultConfig: ThemeConfig = {
         name: 'github',
         href: 'https://github.com/Orbital1403',
       },
-      {
-        name: 'twitter',
-        href: 'https://x.com/orbital1403',
-      },
     ],
     navLinks: [
       {
@@ -60,7 +56,6 @@ export const defaultConfig: ThemeConfig = {
     },
   },
   seo: {
-    twitter: '@moeyua13',
     meta: [],
     link: [],
   },

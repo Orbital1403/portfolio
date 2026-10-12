@@ -27,11 +27,9 @@ export const userConfig: Partial<UserConfig> = {
         name: 'linkedin',
         href: 'https://www.linkedin.com/in/gordan-grgic-0ba40a354/',
       },
-      { name: 'twitter', href: 'https://x.com/orbital1403' },
     ],
   },
   // 🔹 5) Jezik i tema (ostalo uzmi iz defaulta)
-  seo: { twitter: '@orbital1403' },
   appearance: {
     locale: 'en-us',
     theme: 'system',
@@ -41,6 +39,3 @@ export const userConfig: Partial<UserConfig> = {
       ui: '"MyFont","Source Sans Pro","Inter","Roboto","Helvetica Neue",sans-serif', */
   },
 }
-
-// (po potrebi, kasnije)
-// seo: { twitter: '@tvoj_handle' },

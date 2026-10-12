@@ -19,7 +19,6 @@ const configSite = themeConfig.site
 const title = props.title ?? configSite.title
 const desc = props.desc ?? configSite.description
 const canonical = new URL(Astro.url.pathname, configSite.website).toString()
-const twitter = configSEO.twitter
 const shareImage = new URL(props.image ?? '/og/default.jpg', Astro.url).toString()
 const shareImageAlt =
   props.imageAlt ?? 'Gordan Grgić — quality, testing and hardware/software work, with the MILA* audio streamer'
@@ -30,8 +29,6 @@ const seoMeta = [
   { name: 'generator', content: Astro.generator },
   { name: 'twitter:image', content: shareImage },
   { name: 'twitter:image:alt', content: shareImageAlt },
-  { name: 'twitter:creator', content: twitter },
-  { name: 'twitter:site', content: twitter },
   { name: 'twitter:card', content: 'summary_large_image' },
   { name: 'twitter:title', content: title },
   { name: 'twitter:description', content: desc },
@@ -69,11 +66,7 @@ const jsonLd = {
       url: configSite.website,
       jobTitle: 'Quality Control & Hardware/Software Technician',
       description: configSite.description,
-      sameAs: [
-        'https://github.com/Orbital1403',
-        'https://www.linkedin.com/in/gordan-grgic-0ba40a354/',
-        'https://x.com/orbital1403',
-      ],
+      sameAs: ['https://github.com/Orbital1403', 'https://www.linkedin.com/in/gordan-grgic-0ba40a354/'],
       knowsAbout: [
         'Quality Control',
         'Failure Analysis',
