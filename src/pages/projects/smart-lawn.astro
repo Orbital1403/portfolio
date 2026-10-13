@@ -17,6 +17,13 @@ const modules = [
     source: 'https://www.dfrobot.com/product-2830.html',
   },
   {
+    key: 'pt100',
+    title: 'PT100 soil temperature sensor',
+    role: 'A dedicated platinum RTD probe for soil temperature, separate from moisture measurement. A reader such as MAX31865 would connect it to the ESP32-S3 over SPI; probe sealing, burial suitability and calibration remain to be checked.',
+    reference: 'Adafruit three-wire PT100 — probe example',
+    source: 'https://www.adafruit.com/product/3290',
+  },
+  {
     key: 'rs485',
     title: 'RS485 interface',
     role: 'A proposed link between the sensor bus and the controller. Sensor protocol and electrical compatibility will be checked before selection.',
@@ -25,10 +32,10 @@ const modules = [
   },
   {
     key: 'power',
-    title: '12 V power supply',
-    role: 'The planned low-voltage supply for the valve and compatible sensors, with separate regulated power for the controller.',
-    reference: 'DFRobot 12 V adapter — form-factor example',
-    source: 'https://www.dfrobot.com/product-2986.html',
+    title: 'Mean Well industrial power supply',
+    role: 'A planned 12 V industrial Mean Well supply inside the enclosure, with regulated power for the controller. The final model and power rating will follow the load calculation.',
+    reference: 'Mean Well HDR-30 — DIN-rail supply example',
+    source: 'https://www.meanwell.co.uk/power-supplies/din-rail-power-supplies/hdr-30-series',
   },
   {
     key: 'valve',
@@ -92,9 +99,9 @@ const modules = [
         compare moisture and soil temperature in three locations rather than rely on a single reading.
       </p>
       <p>
-        The concept connects three buried probes to one ESP32-S3 controller and a web dashboard. The first irrigation
-        experiment would use one valve and sprinkler. Three measurement zones do not mean three independently watered
-        zones.
+        The concept connects three buried moisture probes and dedicated PT100 temperature sensing to one ESP32-S3
+        controller and a web dashboard. The first irrigation experiment would use one valve and sprinkler. Three
+        measurement zones do not mean three independently watered zones.
       </p>
       <div class="zone-grid">
         <div><span>S1 / SUN</span><p>Track the more exposed area.</p></div><div>
@@ -164,13 +171,16 @@ const modules = [
       <p class="folio-label">03 / SYSTEM CONCEPT</p><h2 id="lawn-architecture">One controller. Two paths.</h2>
       <div
         class="architecture"
-        aria-label="Proposed system: three soil sensors through RS485 to ESP32-S3, which connects over Wi-Fi to a dashboard and controls a valve through a driver."
+        aria-label="Proposed system: three soil sensors through RS485 and separate PT100 temperature sensing through an RTD reader to ESP32-S3, which connects over Wi-Fi to a dashboard and controls a valve through a driver."
       >
         <div class="architecture-row">
           <span>Soil sensor S1</span><span>Soil sensor S2</span><span>Soil sensor S3</span>
         </div>
-        <p class="flow-label">↓ Shared sensor bus</p><div class="architecture-node">RS485 interface</div>
-        <p class="flow-label">↓ Sensor readings</p><div class="architecture-node controller">ESP32-S3</div>
+        <p class="flow-label">↓ Shared sensor bus → RS485 interface → ESP32-S3</p>
+        <div class="architecture-node">PT100 → RTD reader (e.g. MAX31865)</div>
+        <p class="flow-label">↓ Separate temperature input over SPI</p><div class="architecture-node controller">
+          ESP32-S3
+        </div>
         <div class="architecture-row outputs">
           <div>
             <p class="flow-label">↓ Wi-Fi</p><span>Web dashboard</span><p>Readings · History · Zone comparison</p>
@@ -181,7 +191,7 @@ const modules = [
           </div>
         </div>
         <p class="power-note">
-          Power concept: 12 V supply for compatible loads, with regulated power for the controller.
+          Power concept: industrial Mean Well 12 V supply for compatible loads, with regulated power for the controller.
         </p>
       </div>
     </section>

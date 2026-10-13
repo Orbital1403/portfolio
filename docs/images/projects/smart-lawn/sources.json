@@ -32,15 +32,8 @@
     ]
   },
   "power": {
-    "page": "https://www.dfrobot.com/product-2986.html",
-    "og": "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Main_01.jpg",
-    "images": [
-      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Main_01_150x100.jpg.webp",
-      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Back_03_150x100.jpg.webp",
-      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Dim_02_150x100.jpg.webp",
-      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Detail_04_150x100.jpg.webp",
-      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_0x0.jpg.webp"
-    ]
+    "page": "https://www.meanwell.co.uk/power-supplies/din-rail-power-supplies/hdr-30-series",
+    "og": "https://www.meanwell.co.uk/assets/images/products/_738x738_letterbox_center-center_none_ffffff/7650/HDR-30.webp?v=1782316966"
   },
   "valve": {
     "page": "https://www.dfrobot.com/product-1530.html",
@@ -82,5 +75,9 @@
       "https://dfimg.dfrobot.com/enshop/image/data/FIT0723/FIT0723_Main_01_144x96.jpg.webp",
       "https://dfimg.dfrobot.com/enshop/image/data/FIT0724/Plastic Project Box Enclosure Waterproof Clear Cover-6.61 x 4.72 x 2.17 inch_0x0.jpg.webp"
     ]
+  },
+  "pt100": {
+    "page": "https://www.adafruit.com/product/3290",
+    "og": "https://cdn-shop.adafruit.com/970x728/3290-01.jpg"
   }
 }
