@@ -2,15 +2,23 @@
 import { themeConfig } from '~/.config'
 import Icon from '~/components/Icon.astro'
 import ThemeToggle from '~/components/ThemeToggle.astro'
-const navIcons: Record<string,string>={HOME:'home',ABOUT:'about',PROJECTS:'projects',SKILLS:'skills',HOBBIES:'hobbies',CONTACT:'mail'}
+import { isActivePath, normalizePath } from '~/utils/navigation'
+const navIcons: Record<string, string> = {
+  HOME: 'home',
+  ABOUT: 'about',
+  PROJECTS: 'projects',
+  SKILLS: 'skills',
+  HOBBIES: 'hobbies',
+  CONTACT: 'mail',
+}
 
 const site = themeConfig?.site ?? { navLinks: [], socialLinks: [] }
 const navLinks = site.navLinks ?? []
 const socialLinks = site.socialLinks ?? []
 
 const t = (Astro.locals?.translate ?? ((k: string) => k)) as (k: string) => string
-const current = new URL(Astro.url).pathname.replace(/^\/portfolio(?=\/|$)/, '').replace(/\/$/, '') || '/'
-const selected = (href: string) => current === href || (href !== '/' && current.startsWith(href + '/'))
+const current = normalizePath(Astro.url.pathname, import.meta.env.BASE_URL)
+const selected = (href: string) => isActivePath(current, normalizePath(href))
 ---
 
 <nav class="site-nav font-bold" flex="~ col gap-4" aria-label="Main">
@@ -19,7 +27,10 @@ const selected = (href: string) => current === href || (href !== '/' && current.
       navLinks.map((nav) => (
         <li>
           <a href={nav.href} class="nav-link" aria-current={selected(nav.href) ? 'page' : undefined}>
-            <Icon name={navIcons[nav.name] ?? 'projects'} /><span>{t(nav.name)}</span>
+            <>
+              <Icon name={navIcons[nav.name] ?? 'projects'} />
+              <span>{t(nav.name)}</span>
+            </>
           </a>
         </li>
       ))
@@ -48,16 +59,20 @@ const selected = (href: string) => current === href || (href !== '/' && current.
 </nav>
 
 <script>
+  import { isActivePath, normalizePath } from '~/utils/navigation'
+
   function updateNavigation() {
-    const path = window.location.pathname.replace(/\/$/, '') || '/'
+    const path = normalizePath(window.location.pathname, import.meta.env.BASE_URL)
     document.querySelectorAll<HTMLAnchorElement>('.site-header nav > ul:first-child a').forEach((link) => {
-      const target = new URL(link.href).pathname.replace(/\/$/, '') || '/'
-      const active = path === target || (target !== '/' && path.startsWith(target + '/'))
-      if (active) link.setAttribute('aria-current', 'page')
-      else link.removeAttribute('aria-current')
+      const target = normalizePath(new URL(link.href).pathname, import.meta.env.BASE_URL)
+      const active = isActivePath(path, target)
+      if (active) {
+        link.setAttribute('aria-current', 'page')
+      } else {
+        link.removeAttribute('aria-current')
+      }
     })
   }
   updateNavigation()
-  document.addEventListener('swup:page:view', updateNavigation)
   document.addEventListener('astro:page-load', updateNavigation)
 </script>

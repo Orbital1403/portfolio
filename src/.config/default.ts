@@ -40,7 +40,7 @@ export const defaultConfig: ThemeConfig = {
   },
   appearance: {
     theme: 'system',
-    locale: 'en-US',
+    locale: 'en-us',
     colorsLight: {
       primary: '#2e405b',
       background: '#ffffff',

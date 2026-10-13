@@ -8,5 +8,5 @@
     }
   },
   "include": ["src/**/*.astro", "src/**/*.ts", ".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": ["dist", "docs", "cloudflare-dist"]
 }

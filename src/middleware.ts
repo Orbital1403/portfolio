@@ -3,11 +3,6 @@ import { themeConfig } from '~/.config'
 import { LANGUAGES } from '~/i18n.ts'
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  // ✅ preskoči middleware za API rute
-  if (context.url.pathname.startsWith('/api/')) {
-    return next()
-  }
-
   const locale = themeConfig.appearance.locale
   const localeTranslate = LANGUAGES[locale]
 
@@ -16,8 +11,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   context.locals.translate = (key, param) => {
-    if (!validateKey(key)) return key
-    if (!param) return localeTranslate[key]
+    if (!validateKey(key))
+      return key
+    if (!param)
+      return localeTranslate[key]
     return localeTranslate[key].replace('%d', param.toString())
   }
 

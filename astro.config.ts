@@ -1,17 +1,20 @@
+import process from 'node:process'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
-import swup from '@swup/astro'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import { themeConfig } from './src/.config'
 
+const notFoundPath = /\/404(?:\.html|\/)?$/
+
 // https://astro.build/config
 export default defineConfig({
   site: themeConfig.site.website,
+  compressHTML: true,
   prefetch: true,
-  base: '/portfolio/',
+  base: process.env.PORTFOLIO_DEPLOY_TARGET === 'pages' ? '/portfolio/' : '/',
   vite: {
     plugins: [
       // eslint-disable-next-line ts/ban-ts-comment
@@ -28,18 +31,7 @@ export default defineConfig({
   integrations: [
     UnoCSS({ injectReset: true }),
     mdx({}),
-    robotsTxt(),
-    sitemap(),
-    swup({
-      theme: false,
-      containers: ['main', '#page-aside'],
-      animationClass: 'transition-swup-',
-      cache: true,
-      preload: true,
-      accessibility: true,
-      smoothScrolling: true,
-      updateHead: true,
-      updateBodyClass: true,
-    }),
+    robotsTxt({ sitemap: new URL('sitemap-index.xml', themeConfig.site.website).href }),
+    sitemap({ filter: page => !notFoundPath.test(page) }),
   ],
 })

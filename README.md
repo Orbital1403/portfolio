@@ -1,20 +1,33 @@
 # Gordan Grgić - personal portfolio
 
-A personal portfolio retaining the Typography theme's technical-paper background and distinctive display font. It presents practical technical experience, MILA* (an audio streamer in development), other hands-on projects and this website as a web project.
+A personal portfolio retaining the Typography theme's technical-paper background and distinctive display font. It presents practical technical experience, MILA\* (an audio streamer in development), other hands-on projects and this website as a web project.
 
 ## Development
 
-Install dependencies with npm ci, then run npm run dev.
+Use Node.js 22.23.3 (see `.node-version`) or a newer compatible version and npm. Run `npm ci`, then `npm run dev`.
+`npm run lint` checks source files, including gallery code in `public/`.
+`npm run typecheck` synchronises Astro types and checks TypeScript.
+Installation registers the pre-commit hook; it only formats supported source files.
+
+Page transitions use Astro’s built-in client router.
 
 ## GitHub Pages
 
-Run npm run build:pages to generate the static publication in docs/. GitHub Pages serves main /docs at https://orbital1403.github.io/portfolio/.
-
-The publishing helper adjusts root-relative HTML, CSS and gallery asset paths for /portfolio/. The source remains usable in a local root-path preview.
+Run `npm run build:pages` to generate `docs/` for the `/portfolio/` path.
+Commit the regenerated publication with source changes. GitHub Pages serves
+`main /docs` at https://orbital1403.github.io/portfolio/.
+Generated files are excluded from lint and pre-commit formatting.
 
 ## Cloudflare Pages
 
-The existing Cloudflare Pages project `portfolio` serves https://gordangrgic.com/ and its www variant. Its build command is `node scripts/prepare-cloudflare.mjs` and output directory is `cloudflare-dist`. This publishes the reviewed static build from `docs/`, adapting asset paths, canonical URLs and sitemaps for the custom domain. Regenerate `docs/` with `npm run build:pages` and commit it when changing the website. GitHub Pages remains available at its existing address.
+The existing Cloudflare Pages project `portfolio` serves https://gordangrgic.com/
+and its www variant. Keep its build command `node scripts/prepare-cloudflare.mjs`
+and output directory `cloudflare-dist`. This command now builds directly from
+source at `/`, independently of `docs/`. Both publication commands check
+TypeScript and Astro before building, and version the gallery script by content.
+
+Both versions use canonical and share URLs on https://gordangrgic.com/;
+sitemaps and robots.txt also advertise the primary domain.
 
 ## Photographs and share images
 

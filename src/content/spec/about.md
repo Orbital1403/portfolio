@@ -17,9 +17,9 @@ I still use **Linux, macOS and Windows**. My interest in technology has stayed p
 
 ### Experience in electronics
 
-At **Siemens**, I started in the production of pressure and temperature transmitters before moving into quality control. I analysed returned devices and carefully documented my findings. Those reports later contributed to improvements within the department.
+At **Siemens (October 2006 – December 2011)**, I started in the production of pressure and temperature transmitters before moving into quality control. I analysed returned devices and carefully documented my findings. Those reports later contributed to improvements within the department.
 
-At **Altpro in Zagreb**, I worked in quality control and calibration for railway safety systems, in a department closely connected to development. It gave me further experience with measurement, testing and the details that affect whether a device works as intended.
+At **Altpro in Zagreb (November 2013 – December 2017)**, I worked in quality control and calibration for railway safety systems, in a department closely connected to development. It gave me further experience with measurement, testing and the details that affect whether a device works as intended.
 
 ### A new chapter in Brussels
 
@@ -31,7 +31,7 @@ I repaired household appliances, worked on installations, painted and fitted joi
 
 Music has always mattered to me. I explore it, travel for it and enjoy the equipment that brings it into a room.
 
-That interest led to **[MILA*](/projects/)**, my personal audio streamer. I had the components at home and a clear idea of what frustrated me about existing players. I put my requirements on paper and began developing an interface around my own listening habits.
+That interest led to **[MILA\*](/projects/)**, my personal audio streamer. I had the components at home and a clear idea of what frustrated me about existing players. I put my requirements on paper and began developing an interface around my own listening habits.
 
 I lead the project from requirements to release: I decide what it should do, shape its behaviour, test every change on the real hardware and document what I find. AI coding assistants write much of the code under that direction. It is still in development, and I am learning as it grows.
 
@@ -39,6 +39,6 @@ I lead the project from requirements to release: I decide what it should do, sha
 
 I am interested in work that combines practical technical knowledge with investigation and attention to detail: testing, diagnostics, technical support or integration, especially where hardware meets software.
 
-I have completed my Java studies and am now turning my attention to Python. MILA*, whose backend is written in Python, gives me a practical project through which to explore it.
+I have completed my Java studies and am now turning my attention to Python. MILA\*, whose backend is written in Python, gives me a practical project through which to explore it.
 
 Away from projects, I enjoy music, cycling and finding out how things work.

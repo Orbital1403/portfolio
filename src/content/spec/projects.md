@@ -3,11 +3,16 @@ title: "Project notes"
 description: "MILA*: a personal audio streamer in development, combining hardware, music, software and careful testing."
 ---
 
-## MILA*
+## MILA\*
 
 **Personal audio streamer · In development**
 
-A music project that brings together my interest in computers, practical problem-solving and everyday listening. MILA* combines existing hardware with an interface I can shape around my own needs.
+- **Goal:** local hi-res music, internet radio and streaming in one responsive player.
+- **My role:** requirements, behaviour, testing on the real device and release decisions; AI coding assistants write much of the implementation.
+- **Current state:** a working personal prototype in active development, used for everyday listening.
+- **Validation:** automated tests and device checks; some integrations, recovery scenarios and audio behaviour still need further validation.
+
+A music project that brings together my interest in computers, practical problem-solving and everyday listening. MILA\* combines existing hardware with an interface I can shape around my own needs.
 
 <figure class="project-figure">
 <img src="/images/projects/gstreamer/mila-player.png" alt="The current MILA* player interface" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* player screenshot" loading="lazy" />
@@ -71,7 +76,7 @@ Screensavers and visual details are part of the experience, but they share the s
 
 ### My role and how I work
 
-My background is in hardware, quality control and failure analysis, and I run MILA* the same way. I lead the project: I define the requirements, decide how it should behave, test every change on the real device and decide what is released. AI coding assistants write much of the implementation under that direction. Directing that work and verifying the result is a skill in its own right.
+My background is in hardware, quality control and failure analysis, and I run MILA\* the same way. I lead the project: I define the requirements, decide how it should behave, test every change on the real device and decide what is released. AI coding assistants write much of the implementation under that direction. Directing that work and verifying the result is a skill in its own right.
 
 The playback foundation comes from Lyrion and Squeezelite; my application connects the sources, controls and device functions into a coherent experience.
 
@@ -114,7 +119,7 @@ These examples show the approach I bring from quality control: work through the 
 
 ### Testing and releases
 
-MILA* runs on a device I listen to every day, so a change is only finished once it has been checked.
+MILA\* runs on a device I listen to every day, so a change is only finished once it has been checked.
 
 - **Automated tests.** More than 1,100 automated tests cover the Python backend and the JavaScript interface: playback commands, library and queue, radio, favourites, settings and the installation tool itself. They are run before changes are installed.
 - **Safe installation with rollback.** Updates go through an installation tool. It first creates a backup and verifies the copy on my computer by checksum. It then replaces only the program files, and checks that the interface starts, that every installed file matches the release and that every page resource is served correctly. If a check fails, the previous version is restored automatically. The music services keep running during an update.
@@ -124,26 +129,26 @@ The rollback path is covered by targeted tests; a controlled rollback on real ha
 
 ### Hardware & foundation
 
-| Component | Role |
-| --- | --- |
-| Raspberry Pi 5 | Dedicated computer running the streamer |
-| NVMe disk | Local music storage |
-| Topping E50 USB DAC | Audio output |
-| 10-inch touch display | Built-in control interface |
-| Dedicated linear power supply | DAC power |
-| Edifier MR5 speakers | My listening setup |
+| Component                     | Role                                    |
+| ----------------------------- | --------------------------------------- |
+| Raspberry Pi 5                | Dedicated computer running the streamer |
+| NVMe disk                     | Local music storage                     |
+| Topping E50 USB DAC           | Audio output                            |
+| 10-inch touch display         | Built-in control interface              |
+| Dedicated linear power supply | DAC power                               |
+| Edifier MR5 speakers          | My listening setup                      |
 
 **Software:** Raspberry Pi OS · Lyrion Music Server · Squeezelite · Python · HTML/CSS/JavaScript
 
 ### Current state
 
-MILA* is a working personal prototype in active development. The current focus is stable listening, recovery after interruptions and consistent behaviour across screen sizes. Some integrations and workflows still need refinement and real-world validation before a stable release.
+MILA\* is a working personal prototype in active development. The current focus is stable listening, recovery after interruptions and consistent behaviour across screen sizes. Some integrations and workflows still need refinement and real-world validation before a stable release.
 
 The source code is in a private repository. I am happy to walk through it, the tests and the release history in a conversation.
 
 ---
 
-### 02 / This portfolio
+<h3 id="portfolio-project">02 / This portfolio</h3>
 
 **Personal website · In development**
 
@@ -159,4 +164,4 @@ The aim is a clear, honest account of what I have done and what I am learning, w
 
 ### 03 / Coursework & continued learning
 
-I have completed my Java studies and now want to deepen my understanding of Python through practical work on MILA*. Course summaries and certificates are on the [Skills](/skills/) page.
+I have completed my Java studies and now want to deepen my understanding of Python through practical work on MILA\*. Course summaries and certificates are on the [Skills](/skills/) page.

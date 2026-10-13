@@ -1,5 +1,7 @@
-import type { Link, Meta } from 'astro-seo'
+import type { SEOProps } from 'astro-seo'
 import type { LANGUAGES } from '../i18n.ts'
+
+type SEOExtensions = NonNullable<SEOProps['extend']>
 
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
@@ -35,8 +37,8 @@ export interface ConfigAppearance {
 }
 
 export interface ConfigSEO {
-  meta: Partial<Meta>[]
-  link: Partial<Link>[]
+  meta: NonNullable<SEOExtensions['meta']>
+  link: NonNullable<SEOExtensions['link']>
 }
 
 interface Colors {
@@ -47,7 +49,7 @@ interface Colors {
 interface Fonts {
   header: string
   ui: string
-  // TODO: 未实现
+  // Reserved for future article and code font overrides.
   _article?: string
   _code?: string
 }

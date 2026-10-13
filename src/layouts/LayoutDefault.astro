@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions'
 import { themeConfig } from '~/.config'
 import SiteFooter from '~/components/SiteFooter.astro'
 import SiteNavigation from '~/components/SiteNavigation.astro'
@@ -24,6 +25,7 @@ const lang = themeConfig.appearance.locale ?? 'en-us'
 
 <html lang={lang} class:list={['animation-prepared']}>
   <head>
+    <ClientRouter />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
@@ -31,7 +33,7 @@ const lang = themeConfig.appearance.locale ?? 'en-us'
       ><SiteSeo title={title} desc={description} image={image} imageAlt={imageAlt} noindex={noindex} /></slot
     >
 
-    <script is:inline>
+    <script is:inline data-astro-rerun>
       document.documentElement.classList.add('js')
     </script>
     <ThemeScript />
@@ -74,7 +76,7 @@ const lang = themeConfig.appearance.locale ?? 'en-us'
       <div id="page-aside" class="page-aside"><slot name="aside" /></div>
     </header>
 
-    <main id="main" class="transition-swup-main outline-none" tabindex="-1">
+    <main id="main" class="outline-none" transition:animate="fade" tabindex="-1">
       <slot />
     </main>
 
@@ -89,11 +91,15 @@ const lang = themeConfig.appearance.locale ?? 'en-us'
         document.removeEventListener('animationend', removeAnimation, false)
       }
 
-      // Compact menu below 1024 px. The header stays in place between Swup page
-      // changes, so this runs once and closes the menu after every navigation.
-      const header = document.querySelector<HTMLElement>('.site-header')
-      const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle')
-      if (header && toggle) {
+      // Native Astro navigation replaces the header; bind the new menu once.
+      let closeMenu = () => {}
+      function initMenu() {
+        const header = document.querySelector<HTMLElement>('.site-header')
+        const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle')
+        if (!header || !toggle || header.dataset.menuBound) {
+          return
+        }
+        header.dataset.menuBound = 'true'
         const setMenu = (open: boolean) => {
           header.dataset.menu = open ? 'open' : 'closed'
           toggle.setAttribute('aria-expanded', String(open))
@@ -101,25 +107,34 @@ const lang = themeConfig.appearance.locale ?? 'en-us'
         }
         setMenu(false)
         toggle.addEventListener('click', () => setMenu(header.dataset.menu !== 'open'))
-        const menu = header.querySelector('.site-menu')
-        menu?.addEventListener('click', (event) => {
-          const link = (event.target as Element).closest('a')
-          link && setMenu(false)
+        header.querySelector('.site-menu')?.addEventListener('click', (event) => {
+          if ((event.target as Element).closest('a')) {
+            setMenu(false)
+          }
         })
-        document.addEventListener('keydown', (event) => {
-          if (event.key === 'Escape' && header.dataset.menu === 'open') {
+        closeMenu = () => {
+          if (header.dataset.menu === 'open') {
             setMenu(false)
             toggle.focus()
           }
-        })
-        document.addEventListener('astro:page-load', () => setMenu(false))
+        }
       }
+      initMenu()
+      document.addEventListener('astro:page-load', initMenu)
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeMenu()
+        }
+      })
 
       // Page contents in the side column: mark the section being read.
-      let sections: { link: HTMLAnchorElement, target: HTMLElement }[] = []
+      let sections: {
+        link: HTMLAnchorElement
+        target: HTMLElement
+      }[] = []
       function markCurrent() {
         const passed = sections.filter((section) => section.target.getBoundingClientRect().top < 140)
-        const current = passed[passed.length - 1] ?? sections[0]
+        const current = passed.at(-1) ?? sections[0]
         for (const { link } of sections) link.removeAttribute('aria-current')
         current?.link.setAttribute('aria-current', 'location')
       }

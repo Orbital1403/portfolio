@@ -1,8 +1,13 @@
 ---
 import { getEntry, render } from 'astro:content'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-const entry=await getEntry('spec','about')
-if(!entry) throw new Error('Missing about content')
-const {Content}=await render(entry)
+const entry = await getEntry('spec', 'about')
+if (!entry) throw new Error('Missing about content')
+const { Content } = await render(entry)
 ---
-<LayoutDefault title="About — Gordan Grgić" description={entry.data.description}><header class="page-heading"><p class="folio-label">PERSONAL FIELD NOTES / MY STORY</p><h1>About me</h1></header><article class="prose"><Content /></article></LayoutDefault>
+
+<LayoutDefault title="About — Gordan Grgić" description={entry.data.description}
+  ><header class="page-heading">
+    <p class="folio-label">PERSONAL FIELD NOTES / MY STORY</p><h1>About me</h1>
+  </header><article class="prose"><Content /></article></LayoutDefault
+>

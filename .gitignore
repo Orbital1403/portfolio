@@ -3,13 +3,6 @@ dist/
 .astro/
 .wrangler/
 .env*
-node_modules/
-dist/
-.astro/
-.wrangler/
-.env*
-.DS_Store
-.DS_Store
-
 !.env.example
+.DS_Store
 cloudflare-dist/

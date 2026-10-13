@@ -8,6 +8,10 @@ import { readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import sharp from 'sharp'
 
+const jpegFile = /\.jpe?g$/i
+const thumbnailFile = /-800\.jpe?g$/i
+const jpegExtension = /(\.jpe?g)$/i
+
 const root = 'public/images/hobbies'
 const FULL = 1600
 const THUMB = 800
@@ -18,7 +22,7 @@ function* photos(dir) {
     const path = join(dir, name)
     if (statSync(path).isDirectory())
       yield* photos(path)
-    else if (/\.jpe?g$/i.test(name) && !/-800\.jpe?g$/i.test(name))
+    else if (jpegFile.test(name) && !thumbnailFile.test(name))
       yield path
   }
 }
@@ -31,7 +35,7 @@ for (const path of photos(root)) {
   const full = await sharp(path).rotate().resize(FULL, FULL, { fit: 'inside', withoutEnlargement: true }).jpeg(jpeg).toBuffer()
   if (exif || xmp || iptc || full.length < original * 0.85)
     writeFileSync(path, full)
-  const thumbPath = path.replace(/(\.jpe?g)$/i, '-800$1')
+  const thumbPath = path.replace(jpegExtension, '-800$1')
   const thumb = await sharp(path).rotate().resize(THUMB, THUMB, { fit: 'inside', withoutEnlargement: true }).jpeg(jpeg).toBuffer()
   writeFileSync(thumbPath, thumb)
   before += original

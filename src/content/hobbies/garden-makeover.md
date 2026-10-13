@@ -60,12 +60,12 @@ before_image: /images/hobbies/garden-makeover/before/before-purchase-yard.jpg
 lesson: "A garden renovation brings together more than the visible finish: ground preparation, drainage and waterproofing all need attention. Working through each stage helped me connect unfamiliar tasks into one practical project."
 ---
 
-I grew up as a **city kid in a concrete block**, where the closest I got to grass was the dusty football pitch or the patch next to the swings.  
+I grew up as a **city kid in a concrete block**, where the closest I got to grass was the dusty football pitch or the patch next to the swings.
 
-Fast-forward a few decades and suddenly I’m learning words like _aeration, verticutting, overseeding, fertilizing_ — basically the garden version of a cheat-code manual.  
+Fast-forward a few decades and suddenly I’m learning words like _aeration, verticutting, overseeding, fertilizing_ — basically the garden version of a cheat-code manual.
 
-Yes, I’d “seen grass” before, but not the kind that needs mowing every weekend. 
+Yes, I’d “seen grass” before, but not the kind that needs mowing every weekend.
 
-The process went from clearing debris and fixing drains to waterproofing patios and wiring solar lights. Somewhere along the way, I discovered that **grass won’t grow faster just because you stare at it menacingly**.  
+The process went from clearing debris and fixing drains to waterproofing patios and wiring solar lights. Somewhere along the way, I discovered that **grass won’t grow faster just because you stare at it menacingly**.
 
-This isn’t just a lawn makeover — it’s the story of me turning from a clueless rookie into a muddy-booted weekend gardener.  
+This isn’t just a lawn makeover — it’s the story of me turning from a clueless rookie into a muddy-booted weekend gardener.

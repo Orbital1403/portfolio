@@ -1,0 +1,383 @@
+<figure class="soil-dashboard">
+  <div class="dashboard-eyebrow">
+    <span><i></i> SMART LAWN / DASHBOARD CONCEPT</span><span class="sample-badge">Sample data</span>
+  </div>
+  <div class="dashboard-heading">
+    <div><h3>Soil moisture</h3><p>Three zones. One view of the lawn.</p></div><span class="period"
+      >24 hours <span>↗</span></span
+    >
+  </div>
+  <div class="zone-metrics">
+    <div class="zone-metric zone-sun">
+      <span class="zone-name"><i></i> S1 · Sun</span><p>24.8<span>%</span></p><span class="zone-detail"
+        >More exposed</span
+      >
+    </div>
+    <div class="zone-metric zone-reference">
+      <span class="zone-name"><i></i> S2 · Reference</span><p>34.5<span>%</span></p><span class="zone-detail"
+        >Intermediate area</span
+      >
+    </div>
+    <div class="zone-metric zone-shade">
+      <span class="zone-name"><i></i> S3 · Shade</span><p>43.2<span>%</span></p><span class="zone-detail"
+        >More sheltered</span
+      >
+    </div>
+  </div>
+  <div class="trend-plot">
+    <svg viewBox="0 0 700 300" role="img" aria-labelledby="soil-trend-title soil-trend-desc">
+      <title id="soil-trend-title">Concept chart comparing moisture in three zones</title>
+      <desc id="soil-trend-desc"
+        >Smooth illustrative curves compare sun, reference and shade. A shaded band marks an example watering period.
+        End values are 24.8, 34.5 and 43.2 percent. All data is simulated.</desc
+      >
+      <defs>
+        <linearGradient id="soil-reference-fill" x1="0" y1="0" x2="0" y2="1"
+          ><stop offset="0%" stop-color="#398477" stop-opacity=".22"></stop><stop
+            offset="100%"
+            stop-color="#398477"
+            stop-opacity="0"></stop></linearGradient
+        >
+        <linearGradient id="soil-shade-fill" x1="0" y1="0" x2="0" y2="1"
+          ><stop offset="0%" stop-color="#879bc2" stop-opacity=".10"></stop><stop
+            offset="100%"
+            stop-color="#879bc2"
+            stop-opacity="0"></stop></linearGradient
+        >
+      </defs>
+      <g class="plot-grid"><path d="M44 52H658M44 107H658M44 162H658M44 217H658"></path></g>
+      <g class="axis-labels"
+        ><text x="3" y="56">50%</text><text x="3" y="111">40%</text><text x="3" y="166">30%</text><text x="3" y="221"
+          >20%</text
+        ><text x="44" y="278">06:00</text><text x="192" y="278">12:00</text><text x="344" y="278">18:00</text><text
+          x="498"
+          y="278">00:00</text
+        ><text x="623" y="278">06:00</text></g
+      >
+      <rect class="watering-band" x="467" y="28" width="44" height="216" rx="9"></rect>
+      <path class="watering-line" d="M489 30V244"></path>
+      <g class="watering-tag"
+        ><rect x="432" y="2" width="114" height="24" rx="12"></rect><text x="489" y="18" text-anchor="middle"
+          >Watering example</text
+        ></g
+      >
+      <path
+        fill="url(#soil-shade-fill)"
+        d="M44 63C100 63 143 65 196 69S293 77 348 80S416 97 457 102S494 75 521 74S609 82 658 90V245H44Z"></path>
+      <path
+        fill="url(#soil-reference-fill)"
+        d="M44 96C100 97 143 105 196 108S293 115 348 124S417 151 457 157S494 124 521 124S609 132 658 138V245H44Z"
+      ></path>
+      <g class="trend-lines"
+        ><path
+          class="line-shade"
+          d="M44 63C100 63 143 65 196 69S293 77 348 80S416 97 457 102S494 75 521 74S609 82 658 90"></path><path
+          class="line-reference"
+          d="M44 96C100 97 143 105 196 108S293 115 348 124S417 151 457 157S494 124 521 124S609 132 658 138"></path><path
+          class="line-sun"
+          d="M44 118C100 122 143 129 196 135S293 145 348 157S417 190 457 195S494 167 521 168S609 184 658 191"></path></g
+      >
+      <g class="end-points"
+        ><circle class="point-shade" cx="658" cy="90" r="5"></circle><circle
+          class="point-reference"
+          cx="658"
+          cy="138"
+          r="5"></circle><circle class="point-sun" cx="658" cy="191" r="5"></circle></g
+      >
+    </svg>
+  </div>
+  <div class="dashboard-foot">
+    <span class="legend-event"><i></i> Example watering period</span><span>Moisture / %</span>
+  </div>
+  <figcaption>
+    Interface study with simulated values. Actual measurements will begin with the first prototype.
+  </figcaption>
+</figure>
+<style>
+  .soil-dashboard {
+    --chart-ink: #263c35;
+    --chart-muted: #79887f;
+    --chart-grid: #dce5df;
+    --chart-surface: #fff;
+    margin: 26px 0;
+    padding: 26px;
+    border: 1px solid #dce5df;
+    border-radius: 20px;
+    color: var(--chart-ink);
+    background: linear-gradient(150deg, #fff 20%, #f5f9f5 100%);
+    box-shadow: 0 12px 36px #203c2a09;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  .dashboard-eyebrow,
+  .dashboard-heading,
+  .dashboard-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .dashboard-eyebrow {
+    font: 9px/1.6 var(--note-font);
+    letter-spacing: 1.1px;
+    color: var(--chart-muted);
+  }
+  .dashboard-eyebrow > span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .dashboard-eyebrow i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6c9477;
+  }
+  .sample-badge {
+    border: 1px solid #dce5df;
+    background: #f4f7f3;
+    padding: 5px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    letter-spacing: 0;
+  }
+  .dashboard-heading {
+    margin: 22px 0;
+  }
+  .dashboard-heading h3 {
+    font:
+      600 25px/1.3 'IBM Plex Sans',
+      sans-serif;
+    letter-spacing: -0.6px;
+    margin: 0;
+  }
+  .dashboard-heading p {
+    font-size: 12px;
+    color: var(--chart-muted);
+    margin: 6px 0 0;
+    line-height: 1.5;
+  }
+  .period {
+    padding: 8px 11px;
+    border: 1px solid #dce5df;
+    border-radius: 8px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .period > span {
+    color: var(--chart-muted);
+    margin-left: 12px;
+  }
+  .zone-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .zone-metric {
+    padding: 14px 16px;
+    border: 1px solid #e5ebe6;
+    border-radius: 12px;
+    background: var(--chart-surface);
+  }
+  .zone-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--chart-muted);
+    white-space: nowrap;
+  }
+  .zone-name i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--zone-color);
+    flex-shrink: 0;
+  }
+  .zone-sun {
+    --zone-color: #c6945c;
+  }
+  .zone-reference {
+    --zone-color: #398477;
+  }
+  .zone-shade {
+    --zone-color: #879bc2;
+  }
+  .zone-metric p {
+    font-size: 29px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    margin: 9px 0 3px;
+    line-height: 1.1;
+  }
+  .zone-metric p span {
+    font-size: 14px;
+    color: var(--chart-muted);
+    margin-left: 3px;
+  }
+  .zone-detail {
+    font-size: 10px;
+    color: var(--chart-muted);
+  }
+  .trend-plot {
+    margin: 28px -4px 0;
+  }
+  .trend-plot svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .plot-grid {
+    fill: none;
+    stroke: var(--chart-grid);
+    stroke-width: 1;
+    stroke-dasharray: 3 6;
+  }
+  .axis-labels {
+    fill: var(--chart-muted);
+    font:
+      11px 'IBM Plex Sans',
+      sans-serif;
+  }
+  .watering-band {
+    fill: #86ab8b;
+    opacity: 0.1;
+  }
+  .watering-line {
+    stroke: #87a58d;
+    stroke-width: 1;
+    stroke-dasharray: 3 4;
+    opacity: 0.5;
+  }
+  .watering-tag rect {
+    fill: #e9f1e7;
+  }
+  .watering-tag text {
+    fill: #5b7b5e;
+    font:
+      10px 'IBM Plex Sans',
+      sans-serif;
+  }
+  .trend-lines {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .line-sun {
+    stroke: #c6945c;
+  }
+  .line-reference {
+    stroke: #398477;
+  }
+  .line-shade {
+    stroke: #879bc2;
+  }
+  .end-points {
+    stroke: var(--chart-surface);
+    stroke-width: 2.5;
+  }
+  .point-sun {
+    fill: #c6945c;
+  }
+  .point-reference {
+    fill: #398477;
+  }
+  .point-shade {
+    fill: #879bc2;
+  }
+  .dashboard-foot {
+    font-size: 10px;
+    color: var(--chart-muted);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--chart-grid);
+  }
+  .legend-event {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-event i {
+    width: 8px;
+    height: 8px;
+    border-radius: 3px;
+    background: #dce9d8;
+  }
+  .soil-dashboard figcaption {
+    font: 10px/1.7 var(--note-font);
+    color: var(--chart-muted);
+    margin-top: 14px;
+  }
+  :global(html.dark) .soil-dashboard {
+    --chart-ink: #e4eee8;
+    --chart-muted: #9eafa5;
+    --chart-grid: #3e5149;
+    --chart-surface: #283c34;
+    border-color: #43594d;
+    background: linear-gradient(150deg, #26392f, #22362c);
+    box-shadow: 0 12px 36px #00000015;
+  }
+  :global(html.dark) .zone-metric,
+  :global(html.dark) .period,
+  :global(html.dark) .sample-badge {
+    border-color: #40574a;
+  }
+  :global(html.dark) .sample-badge {
+    background: #2e4436;
+  }
+  :global(html.dark) .watering-tag rect {
+    fill: #354e3b;
+  }
+  :global(html.dark) .watering-tag text {
+    fill: #b9cfb7;
+  }
+  @media (max-width: 600px) {
+    .soil-dashboard {
+      padding: 18px 14px;
+      border-radius: 16px;
+    }
+    .dashboard-eyebrow {
+      font-size: 8px;
+      letter-spacing: 0.4px;
+    }
+    .dashboard-heading h3 {
+      font-size: 22px;
+    }
+    .dashboard-heading p {
+      font-size: 11px;
+    }
+    .zone-metrics {
+      gap: 6px;
+    }
+    .zone-metric {
+      padding: 12px 8px;
+      border-radius: 10px;
+    }
+    .zone-name {
+      font-size: 9px;
+      gap: 4px;
+    }
+    .zone-metric p {
+      font-size: 25px;
+    }
+    .zone-detail {
+      font-size: 8px;
+    }
+    .trend-plot {
+      margin-top: 22px;
+    }
+    .axis-labels {
+      font-size: 20px;
+    }
+    .dashboard-foot {
+      font-size: 9px;
+    }
+    .period {
+      font-size: 10px;
+      padding: 7px;
+    }
+    .period > span {
+      margin-left: 5px;
+    }
+  }
+</style>

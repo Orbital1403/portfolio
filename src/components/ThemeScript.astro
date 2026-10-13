@@ -9,6 +9,10 @@
     html.dataset.theme = theme
   }
   ;(function initTheme() {
+    if (window.__portfolioThemeInitialized) {
+      return
+    }
+    window.__portfolioThemeInitialized = true
     const media = window.matchMedia('(prefers-color-scheme: dark)')
     const chosen = () => {
       try {
@@ -19,6 +23,7 @@
     }
     const current = () => chosen() || (media.matches ? 'dark' : 'light')
     window.applyTheme(current())
+    document.addEventListener('astro:after-swap', () => window.applyTheme(current()))
     media.addEventListener('change', () => chosen() || window.applyTheme(current()))
   })()
 </script>

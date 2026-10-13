@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://orbital1403.github.io/portfolio/sitemap-index.xml
+Sitemap: https://gordangrgic.com/sitemap-index.xml

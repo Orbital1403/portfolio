@@ -1,42 +1,47 @@
 ---
-import LayoutDefault from "~/layouts/LayoutDefault.astro";
-import { getCollection, render, type CollectionEntry } from "astro:content";
-import { toSlug } from "~/utils/slug";
-import { thumbnail } from "~/utils/images";
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { getCollection, render, type CollectionEntry } from 'astro:content'
+import { toSlug } from '~/utils/slug'
+import { thumbnail } from '~/utils/images'
 
-type Hobby = CollectionEntry<"hobbies">;
+type Hobby = CollectionEntry<'hobbies'>
 
-/** Encode svakog segmenta putanje (space, & itd.) */
+/** Encode each path segment, preserving the leading slash. */
 const esc = (p?: string) => {
-  if (!p) return "";
-  const lead = p.startsWith("/");
+  if (!p) return ''
+  const lead = p.startsWith('/')
   const parts = p
-    .split("/")
+    .split('/')
     .filter(Boolean)
-    .map((s) => encodeURIComponent(decodeURIComponent(s)));
-  return (lead ? "/" : "") + parts.join("/");
-};
-
-export async function getStaticPaths() {
-  const all = await getCollection("hobbies");
-  return all.map((e) => ({ params: { slug: toSlug(e.id) } }));
+    .map((s) => encodeURIComponent(decodeURIComponent(s)))
+  return (lead ? '/' : '') + parts.join('/')
 }
 
-const { slug } = Astro.params;
-if (!slug) throw new Error("Missing slug");
+export async function getStaticPaths() {
+  const all = await getCollection('hobbies')
+  return all.map((e) => ({ params: { slug: toSlug(e.id) } }))
+}
 
-const all = await getCollection("hobbies");
-const post = all.find((e) => toSlug(e.id) === slug);
-if (!post) throw new Error(`Hobby not found: ${slug}`);
+const { slug } = Astro.params
+if (!slug) throw new Error('Missing slug')
 
-const data = post.data as Hobby["data"];
-const { Content } = await render(post);
-type Step = NonNullable<Hobby["data"]["steps"]>[number];
-const beforeImage = data.before_image;
-const lesson = data.lesson;
+const all = await getCollection('hobbies')
+const post = all.find((e) => toSlug(e.id) === slug)
+if (!post) throw new Error(`Hobby not found: ${slug}`)
+
+const data = post.data as Hobby['data']
+const { Content } = await render(post)
+type Step = NonNullable<Hobby['data']['steps']>[number]
+const beforeImage = data.before_image
+const lesson = data.lesson
 ---
 
-<LayoutDefault title={`${data.title} — Gordan Grgić`} description={data.summary} image={`/og/${slug}.jpg`} imageAlt={`${data.title} — finished project`}>
+<LayoutDefault
+  title={`${data.title} — Gordan Grgić`}
+  description={data.summary}
+  image={`/og/${slug}.jpg`}
+  imageAlt={`${data.title} — finished project`}
+>
   <header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / PRACTICAL PROJECT</p>
     <a href="/hobbies/" class="back-link">← All hands-on projects</a>
@@ -53,12 +58,17 @@ const lesson = data.lesson;
           data-group="cover"
           data-index="0"
           data-title={data.title}
-          data-caption={data.summary || ""}
+          data-caption={data.summary || ''}
           loading="eager"
           fetchpriority="high"
           decoding="async"
         />
-        <figcaption><span>FINAL RESULT</span><span>Click to view the full photograph</span></figcaption>
+        <figcaption>
+          <>
+            <span>FINAL RESULT</span>
+            <span>Click to view the full photograph</span>
+          </>
+        </figcaption>
       </figure>
     )
   }
@@ -67,38 +77,80 @@ const lesson = data.lesson;
     <Content />
   </article>
 
-  {beforeImage && data.cover && (
-    <section class="garden-comparison" aria-labelledby="garden-comparison-title">
-      <p class="folio-label">THE CHANGE</p>
-      <h2 id="garden-comparison-title">Before & after.</h2>
-      <div class="hobby-photo-grid">
-        <figure class="comparison-photo"><img src={esc(thumbnail(beforeImage))} data-src={esc(beforeImage)} alt={`${data.title} before`} loading="lazy" decoding="async" data-index="0" data-group="comparison" data-title="Before" /><figcaption>BEFORE / The starting point</figcaption></figure>
-        <figure class="comparison-photo"><img src={esc(thumbnail(data.cover))} data-src={esc(data.cover)} alt={`${data.title} after`} loading="lazy" decoding="async" data-index="1" data-group="comparison" data-title="After" /><figcaption>AFTER / The finished result</figcaption></figure>
-      </div>
-    </section>
-  )}
+  {
+    beforeImage && data.cover && (
+      <section class="garden-comparison" aria-labelledby="garden-comparison-title">
+        <p class="folio-label">THE CHANGE</p>
+        <h2 id="garden-comparison-title">Before & after.</h2>
+        <div class="hobby-photo-grid">
+          <figure class="comparison-photo">
+            <>
+              <img
+                src={esc(thumbnail(beforeImage))}
+                data-src={esc(beforeImage)}
+                alt={`${data.title} before`}
+                loading="lazy"
+                decoding="async"
+                data-index="0"
+                data-group="comparison"
+                data-title="Before"
+              />
+              <figcaption>BEFORE / The starting point</figcaption>
+            </>
+          </figure>
+          <figure class="comparison-photo">
+            <>
+              <img
+                src={esc(thumbnail(data.cover))}
+                data-src={esc(data.cover)}
+                alt={`${data.title} after`}
+                loading="lazy"
+                decoding="async"
+                data-index="1"
+                data-group="comparison"
+                data-title="After"
+              />
+              <figcaption>AFTER / The finished result</figcaption>
+            </>
+          </figure>
+        </div>
+      </section>
+    )
+  }
 
   {
     data.steps?.length ? (
       <section class="hobby-process" aria-label="Project stages">
-        <div class="hobby-process-intro"><p class="folio-label">THE PROCESS / {String(data.steps.length).padStart(2, '0')} STAGES</p><h2>From idea to result.</h2><p>A photographic record of the work. Click any photograph to explore the full gallery.</p></div>
+        <div class="hobby-process-intro">
+          <>
+            <p class="folio-label">THE PROCESS / {String(data.steps.length).padStart(2, '0')} STAGES</p>
+            <h2>From idea to result.</h2>
+            <p>A photographic record of the work. Click any photograph to explore the full gallery.</p>
+          </>
+        </div>
         {data.steps.map((step: Step, sIdx: number) => (
           <section class="hobby-stage" aria-labelledby={`stage-${sIdx}`}>
-            <header class="hobby-stage-heading"><span class="stage-number">{String(sIdx + 1).padStart(2, '0')}</span><div><h3 id={`stage-${sIdx}`}>{step.title}</h3>{step.caption && <p>{step.caption}</p>}</div></header>
-            <div class:list={['hobby-photo-grid', {'single-photo': step.images.length === 1}]}>
+            <header class="hobby-stage-heading">
+              <span class="stage-number">{String(sIdx + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 id={`stage-${sIdx}`}>{step.title}</h3>
+                {step.caption && <p>{step.caption}</p>}
+              </div>
+            </header>
+            <div class:list={['hobby-photo-grid', { 'single-photo': step.images.length === 1 }]}>
               {step.images.map((img: string, i: number) => (
                 <figure class="hobby-photo">
-                <img
-                  src={esc(thumbnail(img))}
-                  alt={`${step.title} – ${i + 1}`}
-                  loading="lazy"
-                  decoding="async"
-                  data-group={String(sIdx)}
-                  data-index={String(i)}
-                  data-src={esc(img)}
-                  data-title={step.title}
-                  data-caption={step.caption || ""}
-                />
+                  <img
+                    src={esc(thumbnail(img))}
+                    alt={`${step.title} – ${i + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                    data-group={String(sIdx)}
+                    data-index={String(i)}
+                    data-src={esc(img)}
+                    data-title={step.title}
+                    data-caption={step.caption || ''}
+                  />
                 </figure>
               ))}
             </div>
@@ -107,11 +159,13 @@ const lesson = data.lesson;
       </section>
     ) : null
   }
-  {lesson && (
-    <section class="hobby-lesson" aria-labelledby="hobby-lesson-title">
-      <p class="folio-label">A NOTE TO TAKE FORWARD</p>
-      <h2 id="hobby-lesson-title">What I learned.</h2>
-      <p>{lesson}</p>
-    </section>
-  )}
+  {
+    lesson && (
+      <section class="hobby-lesson" aria-labelledby="hobby-lesson-title">
+        <p class="folio-label">A NOTE TO TAKE FORWARD</p>
+        <h2 id="hobby-lesson-title">What I learned.</h2>
+        <p>{lesson}</p>
+      </section>
+    )
+  }
 </LayoutDefault>

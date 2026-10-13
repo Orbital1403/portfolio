@@ -1,0 +1,462 @@
+---
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import SoilTrendChart from '~/components/SoilTrendChart.astro'
+const modules = [
+  {
+    key: 'controller',
+    title: 'ESP32-S3 controller',
+    role: 'The planned central controller: read sensors, communicate over Wi-Fi and coordinate irrigation.',
+    reference: 'Espressif ESP32-S3-DevKitC-1',
+    source: 'https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/index.html',
+  },
+  {
+    key: 'sensor',
+    title: 'Soil sensors × 3',
+    role: 'Combined moisture and temperature probes for comparing sunny, intermediate and shaded parts of the lawn.',
+    reference: 'DFRobot SEN0604 — RS485 sensor example',
+    source: 'https://www.dfrobot.com/product-2830.html',
+  },
+  {
+    key: 'rs485',
+    title: 'RS485 interface',
+    role: 'A proposed link between the sensor bus and the controller. Sensor protocol and electrical compatibility will be checked before selection.',
+    reference: 'DFRobot DFR0845 — interface example',
+    source: 'https://www.dfrobot.com/product-2392.html',
+  },
+  {
+    key: 'power',
+    title: '12 V power supply',
+    role: 'The planned low-voltage supply for the valve and compatible sensors, with separate regulated power for the controller.',
+    reference: 'DFRobot 12 V adapter — form-factor example',
+    source: 'https://www.dfrobot.com/product-2986.html',
+  },
+  {
+    key: 'valve',
+    title: 'Irrigation valve',
+    role: 'One normally closed 12 V DC valve is planned for the first test, using the existing tap, hose and a sprinkler.',
+    reference: 'DFRobot FIT0498 — valve example',
+    source: 'https://www.dfrobot.com/product-1530.html',
+  },
+  {
+    key: 'driver',
+    title: 'Valve driver',
+    role: 'A MOSFET driver and inductive-load protection would let the controller switch the valve without powering it directly.',
+    reference: 'DFRobot DFR0457 — driver example',
+    source: 'https://www.dfrobot.com/product-1567.html',
+  },
+  {
+    key: 'enclosure',
+    title: 'Outdoor enclosure',
+    role: 'A protected enclosure would house the controller and connections, with suitable cable entries and access for maintenance.',
+    reference: 'DFRobot FIT0724 — enclosure example',
+    source: 'https://www.dfrobot.com/product-2155.html',
+  },
+]
+---
+
+<LayoutDefault
+  title="Smart Lawn — Coming soon — Gordan Grgić"
+  description="A planned ESP32-S3 soil monitoring and irrigation project for a 50 m² lawn: three measurement zones, a web dashboard and a staged prototype."
+>
+  <div class="lawn-notes">
+    <header class="lawn-heading">
+      <a href="/projects/">← All project notes</a>
+      <p class="folio-label">NEXT PROJECT / HARDWARE + SOFTWARE + GARDEN</p>
+      <h1>Smart Lawn</h1>
+      <p class="project-state">Coming soon <span>Concept & planning</span></p>
+      <p class="lead">
+        An idea for understanding how my lawn behaves — then using that information to make watering more considered.
+      </p>
+    </header>
+    <figure class="lawn-cover">
+      <div class="lawn-photo">
+        <img
+          src="/images/projects/smart-lawn/lawn.jpg"
+          alt="My 50 square metre lawn with a robotic mower: the proposed Smart Lawn test site"
+          width="1600"
+          height="1200"
+          fetchpriority="high"
+          decoding="async"
+          data-group="cover"
+        />
+        <div class="coming-stamp" aria-hidden="true">
+          <span>COMING</span><span>SOON</span><small>SMART LAWN · CONCEPT</small>
+        </div>
+      </div>
+      <figcaption>THE TEST SITE / My 50 m² lawn. The monitoring system has not yet been installed.</figcaption>
+    </figure>
+    <section aria-labelledby="lawn-idea">
+      <p class="folio-label">01 / THE IDEA</p><h2 id="lawn-idea">Measure first. Automate later.</h2>
+      <p>
+        I currently water the lawn manually. Parts of it receive different amounts of sun and shade, so I want to
+        compare moisture and soil temperature in three locations rather than rely on a single reading.
+      </p>
+      <p>
+        The concept connects three buried probes to one ESP32-S3 controller and a web dashboard. The first irrigation
+        experiment would use one valve and sprinkler. Three measurement zones do not mean three independently watered
+        zones.
+      </p>
+      <div class="zone-grid">
+        <div><span>S1 / SUN</span><p>Track the more exposed area.</p></div><div>
+          <span>S2 / REFERENCE</span><p>Compare an intermediate location.</p>
+        </div><div><span>S3 / SHADE</span><p>Track the shaded area.</p></div>
+      </div>
+      <p class="note">
+        Locations, burial depth, hardware and watering thresholds remain to be confirmed through selection, calibration
+        and testing. The installation must also fit around the robotic mower.
+      </p>
+    </section>
+    <section aria-labelledby="lawn-microclimate">
+      <p class="folio-label">THE QUESTION BEHIND THE PROJECT</p>
+      <h2 id="lawn-microclimate">What happens beneath the grass?</h2>
+      <p>
+        I want to understand how the same small lawn behaves differently in sun and shade. The most useful result would
+        be a record of the soil over time, with watering decisions that can be traced back to measurements.
+      </p>
+      <ul>
+        <li>Compare how quickly each location dries after watering.</li>
+        <li>Follow soil temperature changes during the day and across seasons.</li>
+        <li>Observe how long a moisture change takes to reach each probe.</li>
+        <li>Identify which location loses moisture first.</li>
+        <li>Explore seasonal and year-long comparisons once enough data has been collected.</li>
+        <li>Measure water use if a flow meter is added later.</li>
+      </ul>
+      <p class="note">
+        The proposed direction is local operation, modular hardware and software I can adapt. An open-source release is
+        an option to consider once the prototype and documentation exist.
+      </p>
+    </section>
+    <section aria-labelledby="lawn-modules">
+      <p class="folio-label">02 / PROPOSED HARDWARE</p><h2 id="lawn-modules">The pieces of the system.</h2>
+      <p class="note">
+        Manufacturer photographs below are reference examples of component types, not equipment I have assembled or
+        tested. Final models and compatibility are still under consideration.
+      </p>
+      <div class="module-grid">
+        {
+          modules.map((module) => (
+            <figure class="module-card">
+              <>
+                <img
+                  src={`/images/projects/smart-lawn/${module.key}.jpg`}
+                  alt={module.reference}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <>
+                    <h3>{module.title}</h3>
+                    <p>{module.role}</p>
+                    <a href={module.source} target="_blank" rel="noopener noreferrer">
+                      Photo & reference: {module.reference} ↗
+                    </a>
+                  </>
+                </figcaption>
+              </>
+            </figure>
+          ))
+        }
+      </div>
+    </section>
+    <section aria-labelledby="lawn-architecture">
+      <p class="folio-label">03 / SYSTEM CONCEPT</p><h2 id="lawn-architecture">One controller. Two paths.</h2>
+      <div
+        class="architecture"
+        aria-label="Proposed system: three soil sensors through RS485 to ESP32-S3, which connects over Wi-Fi to a dashboard and controls a valve through a driver."
+      >
+        <div class="architecture-row">
+          <span>Soil sensor S1</span><span>Soil sensor S2</span><span>Soil sensor S3</span>
+        </div>
+        <p class="flow-label">↓ Shared sensor bus</p><div class="architecture-node">RS485 interface</div>
+        <p class="flow-label">↓ Sensor readings</p><div class="architecture-node controller">ESP32-S3</div>
+        <div class="architecture-row outputs">
+          <div>
+            <p class="flow-label">↓ Wi-Fi</p><span>Web dashboard</span><p>Readings · History · Zone comparison</p>
+          </div><div>
+            <p class="flow-label">↓ Control signal</p><span>Driver → Valve → Sprinkler</span><p>
+              One watering circuit in the first prototype
+            </p>
+          </div>
+        </div>
+        <p class="power-note">
+          Power concept: 12 V supply for compatible loads, with regulated power for the controller.
+        </p>
+      </div>
+    </section>
+    <section aria-labelledby="lawn-dashboard">
+      <p class="folio-label">04 / DASHBOARD STUDY</p><h2 id="lawn-dashboard">See the differences over time.</h2>
+      <p>
+        A planned web interface would show moisture, soil temperature, measurement freshness and comparisons between the
+        three zones. Historical trends would help evaluate watering and recovery.
+      </p>
+      <SoilTrendChart />
+      <p class="note">
+        C++ firmware, Wi-Fi, RS485 and a React dashboard are proposed directions. The final software stack has not been
+        selected.
+      </p>
+    </section>
+    <section aria-labelledby="lawn-roadmap">
+      <p class="folio-label">05 / PLANNED NEXT STEPS</p><h2 id="lawn-roadmap">A prototype in stages.</h2>
+      <ol>
+        <li>
+          <strong>Select and test one probe.</strong> Confirm communication, repeatable readings and calibration in the actual
+          soil.
+        </li><li>
+          <strong>Build the first dashboard.</strong> Display readings and their age, then record trends and add the other
+          monitoring zones.
+        </li><li>
+          <strong>Test one valve manually.</strong> Check control, shut-off behaviour and a maximum watering duration before
+          enabling automatic operation.
+        </li><li>
+          <strong>Evaluate automation.</strong> Validate sensor fault handling and watering rules; consider weather data,
+          a flow meter and additional valves later.
+        </li>
+      </ol>
+      <p>
+        This is a future project, with no completed controller, field trials or release yet. My next step is choosing a
+        small first prototype that I can test and learn from.
+      </p>
+    </section>
+  </div>
+</LayoutDefault>
+<style>
+  .lawn-notes {
+    font-family: var(--body-font, 'IBM Plex Sans', sans-serif);
+  }
+  .lawn-heading > a {
+    font: 12px var(--note-font);
+    color: inherit;
+  }
+  .folio-label {
+    font: 10px/1.8 var(--note-font);
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+  }
+  h1 {
+    font:
+      48px/1.2 'MyFont',
+      monospace;
+    margin: 24px 0;
+  }
+  h2 {
+    font: 24px/1.4 var(--note-font);
+    margin: 16px 0;
+  }
+  h3 {
+    font: 16px/1.5 var(--note-font);
+    margin: 0 0 10px;
+  }
+  p,
+  li {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .lead {
+    font-size: 19px;
+  }
+  .project-state {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    font: 12px/1.6 var(--note-font);
+    color: #39776c;
+  }
+  .project-state span {
+    border: 1px solid currentColor;
+    padding: 5px 8px;
+  }
+  figure {
+    margin: 24px 0;
+  }
+  .lawn-photo {
+    position: relative;
+    overflow: hidden;
+  }
+  .coming-stamp {
+    position: absolute;
+    top: 9%;
+    left: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 18px 11px;
+    border: 3px solid currentColor;
+    outline: 1px solid currentColor;
+    outline-offset: -8px;
+    border-radius: 3px;
+    color: #934c35;
+    background: rgba(255, 249, 235, 0.83);
+    transform: rotate(-12deg);
+    box-shadow: 0 3px 14px #34251618;
+    pointer-events: none;
+    font:
+      800 clamp(22px, 4vw, 38px) / 1.02 'IBM Plex Mono',
+      monospace;
+    letter-spacing: 3px;
+    mix-blend-mode: multiply;
+  }
+  .coming-stamp small {
+    font-size: clamp(6px, 1vw, 9px);
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    margin-top: 9px;
+  }
+  .lawn-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  figcaption {
+    font: 11px/1.7 var(--note-font);
+    margin-top: 12px;
+  }
+  section {
+    margin: 48px 0;
+    border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    padding-top: 18px;
+  }
+  .note {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  .zone-grid,
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .zone-grid > div {
+    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+    padding: 14px;
+  }
+  .zone-grid span {
+    font: 11px var(--note-font);
+  }
+  .zone-grid p {
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+  .module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .module-card {
+    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+    margin: 0;
+  }
+  .module-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: contain;
+    background: #fff;
+    display: block;
+  }
+  .module-card figcaption {
+    padding: 18px;
+    margin: 0;
+  }
+  .module-card p {
+    font-size: 13px;
+  }
+  .module-card a {
+    font-size: 10px;
+    line-height: 1.7;
+    color: inherit;
+  }
+  .architecture {
+    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+    padding: 22px;
+    background: color-mix(in srgb, #39776c 3%, transparent);
+  }
+  .architecture-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    text-align: center;
+  }
+  .architecture-row span,
+  .architecture-node {
+    display: block;
+    border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+    padding: 12px 8px;
+    font: 12px/1.6 var(--note-font);
+  }
+  .architecture-node {
+    max-width: 260px;
+    margin: auto;
+    text-align: center;
+  }
+  .controller {
+    border-color: #39776c;
+    font-weight: 700;
+  }
+  .flow-label {
+    text-align: center;
+    font: 11px/1.8 var(--note-font);
+    margin: 10px 0;
+  }
+  .outputs {
+    grid-template-columns: 1fr 1fr;
+  }
+  .outputs p:not(.flow-label),
+  .power-note {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .power-note {
+    border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    padding-top: 16px;
+    margin: 18px 0 0;
+  }
+  ol {
+    padding-left: 22px;
+  }
+  li {
+    padding: 0 0 14px 6px;
+  }
+  :global(html.dark) .project-state {
+    color: #aed1c2;
+  }
+  a:focus-visible {
+    outline: 2px solid #39776c;
+    outline-offset: 4px;
+  }
+  @media (max-width: 600px) {
+    .coming-stamp {
+      padding: 11px 13px 9px;
+      top: 10%;
+      left: 7%;
+      border-width: 2px;
+      outline-offset: -6px;
+      letter-spacing: 2px;
+    }
+    .coming-stamp small {
+      margin-top: 7px;
+    }
+    h1 {
+      font-size: 38px;
+    }
+    h2 {
+      font-size: 21px;
+    }
+    .module-grid,
+    .zone-grid {
+      grid-template-columns: 1fr;
+    }
+    .architecture {
+      padding: 14px;
+    }
+    .architecture-row {
+      gap: 5px;
+    }
+    .architecture-row span {
+      font-size: 10px;
+    }
+    .outputs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

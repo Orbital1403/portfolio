@@ -1,0 +1,86 @@
+{
+  "controller": {
+    "page": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/index.html",
+    "og": "https://www.espressif.com/sites/default/files/dev-board/ESP32-S3-DevKitC-1%20%E5%B0%8F.png"
+  },
+  "sensor": {
+    "page": "https://www.dfrobot.com/product-2830.html",
+    "og": "https://dfimg.dfrobot.com/enshop/SEN0604/SEN0604_Main_01.jpg",
+    "images": [
+      "https://dfimg.dfrobot.com/enshop/SEN0604/SEN0604_Main_01_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/SEN0604_Dim_02_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/SEN0604_Back_03_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/SEN0604_Detail_05_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/SEN0604_Detail_06_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/cache3/data/SEN0604/SEN0604-datail-001_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/cache3/data/SEN0604/SEN0604-detail-002_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/cache3/data/SEN0604/SEN0604-detail-003_150x100.jpg.webp"
+    ]
+  },
+  "rs485": {
+    "page": "https://www.dfrobot.com/product-2392.html",
+    "og": "https://dfimg.dfrobot.com/enshop/DFR0845/DFR0845_Main_01.jpg",
+    "images": [
+      "https://dfimg.dfrobot.com/enshop/DFR0845/DFR0845_Main_01_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0845_Dim_02_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0845_Back_03_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0845_ShipList_04_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0845_Detail_05_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0845_Detail_06_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/DFR0845/DFR0845-datail-001_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/DFR0845/DFR0845-detail-002_150x100.jpg.webp"
+    ]
+  },
+  "power": {
+    "page": "https://www.dfrobot.com/product-2986.html",
+    "og": "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Main_01.jpg",
+    "images": [
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Main_01_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Back_03_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Dim_02_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_Detail_04_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT1021/FIT1021_0x0.jpg.webp"
+    ]
+  },
+  "valve": {
+    "page": "https://www.dfrobot.com/product-1530.html",
+    "og": "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_Main_01.jpg",
+    "images": [
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_Main_01_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_TOP_03_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_Back_04_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_Detail_05_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_Detail_06_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_Detail_07_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_Detail_08_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0498/FIT0498_Detail_09_150x100.jpg.webp"
+    ]
+  },
+  "driver": {
+    "page": "https://www.dfrobot.com/product-1567.html",
+    "og": "https://dfimg.dfrobot.com/enshop/DFR0457/DFR0457_Main_01.jpg",
+    "images": [
+      "https://dfimg.dfrobot.com/enshop/DFR0457/DFR0457_Main_01_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0457_Back_03_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0457_ShipList_04_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0457_Detail_05_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/DFR0457_Detail_06_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/DFR0457/1_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/DFR0457/3_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/DFR0457/2_150x100.jpg.webp"
+    ]
+  },
+  "enclosure": {
+    "page": "https://www.dfrobot.com/product-2155.html",
+    "og": "https://dfimg.dfrobot.com/enshop/image/data/FIT0724/FIT0724.jpg",
+    "images": [
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0724/FIT0724_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0724/FIT0724-detail-001_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0724/FIT0724-detail-002_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0724/FIT0724-family_150x100.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0724/FIT0724_144x96.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0723/FIT0723_Main_01_144x96.jpg.webp",
+      "https://dfimg.dfrobot.com/enshop/image/data/FIT0724/Plastic Project Box Enclosure Waterproof Clear Cover-6.61 x 4.72 x 2.17 inch_0x0.jpg.webp"
+    ]
+  }
+}
