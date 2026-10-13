@@ -1,62 +1,62 @@
 ---
 title: "Garden Makeover"
 date: 2025-09-27
-cover: /images/hobbies/garden-makeover/final-look/cover-page.jpeg
+cover: /images/hobbies/garden-makeover/final-look/cover-page-v2.jpeg
 summary: "My first garden renovation: clearing, drainage, waterproofing and the finished lawn."
 tags: [garden, diy, lawn, makeover]
 steps:
   - title: Before
     caption: "The original condition of the garden before work began."
     images:
-      - /images/hobbies/garden-makeover/before/before-purchase-yard.jpg
+      - /images/hobbies/garden-makeover/before/before-purchase-yard-v2.jpg
 
   - title: Clearing Soil
     caption: "Removing debris, preparing the ground and spreading topsoil."
     images:
-      - /images/hobbies/garden-makeover/clearing-soil/debris-bags.jpg
-      - /images/hobbies/garden-makeover/clearing-soil/rough-digging.jpg
-      - /images/hobbies/garden-makeover/clearing-soil/topsoil-spread.jpg
+      - /images/hobbies/garden-makeover/clearing-soil/debris-bags-v2.jpg
+      - /images/hobbies/garden-makeover/clearing-soil/rough-digging-v2.jpg
+      - /images/hobbies/garden-makeover/clearing-soil/topsoil-spread-v2.jpg
 
   - title: Drain Pad
     caption: "Rebuilding the area around the drain with a concrete pad and painted finish."
     images:
-      - /images/hobbies/garden-makeover/drain-pad/old-drain-area-before.jpg
-      - /images/hobbies/garden-makeover/drain-pad/drain-pad-pour.jpg
-      - /images/hobbies/garden-makeover/drain-pad/drain-pad-painted.jpg
-      - /images/hobbies/garden-makeover/drain-pad/downpipe-corner-painted.jpg
+      - /images/hobbies/garden-makeover/drain-pad/old-drain-area-before-v2.jpg
+      - /images/hobbies/garden-makeover/drain-pad/drain-pad-pour-v2.jpg
+      - /images/hobbies/garden-makeover/drain-pad/drain-pad-painted-v2.jpg
+      - /images/hobbies/garden-makeover/drain-pad/downpipe-corner-painted-v2.jpg
 
   - title: Patio Waterproofing
     caption: "Preparing the patio surface, waterproofing and applying self-levelling compound."
     images:
-      - /images/hobbies/garden-makeover/patio-waterproofing/waterproofing-and-forms.jpg
-      - /images/hobbies/garden-makeover/patio-waterproofing/self-levelling-done.jpg
-      - /images/hobbies/garden-makeover/patio-waterproofing/layers-cross-section.jpg
+      - /images/hobbies/garden-makeover/patio-waterproofing/waterproofing-and-forms-v2.jpg
+      - /images/hobbies/garden-makeover/patio-waterproofing/self-levelling-done-v2.jpg
+      - /images/hobbies/garden-makeover/patio-waterproofing/layers-cross-section-v2.jpg
 
   - title: Drainage & Edging
     caption: "Digging the drainage trenches, adding aggregate and installing the drain."
     images:
-      - /images/hobbies/garden-makeover/drainage-edging/trench-dig-2.jpg
-      - /images/hobbies/garden-makeover/drainage-edging/trench-bags-aggregate.jpg
-      - /images/hobbies/garden-makeover/drainage-edging/drainage-install.jpg
-      - /images/hobbies/garden-makeover/drainage-edging/drain-inlet-closeup.jpg
+      - /images/hobbies/garden-makeover/drainage-edging/trench-dig-2-v2.jpg
+      - /images/hobbies/garden-makeover/drainage-edging/trench-bags-aggregate-v2.jpg
+      - /images/hobbies/garden-makeover/drainage-edging/drainage-install-v2.jpg
+      - /images/hobbies/garden-makeover/drainage-edging/drain-inlet-closeup-v2.jpg
 
   - title: Solar Lighting
     caption: "Installing the solar panel and battery box for the garden lighting."
     images:
-      - /images/hobbies/garden-makeover/solar-lighting/solar-panel-mount.jpg
-      - /images/hobbies/garden-makeover/solar-lighting/solar-battery-box.jpg
+      - /images/hobbies/garden-makeover/solar-lighting/solar-panel-mount-v2.jpg
+      - /images/hobbies/garden-makeover/solar-lighting/solar-battery-box-v2.jpg
 
   - title: Final Look
     caption: "The completed garden in daylight and after dark."
     images:
-      - /images/hobbies/garden-makeover/final-look/final-garden-day.jpeg
-      - /images/hobbies/garden-makeover/final-look/final-garden-night.jpg
+      - /images/hobbies/garden-makeover/final-look/final-garden-day-v2.jpeg
+      - /images/hobbies/garden-makeover/final-look/final-garden-night-v2.jpg
 
 goal: "Turn a neglected patch into a functional lawn with proper drainage, waterproofing, and weekend relaxation vibes."
 tools: "Shovel, wheelbarrow, concrete, waterproofing compounds, solar panels, and an endless supply of patience."
 finish: "A simple but cozy garden: real grass, working drains, and a touch of solar-powered magic."
 fun_fact: "Maintaining a lawn is 70% waiting for the grass to grow, 20% mowing, and 10% wondering why you didn’t just go with artificial turf."
-before_image: /images/hobbies/garden-makeover/before/before-purchase-yard.jpg
+before_image: /images/hobbies/garden-makeover/before/before-purchase-yard-v2.jpg
 lesson: "A garden renovation brings together more than the visible finish: ground preparation, drainage and waterproofing all need attention. Working through each stage helped me connect unfamiliar tasks into one practical project."
 ---
 
