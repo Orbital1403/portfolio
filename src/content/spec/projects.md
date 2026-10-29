@@ -15,8 +15,8 @@ description: "MILA*: a personal audio streamer in development, combining hardwar
 A music project that brings together my interest in computers, practical problem-solving and everyday listening. MILA\* combines existing hardware with an interface I can shape around my own needs.
 
 <figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-player.png" alt="The current MILA* player interface" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* player screenshot" loading="lazy" />
-<figcaption>Player — current source, playback controls and music collection · Click to enlarge</figcaption>
+<img src="/images/projects/gstreamer/mila-player-queue-20261023.png" alt="MILA* playing a Fink album, with source and DAC formats above an album-grouped queue" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* player screenshot" loading="lazy" />
+<figcaption>Player — album playback, source and DAC formats, and queue · 23 October 2026 · Click to enlarge</figcaption>
 </figure>
 
 ### From frustration to a project
@@ -32,6 +32,11 @@ The goal was straightforward: make an all-rounder player that handles high-resol
 The Player brings playback controls together with the queue, favourites and recently played or added content. Source filters let me move between local music, radio and streaming without switching to a different interface.
 
 The built-in touch display is the main control surface. The same web interface can also be opened from a phone or computer on the local network. Playback stays on the streamer; those other devices act as remote controls.
+
+<figure class="project-figure" style="max-width: 390px; margin-inline: auto;">
+<img src="/images/projects/gstreamer/mila-mobile-player-20261023.jpg" alt="MILA* mobile player with album artwork, playback controls, track list and bottom navigation" width="514" height="789" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* mobile player screenshot" loading="lazy" />
+<figcaption>Mobile view — playback controls and album tracks · 23 October 2026 · Click to enlarge</figcaption>
+</figure>
 
 ### A library I can explore
 
@@ -51,8 +56,8 @@ The radio view separates my own station collection from discovery. It brings tog
 Reliable background listening is a central development goal. When a stream or connection fails, the interface should explain what happened and provide a clear way to recover. Long listening sessions and recovery checks are part of the remaining validation.
 
 <figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-radio.png" alt="MILA* internet radio view with saved stations" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* radio screenshot" loading="lazy" />
-<figcaption>Radio — personal stations and discovery in one view · Click to enlarge</figcaption>
+<img src="/images/projects/gstreamer/mila-radio-stations-20261018.jpg" alt="MILA* My Stations with saved radio stations, discovery filters and the persistent mini-player" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* radio screenshot" loading="lazy" />
+<figcaption>Radio — saved stations, discovery and the mini-player · 18 October 2026 · Click to enlarge</figcaption>
 </figure>
 
 ### Streaming and audio control
@@ -63,6 +68,11 @@ The main playback path uses **Lyrion Music Server → Squeezelite → USB DAC**.
 
 That distinction matters: an output shown as 32-bit does not turn a compressed radio stream into higher-quality source material. The format display supports investigation; it is not, by itself, proof of bit-perfect reproduction.
 
+<figure class="project-figure">
+<img src="/images/projects/gstreamer/mila-now-playing-20261018.jpg" alt="MILA* full-screen Now Playing view with BEAK album artwork, playback controls and separate source and DAC format labels" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* full-screen player screenshot" loading="lazy" />
+<figcaption>Now Playing — full-screen listening view · 18 October 2026 · Click to enlarge</figcaption>
+</figure>
+
 ### Settings that belong with the player
 
 Appearance, audio and services, music storage, and system maintenance are organised into four sections. The project includes theme and display options, meters, device information and user-data backup tools. Sensitive system actions use protected controls.
@@ -72,6 +82,11 @@ Screensavers and visual details are part of the experience, but they share the s
 <figure class="project-figure">
 <img src="/images/projects/gstreamer/mila-settings.png" alt="MILA* settings organised into four sections" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* settings screenshot" loading="lazy" />
 <figcaption>Settings — appearance, audio, storage and maintenance · Click to enlarge</figcaption>
+</figure>
+
+<figure class="project-figure">
+<img src="/images/projects/gstreamer/mila-system-update-20261022.png" alt="MILA* system update screen listing available packages and protected update controls" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* system update screenshot" loading="lazy" />
+<figcaption>System updates — available packages and update controls · 22 October 2026 · Click to enlarge</figcaption>
 </figure>
 
 ### My role and how I work
