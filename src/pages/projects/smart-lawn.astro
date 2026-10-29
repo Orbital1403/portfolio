@@ -241,13 +241,14 @@ const hardware = [
         </p>
       </div>
       <p>
-        The backend code is prepared for Supabase authentication, owner-scoped database access and a separate device
-        upload key. The public demo runs on simulated data, with cloud configuration disabled.
+        My Garden connects to Supabase authentication and owner-scoped database access. Demo mode uses simulated
+        readings; Live mode signs in to a private garden and shows real weather with city selection. Device ingestion
+        and physical sensor operation still require hardware verification.
       </p>
       <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
       <p class="note">
-        Cloud deployment has not been validated. Watering advice uses preliminary user-defined thresholds, not validated
-        agronomic guidance.
+        The browser app is hosted here with private account access for live sensor records. Watering advice uses
+        preliminary user-defined thresholds, not validated agronomic guidance; automatic irrigation is not active.
       </p>
     </section>
 

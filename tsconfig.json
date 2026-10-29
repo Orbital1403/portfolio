@@ -1,12 +1,27 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": [
+        "src/*"
+      ]
     }
   },
-  "include": ["src/**/*.astro", "src/**/*.ts", ".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "docs", "cloudflare-dist"]
+  "include": [
+    "src/**/*.astro",
+    "src/**/*.ts",
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist",
+    "docs",
+    "cloudflare-dist",
+    "public/demos/my-garden"
+  ]
 }

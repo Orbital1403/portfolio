@@ -1,7 +1,7 @@
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  ignores: ['docs/**', 'cloudflare-dist/**'],
+  ignores: ['docs/**', 'cloudflare-dist/**', 'public/demos/my-garden/**'],
   formatters: true,
   unocss: true,
   astro: true,

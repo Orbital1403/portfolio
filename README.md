@@ -44,3 +44,9 @@ The form keeps the recipient address outside the public website. Set PUBLIC_CONT
 ## Theme credit
 
 Based on https://github.com/moeyua/astro-theme-typography. Original licence retained.
+
+## My Garden application
+
+`public/demos/my-garden/` contains the v0.3 static application built from the separate Vrt project using `npm run build:hosted`. Its relative asset URLs support both Cloudflare at `/demos/my-garden/` and the GitHub Pages prefix. Copy only the build output when updating; never copy local environment files, sessions or server/device secrets. The browser bundle intentionally contains the Supabase project URL and publishable key; authenticated data access remains subject to RLS.
+
+Demo mode is simulated. Live mode supports email/password login, assigned sensor records and Open-Meteo weather with city search and opt-in browser geolocation. Physical sensors/ingestion and automatic irrigation still need verification. City preferences currently stay in the user's browser.
