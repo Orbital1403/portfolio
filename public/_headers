@@ -12,3 +12,9 @@
 
 /demos/my-garden/assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/demos/my-garden/sw.js
+  Cache-Control: no-cache
+
+/demos/my-garden/manifest.webmanifest
+  Cache-Control: no-cache
