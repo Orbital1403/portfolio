@@ -81,27 +81,63 @@
     "page": "https://www.adafruit.com/product/3290",
     "og": "https://cdn-shop.adafruit.com/970x728/3290-01.jpg"
   },
-  "selected-hardware-gallery": {
+  "reference-hardware-gallery": {
     "date": "2026-10-29",
+    "note": "Reference photographs illustrate component types; models, dimensions, quantities and appearance may differ from ordered equipment.",
     "controller": {
       "asset": "hardware/esp32-s3-rs485-can.jpg",
       "page": "https://www.waveshare.com/product/esp32-s3-rs485-can.htm",
-      "image": "https://www.waveshare.com/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/e/s/esp32-s3-rs485-can-1.jpg",
-      "note": "Official reference-model photo; delivered board not yet verified."
+      "image": "https://www.waveshare.com/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/e/s/esp32-s3-rs485-can-1.jpg"
     },
-    "selection-crops": {
-      "assets": [
-        "hardware/soil-th.png",
-        "hardware/soil-ph-th.png",
-        "hardware/enclosure.png",
-        "hardware/din-rails.png",
-        "hardware/internal-cable.png",
-        "hardware/inline-fuses.png",
-        "hardware/dc-connectors.png",
-        "hardware/cable-glands.png"
-      ],
-      "source": "User-supplied Vrt component-selection screenshots",
-      "note": "Only product regions are published. Supplier images; equipment not assembled or tested."
-    }
+    "components": [
+      {
+        "asset": "hardware/soil-th-reference.jpg",
+        "provider": "Renke",
+        "page": "https://www.renkeer.com/product/soil-moisture-sensor/",
+        "image": "https://www.renkeer.com/wp-content/uploads/2021/06/soil-temperature-and-humidity-sensor.jpg"
+      },
+      {
+        "asset": "hardware/soil-ph-th-reference.jpg",
+        "provider": "Renke",
+        "page": "https://www.renkeer.com/product/soil-nutrient-sensor/",
+        "image": "https://www.renkeer.com/wp-content/uploads/2021/08/Soil-nutrient-sensor-1.jpg"
+      },
+      {
+        "asset": "hardware/enclosure-reference.jpg",
+        "provider": "Adafruit",
+        "page": "https://www.adafruit.com/product/3931",
+        "image": "https://cdn-shop.adafruit.com/970x728/3931-00.jpg"
+      },
+      {
+        "asset": "hardware/din-rails-reference.jpg",
+        "provider": "Solar DIY",
+        "page": "https://solardiy.co.uk/fuses-breakers/47-35mm-din-rail-for-mcb-100mm.html",
+        "image": "https://solardiy.co.uk/101-large_default/35mm-din-rail-for-mcb-100mm.jpg"
+      },
+      {
+        "asset": "hardware/internal-cable-reference.png",
+        "provider": "LEDsales",
+        "page": "https://www.ledsales.com.au/index.php?main_page=product_info&products_id=3046",
+        "image": "https://www.ledsales.com.au/images/Silicone-wire-4-core.png"
+      },
+      {
+        "asset": "hardware/inline-fuses-reference.jpg",
+        "provider": "Tian Rui",
+        "page": "https://www.fuse-china.com/sale-37945850-16awg-gauge-5x20mm-inline-glass-tube-fuse-holder-splash-proof-waterproof.html",
+        "image": "https://www.fuse-china.com/photo/pl151138762-16awg_gauge_5x20mm_inline_glass_tube_fuse_holder_splash_proof_waterproof.jpg"
+      },
+      {
+        "asset": "hardware/dc-connectors-reference.jpg",
+        "provider": "Adafruit",
+        "page": "https://www.adafruit.com/product/369",
+        "image": "https://cdn-shop.adafruit.com/970x728/369-03.jpg"
+      },
+      {
+        "asset": "hardware/cable-glands-reference.jpg",
+        "provider": "DFRobot",
+        "page": "https://www.dfrobot.com/product-2159.html",
+        "image": "https://dfimg.dfrobot.com/enshop/image/data/FIT0728/FIT0728_Main_01.jpg"
+      }
+    ]
   }
 }

@@ -10,70 +10,88 @@ const hardwareGallery = [
     detail: 'RS485 / CAN · Wi-Fi · DIN housing',
     alt: 'Waveshare reference photograph of the ESP32-S3-RS485-CAN controller in its DIN-rail housing',
     source: 'https://www.waveshare.com/product/esp32-s3-rs485-can.htm',
+    vendor: 'Waveshare',
   },
   {
-    image: 'soil-th.png',
-    width: 239,
-    height: 233,
+    image: 'soil-th-reference.jpg',
+    width: 400,
+    height: 400,
     title: 'Moisture + temperature',
-    detail: 'Selected TH probe · RS485',
-    alt: 'Supplier image of the selected two-pin RS485 soil moisture and temperature probe',
+    detail: 'RS485 soil probe',
+    alt: 'Renke reference image of a soil temperature and moisture probe',
+    source: 'https://www.renkeer.com/product/soil-moisture-sensor/',
+    vendor: 'Renke',
   },
   {
-    image: 'soil-ph-th.png',
-    width: 239,
-    height: 233,
+    image: 'soil-ph-th-reference.jpg',
+    width: 500,
+    height: 500,
     title: 'Moisture + temperature + pH',
-    detail: 'Selected pH TH probe · Experimental pH',
-    alt: 'Supplier image of the selected five-pin RS485 soil probe with an experimental pH channel',
+    detail: 'Combined probe · Experimental pH',
+    alt: 'Renke reference image of a multi-parameter soil probe with metal sensing pins',
+    source: 'https://www.renkeer.com/product/soil-nutrient-sensor/',
+    vendor: 'Renke',
   },
   {
-    image: 'enclosure.png',
-    width: 239,
-    height: 193,
+    image: 'enclosure-reference.jpg',
+    width: 970,
+    height: 728,
     title: 'Project enclosure',
-    detail: '230 × 150 × 85 mm · Ordered',
-    alt: 'Supplier image of the selected white project enclosure, labelled 230 by 150 by 85 millimetres',
+    detail: 'Protected housing for electronics',
+    alt: 'Adafruit reference photograph of an electronics enclosure with a clear lid and cable glands',
+    source: 'https://www.adafruit.com/product/3931',
+    vendor: 'Adafruit',
   },
   {
-    image: 'din-rails.png',
-    width: 239,
-    height: 242,
-    title: 'DIN mounting rails',
-    detail: 'Two 10 cm rails · Ordered',
-    alt: 'GEYA product image showing slotted DIN rails; two 10 centimetre lengths are ordered',
+    image: 'din-rails-reference.jpg',
+    width: 800,
+    height: 800,
+    title: 'DIN mounting rail',
+    detail: 'Slotted rail for mounting modules',
+    alt: 'Reference photograph of a short slotted DIN mounting rail',
+    source: 'https://solardiy.co.uk/fuses-breakers/47-35mm-din-rail-for-mcb-100mm.html',
+    vendor: 'Solar DIY',
   },
   {
-    image: 'internal-cable.png',
-    width: 229,
-    height: 227,
+    image: 'internal-cable-reference.png',
+    width: 582,
+    height: 444,
     title: 'Internal wiring',
-    detail: 'Two 1 m lengths · 4 × 0.5 mm²',
-    alt: 'Supplier image of black four-core cable selected for the internal connections',
+    detail: 'Flexible four-core hookup wire',
+    alt: 'LEDsales reference photograph of flat four-core silicone hookup wire',
+    source: 'https://www.ledsales.com.au/index.php?main_page=product_info&products_id=3046',
+    vendor: 'LEDsales',
   },
   {
-    image: 'inline-fuses.png',
-    width: 239,
-    height: 222,
+    image: 'inline-fuses-reference.jpg',
+    width: 800,
+    height: 800,
     title: 'Inline fuse holders',
-    detail: '1 A fuses ordered · Final rating to check',
-    alt: 'Supplier image of five wired inline fuse holders and glass fuses',
+    detail: 'Wired holders for glass fuses',
+    alt: 'Tian Rui reference photograph of two inline glass-fuse holders with red wire leads',
+    source:
+      'https://www.fuse-china.com/sale-37945850-16awg-gauge-5x20mm-inline-glass-tube-fuse-holder-splash-proof-waterproof.html',
+    vendor: 'Tian Rui',
   },
   {
-    image: 'dc-connectors.png',
-    width: 239,
-    height: 199,
-    title: 'DC connectors',
-    detail: '5.5 × 2.1 mm · Five male / female pairs',
-    alt: 'Supplier image of five male and five female DC barrel connectors with screw terminals',
+    image: 'dc-connectors-reference.jpg',
+    width: 970,
+    height: 728,
+    title: 'DC power connector',
+    detail: 'Barrel plug with screw terminals',
+    alt: 'Adafruit reference photograph of a DC barrel plug with green screw terminals',
+    source: 'https://www.adafruit.com/product/369',
+    vendor: 'Adafruit',
   },
   {
-    image: 'cable-glands.png',
-    width: 199,
-    height: 204,
+    image: 'cable-glands-reference.jpg',
+    width: 1560,
+    height: 1040,
     title: 'Cable entries',
-    detail: 'Five PG7 glands · Cable fit to check',
-    alt: 'Supplier image of five white PG7 cable glands and a sealing gasket',
+    detail: 'PG7 gland with a sealing ring',
+    alt: 'DFRobot reference photograph of a light-coloured PG7 cable gland with a sealing ring',
+    source: 'https://www.dfrobot.com/product-2159.html',
+    vendor: 'DFRobot',
   },
 ]
 
@@ -240,7 +258,10 @@ const hardware = [
         The current hardware selection uses two wired probes and a controller with an RS485 interface. The controller
         and probes have been ordered. They have not yet been connected, calibrated or tested in the lawn.
       </p>
-      <div class="hardware-gallery" aria-label="Selected hardware and assembly components">
+      <p class="note">
+        Reference photos below illustrate the component types. Models and appearance may differ from the ordered parts.
+      </p>
+      <div class="hardware-gallery" aria-label="Reference photos of hardware component types">
         {
           hardwareGallery.map((item, index) => (
             <figure class="hardware-photo">
@@ -253,7 +274,7 @@ const hardware = [
                 decoding="async"
                 data-index={index}
                 data-group="smart-lawn-hardware"
-                data-title={`${item.title} — ${item.detail}. Supplier reference image.`}
+                data-title={`${item.title} — ${item.detail}. Reference image of this component type.`}
                 tabindex="0"
                 role="button"
                 aria-label={`Enlarge ${item.title}`}
@@ -263,7 +284,7 @@ const hardware = [
                 <p>{item.detail}</p>
                 {item.source && (
                   <a href={item.source} target="_blank" rel="noopener noreferrer">
-                    Photo: Waveshare reference ↗
+                    Photo: {item.vendor} ↗
                   </a>
                 )}
               </figcaption>
@@ -272,8 +293,7 @@ const hardware = [
         }
       </div>
       <p class="note">
-        Click a photo to enlarge. Supplier images show the selected components; the controller uses a Waveshare
-        reference photo. Assembly and specification checks are still ahead.
+        Click a photo to enlarge. Each image links to its source. Assembly and specification checks are still ahead.
       </p>
       <div
         class="architecture"

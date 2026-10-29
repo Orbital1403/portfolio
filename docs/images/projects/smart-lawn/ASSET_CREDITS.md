@@ -12,11 +12,18 @@ The power photograph shows the RS-series enclosure, using an RS-150-24 reference
 
 `my-garden-dashboard.jpg` is a screenshot of Gordan Grgić's My Garden demo interface. Readings are simulated and the root-zone illustration is illustrative. The self-contained demo is published at `/demos/my-garden/`, with cloud configuration disabled. It represents a local software milestone, not an installed or calibrated sensor system.
 
-## Selected hardware gallery — 29 October 2026
+## Hardware reference photographs — 29 October 2026
 
-The current gallery uses assets in `hardware/`:
+The current gallery uses photographs of the same component types from the sources below. They are illustrative references, not claims that these brands or exact models were ordered or tested. Models, dimensions, appearance and pictured quantities may differ from the selected equipment.
 
-- `esp32-s3-rs485-can.jpg`: Waveshare product photograph of its ESP32-S3-RS485-CAN reference model, from https://www.waveshare.com/product/esp32-s3-rs485-can.htm . The ordered board is sold under this model name; this reference photo does not establish the seller's authenticity or the delivered board's specifications.
-- `soil-th.png`, `soil-ph-th.png`, `enclosure.png`, `din-rails.png`, `internal-cable.png`, `inline-fuses.png`, `dc-connectors.png`, `cable-glands.png`: product-only crops from the user-supplied component-selection screenshots in the Vrt project. These retain the selected supplier imagery without redrawing the products. Full screenshots, account details, order identifiers and prices are not published.
+- Controller: Waveshare ESP32-S3-RS485-CAN reference model.
+- Soil probes: Renke temperature/moisture and integrated soil-sensor product pages. The integrated family includes a temperature/moisture/pH variant and an EC variant; the project continues to treat pH as experimental.
+- Enclosure and DC screw-terminal plug: Adafruit product photographs. The pictured clear-lid enclosure differs from the ordered box.
+- DIN rail: Solar DIY product photograph.
+- Four-core internal wire: LEDsales product photograph. The reference is flat silicone hookup wire; the ordered cable has a round outer jacket.
+- Inline glass-fuse holders: Tian Rui product photograph. A pictured rating is not the selected or validated fuse rating for the assembly.
+- PG7 cable gland: DFRobot product photograph.
 
-These are supplier/reference images, not photographs of equipment assembled or tested by Gordan. Product photographs and branding remain the property of their respective owners and are excluded from the repository's MIT licence. The two selected sensor variants are TH and pH TH; pH is experimental. Images do not validate supplier performance or protection-rating claims.
+Exact product-page and image URLs are recorded under `reference-hardware-gallery` in `sources.json`, with source links displayed beneath each photograph. The previous small screenshot crops have been replaced. No order screenshots or private purchase information are published.
+
+Product photographs and branding remain the property of their respective owners and are excluded from the repository's MIT licence. Images do not validate supplier performance or protection-rating claims.
