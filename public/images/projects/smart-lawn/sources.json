@@ -80,5 +80,28 @@
   "pt100": {
     "page": "https://www.adafruit.com/product/3290",
     "og": "https://cdn-shop.adafruit.com/970x728/3290-01.jpg"
+  },
+  "selected-hardware-gallery": {
+    "date": "2026-10-29",
+    "controller": {
+      "asset": "hardware/esp32-s3-rs485-can.jpg",
+      "page": "https://www.waveshare.com/product/esp32-s3-rs485-can.htm",
+      "image": "https://www.waveshare.com/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/e/s/esp32-s3-rs485-can-1.jpg",
+      "note": "Official reference-model photo; delivered board not yet verified."
+    },
+    "selection-crops": {
+      "assets": [
+        "hardware/soil-th.png",
+        "hardware/soil-ph-th.png",
+        "hardware/enclosure.png",
+        "hardware/din-rails.png",
+        "hardware/internal-cable.png",
+        "hardware/inline-fuses.png",
+        "hardware/dc-connectors.png",
+        "hardware/cable-glands.png"
+      ],
+      "source": "User-supplied Vrt component-selection screenshots",
+      "note": "Only product regions are published. Supplier images; equipment not assembled or tested."
+    }
   }
 }
