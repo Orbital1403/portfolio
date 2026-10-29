@@ -1,236 +1,272 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import SoilTrendChart from '~/components/SoilTrendChart.astro'
-const modules = [
+
+const hardware = [
   {
-    key: 'controller',
+    number: '01',
     title: 'ESP32-S3 controller',
-    role: 'The planned central controller: read sensors, communicate over Wi-Fi and coordinate irrigation.',
-    reference: 'Espressif ESP32-S3-DevKitC-1',
-    source: 'https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/index.html',
+    status: 'Ordered',
+    description:
+      'A board sold as ESP32-S3-RS485-CAN will bridge the wired probes and Wi-Fi. The exact board variant, pin mapping and power requirements still need to be verified on arrival.',
   },
   {
-    key: 'sensor',
-    title: 'Soil sensors × 3',
-    role: 'Combined moisture and temperature probes for comparing sunny, intermediate and shaded parts of the lawn.',
-    reference: 'DFRobot SEN0604 — RS485 sensor example',
-    source: 'https://www.dfrobot.com/product-2830.html',
+    number: '02',
+    title: 'Two wired soil probes',
+    status: 'Ordered',
+    description:
+      'One moisture / temperature probe and a second with an additional pH channel. RS485 / Modbus RTU is the intended connection; register maps, scaling and calibration come next. pH is experimental.',
   },
   {
-    key: 'pt100',
-    title: 'PT100 soil temperature sensor',
-    role: 'A dedicated platinum RTD probe for soil temperature, separate from moisture measurement. A reader such as MAX31865 would connect it to the ESP32-S3 over SPI; probe sealing, burial suitability and calibration remain to be checked.',
-    reference: 'Adafruit three-wire PT100 — probe example',
-    source: 'https://www.adafruit.com/product/3290',
+    number: '03',
+    title: 'Power & outdoor enclosure',
+    status: 'In planning',
+    description:
+      'A 12 V supply, protected connections and a serviceable enclosure are being considered together. Power compatibility, cable entries and the final cable route need checking before installation.',
   },
   {
-    key: 'rs485',
-    title: 'RS485 interface',
-    role: 'A proposed link between the sensor bus and the controller. Sensor protocol and electrical compatibility will be checked before selection.',
-    reference: 'DFRobot DFR0845 — interface example',
-    source: 'https://www.dfrobot.com/product-2392.html',
-  },
-  {
-    key: 'power-rs',
-    title: 'Mean Well industrial power supply',
-    role: 'A planned 12 V industrial Mean Well supply inside the enclosure, with regulated power for the controller. A 12 V model in an enclosed metal housing is intended; the final power rating will follow the load calculation.',
-    reference: 'Mean Well RS series — enclosed industrial supply example',
-    source: 'https://www.meanwell.com/Upload/PDF/RS-150/RS-150-SPEC.PDF',
-  },
-  {
-    key: 'valve',
-    title: 'Irrigation valve',
-    role: 'One normally closed 12 V DC valve is planned for the first test, using the existing tap, hose and a sprinkler.',
-    reference: 'DFRobot FIT0498 — valve example',
-    source: 'https://www.dfrobot.com/product-1530.html',
-  },
-  {
-    key: 'driver',
-    title: 'Valve driver',
-    role: 'A MOSFET driver and inductive-load protection would let the controller switch the valve without powering it directly.',
-    reference: 'DFRobot DFR0457 — driver example',
-    source: 'https://www.dfrobot.com/product-1567.html',
-  },
-  {
-    key: 'enclosure',
-    title: 'Outdoor enclosure',
-    role: 'A protected enclosure would house the controller and connections, with suitable cable entries and access for maintenance.',
-    reference: 'DFRobot FIT0724 — enclosure example',
-    source: 'https://www.dfrobot.com/product-2155.html',
+    number: '04',
+    title: 'Irrigation, later',
+    status: 'Future stage',
+    description:
+      'The first goal is dependable monitoring. A valve, driver and watering rules can follow once real readings and failure behaviour have been checked. No irrigation is connected today.',
   },
 ]
 ---
 
 <LayoutDefault
-  title="Smart Lawn — Coming soon — Gordan Grgić"
-  description="A planned ESP32-S3 soil monitoring and irrigation project for a 50 m² lawn: three measurement zones, a web dashboard and a staged prototype."
+  title="Smart Lawn — My Garden prototype — Gordan Grgić"
+  description="From a 50 m² lawn to My Garden: a working soil-monitoring prototype with root-zone visuals, moisture history and a two-probe ESP32 / RS485 hardware plan. Try the simulated demo."
 >
   <div class="lawn-notes">
     <header class="lawn-heading">
       <a href="/projects/">← All project notes</a>
-      <p class="folio-label">NEXT PROJECT / HARDWARE + SOFTWARE + GARDEN</p>
+      <p class="folio-label">HARDWARE + SOFTWARE + GARDEN / FIELD NOTES 03</p>
       <h1>Smart Lawn</h1>
-      <p class="project-state">Coming soon <span>Concept & planning</span></p>
-      <p class="lead">
-        An idea for understanding how my lawn behaves — then using that information to make watering more considered.
+      <p class="project-state">
+        In development <span>Working software prototype</span>
       </p>
+      <p class="lead">A small lawn. A closer look beneath the surface.</p>
+      <p>
+        What started as an idea for watering my 50 m² lawn is becoming <strong>My Garden</strong> — a mobile soil-monitoring
+        app, with two wired probes and an ESP32 controller planned for the garden. The software can already be explored; the
+        hardware connection is the next step.
+      </p>
+      <div class="project-actions">
+        <a class="demo-link" href="/demos/my-garden/" target="_blank" rel="noopener noreferrer"
+          >Try the interactive demo ↗</a
+        >
+        <a href="#lawn-hardware">Explore the hardware ↓</a>
+      </div>
+      <p class="note">Simulated data · No account needed · No hardware connected</p>
     </header>
-    <figure class="lawn-cover">
-      <div class="lawn-photo">
+
+    <figure class="dashboard-figure">
+      <a
+        href="/demos/my-garden/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open the My Garden interactive demo in a new tab"
+      >
         <img
-          src="/images/projects/smart-lawn/lawn.jpg"
-          alt="My 50 square metre lawn with a robotic mower: the proposed Smart Lawn test site"
-          width="1600"
-          height="1200"
+          src="/images/projects/smart-lawn/my-garden-dashboard.jpg"
+          alt="My Garden prototype showing Sunny corner and Garden edge soil cards, root illustrations, moisture and temperature, with a visible demo-mode label"
+          width="1265"
+          height="949"
           fetchpriority="high"
           decoding="async"
-          data-group="cover"
         />
-        <div class="coming-stamp" aria-hidden="true">
-          <span>COMING</span><span>SOON</span><small>SMART LAWN · CONCEPT</small>
-        </div>
-      </div>
-      <figcaption>THE TEST SITE / My 50 m² lawn. The monitoring system has not yet been installed.</figcaption>
+      </a>
+      <figcaption>
+        THE WORKING INTERFACE / My Garden, October 2026. All readings are simulated; roots are illustrative.
+      </figcaption>
     </figure>
-    <section aria-labelledby="lawn-idea">
-      <p class="folio-label">01 / THE IDEA</p><h2 id="lawn-idea">Measure first. Automate later.</h2>
+
+    <section aria-labelledby="lawn-software">
+      <p class="folio-label">01 / SOFTWARE YOU CAN EXPLORE</p>
+      <h2 id="lawn-software">See the soil. Follow the changes.</h2>
       <p>
-        I currently water the lawn manually. Parts of it receive different amounts of sun and shade, so I want to
-        compare moisture and soil temperature in three locations rather than rely on a single reading.
+        I wanted the dashboard to feel understandable at a glance, while keeping the detail close by. A botanical view
+        puts the root zone beside each reading; a compact view brings the numbers forward. Moisture, temperature and
+        measurement age stay together.
       </p>
-      <p>
-        The concept connects three buried moisture probes and dedicated PT100 temperature sensing to one ESP32-S3
-        controller and a web dashboard. The first irrigation experiment would use one valve and sprinkler. Three
-        measurement zones do not mean three independently watered zones.
-      </p>
-      <div class="zone-grid">
-        <div><span>S1 / SUN</span><p>Track the more exposed area.</p></div><div>
-          <span>S2 / REFERENCE</span><p>Compare an intermediate location.</p>
-        </div><div><span>S3 / SHADE</span><p>Track the shaded area.</p></div>
+      <div class="feature-grid">
+        <article>
+          <span class="small-label">TWO WAYS TO READ IT</span>
+          <h3>Visual or compact.</h3>
+          <p>
+            Switch between illustrated sensor cards and a denser view. A separate moisture scale shows Dry, Getting dry,
+            Target and Wet.
+          </p>
+        </article>
+        <article>
+          <span class="small-label">A RECORD OVER TIME</span>
+          <h3>From a moment to a trend.</h3>
+          <p>
+            Explore 24-hour and 7-day history, select either sensor and export the readings as CSV. Missing data stays
+            visible as gaps.
+          </p>
+        </article>
+        <article>
+          <span class="small-label">FOUR DEMO SCENARIOS</span>
+          <h3>Try a different day.</h3>
+          <p>
+            Balanced, Drying, Watering and Data loss let you explore how the interface responds before any probe is
+            connected.
+          </p>
+        </article>
+        <article>
+          <span class="small-label">SETTINGS PER SENSOR</span>
+          <h3>Make the ranges explicit.</h3>
+          <p>
+            Adjust each sensor’s thresholds and see how they affect the display. Defaults are examples; real soil needs
+            observation and calibration.
+          </p>
+        </article>
       </div>
-      <p class="note">
-        Locations, burial depth, hardware and watering thresholds remain to be confirmed through selection, calibration
-        and testing. The installation must also fit around the robotic mower.
-      </p>
+      <p class="stack">React · TypeScript · Vite · Responsive interface</p>
     </section>
-    <section aria-labelledby="lawn-microclimate">
-      <p class="folio-label">THE QUESTION BEHIND THE PROJECT</p>
-      <h2 id="lawn-microclimate">What happens beneath the grass?</h2>
+
+    <section aria-labelledby="lawn-reliability">
+      <p class="folio-label">02 / THE ENGINEERING BEHIND THE SCREEN</p>
+      <h2 id="lawn-reliability">What if a reading never arrives?</h2>
       <p>
-        I want to understand how the same small lawn behaves differently in sun and shade. The most useful result would
-        be a record of the soil over time, with watering decisions that can be traced back to measurements.
+        A reassuring number is only useful if it can be trusted. The prototype checks freshness and time quality,
+        preserves gaps in the history, and withholds watering suggestions when readings are unreliable. A dry trend must
+        remain valid for an uninterrupted 30-minute window before the current logic suggests watering.
       </p>
-      <ul>
-        <li>Compare how quickly each location dries after watering.</li>
-        <li>Follow soil temperature changes during the day and across seasons.</li>
-        <li>Observe how long a moisture change takes to reach each probe.</li>
-        <li>Identify which location loses moisture first.</li>
-        <li>Explore seasonal and year-long comparisons once enough data has been collected.</li>
-        <li>Measure water use if a flow meter is added later.</li>
-      </ul>
+      <div class="engineering-note">
+        <p class="small-label">DEVELOPMENT EXAMPLE / A LOST ACKNOWLEDGEMENT</p>
+        <h3>Send again. Keep one reading.</h3>
+        <p>
+          A measurement can reach the database even when its acknowledgement never reaches the device. The local queue
+          model and ingestion code are tested together: resend that measurement, keep a single database record, then
+          remove only the readings that have been acknowledged.
+        </p>
+        <p class="note">
+          This verifies the software model locally. ESP32 firmware and real flash power-loss testing still come next.
+        </p>
+      </div>
+      <p>
+        The backend code is prepared for Supabase authentication, owner-scoped database access and a separate device
+        upload key. The public demo runs on simulated data, with cloud configuration disabled.
+      </p>
+      <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
       <p class="note">
-        The proposed direction is local operation, modular hardware and software I can adapt. An open-source release is
-        an option to consider once the prototype and documentation exist.
+        Cloud deployment has not been validated. Watering advice uses preliminary user-defined thresholds, not validated
+        agronomic guidance.
       </p>
     </section>
-    <section aria-labelledby="lawn-modules">
-      <p class="folio-label">02 / PROPOSED HARDWARE</p><h2 id="lawn-modules">The pieces of the system.</h2>
-      <p class="note">
-        Manufacturer photographs below are reference examples of component types, not equipment I have assembled or
-        tested. Final models and compatibility are still under consideration.
+
+    <section aria-labelledby="lawn-hardware">
+      <p class="folio-label">03 / HARDWARE DIRECTION</p>
+      <h2 id="lawn-hardware">Two probes. One path to the dashboard.</h2>
+      <p>
+        The current hardware selection uses two wired probes and a controller with an RS485 interface. The controller
+        and probes have been ordered. They have not yet been connected, calibrated or tested in the lawn.
       </p>
-      <div class="module-grid">
+      <div
+        class="architecture"
+        aria-label="Planned data path: two soil probes connect via RS485 and Modbus RTU to an ESP32 controller, then via Wi-Fi and HTTPS to ingestion, PostgreSQL and the authenticated My Garden app."
+      >
+        <div class="probe-row">
+          <span>Probe 01<br /><small>Moisture + temperature</small></span><span
+            >Probe 02<br /><small>Moisture + temperature + pH*</small></span
+          >
+        </div>
+        <p class="flow-label">↓ RS485 / Modbus RTU</p>
+        <div class="architecture-node">ESP32-S3 controller</div>
+        <p class="flow-label">↓ Wi-Fi / HTTPS</p>
+        <div class="architecture-node">Ingestion → PostgreSQL</div>
+        <p class="flow-label">↓ Authenticated access</p>
+        <div class="architecture-node app-node">My Garden</div>
+        <p class="note architecture-note">Planned connection · Backend code prepared locally · *pH is experimental</p>
+      </div>
+      <div class="hardware-grid">
         {
-          modules.map((module) => (
-            <figure class="module-card">
-              <>
-                <img
-                  src={`/images/projects/smart-lawn/${module.key}.jpg`}
-                  alt={module.reference}
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <figcaption>
-                  <>
-                    <h3>{module.title}</h3>
-                    <p>{module.role}</p>
-                    <a href={module.source} target="_blank" rel="noopener noreferrer">
-                      Photo & reference: {module.reference} ↗
-                    </a>
-                  </>
-                </figcaption>
-              </>
-            </figure>
+          hardware.map((item) => (
+            <article class="hardware-item">
+              <div class="hardware-label">
+                <>
+                  <span>{item.number} / HARDWARE</span>
+                  <span>{item.status}</span>
+                </>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
           ))
         }
       </div>
     </section>
-    <section aria-labelledby="lawn-architecture">
-      <p class="folio-label">03 / SYSTEM CONCEPT</p><h2 id="lawn-architecture">One controller. Two paths.</h2>
-      <div
-        class="architecture"
-        aria-label="Proposed system: three soil sensors through RS485 and separate PT100 temperature sensing through an RTD reader to ESP32-S3, which connects over Wi-Fi to a dashboard and controls a valve through a driver."
-      >
-        <div class="architecture-row">
-          <span>Soil sensor S1</span><span>Soil sensor S2</span><span>Soil sensor S3</span>
-        </div>
-        <p class="flow-label">↓ Shared sensor bus → RS485 interface → ESP32-S3</p>
-        <div class="architecture-node">PT100 → RTD reader (e.g. MAX31865)</div>
-        <p class="flow-label">↓ Separate temperature input over SPI</p><div class="architecture-node controller">
-          ESP32-S3
-        </div>
-        <div class="architecture-row outputs">
-          <div>
-            <p class="flow-label">↓ Wi-Fi</p><span>Web dashboard</span><p>Readings · History · Zone comparison</p>
-          </div><div>
-            <p class="flow-label">↓ Control signal</p><span>Driver → Valve → Sprinkler</span><p>
-              One watering circuit in the first prototype
-            </p>
-          </div>
-        </div>
-        <p class="power-note">
-          Power concept: industrial Mean Well 12 V supply for compatible loads, with regulated power for the controller.
-        </p>
-      </div>
-    </section>
-    <section aria-labelledby="lawn-dashboard">
-      <p class="folio-label">04 / DASHBOARD STUDY</p><h2 id="lawn-dashboard">See the differences over time.</h2>
+
+    <section aria-labelledby="lawn-site">
+      <p class="folio-label">04 / THE REAL GARDEN</p>
+      <h2 id="lawn-site">A practical question, close to home.</h2>
       <p>
-        A planned web interface would show moisture, soil temperature, measurement freshness and comparisons between the
-        three zones. Historical trends would help evaluate watering and recovery.
+        I still water the lawn manually. Sun, shade and soil conditions can make nearby areas behave differently. I want
+        to compare how quickly they dry, how the soil temperature changes, and how long water takes to reach a probe.
       </p>
-      <SoilTrendChart />
-      <p class="note">
-        C++ firmware, Wi-Fi, RS485 and a React dashboard are proposed directions. The final software stack has not been
-        selected.
+      <figure class="lawn-cover">
+        <img
+          src="/images/projects/smart-lawn/lawn.jpg"
+          alt="My 50 square metre lawn with a robotic mower, the future test site for the two soil probes"
+          width="1600"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+          data-group="cover"
+        />
+        <figcaption>
+          THE TEST SITE / My 50 m² lawn. Monitoring is not installed yet; placement and cable routes must also suit the
+          robotic mower.
+        </figcaption>
+      </figure>
+      <p>
+        This is the part I enjoy: connecting the interface to something physical, making the measurements
+        understandable, and checking the whole path from a sensor in the ground to a decision on the screen.
       </p>
     </section>
-    <section aria-labelledby="lawn-roadmap">
-      <p class="folio-label">05 / PLANNED NEXT STEPS</p><h2 id="lawn-roadmap">A prototype in stages.</h2>
-      <ol>
+
+    <section aria-labelledby="lawn-next">
+      <p class="folio-label">05 / CURRENT STATE & NEXT STEPS</p>
+      <h2 id="lawn-next">Measure first. Automate later.</h2>
+      <ol class="roadmap">
         <li>
-          <strong>Select and test one probe.</strong> Confirm communication, repeatable readings and calibration in the actual
-          soil.
-        </li><li>
-          <strong>Build the first dashboard.</strong> Display readings and their age, then record trends and add the other
-          monitoring zones.
-        </li><li>
-          <strong>Test one valve manually.</strong> Check control, shut-off behaviour and a maximum watering duration before
-          enabling automatic operation.
-        </li><li>
-          <strong>Evaluate automation.</strong> Validate sensor fault handling and watering rules; consider weather data,
-          a flow meter and additional valves later.
+          <strong>Working locally</strong><p>
+            Mobile interface, simulated scenarios, history, settings and CSV export. Backend and queue behaviour have
+            local automated checks.
+          </p>
+        </li>
+        <li>
+          <strong>Hardware integration next</strong><p>
+            Verify the delivered board and probe documentation, implement the firmware, then test communication,
+            calibration and recovery on the bench.
+          </p>
+        </li>
+        <li>
+          <strong>Connect and observe</strong><p>
+            Validate the hosted backend, collect real readings and compare both locations through ordinary watering and
+            weather changes.
+          </p>
+        </li>
+        <li>
+          <strong>Consider irrigation</strong><p>
+            Only after reliable monitoring: test a valve, shut-off behaviour and watering limits. Weather, notifications
+            and automatic control remain future work.
+          </p>
         </li>
       </ol>
-      <p>
-        This is a future project, with no completed controller, field trials or release yet. My next step is choosing a
-        small first prototype that I can test and learn from.
-      </p>
+      <div class="closing-demo">
+        <div>
+          <h3>Take a look beneath the surface.</h3><p>Explore the current My Garden software prototype.</p>
+        </div>
+        <a class="demo-link" href="/demos/my-garden/" target="_blank" rel="noopener noreferrer">Open the demo ↗</a>
+      </div>
+      <p class="note">Project snapshot: 29 October 2026 · Demo download: approximately 6 MB · Simulated data only</p>
     </section>
   </div>
 </LayoutDefault>
+
 <style>
   .lawn-notes {
     font-family: var(--body-font, 'IBM Plex Sans', sans-serif);
@@ -239,10 +275,14 @@ const modules = [
     font: 12px var(--note-font);
     color: inherit;
   }
-  .folio-label {
+  .folio-label,
+  .small-label {
     font: 10px/1.8 var(--note-font);
-    letter-spacing: 1.5px;
+    letter-spacing: 1.3px;
     opacity: 0.7;
+  }
+  .folio-label {
+    margin-top: 24px;
   }
   h1 {
     font:
@@ -256,7 +296,7 @@ const modules = [
   }
   h3 {
     font: 16px/1.5 var(--note-font);
-    margin: 0 0 10px;
+    margin: 10px 0;
   }
   p,
   li {
@@ -264,7 +304,9 @@ const modules = [
     line-height: 1.8;
   }
   .lead {
-    font-size: 19px;
+    font-size: 23px;
+    line-height: 1.5;
+    margin-top: 24px;
   }
   .project-state {
     display: flex;
@@ -278,128 +320,133 @@ const modules = [
     border: 1px solid currentColor;
     padding: 5px 8px;
   }
-  figure {
-    margin: 24px 0;
-  }
-  .lawn-photo {
-    position: relative;
-    overflow: hidden;
-  }
-  .coming-stamp {
-    position: absolute;
-    top: 9%;
-    left: 6%;
+  .project-actions {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 14px 18px 11px;
-    border: 3px solid currentColor;
-    outline: 1px solid currentColor;
-    outline-offset: -8px;
-    border-radius: 3px;
-    color: #934c35;
-    background: rgba(255, 249, 235, 0.83);
-    transform: rotate(-12deg);
-    box-shadow: 0 3px 14px #34251618;
-    pointer-events: none;
-    font:
-      800 clamp(22px, 4vw, 38px) / 1.02 'IBM Plex Mono',
-      monospace;
-    letter-spacing: 3px;
-    mix-blend-mode: multiply;
+    flex-wrap: wrap;
+    gap: 18px 26px;
+    margin: 26px 0 12px;
   }
-  .coming-stamp small {
-    font-size: clamp(6px, 1vw, 9px);
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    margin-top: 9px;
+  .project-actions > a {
+    font: 12px/1.8 var(--note-font);
   }
-  .lawn-cover img {
+  a {
+    color: inherit;
+  }
+  a.demo-link {
+    display: inline-block;
+    padding: 12px 18px;
+    background: #2e6055;
+    color: #fff;
+    font: 12px/1.8 var(--note-font);
+    text-decoration: none;
+  }
+  a.demo-link:hover {
+    background: #234a42;
+    color: #fff;
+  }
+  a:focus-visible {
+    outline: 2px solid #39776c;
+    outline-offset: 4px;
+  }
+  figure {
+    margin: 28px 0;
+  }
+  figure img {
     width: 100%;
     height: auto;
     display: block;
   }
+  .dashboard-figure {
+    margin: 34px 0 44px;
+  }
+  .dashboard-figure img {
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
+  .dashboard-figure a {
+    display: block;
+  }
   figcaption {
-    font: 11px/1.7 var(--note-font);
+    font: 10px/1.8 var(--note-font);
     margin-top: 12px;
+    opacity: 0.75;
   }
   section {
     margin: 48px 0;
     border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-    padding-top: 18px;
+    padding-top: 4px;
   }
   .note {
-    font-size: 13px;
-    opacity: 0.8;
+    font-size: 12px;
+    line-height: 1.8;
+    opacity: 0.75;
   }
-  .zone-grid,
-  .module-grid {
+  .feature-grid,
+  .hardware-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 26px;
   }
-  .zone-grid > div {
-    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-    padding: 14px;
+  .feature-grid article {
+    border-top: 2px solid color-mix(in srgb, #39776c 50%, transparent);
+    padding: 14px 0 0;
   }
-  .zone-grid span {
-    font: 11px var(--note-font);
+  .feature-grid p,
+  .hardware-grid p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 10px 0 0;
   }
-  .zone-grid p {
-    font-size: 13px;
+  .stack {
+    font: 11px/1.9 var(--note-font);
+    margin-top: 24px;
+    opacity: 0.75;
+  }
+  .engineering-note {
+    padding: 20px 24px;
+    margin: 26px 0;
+    border-left: 3px solid #39776c;
+    background: color-mix(in srgb, #39776c 5%, transparent);
+  }
+  .engineering-note > p:not(.note):not(.small-label) {
+    font-size: 14px;
+  }
+  .engineering-note > p:first-child {
+    margin-top: 0;
+  }
+  .engineering-note > p:last-child {
     margin-bottom: 0;
   }
-  .module-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .module-card {
-    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-    margin: 0;
-  }
-  .module-card img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4/3;
-    object-fit: contain;
-    background: #fff;
-    display: block;
-  }
-  .module-card figcaption {
-    padding: 18px;
-    margin: 0;
-  }
-  .module-card p {
-    font-size: 13px;
-  }
-  .module-card a {
-    font-size: 10px;
-    line-height: 1.7;
-    color: inherit;
-  }
   .architecture {
+    padding: 24px;
+    margin: 28px 0;
     border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-    padding: 22px;
     background: color-mix(in srgb, #39776c 3%, transparent);
   }
-  .architecture-row {
+  .probe-row {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
     text-align: center;
   }
-  .architecture-row span,
+  .probe-row span,
   .architecture-node {
     display: block;
-    border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
     padding: 12px 8px;
-    font: 12px/1.6 var(--note-font);
+    font: 12px/1.8 var(--note-font);
+  }
+  .probe-row small {
+    font-size: 10px;
+    opacity: 0.75;
   }
   .architecture-node {
-    max-width: 260px;
+    max-width: 300px;
     margin: auto;
     text-align: center;
   }
-  .controller {
+  .app-node {
     border-color: #39776c;
     font-weight: 700;
   }
@@ -408,65 +455,89 @@ const modules = [
     font: 11px/1.8 var(--note-font);
     margin: 10px 0;
   }
-  .outputs {
-    grid-template-columns: 1fr 1fr;
+  .architecture-note {
+    text-align: center;
+    margin-bottom: 0;
   }
-  .outputs p:not(.flow-label),
-  .power-note {
-    font-size: 12px;
-    line-height: 1.7;
+  .hardware-item {
+    border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+    padding-top: 14px;
   }
-  .power-note {
+  .hardware-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    font: 9px/1.8 var(--note-font);
+    opacity: 0.7;
+  }
+  .roadmap {
+    list-style: decimal-leading-zero;
+    padding-left: 34px;
+  }
+  .roadmap li {
+    padding: 10px 0 10px 10px;
+  }
+  .roadmap li::marker {
+    font: 12px var(--note-font);
+    color: #39776c;
+  }
+  .roadmap strong {
+    font: 15px/1.8 var(--note-font);
+  }
+  .roadmap p {
+    font-size: 14px;
+    margin: 6px 0;
+  }
+  .closing-demo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 22px 0;
     border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-    padding-top: 16px;
-    margin: 18px 0 0;
+    margin-top: 24px;
   }
-  ol {
-    padding-left: 22px;
+  .closing-demo h3 {
+    margin-top: 0;
   }
-  li {
-    padding: 0 0 14px 6px;
+  .closing-demo p {
+    font-size: 13px;
+    margin: 0;
   }
   :global(html.dark) .project-state {
     color: #aed1c2;
   }
-  a:focus-visible {
-    outline: 2px solid #39776c;
-    outline-offset: 4px;
+  :global(html.dark) .roadmap li::marker {
+    color: #aed1c2;
   }
   @media (max-width: 600px) {
-    .coming-stamp {
-      padding: 11px 13px 9px;
-      top: 10%;
-      left: 7%;
-      border-width: 2px;
-      outline-offset: -6px;
-      letter-spacing: 2px;
-    }
-    .coming-stamp small {
-      margin-top: 7px;
-    }
     h1 {
       font-size: 38px;
     }
     h2 {
       font-size: 21px;
     }
-    .module-grid,
-    .zone-grid {
+    .lead {
+      font-size: 20px;
+    }
+    .feature-grid,
+    .hardware-grid {
       grid-template-columns: 1fr;
+      gap: 20px;
     }
     .architecture {
       padding: 14px;
     }
-    .architecture-row {
-      gap: 5px;
+    .probe-row {
+      gap: 8px;
     }
-    .architecture-row span {
-      font-size: 10px;
+    .probe-row span {
+      font-size: 11px;
     }
-    .outputs {
-      grid-template-columns: 1fr;
+    .engineering-note {
+      padding: 16px 18px;
     }
   }
 </style>

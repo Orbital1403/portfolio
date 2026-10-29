@@ -9,12 +9,12 @@ const { Content } = await render(projectPost)
 
 <LayoutDefault
   title="Projects — MILA* & Smart Lawn — Gordan Grgić"
-  description="MILA*: a Raspberry Pi audio streamer for hi-res FLAC, radio and streaming. Development, testing and safe releases, plus Smart Lawn: a future soil monitoring and irrigation project."
+  description="MILA*: a Raspberry Pi audio streamer for hi-res FLAC, radio and streaming. Plus Smart Lawn: a working My Garden mobile prototype for soil monitoring, with hardware integration next."
   ><header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / PROJECTS</p><h1>Project notes</h1>
   </header><nav class="project-picker" aria-label="Choose a project">
     <a data-no-swup href="#mila">01 / MILA*</a><a data-no-swup href="#portfolio-project">02 / This portfolio</a>
-    <a href="/projects/smart-lawn/">03 / Smart Lawn · Coming soon</a>
+    <a href="/projects/smart-lawn/">03 / Smart Lawn · In development</a>
   </nav><nav class="project-contents" aria-label="Project contents">
     <a data-no-swup href="#from-frustration-to-a-project">Idea</a><a
       data-no-swup
@@ -34,7 +34,9 @@ const { Content } = await render(projectPost)
       data-no-swup
       href="#current-state">Current state</a
     ><a data-no-swup href="#portfolio-project">This portfolio</a>
-  </nav><SmartLawnCard /><article class="prose"><Content /></article></LayoutDefault
+  </nav><SmartLawnCard /><article class="prose">
+    <Content />
+  </article></LayoutDefault
 >
 
 <style>
