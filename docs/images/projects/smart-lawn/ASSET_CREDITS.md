@@ -10,7 +10,7 @@ The power photograph shows the RS-series enclosure, using an RS-150-24 reference
 
 ## My Garden software prototype — 29 October 2026
 
-`my-garden-dashboard.jpg` is a screenshot of Gordan Grgić's My Garden demo interface. Readings are simulated and the root-zone illustration is illustrative. The self-contained demo is published at `/demos/my-garden/`, with cloud configuration disabled. It represents a local software milestone, not an installed or calibrated sensor system.
+`my-garden-dashboard.jpg` records Gordan Grgić's early My Garden demo interface on 29 October. Readings are simulated and the root-zone illustration is illustrative. This historical asset is retained but no longer used as the project hero. The hosted app has since gained cloud-backed owner features and separate public Demo and Live views.
 
 ## Hardware reference photographs — 29 October 2026
 
@@ -33,7 +33,17 @@ Product photographs and branding remain the property of their respective owners 
 The hardware overview now includes the newly confirmed cable, power supply, UK2.5B terminal-block kit and 120 Ω / 0.5 W termination resistors. The additional photographs illustrate component types, not the delivered or assembled equipment:
 
 - `hardware/field-cable-reference.jpg`: Onninen catalogue photograph for BITNER LP0170, showing both blue and green BiTsensor cable-family variants. The selected cable is LP0170; neither pictured quantity nor the green variant is a purchase claim.
-- `hardware/power-supply-reference.jpg`: Adafruit product 352, an enclosed 12 V / 5 A adapter with a US mains plug. The purchased supply's exact model, plug, rating and protection class are not established by this photograph. The image is a form-factor reference only.
+- `hardware/mean-well-owa-60e-reference.jpg`: MEAN WELL Australia OWA-60E product-family photograph, showing a sealed adapter with fixed cables and a European mains plug. It replaces the earlier Adafruit desktop-adapter image. The purchased supply's exact model and rating remain unconfirmed; the photo is a reference for the outdoor supply type discussed during hardware planning, not proof of the delivered unit or the protection of its connections.
 - `hardware/terminal-blocks-reference.webp`: AOSI UK2.5B terminal-block photograph. It shows one component, not the full purchased kit or a verified supplier match.
 
 Exact source links are stored under `reference-hardware-gallery` in `sources.json` and displayed in the gallery. Cable dimensions are supported by the BITNER technical sheet linked there. No order IDs, prices or private purchase screenshots are included.
+
+## Current grgaGrow software — 30 October 2026
+
+The following screenshots were captured directly from the published public Demo at `https://gordangrgic.com/demos/my-garden/?mode=demo`:
+
+- `grgagrow-demo-overview.jpg`: current sensor cards and seven-day moisture history, with visible simulated-data labels and example activity markers.
+- `grgagrow-weekly-report.jpg`: seven-day hourly summaries, data coverage and fictional example activities.
+- `grgagrow-sun-shade.jpg`: calculated sun position, daylight playback controls and the provisional building-shade model. This is not a measurement of actual sunshine.
+
+The captures contain only the public demo view. Private owner settings, coordinates, journal entries and credentials are not included. The screenshots represent the current interface; they do not establish physical sensor operation or calibration.

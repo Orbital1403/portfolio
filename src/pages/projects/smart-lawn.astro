@@ -43,14 +43,14 @@ const hardwareGallery = [
     vendor: 'Onninen / BITNER',
   },
   {
-    image: 'power-supply-reference.jpg',
-    width: 970,
-    height: 728,
-    title: 'DC power supply',
-    detail: 'Enclosed adapter · Reference model',
-    alt: 'Adafruit reference photograph of an enclosed DC adapter with a US plug; the ordered supply model is not yet confirmed',
-    source: 'https://www.adafruit.com/product/352',
-    vendor: 'Adafruit',
+    image: 'mean-well-owa-60e-reference.jpg',
+    width: 608,
+    height: 608,
+    title: 'Outdoor DC power supply',
+    detail: 'MEAN WELL OWA-60E · Reference model',
+    alt: 'MEAN WELL OWA-60E reference photograph showing a sealed power adapter with fixed cables and a European mains plug',
+    source: 'https://www.meanwellaustralia.com.au/products/owa-60e',
+    vendor: 'MEAN WELL Australia',
   },
   {
     image: 'terminal-blocks-reference.webp',
@@ -172,8 +172,8 @@ const hardware = [
 ---
 
 <LayoutDefault
-  title="Smart Lawn — My Garden prototype — Gordan Grgić"
-  description="From a 50 m² lawn to My Garden: a working soil-monitoring prototype with root-zone visuals, moisture history and a two-probe ESP32 / RS485 hardware plan. Try the simulated demo."
+  title="Smart Lawn — grgaGrow garden app — Gordan Grgić"
+  description="grgaGrow connects soil history, seven-day reports, weather and sun/shade with a private garden journal. Explore the cloud app and the ordered ESP32 / RS485 hardware."
 >
   <div class="lawn-notes">
     <header class="lawn-heading">
@@ -181,13 +181,13 @@ const hardware = [
       <p class="folio-label">HARDWARE + SOFTWARE + GARDEN / FIELD NOTES 03</p>
       <h1>Smart Lawn</h1>
       <p class="project-state">
-        In development <span>Working software prototype</span>
+        In development <span>Cloud app online · Hardware integration next</span>
       </p>
       <p class="lead">A small lawn. A closer look beneath the surface.</p>
       <p>
-        What started as an idea for watering my 49 m² lawn is becoming <strong>grgaGrow</strong> — a mobile soil-monitoring
-        app, with two wired probes and an ESP32 controller planned for the garden. The software can already be explored; the
-        hardware connection is the next step.
+        What started as an idea for watering my 49 m² lawn is becoming <strong>grgaGrow</strong> — a garden app that brings
+        soil history, weather, light and everyday care into one place. The cloud app is online, with public views and a private
+        owner workspace. Two wired probes and an ESP32 controller will connect it to the soil.
       </p>
       <div class="project-actions">
         <a
@@ -197,7 +197,7 @@ const hardware = [
           rel="noopener noreferrer">View Live garden ↗</a
         >
         <a class="demo-link" href="/demos/my-garden/?mode=demo" target="_blank" rel="noopener noreferrer"
-          >Try the interactive demo ↗</a
+          >Explore the demo ↗</a
         >
         <a href="/demos/my-garden/?mode=live">Owner sign-in →</a>
         <a href="#lawn-hardware">Explore the hardware ↓</a>
@@ -213,74 +213,132 @@ const hardware = [
         href="/demos/my-garden/?mode=demo"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Open the My Garden interactive demo in a new tab"
+        aria-label="Open the grgaGrow simulated demo in a new tab"
       >
         <img
-          src="/images/projects/smart-lawn/my-garden-dashboard.jpg"
-          alt="My Garden prototype showing Sunny corner and Garden edge soil cards, root illustrations, moisture and temperature, with a visible demo-mode label"
+          src="/images/projects/smart-lawn/grgagrow-demo-overview.jpg"
+          alt="Current grgaGrow Demo showing two labelled simulated soil sensors and a seven-day moisture chart with example garden events"
           width="1265"
-          height="949"
+          height="712"
           fetchpriority="high"
           decoding="async"
         />
       </a>
       <figcaption>
-        THE WORKING INTERFACE / My Garden, October 2026. All readings are simulated; roots are illustrative.
+        THE CURRENT INTERFACE / grgaGrow, 30 October 2026. Demo soil readings and garden events are simulated.
       </figcaption>
     </figure>
 
     <section aria-labelledby="lawn-software">
       <p class="folio-label">01 / SOFTWARE YOU CAN EXPLORE</p>
-      <h2 id="lawn-software">See the soil. Follow the changes.</h2>
+      <h2 id="lawn-software">One garden. Three ways to explore it.</h2>
       <p>
-        I wanted the dashboard to feel understandable at a glance, while keeping the detail close by. A botanical view
-        puts the root zone beside each reading; a compact view brings the numbers forward. Moisture, temperature and
-        measurement age stay together.
+        <strong>Demo</strong> follows the published garden setup with simulated soil readings and example activities.
+        <strong>Public Live</strong> shows the measurements and garden context the owner chooses to share. Both are read-only
+        and open without an account. The <strong>private owner workspace</strong> adds settings, longer history, the care
+        diary, alerts and sensor setup.
       </p>
       <div class="feature-grid">
         <article>
-          <span class="small-label">TWO WAYS TO READ IT</span>
-          <h3>Visual or compact.</h3>
+          <span class="small-label">HISTORY & WEEKLY REPORTS</span>
+          <h3>A week beneath the surface.</h3>
           <p>
-            Switch between illustrated sensor cards and a denser view. A separate moisture scale shows Dry, Getting dry,
-            Target and Wet.
+            Follow seven days of moisture history and a report of hourly averages, temperature and missing intervals.
+            The private workspace adds up to 30 days of history, metric and sensor filters, and CSV export.
           </p>
         </article>
         <article>
-          <span class="small-label">A RECORD OVER TIME</span>
-          <h3>From a moment to a trend.</h3>
+          <span class="small-label">REGIONAL WEATHER</span>
+          <h3>Weather above. Soil below.</h3>
           <p>
-            Explore 24-hour and 7-day history, select either sensor and export the readings as CSV. Missing data stays
-            visible as gaps.
+            Open-Meteo forecasts put air temperature, expected rainfall and precipitation chance beside the soil data.
+            Forecasts use an approximate public location and remain clearly separate from measured soil conditions.
           </p>
         </article>
         <article>
-          <span class="small-label">FOUR DEMO SCENARIOS</span>
-          <h3>Try a different day.</h3>
+          <span class="small-label">SUN PATH & BUILDING SHADE</span>
+          <h3>Follow the light.</h3>
           <p>
-            Balanced, Drying, Watering and Data loss let you explore how the interface responds before any probe is
-            connected.
+            A compact sun path and daylight playback move together with the garden model. Explore sun direction,
+            elevation and estimated building shade. Trees, clouds and surrounding obstacles are not fully represented.
           </p>
         </article>
         <article>
-          <span class="small-label">SETTINGS PER SENSOR</span>
-          <h3>Make the ranges explicit.</h3>
+          <span class="small-label">PRIVATE / GARDEN & CARE</span>
+          <h3>A diary beside the graph.</h3>
           <p>
-            Adjust each sensor’s thresholds and see how they affect the display. Defaults are examples; real soil needs
-            observation and calibration.
+            Save garden zones and sensor positions, then log watering, observed rain and completed mowing alongside
+            moisture changes. Scheduled mowing stays separate until completion is recorded. Demo uses fictional events;
+            the owner’s diary stays private.
+          </p>
+        </article>
+        <article>
+          <span class="small-label">PRIVATE / ALERTS & HISTORY</span>
+          <h3>From an alert to the evidence.</h3>
+          <p>
+            An alert explains what happened, which probe was involved and when it was detected. Open sensor history
+            takes the owner to the matching chart and highlights that time. The cloud alert log is available; phone push
+            delivery still needs physical confirmation.
+          </p>
+        </article>
+        <article>
+          <span class="small-label">PRIVATE / SENSOR SETUP</span>
+          <h3>Ready for the first probes.</h3>
+          <p>
+            A guide records installation checks and an estimated field-capacity reference for each sensor. System status
+            separates controller contact from received readings. Saving a soil reference does not automatically validate
+            calibration or watering thresholds.
           </p>
         </article>
       </div>
-      <p class="stack">React · TypeScript · Vite · Responsive interface</p>
+      <div class="software-gallery" aria-label="Current grgaGrow application screenshots">
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/grgagrow-weekly-report.jpg"
+            alt="grgaGrow seven-day report with hourly moisture and temperature summaries, missing-interval counts and clearly labelled example activities"
+            width="1265"
+            height="712"
+            loading="lazy"
+            decoding="async"
+            data-group="smart-lawn-software"
+            data-title="Seven-day report — simulated soil readings and example activities."
+            data-index="0"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the seven-day report screenshot"
+          />
+          <figcaption>SEVEN-DAY REPORT / Simulated readings and example activities. Click to enlarge.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/grgagrow-sun-shade.jpg"
+            alt="grgaGrow compact sun path and garden model showing calculated sun direction and provisional building shade"
+            width="1265"
+            height="712"
+            loading="lazy"
+            decoding="async"
+            data-group="smart-lawn-software"
+            data-title="Sun path and garden shade — a calculated model, not measured sunshine."
+            data-index="1"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the sun and shade screenshot"
+          />
+          <figcaption>
+            SUN & SHADE / Calculated sun position and a provisional shade model. Click to enlarge.
+          </figcaption>
+        </figure>
+      </div>
+      <p class="stack">React · TypeScript · Vite · Supabase / PostgreSQL · Open-Meteo · SunCalc</p>
     </section>
 
     <section aria-labelledby="lawn-reliability">
       <p class="folio-label">02 / THE ENGINEERING BEHIND THE SCREEN</p>
       <h2 id="lawn-reliability">What if a reading never arrives?</h2>
       <p>
-        A reassuring number is only useful if it can be trusted. The prototype checks freshness and time quality,
-        preserves gaps in the history, and withholds watering suggestions when readings are unreliable. A dry trend must
-        remain valid for an uninterrupted 30-minute window before the current logic suggests watering.
+        A reassuring number is only useful if it can be trusted. The app checks freshness and time quality, preserves
+        gaps in the history, and withholds watering suggestions when readings are unreliable. A dry trend must remain
+        valid for an uninterrupted 30-minute window before the current logic suggests watering.
       </p>
       <div class="engineering-note">
         <p class="small-label">DEVELOPMENT EXAMPLE / A LOST ACKNOWLEDGEMENT</p>
@@ -295,17 +353,16 @@ const hardware = [
         </p>
       </div>
       <p>
-        grgaGrow offers two public views. Demo follows the published Live setup with simulated sensor readings and no
-        editable settings. Live is a read-only window into selected garden measurements, seven days of history, regional
-        weather and an approximate sun/shade model. The owner uses a separate signed-in workspace for settings, alerts
-        and the garden diary. Device ingestion and physical sensor operation still require hardware verification; Live
-        shows waiting for data until real readings arrive.
+        The cloud workspace uses Supabase authentication and owner-scoped database access. A separate public projection
+        exposes only the selected garden data; exact coordinates, private diary entries, alerts and calibration notes
+        stay outside it. The owner can disable publication. Demo values never become real sensor records, and Live shows
+        waiting for data until physical readings arrive.
       </p>
       <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
       <p class="note">
-        The public feed excludes exact coordinates and private settings. The owner chooses what to publish and can
-        disable Live. Watering advice uses preliminary user-defined thresholds, not validated agronomic guidance;
-        automatic irrigation is not active.
+        The app and cloud services are online. Physical ingestion, soil calibration, ESP32 firmware and real flash
+        power-loss recovery still require hardware validation. Watering thresholds remain preliminary; automatic
+        irrigation is not active.
       </p>
     </section>
 
@@ -440,9 +497,9 @@ const hardware = [
       <h2 id="lawn-next">Measure first. Automate later.</h2>
       <ol class="roadmap">
         <li>
-          <strong>Working locally</strong><p>
-            Mobile interface, simulated scenarios, history, settings and CSV export. Backend and queue behaviour have
-            local automated checks.
+          <strong>Online now</strong><p>
+            Public Demo and Live views, a private cloud workspace, history, weekly reports, a garden diary, alerts,
+            weather and sun/shade. Software behaviour is covered by local automated checks.
           </p>
         </li>
         <li>
@@ -453,8 +510,8 @@ const hardware = [
         </li>
         <li>
           <strong>Connect and observe</strong><p>
-            Validate the hosted backend, collect real readings and compare both locations through ordinary watering and
-            weather changes.
+            Verify device-to-cloud ingestion, collect real readings and compare both locations through ordinary watering
+            and weather changes. Use those observations to review soil references and thresholds.
           </p>
         </li>
         <li>
@@ -582,6 +639,24 @@ const hardware = [
   }
   .dashboard-figure a {
     display: block;
+  }
+  .software-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin: 32px 0 20px;
+  }
+  .software-gallery figure {
+    margin: 0;
+    min-width: 0;
+  }
+  .software-gallery img {
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    cursor: zoom-in;
+  }
+  .software-gallery img:focus-visible {
+    outline: 2px solid #39776c;
+    outline-offset: 3px;
   }
   figcaption {
     font: 10px/1.8 var(--note-font);
@@ -817,7 +892,8 @@ const hardware = [
       font-size: 20px;
     }
     .feature-grid,
-    .hardware-grid {
+    .hardware-grid,
+    .software-gallery {
       grid-template-columns: 1fr;
       gap: 20px;
     }

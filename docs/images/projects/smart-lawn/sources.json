@@ -146,11 +146,11 @@
         "note": "Cable-family photograph includes blue and green variants; selected model is LP0170."
       },
       {
-        "asset": "hardware/power-supply-reference.jpg",
-        "provider": "Adafruit",
-        "page": "https://www.adafruit.com/product/352",
-        "image": "https://cdn-shop.adafruit.com/970x728/352-07.jpg",
-        "note": "Reference 12 V / 5 A adapter with US plug; purchased model, rating and protection class remain unconfirmed."
+        "asset": "hardware/mean-well-owa-60e-reference.jpg",
+        "provider": "MEAN WELL Australia",
+        "page": "https://www.meanwellaustralia.com.au/products/owa-60e",
+        "image": "https://www.meanwellaustralia.com.au/sites/default/files/styles/product_thumbnail/public/2024-09/MEAN%20WEL%20OWA-60E%20Series%20LED%20Driver%20with%20Eurpean%20AC%20Plug.jpg?itok=TUFjFhcR",
+        "note": "OWA-60E family reference with sealed housing and EU plug; exact purchased model and rating remain unconfirmed."
       },
       {
         "asset": "hardware/terminal-blocks-reference.webp",
@@ -166,6 +166,16 @@
         "document": "https://bitner.com.pl/data/t4txt_photos/113256240519_16_BiTsensor_PE-PVC_Blue.pdf",
         "note": "2 x 2 x 22 AWG, approximately 0.34 mm² and 6.5 mm outer diameter. 120 ohm impedance is not confirmed."
       }
+    ]
+  },
+  "software-screenshots": {
+    "date": "2026-10-30",
+    "source": "https://gordangrgic.com/demos/my-garden/?mode=demo",
+    "note": "Direct captures of the published public Demo. Soil readings and example activities are simulated; sun/shade is a provisional calculated model.",
+    "assets": [
+      "grgagrow-demo-overview.jpg",
+      "grgagrow-weekly-report.jpg",
+      "grgagrow-sun-shade.jpg"
     ]
   }
 }
