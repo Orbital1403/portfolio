@@ -33,6 +33,36 @@ const hardwareGallery = [
     vendor: 'Renke',
   },
   {
+    image: 'field-cable-reference.jpg',
+    width: 1024,
+    height: 171,
+    title: 'Garden cable',
+    detail: 'BITNER BiTsensor · Shielded twisted pairs',
+    alt: 'BITNER BiTsensor cable family reference photograph showing blue and green jackets, shielding and two conductor pairs',
+    source: 'https://onninen.pl/en/product/BITNER-bitsensor-data-cable-pe-pvc-blue-2x2x22awg-drum-LP0170,429024',
+    vendor: 'Onninen / BITNER',
+  },
+  {
+    image: 'power-supply-reference.jpg',
+    width: 970,
+    height: 728,
+    title: 'DC power supply',
+    detail: 'Enclosed adapter · Reference model',
+    alt: 'Adafruit reference photograph of an enclosed DC adapter with a US plug; the ordered supply model is not yet confirmed',
+    source: 'https://www.adafruit.com/product/352',
+    vendor: 'Adafruit',
+  },
+  {
+    image: 'terminal-blocks-reference.webp',
+    width: 909,
+    height: 715,
+    title: 'DIN terminal blocks',
+    detail: 'UK2.5B screw terminals',
+    alt: 'AOSI reference photograph of a single grey UK2.5B screw terminal block for DIN-rail mounting',
+    source: 'https://aositerminals.com/en/product-category/din-rail-terminal-block/screw-din-rail-terminal-block/',
+    vendor: 'AOSI',
+  },
+  {
     image: 'enclosure-reference.jpg',
     width: 970,
     height: 728,
@@ -101,28 +131,42 @@ const hardware = [
     title: 'ESP32-S3 controller',
     status: 'Ordered',
     description:
-      'A board sold as ESP32-S3-RS485-CAN will bridge the wired probes and Wi-Fi. The exact board variant, pin mapping and power requirements still need to be verified on arrival.',
+      'One ESP32-S3-RS485-CAN controller will bridge the wired probes and Wi-Fi. USB-C provides the programming connection. The delivered board variant, pin mapping and power requirements will be checked before assembly.',
   },
   {
     number: '02',
     title: 'Two wired soil probes',
     status: 'Ordered',
     description:
-      'One moisture / temperature probe and a second with an additional pH channel. RS485 / Modbus RTU is the intended connection; register maps, scaling and calibration come next. pH is experimental.',
+      'One moisture / temperature probe and one combined moisture / temperature / pH probe. Both are intended for RS485 / Modbus RTU. Their actual register maps, addresses and calibration will be verified individually; pH remains experimental.',
   },
   {
     number: '03',
-    title: 'Enclosure & assembly',
+    title: 'The garden cable',
     status: 'Ordered',
     description:
-      'The enclosure, DIN rails, internal cable, fuse holders, DC connectors and PG7 glands are ordered for the first assembly. Cable fit, sealing and the outdoor route still need checking.',
+      'BITNER BiTsensor LP0170: two twisted pairs with a foil shield, 0.34 mm² conductors and a 6.5 mm outer diameter. One pair is planned for RS485 data and the other for sensor power. Cable-entry fit and communication over the final route still need testing.',
   },
   {
     number: '04',
-    title: 'Power first. Irrigation later.',
-    status: 'Still to confirm',
+    title: 'Power & protection',
+    status: 'Ordered',
     description:
-      'The power supply and terminal blocks are not yet confirmed. Supply compatibility and the final fuse rating come before powering the assembly. A valve and automatic watering remain a later stage.',
+      'The supply is ordered for the planned 12 V DC system, alongside five inline holders with 1 A fuses and 5.5 × 2.1 mm DC adapters. The supply model, output rating and compatibility still need checking; the final fuse value follows measured demand.',
+  },
+  {
+    number: '05',
+    title: 'Distribution & termination',
+    status: 'Ordered',
+    description:
+      'A UK2.5B terminal-block kit will organise power and signal connections on the DIN rail. Ordered 120 Ω / 0.5 W metal-film resistors provide termination parts for the RS485 bus. Placement depends on the final route and any termination already built into the devices.',
+  },
+  {
+    number: '06',
+    title: 'A serviceable enclosure',
+    status: 'Ordered',
+    description:
+      'A 230 × 150 × 85 mm box, two 10 cm DIN rails, 2 m of 4 × 0.5 mm² internal cable and five PG7 glands form the assembly kit. The layout will keep connections accessible; gland fit, strain relief and sealing will be checked before outdoor use.',
   },
 ]
 ---
@@ -266,12 +310,18 @@ const hardware = [
     </section>
 
     <section aria-labelledby="lawn-hardware">
-      <p class="folio-label">03 / HARDWARE DIRECTION</p>
+      <p class="folio-label">03 / HARDWARE — THE ORDERED BUILD</p>
       <h2 id="lawn-hardware">Two probes. One path to the dashboard.</h2>
       <p>
-        The current hardware selection uses two wired probes and a controller with an RS485 interface. The controller
-        and probes have been ordered. They have not yet been connected, calibrated or tested in the lawn.
+        The first build now includes the two soil probes, ESP32 controller, garden cable, power supply and cabinet
+        components. The aim is a wired installation that can be inspected and serviced, with readings sent over Wi-Fi to
+        grgaGrow. The parts are ordered; assembly, calibration and testing in the lawn are still ahead.
       </p>
+      <dl class="hardware-progress" aria-label="Hardware progress as of 30 October 2026">
+        <div><dt>Procurement</dt><dd>Main components ordered</dd></div>
+        <div><dt>Next milestone</dt><dd>First bench assembly</dd></div>
+        <div><dt>Field status</dt><dd>Not yet installed</dd></div>
+      </dl>
       <p class="note">
         Reference photos below illustrate the component types. Models and appearance may differ from the ordered parts.
       </p>
@@ -309,6 +359,34 @@ const hardware = [
       <p class="note">
         Click a photo to enlarge. Each image links to its source. Assembly and specification checks are still ahead.
       </p>
+      <h3 class="hardware-build-title">What each part brings to the build</h3>
+      <div class="hardware-grid">
+        {
+          hardware.map((item) => (
+            <article class="hardware-item">
+              <div class="hardware-label">
+                <span>{item.number} / HARDWARE</span>
+                <span>{item.status}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="engineering-note">
+        <p class="small-label">BEFORE THE FIRST OUTDOOR READING</p>
+        <h3>Build on the bench. Then move into the garden.</h3>
+        <p>
+          Start with one probe, confirm its power and protocol, then give the second probe its own Modbus address before
+          testing them together. The final cable route, termination and sealed joints will be checked as one assembly.
+        </p>
+        <p>
+          Remaining preparation includes gel-filled cable-joint boxes, single-wire ferrules and wire labels. The PG7
+          glands must fit the 6.5 mm garden cable, and the delivered probes must explicitly support the intended buried
+          installation. Automatic watering comes after reliable monitoring.
+        </p>
+      </div>
       <div
         class="architecture"
         aria-label="Planned data path: two soil probes connect via RS485 and Modbus RTU to an ESP32 controller, then via Wi-Fi and HTTPS to ingestion, PostgreSQL and the authenticated My Garden app."
@@ -318,30 +396,15 @@ const hardware = [
             >Probe 02<br /><small>Moisture + temperature + pH*</small></span
           >
         </div>
-        <p class="flow-label">↓ RS485 / Modbus RTU</p>
+        <p class="flow-label">↓ RS485 / Modbus RTU · BITNER LP0170 cable</p>
         <div class="architecture-node">ESP32-S3 controller</div>
         <p class="flow-label">↓ Wi-Fi / HTTPS</p>
         <div class="architecture-node">Ingestion → PostgreSQL</div>
         <p class="flow-label">↓ Authenticated access</p>
-        <div class="architecture-node app-node">My Garden</div>
-        <p class="note architecture-note">Planned connection · Backend code prepared locally · *pH is experimental</p>
+        <div class="architecture-node app-node">grgaGrow / My Garden</div>
+        <p class="note architecture-note">Planned hardware connection · Real readings pending · *pH is experimental</p>
       </div>
-      <div class="hardware-grid">
-        {
-          hardware.map((item) => (
-            <article class="hardware-item">
-              <div class="hardware-label">
-                <>
-                  <span>{item.number} / HARDWARE</span>
-                  <span>{item.status}</span>
-                </>
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))
-        }
-      </div>
+      <p class="note">Hardware snapshot: 30 October 2026 · Ordered components, with delivery and bench checks ahead.</p>
     </section>
 
     <section aria-labelledby="lawn-site">
@@ -617,6 +680,25 @@ const hardware = [
     border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
     padding-top: 14px;
   }
+  .hardware-progress {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+    padding: 18px 0;
+    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
+  .hardware-progress dt {
+    font: 10px/1.8 var(--note-font);
+    opacity: 0.7;
+  }
+  .hardware-progress dd {
+    margin: 6px 0 0;
+    font: 13px/1.6 var(--note-font);
+  }
+  .hardware-build-title {
+    margin-top: 32px;
+  }
   .hardware-gallery {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -710,6 +792,10 @@ const hardware = [
     color: #aed1c2;
   }
   @media (max-width: 600px) {
+    .hardware-progress {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
     .hardware-gallery {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px 10px;

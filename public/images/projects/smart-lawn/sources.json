@@ -82,7 +82,7 @@
     "og": "https://cdn-shop.adafruit.com/970x728/3290-01.jpg"
   },
   "reference-hardware-gallery": {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "note": "Reference photographs illustrate component types; models, dimensions, quantities and appearance may differ from ordered equipment.",
     "controller": {
       "asset": "hardware/esp32-s3-rs485-can.jpg",
@@ -137,6 +137,34 @@
         "provider": "DFRobot",
         "page": "https://www.dfrobot.com/product-2159.html",
         "image": "https://dfimg.dfrobot.com/enshop/image/data/FIT0728/FIT0728_Main_01.jpg"
+      },
+      {
+        "asset": "hardware/field-cable-reference.jpg",
+        "provider": "Onninen / BITNER",
+        "page": "https://onninen.pl/en/product/BITNER-bitsensor-data-cable-pe-pvc-blue-2x2x22awg-drum-LP0170,429024",
+        "image": "https://onninen.pl/lib/images/23424468.jpg",
+        "note": "Cable-family photograph includes blue and green variants; selected model is LP0170."
+      },
+      {
+        "asset": "hardware/power-supply-reference.jpg",
+        "provider": "Adafruit",
+        "page": "https://www.adafruit.com/product/352",
+        "image": "https://cdn-shop.adafruit.com/970x728/352-07.jpg",
+        "note": "Reference 12 V / 5 A adapter with US plug; purchased model, rating and protection class remain unconfirmed."
+      },
+      {
+        "asset": "hardware/terminal-blocks-reference.webp",
+        "provider": "AOSI",
+        "page": "https://aositerminals.com/en/product-category/din-rail-terminal-block/screw-din-rail-terminal-block/",
+        "image": "https://aositerminals.com/wp-content/uploads/2025/10/UK2.5B.png.webp",
+        "note": "Single terminal-block reference, not the whole ordered kit."
+      }
+    ],
+    "technical-references": [
+      {
+        "component": "BITNER LP0170",
+        "document": "https://bitner.com.pl/data/t4txt_photos/113256240519_16_BiTsensor_PE-PVC_Blue.pdf",
+        "note": "2 x 2 x 22 AWG, approximately 0.34 mm² and 6.5 mm outer diameter. 120 ohm impedance is not confirmed."
       }
     ]
   }
