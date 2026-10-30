@@ -1,20 +1,20 @@
 ---
 import { getEntry, render } from 'astro:content'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import SmartLawnCard from '~/components/SmartLawnCard.astro'
+import GrgaGrowCard from '~/components/GrgaGrowCard.astro'
 const projectPost = await getEntry('spec', 'projects')
 if (!projectPost) throw new Error('No project post found')
 const { Content } = await render(projectPost)
 ---
 
 <LayoutDefault
-  title="Projects — MILA* & Smart Lawn — Gordan Grgić"
-  description="MILA*: a Raspberry Pi audio streamer for hi-res FLAC, radio and streaming. Plus Smart Lawn / grgaGrow: a cloud garden app with soil history, weekly reports, a journal and weather and sun/shade views. Physical sensor integration is next."
+  title="Projects — MILA* & grgaGrow — Gordan Grgić"
+  description="MILA*: a Raspberry Pi audio streamer for hi-res FLAC, radio and streaming. Plus grgaGrow: a cloud garden app with soil history, weekly reports, a journal and weather and sun/shade views. Physical sensor integration is next."
   ><header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / PROJECTS</p><h1>Project notes</h1>
   </header><nav class="project-picker" aria-label="Choose a project">
     <a data-no-swup href="#mila">01 / MILA*</a><a data-no-swup href="#portfolio-project">02 / This portfolio</a>
-    <a href="/projects/smart-lawn/">03 / Smart Lawn · In development</a>
+    <a href="/projects/grgagrow/">03 / grgaGrow · In development</a>
   </nav><nav class="project-contents" aria-label="Project contents">
     <a data-no-swup href="#from-frustration-to-a-project">Idea</a><a
       data-no-swup
@@ -34,7 +34,7 @@ const { Content } = await render(projectPost)
       data-no-swup
       href="#current-state">Current state</a
     ><a data-no-swup href="#portfolio-project">This portfolio</a>
-  </nav><SmartLawnCard /><article class="prose">
+  </nav><GrgaGrowCard /><article class="prose">
     <Content />
   </article></LayoutDefault
 >

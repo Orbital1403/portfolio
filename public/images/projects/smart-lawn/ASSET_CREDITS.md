@@ -1,8 +1,8 @@
-# Smart Lawn image sources
+# grgaGrow image sources
 
-The lawn photograph was supplied by Gordan Grgić in the Smart Lawn planning conversation. Its publication copy has been resized and stripped of camera metadata.
+The lawn photograph was supplied by Gordan Grgić in the grgaGrow planning conversation. Its publication copy has been resized and stripped of camera metadata.
 
-The component photographs are reference images from the Espressif, DFRobot and Adafruit product pages, and RS Components (Mean Well RS-series housing reference supplied by the user) linked in `sources.json`. These legacy reference assets are retained from the earlier concept gallery. They illustrate proposed component types; they are not photographs of an assembled Smart Lawn system or a final bill of materials.
+The component photographs are reference images from the Espressif, DFRobot and Adafruit product pages, and RS Components (Mean Well RS-series housing reference supplied by the user) linked in `sources.json`. These legacy reference assets are retained from the earlier concept gallery. They illustrate proposed component types; they are not photographs of an assembled grgaGrow system or a final bill of materials.
 
 Third-party photographs remain the property of their respective owners. The repository's MIT licence does not apply to these photographs.
 
@@ -47,3 +47,7 @@ The following screenshots were captured directly from the published public Demo 
 - `grgagrow-sun-shade.jpg`: calculated sun position, daylight playback controls and the provisional building-shade model. This is not a measurement of actual sunshine.
 
 The captures contain only the public demo view. Private owner settings, coordinates, journal entries and credentials are not included. The screenshots represent the current interface; they do not establish physical sensor operation or calibration.
+
+## Visual sensor cards — 30 October 2026
+
+`grgagrow-visual-sensors.jpg` was captured from the local preview of the hosted public Demo build prepared for publication. It shows two sensor cards, the Visual / Compact switch and the existing grass-and-roots illustration. Soil values are simulated and labelled as such; the illustration does not measure root growth or soil conditions. This image is the current project hero.

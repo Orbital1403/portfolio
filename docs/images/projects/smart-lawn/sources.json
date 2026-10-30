@@ -34,7 +34,7 @@
   "power": {
     "page": "https://benl.rs-online.com/web/p/switching-power-supplies/6210685",
     "image": "https://media.rs-online.com/F6210685-01",
-    "note": "User-supplied RS-150-24 photograph illustrates the enclosed RS-series housing only. Smart Lawn plans a 12 V model; this is not a photograph of the selected final model."
+    "note": "User-supplied RS-150-24 photograph illustrates the enclosed RS-series housing only. grgaGrow plans a 12 V model; this is not a photograph of the selected final model."
   },
   "valve": {
     "page": "https://www.dfrobot.com/product-1530.html",
@@ -167,6 +167,12 @@
         "note": "2 x 2 x 22 AWG, approximately 0.34 mm² and 6.5 mm outer diameter. 120 ohm impedance is not confirmed."
       }
     ]
+  },
+  "visual-sensor-screenshot": {
+    "date": "2026-10-30",
+    "asset": "grgagrow-visual-sensors.jpg",
+    "source": "Local preview of the hosted public Demo build prepared for publication",
+    "note": "Simulated soil readings with the existing illustrative grass-and-roots artwork and Visual / Compact controls. No private owner data."
   },
   "software-screenshots": {
     "date": "2026-10-30",

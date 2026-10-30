@@ -1,4 +1,6 @@
 # Cloudflare Pages: former blog/theme pages now covered by Skills and Contact.
+/projects/smart-lawn /projects/grgagrow/ 301
+/projects/smart-lawn/ /projects/grgagrow/ 301
 /learning /skills/ 301
 /learning/* /skills/ 301
 /posts/* /skills/ 301

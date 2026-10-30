@@ -55,4 +55,8 @@ Garden profiles and zones (v0.5) are stored in the existing Supabase project. Us
 
 ### Public Live projection (v0.13)
 
-The Smart Lawn project links separately to `/demos/my-garden/?public=grgagrow` (anonymous read-only selected readings, seven-day history, regional forecast and provisional sun/shade model) and `?mode=demo` (simulated data). Owners use `?mode=live` then Garden → Portfolio Live to manage publication. Exact coordinates and private controls stay outside the public feed. The sensor feed currently awaits physical hardware; no example readings are presented as Live.
+The project page is `/projects/grgagrow/`. The former `/projects/smart-lawn/` address redirects to it on both publication targets, preserving existing section links. Media stays at its existing paths so previously shared image URLs continue to work.
+
+The grgaGrow project links separately to `/demos/my-garden/?public=grgagrow` (anonymous read-only selected readings, seven-day history, regional forecast and provisional sun/shade model) and `?mode=demo` (simulated data). Owners use `?mode=live` then Garden → Portfolio Live to manage publication. Exact coordinates and private controls stay outside the public feed. The sensor feed currently awaits physical hardware; no example readings are presented as Live.
+
+Public Demo and Live start with Visual sensor cards showing the grass-and-roots illustration. The Visual / Compact switch changes presentation only; missing, stale and unverified readings keep their existing data-quality treatment. The illustration does not represent measured root growth or inferred soil conditions.
