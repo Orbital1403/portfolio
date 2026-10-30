@@ -141,22 +141,30 @@ const hardware = [
       </p>
       <p class="lead">A small lawn. A closer look beneath the surface.</p>
       <p>
-        What started as an idea for watering my 50 m² lawn is becoming <strong>My Garden</strong> — a mobile soil-monitoring
+        What started as an idea for watering my 49 m² lawn is becoming <strong>grgaGrow</strong> — a mobile soil-monitoring
         app, with two wired probes and an ESP32 controller planned for the garden. The software can already be explored; the
         hardware connection is the next step.
       </p>
       <div class="project-actions">
-        <a class="demo-link" href="/demos/my-garden/" target="_blank" rel="noopener noreferrer"
+        <a
+          class="demo-link live-link"
+          href="/demos/my-garden/?public=grgagrow"
+          target="_blank"
+          rel="noopener noreferrer">View Live garden ↗</a
+        >
+        <a class="demo-link" href="/demos/my-garden/?mode=demo" target="_blank" rel="noopener noreferrer"
           >Try the interactive demo ↗</a
         >
         <a href="#lawn-hardware">Explore the hardware ↓</a>
       </div>
-      <p class="note">Simulated data · No account needed · No hardware connected</p>
+      <p class="note">
+        Live: public readings, regional weather and sun/shade · Demo: simulated readings · No account needed
+      </p>
     </header>
 
     <figure class="dashboard-figure">
       <a
-        href="/demos/my-garden/"
+        href="/demos/my-garden/?mode=demo"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Open the My Garden interactive demo in a new tab"
@@ -241,15 +249,17 @@ const hardware = [
         </p>
       </div>
       <p>
-        grgaGrow connects to Supabase authentication and owner-scoped database access. Demo mode uses simulated
-        readings; Live mode signs in to a private garden and shows real weather with city selection. History offers
-        metric filters, sample statistics and a measurement log; alerts support opt-in phone push. Device ingestion and
-        physical sensor operation still require hardware verification.
+        grgaGrow offers two public views. Demo lets you explore simulated sensor readings and controls. Live is a
+        read-only window into selected garden measurements, seven days of history, regional weather and an approximate
+        sun/shade model. The owner uses a separate signed-in workspace for settings, alerts and the garden diary. Device
+        ingestion and physical sensor operation still require hardware verification; Live shows waiting for data until
+        real readings arrive.
       </p>
       <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
       <p class="note">
-        The browser app is hosted here with private account access for live sensor records. Watering advice uses
-        preliminary user-defined thresholds, not validated agronomic guidance; automatic irrigation is not active.
+        The public feed excludes exact coordinates and private settings. The owner chooses what to publish and can
+        disable Live. Watering advice uses preliminary user-defined thresholds, not validated agronomic guidance;
+        automatic irrigation is not active.
       </p>
     </section>
 
@@ -384,18 +394,26 @@ const hardware = [
         </li>
         <li>
           <strong>Consider irrigation</strong><p>
-            Only after reliable monitoring: test a valve, shut-off behaviour and watering limits. Weather, notifications
-            and automatic control remain future work.
+            Only after reliable monitoring: test a valve, shut-off behaviour and watering limits. Weather and
+            notifications are available in the app; automatic irrigation remains future work.
           </p>
         </li>
       </ol>
       <div class="closing-demo">
         <div>
-          <h3>Take a look beneath the surface.</h3><p>Explore the current My Garden software prototype.</p>
+          <h3>Take a look beneath the surface.</h3><p>View the public garden, or explore the simulated demo.</p>
         </div>
-        <a class="demo-link" href="/demos/my-garden/" target="_blank" rel="noopener noreferrer">Open the demo ↗</a>
+        <div class="project-actions">
+          <a class="demo-link" href="/demos/my-garden/?public=grgagrow" target="_blank" rel="noopener noreferrer"
+            >View Live ↗</a
+          ><a class="demo-link" href="/demos/my-garden/?mode=demo" target="_blank" rel="noopener noreferrer"
+            >Try demo ↗</a
+          >
+        </div>
       </div>
-      <p class="note">Project snapshot: 29 October 2026 · Demo download: approximately 6 MB · Simulated data only</p>
+      <p class="note">
+        Project snapshot: 30 October 2026 · Live measurements pending hardware connection · Demo uses simulated data
+      </p>
     </section>
   </div>
 </LayoutDefault>
