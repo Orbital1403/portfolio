@@ -1,0 +1,25 @@
+---
+import { getEntry, render } from 'astro:content'
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+const post = await getEntry('spec', 'projects')
+if (!post) throw new Error('No portfolio project post found')
+const { Content } = await render(post)
+---
+
+<LayoutDefault title="Portfolio — Personal Website — Gordan Grgić" description="How I am adapting an Astro theme into my personal portfolio: structure, typography, project presentation and responsive layouts.">
+  <header class="page-heading">
+    <a class="back-link" href="/projects/">← All projects</a>
+    <p class="folio-label">PERSONAL WEBSITE / PROJECT 01</p>
+    <h1>Behind this website</h1>
+  </header>
+  <article class="prose"><Content /></article>
+  <nav class="project-navigation" aria-label="Other projects">
+    <a href="/projects/">← All projects</a>
+    <a href="/projects/mila/">02 / MILA* →</a>
+  </nav>
+</LayoutDefault>
+
+<style>
+  .back-link { display: inline-block; margin-bottom: 24px; font: 11px/1.7 var(--note-font); }
+  .project-navigation { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 40px; padding-top: 20px; border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent); font: 12px/1.7 var(--note-font); }
+</style>
