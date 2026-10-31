@@ -5,6 +5,9 @@ import GrgaGrowCard from '~/components/GrgaGrowCard.astro'
 const projectPost = await getEntry('spec', 'projects')
 if (!projectPost) throw new Error('No project post found')
 const { Content } = await render(projectPost)
+const milaPost = await getEntry('spec', 'mila')
+if (!milaPost) throw new Error('No MILA post found')
+const { Content: MilaContent } = await render(milaPost)
 ---
 
 <LayoutDefault
@@ -35,6 +38,8 @@ const { Content } = await render(projectPost)
       href="#current-state">Current state</a
     ><a data-no-swup href="#portfolio-project">This portfolio</a>
   </nav><GrgaGrowCard /><article class="prose">
+    <MilaContent />
+    <hr />
     <Content />
   </article></LayoutDefault
 >
