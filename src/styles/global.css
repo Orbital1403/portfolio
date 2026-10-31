@@ -411,7 +411,7 @@ html.dark .theme-toggle .theme-sun {
   display: none;
 }
 
-.prose h2#mila {
+.prose h2:is(#mila, #portfolio-project) {
   font-family: 'MyFont', monospace;
   font-size: 58px;
   font-weight: 400;
@@ -423,7 +423,7 @@ html.dark .theme-toggle .theme-sun {
   scroll-margin-top: 24px;
 }
 @media (max-width: 1023px) {
-  .prose h2#mila {
+  .prose h2:is(#mila, #portfolio-project) {
     font-size: 44px;
     margin-top: 24px;
   }
