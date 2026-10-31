@@ -27,7 +27,7 @@ const sections = [
 >
   <header class="page-heading">
     <a class="back-link" href="/projects/">← All project notes</a>
-    <p class="folio-label">HARDWARE + SOFTWARE + MUSIC / FIELD NOTES 01</p>
+    <p class="folio-label">HARDWARE + SOFTWARE + MUSIC / FIELD NOTES 02</p>
     <h1>Audio streamer</h1>
   </header>
   <nav class="project-contents" aria-label="Project contents">
@@ -52,9 +52,14 @@ const sections = [
   <article class="prose">
     <Content />
   </article>
+  <nav class="project-navigation" aria-label="Other projects">
+    <a href="/projects/">← All projects</a>
+    <a href="/projects/grgagrow/">03 / grgaGrow →</a>
+  </nav>
 </LayoutDefault>
 
 <style>
+  .project-navigation { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 40px; padding-top: 20px; border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent); font: 12px/1.7 var(--note-font); }
   .back-link {
     display: inline-block;
     margin-bottom: 24px;
