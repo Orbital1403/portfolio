@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="en-us" class="animation-prepared"> <head><meta name="astro-view-transitions-enabled" content="true"> <meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/portfolio/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DDRd4psi.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light dark"><title>MILA* — Audio Streamer in Development — Gordan Grgić</title>  <link rel="canonical" href="https://gordangrgic.com/projects/mila/"> <meta name="description" content="A working personal audio-streamer prototype. Requirements, troubleshooting, device testing and AI-assisted development, with further integration and recovery validation underway."> <meta name="robots" content="index, follow"> <meta property="og:title" content="MILA* — Audio Streamer in Development — Gordan Grgić"> <meta property="og:type" content="website"> <meta property="og:image" content="https://gordangrgic.com/images/projects/gstreamer/mila-now-playing-20261018.jpg"> <meta property="og:url" content="https://gordangrgic.com/projects/mila/">  <meta property="og:description" content="A working personal audio-streamer prototype. Requirements, troubleshooting, device testing and AI-assisted development, with further integration and recovery validation underway.">    <meta property="og:site_name" content="Gordan Grgić">  <meta property="og:image:url" content="https://gordangrgic.com/images/projects/gstreamer/mila-now-playing-20261018.jpg"> <meta property="og:image:secure_url" content="https://gordangrgic.com/images/projects/gstreamer/mila-now-playing-20261018.jpg"> <meta property="og:image:type" content="image/jpeg"> <meta property="og:image:width" content="1024"> <meta property="og:image:height" content="600"> <meta property="og:image:alt" content="MILA* audio streamer: Now Playing interface with album artwork, playback controls and separate source and DAC format labels">    <meta name="generator" content="Astro v7.3.8"><meta name="twitter:image" content="https://gordangrgic.com/images/projects/gstreamer/mila-now-playing-20261018.jpg"><meta name="twitter:image:alt" content="MILA* audio streamer: Now Playing interface with album artwork, playback controls and separate source and DAC format labels"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MILA* — Audio Streamer in Development — Gordan Grgić"><meta name="twitter:description" content="A working personal audio-streamer prototype. Requirements, troubleshooting, device testing and AI-assisted development, with further integration and recovery validation underway.">  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://gordangrgic.com/#person","name":"Gordan Grgić","url":"https://gordangrgic.com/","jobTitle":"Quality Control & Hardware/Software Technician","description":"Portfolio of Gordan Grgić: practical technical experience, computers and electronics, and MILA*, a personal audio streamer in development. Based in Brussels.","sameAs":["https://github.com/Orbital1403","https://www.linkedin.com/in/gordan-grgic-0ba40a354/"],"knowsAbout":["Quality Control","Failure Analysis","Hardware Diagnostics","Calibration","Linux & Raspberry Pi","Audio Systems","Java","Python"],"address":{"@type":"PostalAddress","addressLocality":"Brussels","addressCountry":"Belgium"}},{"@type":"WebSite","@id":"https://gordangrgic.com/#website","url":"https://gordangrgic.com/","name":"Gordan Grgić","description":"Portfolio of Gordan Grgić: practical technical experience, computers and electronics, and MILA*, a personal audio streamer in development. Based in Brussels.","publisher":{"@id":"https://gordangrgic.com/#person"}}]}</script><script data-astro-rerun>
+      document.documentElement.classList.add('js')
+    </script><script>
+  window.applyTheme = function (theme) {
+    const html = document.documentElement
+    html.classList.toggle('dark', theme === 'dark')
+    html.dataset.theme = theme
+  }
+  ;(function initTheme() {
+    if (window.__portfolioThemeInitialized) {
+      return
+    }
+    window.__portfolioThemeInitialized = true
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const chosen = () => {
+      try {
+        return localStorage.getItem('theme-choice')
+      } catch {
+        return null
+      }
+    }
+    const current = () => chosen() || (media.matches ? 'dark' : 'light')
+    window.applyTheme(current())
+    document.addEventListener('astro:after-swap', () => window.applyTheme(current()))
+    media.addEventListener('change', () => chosen() || window.applyTheme(current()))
+  })()
+</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"><link rel="icon" href="/portfolio/favicon-v2.ico" sizes="32x32"><link rel="icon" href="/portfolio/favicon-v2.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/portfolio/apple-touch-icon-v2.png"><link rel="preload" href="/portfolio/fonts/myfont.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/portfolio/_astro/compiler.C-pdRN1m.css"><link rel="stylesheet" href="/portfolio/_astro/LayoutDefault.CXQ3gxud.css"><style>.back-link[data-astro-cid-nk5qsgel]{margin-bottom:24px;font:11px IBM Plex Mono,monospace;display:inline-block}.project-contents[data-astro-cid-nk5qsgel]{border-top:1px solid color-mix(in srgb, currentColor 20%, transparent);border-bottom:1px solid color-mix(in srgb, currentColor 20%, transparent);flex-wrap:wrap;gap:8px 22px;margin-bottom:25px;padding:14px 0;font:11px IBM Plex Mono,monospace;display:flex}.project-contents[data-astro-cid-nk5qsgel] a[data-astro-cid-nk5qsgel]{color:inherit;padding:4px 0;text-decoration:none}.project-contents[data-astro-cid-nk5qsgel] a[data-astro-cid-nk5qsgel]:hover{color:#39776c;background:0 0}
+</style><script type="module" src="/portfolio/_astro/page.CZpLv-iH.js"></script><style>[data-astro-transition-scope="astro-7sypi5ud-1"] { view-transition-name: astro-7sypi5ud-1; }@layer astro { ::view-transition-old(astro-7sypi5ud-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-7sypi5ud-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-7sypi5ud-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-7sypi5ud-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-7sypi5ud-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-7sypi5ud-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-7sypi5ud-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-7sypi5ud-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-7sypi5ud-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-7sypi5ud-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-7sypi5ud-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-7sypi5ud-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="site-body"> <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2"> Skip to content </a> <header class="site-header"> <div class="site-header-bar"> <div class="site-identity"> <a class="not-underline-hover" href="/portfolio/"> <span class="identity-name">gordan grgić</span> <span class="identity-role">Problem Solver</span> </a> </div> <div class="site-tools"> <button type="button" aria-label="Toggle theme" title="Toggle theme" class="theme-toggle inline-flex items-center justify-center cursor-pointer" onclick="(function(){
+    const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+    try { localStorage.setItem('theme-choice', next); } catch {}
+    if (window.applyTheme) window.applyTheme(next);
+  })()" data-astro-cid-l6lhmie6> <svg class="technical-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#sun"></use></svg> <svg class="technical-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#moon"></use></svg> </button> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu"> <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span> </button> </div> </div> <div id="site-menu" class="site-menu"> <nav class="site-nav font-bold" flex="~ col gap-4" aria-label="Main"> <ul class="nav-menu text-3.5" lg="flex-col items-start text-4"> <li> <a href="/portfolio/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#home"></use></svg> <span>HOME</span>  </a> </li><li> <a href="/portfolio/about/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#about"></use></svg> <span>ABOUT</span>  </a> </li><li> <a href="/portfolio/projects/" class="nav-link" aria-current="page">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#projects"></use></svg> <span>PROJECTS</span>  </a> </li><li> <a href="/portfolio/skills/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#skills"></use></svg> <span>SKILLS</span>  </a> </li><li> <a href="/portfolio/hobbies/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#hobbies"></use></svg> <span>HOBBIES</span>  </a> </li><li> <a href="/portfolio/contact/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#mail"></use></svg> <span>CONTACT</span>  </a> </li> </ul> <ul class="social" flex="~ row gap-1 justify-center"> <li> <a href="https://github.com/Orbital1403" target="_blank" rel="noopener noreferrer" title="github" data-no-swup class="social-link not-underline-hover inline-flex items-center"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#github"></use></svg> </a> </li><li> <a href="https://www.linkedin.com/in/gordan-grgic-0ba40a354/" target="_blank" rel="noopener noreferrer" title="linkedin" data-no-swup class="social-link not-underline-hover inline-flex items-center"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#linkedin"></use></svg> </a> </li> <li class="social-theme"><button type="button" aria-label="Toggle theme" title="Toggle theme" class="theme-toggle inline-flex items-center justify-center cursor-pointer" onclick="(function(){
+    const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+    try { localStorage.setItem('theme-choice', next); } catch {}
+    if (window.applyTheme) window.applyTheme(next);
+  })()" data-astro-cid-l6lhmie6> <svg class="technical-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#sun"></use></svg> <svg class="technical-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#moon"></use></svg> </button></li> </ul> </nav><script type="module">var e=/\/+$/;function t(t,n=`/`){let r=n.replace(e,``);return(r&&(t===r||t.startsWith(`${r}/`))?t.slice(r.length):t).replace(e,``)||`/`}function n(e,t){return e===t||t!==`/`&&e.startsWith(`${t}/`)}function r(){let e=t(window.location.pathname,`/portfolio/`);document.querySelectorAll(`.site-header nav > ul:first-child a`).forEach(r=>{let i=t(new URL(r.href).pathname,`/portfolio/`);n(e,i)?r.setAttribute(`aria-current`,`page`):r.removeAttribute(`aria-current`)})}r(),document.addEventListener(`astro:page-load`,r);</script> </div> <div id="page-aside" class="page-aside"><nav class="page-contents" aria-label="On this page" data-astro-cid-nk5qsgel> <p data-astro-cid-nk5qsgel>ON THIS PAGE</p> <a data-no-swup href="#from-frustration-to-a-project" data-astro-cid-nk5qsgel>Idea</a><a data-no-swup href="#one-interface-for-everyday-listening" data-astro-cid-nk5qsgel>Features</a><a data-no-swup href="#my-role-and-how-i-work" data-astro-cid-nk5qsgel>My role</a><a data-no-swup href="#development-example-keeping-favourites-consistent" data-astro-cid-nk5qsgel>Examples</a><a data-no-swup href="#testing-and-releases" data-astro-cid-nk5qsgel>Testing</a><a data-no-swup href="#hardware--foundation" data-astro-cid-nk5qsgel>Hardware</a><a data-no-swup href="#current-state" data-astro-cid-nk5qsgel>Current state</a> </nav></div> </header> <main data-astro-transition-scope="astro-7sypi5ud-1" id="main" class="outline-none" tabindex="-1">  <header class="page-heading" data-astro-cid-nk5qsgel> <a class="back-link" href="/portfolio/projects/" data-astro-cid-nk5qsgel>← All project notes</a> <p class="folio-label" data-astro-cid-nk5qsgel>HARDWARE + SOFTWARE + MUSIC / FIELD NOTES 01</p> <h1 data-astro-cid-nk5qsgel>Audio streamer</h1> </header> <nav class="project-contents" aria-label="Project contents" data-astro-cid-nk5qsgel> <a data-no-swup href="#from-frustration-to-a-project" data-astro-cid-nk5qsgel>Idea</a><a data-no-swup href="#one-interface-for-everyday-listening" data-astro-cid-nk5qsgel>Features</a><a data-no-swup href="#my-role-and-how-i-work" data-astro-cid-nk5qsgel>My role</a><a data-no-swup href="#development-example-keeping-favourites-consistent" data-astro-cid-nk5qsgel>Examples</a><a data-no-swup href="#testing-and-releases" data-astro-cid-nk5qsgel>Testing</a><a data-no-swup href="#hardware--foundation" data-astro-cid-nk5qsgel>Hardware</a><a data-no-swup href="#current-state" data-astro-cid-nk5qsgel>Current state</a> </nav>  <article class="prose" data-astro-cid-nk5qsgel> <h2 id="mila">MILA*</h2>
+<p><strong>Personal audio streamer · In development</strong></p>
+<ul>
+<li><strong>Goal:</strong> local hi-res music, internet radio and streaming in one responsive player.</li>
+<li><strong>My role:</strong> requirements, behaviour, testing on the real device and release decisions; AI coding assistants write much of the implementation.</li>
+<li><strong>Current state:</strong> a working personal prototype in active development, used for everyday listening.</li>
+<li><strong>Validation:</strong> automated tests and device checks; some integrations, recovery scenarios and audio behaviour still need further validation.</li>
+</ul>
+<p>A music project that brings together my interest in computers, practical problem-solving and everyday listening. MILA* combines existing hardware with an interface I can shape around my own needs.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-player-queue-20261023.png" alt="MILA* playing a Fink album, with source and DAC formats above an album-grouped queue" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* player screenshot" loading="lazy" />
+<figcaption>Player — album playback, source and DAC formats, and queue · 23 October 2026 · Click to enlarge</figcaption>
+</figure>
+<h3 id="from-frustration-to-a-project">From frustration to a project</h3>
+<p>I listen to music every day, with a large personal library of hi-res FLAC files alongside internet radio and streaming. The streamers I used frustrated me: slow menus when browsing larger collections, occasional connection drops, and limited ways to adapt the system. I also wanted direct control over audio processing — ensuring bit-perfect delivery for high-resolution files, avoiding unwanted resampling, and verifying what the DAC actually receives.</p>
+<p>I set out to build a true all-rounder: a dedicated player that unites high-resolution local playback, internet radio, and streaming without compromise. Rather than keeping my main computer running, I looked at the hardware I already had: a Raspberry Pi 5, touch display, fast NVMe disk for local audio storage, USB DAC and linear power supply. I put my requirements on paper and began shaping a streamer around them.</p>
+<p>The goal was straightforward: make an all-rounder player that handles high-resolution FLAC albums effortlessly, keeps radio and streaming within easy reach, and remains completely responsive and transparent in how it behaves.</p>
+<h3 id="one-interface-for-everyday-listening">One interface for everyday listening</h3>
+<p>The Player brings playback controls together with the queue, favourites and recently played or added content. Source filters let me move between local music, radio and streaming without switching to a different interface.</p>
+<p>The built-in touch display is the main control surface. The same web interface can also be opened from a phone or computer on the local network. Playback stays on the streamer; those other devices act as remote controls.</p>
+<figure class="project-figure" style="max-width: 390px; margin-inline: auto;">
+<img src="/portfolio/images/projects/gstreamer/mila-mobile-player-20261023.jpg" alt="MILA* mobile player with album artwork, playback controls, track list and bottom navigation" width="514" height="789" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* mobile player screenshot" loading="lazy" />
+<figcaption>Mobile view — playback controls and album tracks · 23 October 2026 · Click to enlarge</figcaption>
+</figure>
+<h3 id="a-library-i-can-explore">A library I can explore</h3>
+<p>Navigating a large collection of hi-res FLAC files requires an interface that stays swift and intuitive. Local music can be browsed by album, artist, genre or folder, supported by search, sorting and alphabet navigation. High-speed NVMe storage on the Pi keeps album art and metadata loading instantly.</p>
+<p>I want browsing to feel connected to listening: inspect an album, choose a track, return to the collection and manage the queue without losing my place.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-library.png" alt="MILA* local music library with album artwork and browsing controls" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* library screenshot" loading="lazy" />
+<figcaption>Library — albums, artists, folders and persistent playback controls · Click to enlarge</figcaption>
+</figure>
+<h3 id="radio-without-the-clutter">Radio without the clutter</h3>
+<p>The radio view separates my own station collection from discovery. It brings together saved stations, search, recently played content and filters for country, genre and quality. Personal streams can also be added.</p>
+<p>Reliable background listening is a central development goal. When a stream or connection fails, the interface should explain what happened and provide a clear way to recover. Long listening sessions and recovery checks are part of the remaining validation.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-radio-stations-20261018.jpg" alt="MILA* My Stations with saved radio stations, discovery filters and the persistent mini-player" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* radio screenshot" loading="lazy" />
+<figcaption>Radio — saved stations, discovery and the mini-player · 18 October 2026 · Click to enlarge</figcaption>
+</figure>
+<h3 id="streaming-and-audio-control">Streaming and audio control</h3>
+<p>Qobuz browsing is integrated through Lyrion Music Server. AirPlay, Spotify Connect and Bluetooth are also part of the receiver work, with individual support and validation tracked during development.</p>
+<p>The main playback path uses <strong>Lyrion Music Server → Squeezelite → USB DAC</strong>. My aim is to avoid unnecessary resampling and digital volume changes for supported content. The interface distinguishes source quality from the format currently reported at the DAC output.</p>
+<p>That distinction matters: an output shown as 32-bit does not turn a compressed radio stream into higher-quality source material. The format display supports investigation; it is not, by itself, proof of bit-perfect reproduction.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-now-playing-20261018.jpg" alt="MILA* full-screen Now Playing view with BEAK album artwork, playback controls and separate source and DAC format labels" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* full-screen player screenshot" loading="lazy" />
+<figcaption>Now Playing — full-screen listening view · 18 October 2026 · Click to enlarge</figcaption>
+</figure>
+<h3 id="settings-that-belong-with-the-player">Settings that belong with the player</h3>
+<p>Appearance, audio and services, music storage, and system maintenance are organised into four sections. The project includes theme and display options, meters, device information and user-data backup tools. Sensitive system actions use protected controls.</p>
+<p>Screensavers and visual details are part of the experience, but they share the same design language as the listening and browsing screens.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-settings.png" alt="MILA* settings organised into four sections" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* settings screenshot" loading="lazy" />
+<figcaption>Settings — appearance, audio, storage and maintenance · Click to enlarge</figcaption>
+</figure>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-system-update-20261022.png" alt="MILA* system update screen listing available packages and protected update controls" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* system update screenshot" loading="lazy" />
+<figcaption>System updates — available packages and update controls · 22 October 2026 · Click to enlarge</figcaption>
+</figure>
+<h3 id="my-role-and-how-i-work">My role and how I work</h3>
+<p>My background is in hardware, quality control and failure analysis, and I run MILA* the same way. I lead the project: I define the requirements, decide how it should behave, test every change on the real device and decide what is released. AI coding assistants write much of the implementation under that direction. Directing that work and verifying the result is a skill in its own right.</p>
+<p>The playback foundation comes from Lyrion and Squeezelite; my application connects the sources, controls and device functions into a coherent experience.</p>
+<p>The work is iterative: notice a problem, reproduce it, investigate the cause, make a change and check the result. The examples below follow that pattern. I am also using the project to deepen my understanding of Python after completing my Java studies.</p>
+<section class="case-file" aria-labelledby="development-example-keeping-favourites-consistent">
+<p class="case-label">Development example · 01</p>
+<h3 id="development-example-keeping-favourites-consistent">Keeping favourites consistent</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>A single action could add the same favourite twice. A slow response could also arrive after a newer change and bring an older list back into view.</dd></div>
+<div><dt>02 / Investigation</dt><dd>The development review found that two list views shared the same underlying collection. It also identified places where older responses could still overwrite current favourites.</dd></div>
+<div><dt>03 / Change</dt><dd>The lists were separated, and newer confirmed changes now take priority over earlier responses. An uncertain operation is reported rather than automatically repeated.</dd></div>
+<div><dt>04 / Check</dt><dd>Targeted automated checks covered duplicate additions, late responses and confirmed changes. The documented update was installed and the Favourites view was inspected on the Pi. Longer use and simultaneous-client checks remain part of ongoing validation.</dd></div>
+</dl>
+</section>
+<section class="case-file" aria-labelledby="development-example-commands-that-only-looked-successful">
+<p class="case-label">Development example · 02</p>
+<h3 id="development-example-commands-that-only-looked-successful">Commands that only looked successful</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>Play, Pause and Next could fail without the interface saying so. Rejected commands were silently ignored, and an error-shaped reply from the music server could be read as a success.</dd></div>
+<div><dt>02 / Investigation</dt><dd>The review followed a command from the touch button through the backend to Lyrion's JSON-RPC interface. A missing result was being turned into an empty "success". A response lost on the network also says nothing about whether the command actually ran.</dd></div>
+<div><dt>03 / Change</dt><dd>Every command now ends in one of three outcomes: confirmed, rejected or unknown. An unknown outcome shows a warning that the command may already have run. Commands are deliberately not repeated automatically: repeating a Play/Pause toggle could undo a command that had in fact succeeded.</dd></div>
+<div><dt>04 / Check</dt><dd>New automated cases covered rejected, malformed and lost responses. The update was installed with a fresh backup; the music server kept running and the player reported playback before and after the installation.</dd></div>
+</dl>
+</section>
+<section class="case-file" aria-labelledby="development-example-a-lost-connection-without-false-alarms">
+<p class="case-label">Development example · 03</p>
+<h3 id="development-example-a-lost-connection-without-false-alarms">A lost connection without false alarms</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>When the interface lost contact with the player, the screen simply kept showing the last known state, with no sign that it might be out of date.</dd></div>
+<div><dt>02 / Investigation</dt><dd>Status polling already handled timeouts and late responses correctly, so the gap was feedback, not data. The real question was which failures should count: a single slow reply or a browser tab in the background should not raise an alarm.</dd></div>
+<div><dt>03 / Change</dt><dd>Two consecutive failed status checks now show a quiet notice that the status is unavailable and that the player is showing the last known playback. When contact returns, a short recovery message appears and then disappears. The notice never restarts or repeats anything, so it cannot interrupt playback.</dd></div>
+<div><dt>04 / Check</dt><dd>Five new automated cases covered an outage, recovery, single failures and a hidden page. On the Pi the notice stays hidden during normal polling; its appearance was reviewed in an isolated preview. I have not yet caused a real network fault on the device to see it there.</dd></div>
+</dl>
+</section>
+<p>These examples show the approach I bring from quality control: work through the cause, document the change and check the result, including saying clearly what has not been checked yet.</p>
+<h3 id="testing-and-releases">Testing and releases</h3>
+<p>MILA* runs on a device I listen to every day, so a change is only finished once it has been checked.</p>
+<ul>
+<li><strong>Automated tests.</strong> More than 1,100 automated tests cover the Python backend and the JavaScript interface: playback commands, library and queue, radio, favourites, settings and the installation tool itself. They are run before changes are installed.</li>
+<li><strong>Safe installation with rollback.</strong> Updates go through an installation tool. It first creates a backup and verifies the copy on my computer by checksum. It then replaces only the program files, and checks that the interface starts, that every installed file matches the release and that every page resource is served correctly. If a check fails, the previous version is restored automatically. The music services keep running during an update.</li>
+<li><strong>Checks on the real device.</strong> After an update I check status, library, queue and radio on the Pi, and finally listening and touch. Passing tests are not treated as proof that the sound is right.</li>
+</ul>
+<p>The rollback path is covered by targeted tests; a controlled rollback on real hardware is still on the list.</p>
+<h3 id="hardware--foundation">Hardware &amp; foundation</h3>
+<p>Photographs of my listening setup, with the touch display, DAC, linear power supply and speakers. Backgrounds have been softened for presentation.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-hardware-front-v2-1600.jpg" srcset="/images/projects/gstreamer/mila-hardware-front-v2-800.jpg 800w, /images/projects/gstreamer/mila-hardware-front-v2-1600.jpg 1396w" sizes="(max-width: 800px) 100vw, 760px" alt="MILA listening setup viewed from the front, with touch display, DAC, linear power supply and speakers" data-index="0" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the MILA hardware setup" loading="lazy" />
+<figcaption>My listening setup — front view · Click to enlarge</figcaption>
+</figure>
+<div class="mila-hardware-gallery">
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-hardware-angle-v2-1600.jpg" alt="MILA listening setup viewed at an angle" data-index="1" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the angled hardware photograph" loading="lazy" />
+<figcaption>The setup from another angle · Click to enlarge</figcaption>
+</figure>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-hardware-player-v3.jpg" alt="MILA player on the touch display, with analog VU meters, Topping DAC and TeraDak linear power supply" data-index="2" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the hardware detail photograph" loading="lazy" />
+<figcaption>MILA player on the touch display, DAC and linear power supply · Click to enlarge</figcaption>
+</figure>
+</div>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi 5</td>
+<td>Dedicated computer running the streamer</td>
+</tr>
+<tr>
+<td>NVMe disk</td>
+<td>Local music storage</td>
+</tr>
+<tr>
+<td>Topping E50 USB DAC</td>
+<td>Audio output</td>
+</tr>
+<tr>
+<td>10-inch touch display</td>
+<td>Built-in control interface</td>
+</tr>
+<tr>
+<td>Dedicated linear power supply</td>
+<td>DAC power</td>
+</tr>
+<tr>
+<td>Edifier MR5 speakers</td>
+<td>My listening setup</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Software:</strong> Raspberry Pi OS · Lyrion Music Server · Squeezelite · Python · HTML/CSS/JavaScript</p>
+<h3 id="current-state">Current state</h3>
+<p>MILA* is a working personal prototype in active development. The current focus is stable listening, recovery after interruptions and consistent behaviour across screen sizes. Some integrations and workflows still need refinement and real-world validation before a stable release.</p>
+<p>The source code is in a private repository. I am happy to walk through it, the tests and the release history in a conversation.</p>
+ </article>  </main> <footer class="site-footer"> <p data-astro-cid-nns7i3if>© 2026 <a target="_blank" href="https://gordangrgic.com/">Gordan Grgić</a></p> </footer> <script type="module">document.addEventListener(`animationend`,e,!1);function e(){document.documentElement.classList.remove(`animation-prepared`),document.removeEventListener(`animationend`,e,!1)}var t=()=>{};function n(){let e=document.querySelector(`.site-header`),n=e?.querySelector(`.menu-toggle`);if(!e||!n||e.dataset.menuBound)return;e.dataset.menuBound=`true`;let r=t=>{e.dataset.menu=t?`open`:`closed`,n.setAttribute(`aria-expanded`,String(t)),n.setAttribute(`aria-label`,t?`Close menu`:`Open menu`)};r(!1),n.addEventListener(`click`,()=>r(e.dataset.menu!==`open`)),e.querySelector(`.site-menu`)?.addEventListener(`click`,e=>{e.target.closest(`a`)&&r(!1)}),t=()=>{e.dataset.menu===`open`&&(r(!1),n.focus())}}n(),document.addEventListener(`astro:page-load`,n),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&t()});var r=[];function i(){let e=r.filter(e=>e.target.getBoundingClientRect().top<140).at(-1)??r[0];for(let{link:e}of r)e.removeAttribute(`aria-current`);e?.link.setAttribute(`aria-current`,`location`)}function a(){r=Array.from(document.querySelectorAll(`.page-contents a[href^="#"]`)).map(e=>({link:e,target:document.getElementById(decodeURIComponent(e.hash.slice(1)))})).filter(e=>e.target),i()}addEventListener(`scroll`,i,{passive:!0}),a(),document.addEventListener(`astro:page-load`,a);</script><script src="/portfolio/scripts/gallery.463dbdc7da42.js" defer></script></body> </html>
