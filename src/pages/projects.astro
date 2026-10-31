@@ -17,7 +17,18 @@ const projects = [
   <div class="project-cards">
     {projects.map(project => (
       <a class="project-card" href={project.href} aria-labelledby={`${project.id}-title`}>
-        <div class="card-image"><img src={project.image} alt={project.alt} width="1024" height="640" loading={project.number === '01' ? 'eager' : 'lazy'} decoding="async" /></div>
+        <div class="card-image">
+          {project.number === '01' ? (
+            <div class="portfolio-preview" role="img" aria-label="Portfolio website preview: Gordan Grgić, Curiosity. A practical mind.">
+              <p class="preview-address">gordangrgic.com</p>
+              <p class="preview-name">gordan grgić</p>
+              <div class="preview-rule"></div>
+              <p class="preview-note">PERSONAL FIELD NOTES / ZAGREB → BRUSSELS</p>
+              <p class="preview-title">Curiosity.<br />A practical mind.</p>
+              <p class="preview-footer">QUALITY · TESTING · HARDWARE + SOFTWARE</p>
+            </div>
+          ) : <img src={project.image} alt={project.alt} width="1024" height="640" loading="lazy" decoding="async" />}
+        </div>
         <div class="card-copy">
           <p class="card-label">{project.number} / {project.category}</p>
           <div class="card-heading"><h2 id={`${project.id}-title`}>{project.name}</h2><span class="card-status">In development</span></div>
@@ -52,6 +63,12 @@ const projects = [
   .project-card:focus-visible { outline: 2px solid #39776c; outline-offset: 5px; }
   .card-image { display: flex; align-items: center; background: color-mix(in srgb, currentColor 4%, transparent); border-right: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
   .card-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+  .portfolio-preview { box-sizing: border-box; width: 100%; padding: 28px; color: inherit; }
+  .preview-address { font: 10px/1.6 var(--note-font); color: var(--note-color); margin: 0 0 20px; }
+  .preview-name { font: 28px/1.1 'MyFont', monospace; margin: 0 0 16px; }
+  .preview-rule { border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent); margin-bottom: 24px; }
+  .preview-note, .preview-footer { font: 8px/1.8 var(--note-font); color: var(--note-color); margin: 0; }
+  .preview-title { font: 38px/1.1 'MyFont', monospace; margin: 14px 0 24px; }
   .card-copy { padding: 24px; min-width: 0; }
   .card-label { font: 10px/1.7 var(--note-font); letter-spacing: .8px; text-transform: uppercase; color: var(--note-color); margin: 0 0 14px; }
   .card-heading { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
