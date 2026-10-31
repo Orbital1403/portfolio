@@ -3,7 +3,9 @@ title: "Project notes"
 description: "MILA*: a personal audio streamer in development, combining hardware, music, software and careful testing."
 ---
 
-<h2 id="portfolio-project">01 / Portfolio</h2>
+<p class="folio-label">01 / Portfolio</p>
+
+<h2 id="portfolio-project">Portfolio</h2>
 
 **Personal website · In development**
 
