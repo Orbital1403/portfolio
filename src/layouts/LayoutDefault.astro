@@ -16,10 +16,12 @@ interface Props {
   description?: string
   image?: string
   imageAlt?: string
+  imageWidth?: number
+  imageHeight?: number
   noindex?: boolean
 }
 
-const { title, description, image, imageAlt, noindex } = Astro.props
+const { title, description, image, imageAlt, imageWidth, imageHeight, noindex } = Astro.props
 const lang = themeConfig.appearance.locale ?? 'en-us'
 ---
 
@@ -30,7 +32,15 @@ const lang = themeConfig.appearance.locale ?? 'en-us'
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
     <slot name="seo"
-      ><SiteSeo title={title} desc={description} image={image} imageAlt={imageAlt} noindex={noindex} /></slot
+      ><SiteSeo
+        title={title}
+        desc={description}
+        image={image}
+        imageAlt={imageAlt}
+        imageWidth={imageWidth}
+        imageHeight={imageHeight}
+        noindex={noindex}
+      /></slot
     >
 
     <script is:inline data-astro-rerun>

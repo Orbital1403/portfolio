@@ -5,9 +5,11 @@ import { themeConfig } from '~/.config'
 interface Props {
   title?: string
   desc?: string
-  /** Root-relative path of a 1200×630 share image. */
+  /** Root-relative path of a JPEG share image. Defaults to 1200×630. */
   image?: string
   imageAlt?: string
+  imageWidth?: number
+  imageHeight?: number
   noindex?: boolean
 }
 
@@ -55,8 +57,8 @@ const openGraph: SEOProps['openGraph'] = {
     url: shareImage,
     secureUrl: shareImage,
     type: 'image/jpeg',
-    width: 1200,
-    height: 630,
+    width: props.imageWidth ?? 1200,
+    height: props.imageHeight ?? 630,
     alt: shareImageAlt,
   },
 }
