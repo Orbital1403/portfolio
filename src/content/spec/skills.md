@@ -23,13 +23,13 @@ Gained in production and quality control at Siemens and Altpro.
 - Daily use of Linux, macOS and Windows
 - Raspberry Pi 5: headless setup, systemd services, ALSA audio, remote deployment
 - Hands-on technician work: appliances, electrics, boilers, renovation
-- MILA\*: a personal audio streamer in development that I lead from requirements to release (see [Projects](/projects/))
+- MILA\*: a personal audio streamer in development that I lead from requirements to release (see [MILA* project notes](/projects/mila/))
 
 ---
 
 ## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#code"/></svg> Testing & AI-assisted development
 
-Developed through MILA\* (see [Projects](/projects/)).
+Developed through MILA\* (see [MILA* project notes](/projects/mila/)).
 
 - Reproducing problems, tracing their cause and checking each fix, with automated tests and on the real device
 - Safe releases: backups verified by checksum, post-installation checks and automatic rollback
