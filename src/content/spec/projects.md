@@ -3,7 +3,7 @@ title: "Project notes"
 description: "MILA*: a personal audio streamer in development, combining hardware, music, software and careful testing."
 ---
 
-<h3 id="portfolio-project">02 / This portfolio</h3>
+<h2 id="portfolio-project">01 / Portfolio</h2>
 
 **Personal website · In development**
 
@@ -17,6 +17,6 @@ The aim is a clear, honest account of what I have done and what I am learning, w
 
 ---
 
-### 03 / Coursework & continued learning
+### Coursework & continued learning
 
 I have completed my Java studies and now want to deepen my understanding of Python through practical work on MILA\*. Course summaries and certificates are on the [Skills](/skills/) page.
