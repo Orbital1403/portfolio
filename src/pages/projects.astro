@@ -11,23 +11,15 @@ const { Content: MilaContent } = await render(milaPost)
 ---
 
 <LayoutDefault
-  title="Projects — MILA* & grgaGrow — Gordan Grgić"
+  title="Projects — Portfolio, MILA* & grgaGrow — Gordan Grgić"
   description="MILA*: a Raspberry Pi audio streamer for hi-res FLAC, radio and streaming. Plus grgaGrow: a cloud garden app with soil history, weekly reports, a journal and weather and sun/shade views. Physical sensor integration is next."
   ><header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / PROJECTS</p><h1>Project notes</h1>
   </header><nav class="project-picker" aria-label="Choose a project">
-    <a data-no-swup href="#mila">01 / MILA*</a><a data-no-swup href="#portfolio-project">02 / This portfolio</a>
+    <a data-no-swup href="#portfolio-project">01 / Portfolio</a><a data-no-swup href="#mila">02 / MILA*</a>
     <a href="/projects/grgagrow/">03 / grgaGrow · In development</a>
-  </nav><nav class="project-contents" aria-label="Project contents">
-    <a data-no-swup href="#from-frustration-to-a-project">Idea</a><a
-      data-no-swup
-      href="#one-interface-for-everyday-listening">Features</a
-    ><a data-no-swup href="#my-role-and-how-i-work">Development</a><a
-      data-no-swup
-      href="#development-example-keeping-favourites-consistent">Examples</a
-    ><a data-no-swup href="#testing-and-releases">Testing</a><a data-no-swup href="#hardware--foundation">Hardware</a>
   </nav><nav slot="aside" class="page-contents" aria-label="On this page">
-    <p>ON THIS PAGE</p><a data-no-swup href="#from-frustration-to-a-project">Idea</a><a
+    <p>ON THIS PAGE</p><a data-no-swup href="#portfolio-project">01 / Portfolio</a><a data-no-swup href="#mila">02 / MILA*</a><a data-no-swup href="#from-frustration-to-a-project">Idea</a><a
       data-no-swup
       href="#one-interface-for-everyday-listening">Features</a
     ><a data-no-swup href="#my-role-and-how-i-work">My role</a><a
@@ -36,12 +28,28 @@ const { Content: MilaContent } = await render(milaPost)
     ><a data-no-swup href="#testing-and-releases">Testing</a><a data-no-swup href="#hardware--foundation">Hardware</a><a
       data-no-swup
       href="#current-state">Current state</a
-    ><a data-no-swup href="#portfolio-project">This portfolio</a>
-  </nav><GrgaGrowCard /><article class="prose">
-    <MilaContent />
-    <hr />
+    ><a data-no-swup href="#grgagrow">03 / grgaGrow</a>
+  </nav><article class="prose">
     <Content />
-  </article></LayoutDefault
+  </article>
+  <hr />
+  <p class="folio-label">02 / MILA*</p>
+<nav class="project-contents" aria-label="Project contents">
+    <a data-no-swup href="#from-frustration-to-a-project">Idea</a><a
+      data-no-swup
+      href="#one-interface-for-everyday-listening">Features</a
+    ><a data-no-swup href="#my-role-and-how-i-work">Development</a><a
+      data-no-swup
+      href="#development-example-keeping-favourites-consistent">Examples</a
+    ><a data-no-swup href="#testing-and-releases">Testing</a><a data-no-swup href="#hardware--foundation">Hardware</a>
+  </nav>
+  <article class="prose">
+    <MilaContent />
+  </article>
+  <section id="grgagrow" aria-label="03 / grgaGrow">
+    <p class="folio-label">03 / grgaGrow</p>
+    <GrgaGrowCard />
+  </section></LayoutDefault
 >
 
 <style>
