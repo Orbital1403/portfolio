@@ -63,14 +63,35 @@ const hardwareGallery = [
     vendor: 'AOSI',
   },
   {
-    image: 'enclosure-reference.jpg',
-    width: 970,
-    height: 728,
+    image: 'termination-resistor-reference.jpg',
+    width: 500,
+    height: 500,
+    title: 'RS485 termination',
+    detail: 'Metal-film resistor · Bus-end termination',
+    alt: 'Close-up reference photograph of a blue axial metal-film resistor with coloured bands and wire leads',
+    source: 'https://srkelectronics.in/product/120-ohm-0-5w-metal-film-resistor-120-ohm-1-2w-mfr-resistor-pack-of-100/',
+    vendor: 'SRK Electronics',
+  },
+  {
+    image: 'enclosure-opaque-reference.jpg',
+    width: 1000,
+    height: 1000,
     title: 'Project enclosure',
-    detail: 'Protected housing for electronics',
-    alt: 'Adafruit reference photograph of an electronics enclosure with a clear lid and cable glands',
-    source: 'https://www.adafruit.com/product/3931',
-    vendor: 'Adafruit',
+    detail: 'Opaque-lid electronics housing',
+    alt: 'Reference photograph of a closed light-grey electronics enclosure with an opaque screw-fastened lid and mounting tabs',
+    source: 'https://vxb.com/products/heavy-duty-abs-plastic-junction-box-for-indoor-out',
+    vendor: 'VXB',
+  },
+  {
+    image: 'gel-joint-box-reference.jpg',
+    width: 730,
+    height: 730,
+    title: 'Cable-joint protection',
+    detail: 'Gel-filled joint housing · Reference model',
+    alt: 'JINH reference photograph of an open green gel joint box with a lever connector and black leads',
+    source:
+      'https://www.cnjinh.com/waterproofs-connector/waterproof-gel-box/ip68-gel-box-for-quick-connectors-of-3p-and.html',
+    vendor: 'JINH',
   },
   {
     image: 'din-rails-reference.jpg',
@@ -93,15 +114,14 @@ const hardwareGallery = [
     vendor: 'LEDsales',
   },
   {
-    image: 'inline-fuses-reference.jpg',
-    width: 800,
-    height: 800,
+    image: 'inline-fuse-holder-reference.jpg',
+    width: 500,
+    height: 500,
     title: 'Inline fuse holders',
-    detail: 'Wired holders for glass fuses',
-    alt: 'Tian Rui reference photograph of two inline glass-fuse holders with red wire leads',
-    source:
-      'https://www.fuse-china.com/sale-37945850-16awg-gauge-5x20mm-inline-glass-tube-fuse-holder-splash-proof-waterproof.html',
-    vendor: 'Tian Rui',
+    detail: '5 × 20 mm glass-fuse holder',
+    alt: 'Reference photograph of an open 5 × 20 mm inline glass-fuse holder with red wire and a glass fuse',
+    source: 'https://srkelectronics.in/product/5x20mm-fuse-holder-inline-screw-type-with-wire/',
+    vendor: 'SRK Electronics',
   },
   {
     image: 'dc-connectors-reference.jpg',
@@ -122,6 +142,16 @@ const hardwareGallery = [
     alt: 'DFRobot reference photograph of a light-coloured PG7 cable gland with a sealing ring',
     source: 'https://www.dfrobot.com/product-2159.html',
     vendor: 'DFRobot',
+  },
+  {
+    image: 'crimper-ferrules-reference.jpg',
+    width: 1500,
+    height: 1500,
+    title: 'Crimper & ferrules',
+    detail: 'Assembly tools · Wire-end preparation',
+    alt: 'Reference photograph of ferrule crimping pliers beside a divided box of coloured wire-end ferrules on a workbench',
+    source: 'https://deodap.in/products/approx-1200-piece-ferrule-crimping-tool-kit-set',
+    vendor: 'DeoDap',
   },
 ]
 
@@ -385,7 +415,8 @@ const hardware = [
         <div><dt>Field status</dt><dd>Not yet installed</dd></div>
       </dl>
       <p class="note">
-        Reference photos below illustrate the component types. Models and appearance may differ from the ordered parts.
+        Reference photos below show component types and assembly accessories. Models, dimensions and pictured quantities
+        may differ from the ordered parts.
       </p>
       <div class="hardware-gallery" aria-label="Reference photos of hardware component types">
         {
@@ -444,9 +475,9 @@ const hardware = [
           testing them together. The final cable route, termination and sealed joints will be checked as one assembly.
         </p>
         <p>
-          Remaining preparation includes gel-filled cable-joint boxes, single-wire ferrules and wire labels. The PG7
-          glands must fit the 6.5 mm garden cable, and the delivered probes must explicitly support the intended buried
-          installation. Automatic watering comes after reliable monitoring.
+          Connection preparation includes gel-filled cable-joint boxes, crimped wire-end ferrules and wire labels. The
+          PG7 glands must fit the 6.5 mm garden cable, and the delivered probes must explicitly support the intended
+          buried installation. Automatic watering comes after reliable monitoring.
         </p>
       </div>
       <div

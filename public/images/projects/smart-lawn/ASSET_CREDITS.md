@@ -51,3 +51,16 @@ The captures contain only the public demo view. Private owner settings, coordina
 ## Visual sensor cards — 30 October 2026
 
 `grgagrow-visual-sensors.jpg` was captured from the local preview of the hosted public Demo build prepared for publication. It shows two sensor cards, the Visual / Compact switch and the existing grass-and-roots illustration. Soil values are simulated and labelled as such; the illustration does not measure root growth or soil conditions. This image is the current project hero.
+
+## Hardware photo refresh — 31 October 2026
+
+Clean product photographs replace the supplied shop screenshots. The published assets contain no browser chrome, prices, shopping cart, notifications or purchase details. The original screenshots are not copied into the repository.
+
+- `hardware/crimper-ferrules-reference.jpg`: DeoDap photograph of a crimper and ferrule assortment on a workbench, without text overlays. It illustrates assembly tools; pictured quantities and model are not an order confirmation.
+- `hardware/termination-resistor-reference.jpg`: SRK Electronics close-up of a blue axial metal-film resistor, from its 120 Ω / 0.5 W listing. This is a type reference, not verification of the delivered component's value or rating.
+- `hardware/enclosure-opaque-reference.jpg`: VXB opaque-lid enclosure photograph, replacing the clear-lid Adafruit reference. Mounting tabs and supplier can differ from the ordered enclosure.
+- `hardware/gel-joint-box-reference.jpg`: JINH CNP3106 gel-joint housing with an example lever-connector arrangement. The pictured connector layout does not establish the selected wiring topology, cable fit or underground protection.
+- `hardware/inline-fuse-holder-reference.jpg`: SRK Electronics photograph of an open 5 × 20 mm inline holder and glass fuse, replacing the framed Tian Rui image. It does not establish wire size, fuse rating or quantity.
+- The existing DFRobot PG7 photograph is retained because it is already a clean, high-resolution product image.
+
+Source pages and original image URLs are recorded under `hardware-photo-refresh` in `sources.json`. These are component-type references, not photographs of the delivered or assembled system. The supplied screenshots show different enclosure and fuse variants from the earlier confirmed bill of materials; the confirmed inventory is unchanged. Third-party image rights remain with their owners and are excluded from this repository's MIT licence.

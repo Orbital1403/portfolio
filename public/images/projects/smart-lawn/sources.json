@@ -183,5 +183,46 @@
       "grgagrow-weekly-report.jpg",
       "grgagrow-sun-shade.jpg"
     ]
+  },
+  "hardware-photo-refresh": {
+    "date": "2026-10-31",
+    "note": "Clean manufacturer and merchant product photographs. Reference types and assembly tools; not delivery or field-test evidence. Existing DFRobot PG7 photograph retained for its quality.",
+    "assets": [
+      {
+        "asset": "hardware/crimper-ferrules-reference.jpg",
+        "provider": "DeoDap",
+        "page": "https://deodap.in/products/approx-1200-piece-ferrule-crimping-tool-kit-set",
+        "image": "https://deodap.in/cdn/shop/files/Wire-Ferrule-Crimping-Tool-Kit-01.jpg?v=1751514959&width=1946",
+        "note": "Clean photograph without text. Reference kit only; pictured model and ferrule quantities are not an order confirmation."
+      },
+      {
+        "asset": "hardware/enclosure-opaque-reference.jpg",
+        "provider": "VXB",
+        "page": "https://vxb.com/products/heavy-duty-abs-plastic-junction-box-for-indoor-out",
+        "image": "https://vxb.com/cdn/shop/files/41lSKvH08jL.jpg?v=1772751005",
+        "note": "Opaque-lid enclosure type reference. Mounting tabs and supplier may differ from the ordered box."
+      },
+      {
+        "asset": "hardware/gel-joint-box-reference.jpg",
+        "provider": "JINH",
+        "page": "https://www.cnjinh.com/waterproofs-connector/waterproof-gel-box/ip68-gel-box-for-quick-connectors-of-3p-and.html",
+        "image": "https://www.cnjinh.com/uploads/31714/ip68-gel-box-for-quick-connectors-of-3p-ande45a6.jpg",
+        "note": "CNP3106 reference photograph with an example connector arrangement. Not confirmation of purchased contents, cable fit, wiring topology or underground protection."
+      },
+      {
+        "asset": "hardware/inline-fuse-holder-reference.jpg",
+        "provider": "SRK Electronics",
+        "page": "https://srkelectronics.in/product/5x20mm-fuse-holder-inline-screw-type-with-wire/",
+        "image": "https://srkelectronics.in/wp-content/uploads/2022/07/5x20mm-Fuse-Holder-Inline-Screw-Type-with-Wire-srkelectronics.in_-1.jpeg",
+        "note": "Single 5 x 20 mm screw-type holder reference. Pictured wire size, fuse rating and quantity are not a selection or validation claim."
+      },
+      {
+        "asset": "hardware/termination-resistor-reference.jpg",
+        "provider": "SRK Electronics",
+        "page": "https://srkelectronics.in/product/120-ohm-0-5w-metal-film-resistor-120-ohm-1-2w-mfr-resistor-pack-of-100/",
+        "image": "https://srkelectronics.in/wp-content/uploads/2020/06/120-Ohm-0.5W-Metal-Film-Resistor-srkelectronics.in_.jpeg",
+        "note": "Type reference from a 120 ohm / 0.5 W listing. Photo does not verify delivered component value, rating or quantity."
+      }
+    ]
   }
 }
