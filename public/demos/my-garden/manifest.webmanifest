@@ -2,7 +2,7 @@
   "id": "./",
   "name": "grgaGrow",
   "short_name": "grgaGrow",
-  "start_url": "./",
+  "start_url": "./?mode=live&view=overview",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f6f7f0",
