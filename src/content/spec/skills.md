@@ -7,7 +7,7 @@ My skills have grown through electronics, practical technical work and continued
 
 ---
 
-## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#check"/></svg> Quality & Failure Analysis
+## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#check"/></svg> Diagnostics, Analysis & Resolution
 
 Gained in production and quality control at Siemens and Altpro.
 
