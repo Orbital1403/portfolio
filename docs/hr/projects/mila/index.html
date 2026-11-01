@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="hr" class="animation-prepared"> <head><meta name="astro-view-transitions-enabled" content="true"> <meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/portfolio/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DDRd4psi.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light dark"><title>MILA* — Audio streamer u razvoju — Gordan Grgić</title>  <link rel="canonical" href="https://gordangrgic.com/hr/projects/mila/"> <meta name="description" content="Funkcionalan osobni prototip audio streamera. Zahtjevi, otklanjanje problema, testiranje uređaja i razvoj uz AI, uz daljnju provjeru integracija i oporavka."> <meta name="robots" content="index, follow"> <meta property="og:title" content="MILA* — Audio streamer u razvoju — Gordan Grgić"> <meta property="og:type" content="website"> <meta property="og:image" content="https://gordangrgic.com/images/projects/gstreamer/mila-now-playing-20261018.jpg"> <meta property="og:url" content="https://gordangrgic.com/hr/projects/mila/">  <meta property="og:description" content="Funkcionalan osobni prototip audio streamera. Zahtjevi, otklanjanje problema, testiranje uređaja i razvoj uz AI, uz daljnju provjeru integracija i oporavka.">    <meta property="og:site_name" content="Gordan Grgić">  <meta property="og:image:url" content="https://gordangrgic.com/images/projects/gstreamer/mila-now-playing-20261018.jpg"> <meta property="og:image:secure_url" content="https://gordangrgic.com/images/projects/gstreamer/mila-now-playing-20261018.jpg"> <meta property="og:image:type" content="image/jpeg"> <meta property="og:image:width" content="1024"> <meta property="og:image:height" content="600"> <meta property="og:image:alt" content="MILA* audio streamer: prikaz trenutačne reprodukcije s omotom albuma, kontrolama i odvojenim oznakama formata izvora i DAC-a">    <meta name="generator" content="Astro v7.3.8"><meta name="twitter:image" content="https://gordangrgic.com/images/projects/gstreamer/mila-now-playing-20261018.jpg"><meta name="twitter:image:alt" content="MILA* audio streamer: prikaz trenutačne reprodukcije s omotom albuma, kontrolama i odvojenim oznakama formata izvora i DAC-a"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MILA* — Audio streamer u razvoju — Gordan Grgić"><meta name="twitter:description" content="Funkcionalan osobni prototip audio streamera. Zahtjevi, otklanjanje problema, testiranje uređaja i razvoj uz AI, uz daljnju provjeru integracija i oporavka.">  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://gordangrgic.com/#person","name":"Gordan Grgić","url":"https://gordangrgic.com/","jobTitle":"Tehničar kontrole kvalitete, hardvera i softvera","description":"Portfolio of Gordan Grgić: practical technical experience, computers and electronics, and MILA*, a personal audio streamer in development. Based in Brussels.","sameAs":["https://github.com/Orbital1403","https://www.linkedin.com/in/gordan-grgic-0ba40a354/"],"knowsAbout":["Kontrola kvalitete","Analiza kvarova","Dijagnostika hardvera","Umjeravanje","Linux i Raspberry Pi","Audiosustavi","Java","Python"],"address":{"@type":"PostalAddress","addressLocality":"Bruxelles","addressCountry":"Belgija"}},{"@type":"WebSite","@id":"https://gordangrgic.com/#website","url":"https://gordangrgic.com/","name":"Gordan Grgić","description":"Portfolio of Gordan Grgić: practical technical experience, computers and electronics, and MILA*, a personal audio streamer in development. Based in Brussels.","publisher":{"@id":"https://gordangrgic.com/#person"}}]}</script><script data-astro-rerun>
+      document.documentElement.classList.add('js')
+    </script><script>
+  window.applyTheme = function (theme) {
+    const html = document.documentElement
+    html.classList.toggle('dark', theme === 'dark')
+    html.dataset.theme = theme
+  }
+  ;(function initTheme() {
+    if (window.__portfolioThemeInitialized) {
+      return
+    }
+    window.__portfolioThemeInitialized = true
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const chosen = () => {
+      try {
+        return localStorage.getItem('theme-choice')
+      } catch {
+        return null
+      }
+    }
+    const current = () => chosen() || (media.matches ? 'dark' : 'light')
+    window.applyTheme(current())
+    document.addEventListener('astro:after-swap', () => window.applyTheme(current()))
+    media.addEventListener('change', () => chosen() || window.applyTheme(current()))
+  })()
+</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"><link rel="icon" href="/portfolio/favicon-v2.ico" sizes="32x32"><link rel="icon" href="/portfolio/favicon-v2.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/portfolio/apple-touch-icon-v2.png"><link rel="preload" href="/portfolio/fonts/myfont.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/portfolio/_astro/compiler.D2MrD2Pm.css"><link rel="stylesheet" href="/portfolio/_astro/LayoutDefault.CroFv9VC.css"><style>.project-navigation[data-astro-cid-nk5qsgel]{border-top:1px solid color-mix(in srgb, currentColor 20%, transparent);font:12px/1.7 var(--note-font);flex-wrap:wrap;justify-content:space-between;gap:20px;margin-top:40px;padding-top:20px;display:flex}.back-link[data-astro-cid-nk5qsgel]{margin-bottom:24px;font:11px IBM Plex Mono,monospace;display:inline-block}.project-contents[data-astro-cid-nk5qsgel]{border-top:1px solid color-mix(in srgb, currentColor 20%, transparent);border-bottom:1px solid color-mix(in srgb, currentColor 20%, transparent);flex-wrap:wrap;gap:8px 22px;margin-bottom:25px;padding:14px 0;font:11px IBM Plex Mono,monospace;display:flex}.project-contents[data-astro-cid-nk5qsgel] a[data-astro-cid-nk5qsgel]{color:inherit;padding:4px 0;text-decoration:none}.project-contents[data-astro-cid-nk5qsgel] a[data-astro-cid-nk5qsgel]:hover{color:#39776c;background:0 0}
+</style><script type="module" src="/portfolio/_astro/page.CZpLv-iH.js"></script><style>[data-astro-transition-scope="astro-7sypi5ud-1"] { view-transition-name: astro-7sypi5ud-1; }@layer astro { ::view-transition-old(astro-7sypi5ud-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-7sypi5ud-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-7sypi5ud-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-7sypi5ud-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-7sypi5ud-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-7sypi5ud-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-7sypi5ud-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-7sypi5ud-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-7sypi5ud-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-7sypi5ud-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-7sypi5ud-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-7sypi5ud-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>.language-switch{display:flex;align-items:center;gap:6px;font:11px/1.5 var(--note-font,monospace);margin-left:auto;white-space:nowrap}.language-switch a{display:inline-flex;align-items:center;justify-content:center;min-width:28px;min-height:32px;color:inherit;text-decoration:none;border-bottom:1px solid transparent}.language-switch a[aria-current]{font-weight:700;border-color:currentColor}.language-switch a:focus-visible{outline:2px solid currentColor;outline-offset:3px}.language-switch span{opacity:.45}@media(min-width:1024px){.language-switch{justify-content:flex-start;margin:12px 0 0}}@media(max-width:380px){.site-header-bar{gap:6px}.site-tools{gap:2px}.site-tools .theme-toggle,.menu-toggle{width:36px}.language-switch{gap:2px}.language-switch a{min-width:26px}}</style><link rel="alternate" hreflang="en" href="https://gordangrgic.com/projects/mila/"><link rel="alternate" hreflang="hr" href="https://gordangrgic.com/hr/projects/mila/"><link rel="alternate" hreflang="x-default" href="https://gordangrgic.com/projects/mila/"></head> <body class="site-body"> <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2"> Preskoči na sadržaj </a> <header class="site-header"> <div class="site-header-bar"> <div class="site-identity"> <a class="not-underline-hover" href="/portfolio/hr/"> <span class="identity-name">gordan grgić</span> <span class="identity-role">Rješavanje problema</span> </a> </div> <nav class="language-switch" aria-label="Odabir jezika"><a href="/portfolio/projects/mila/" lang="en" hreflang="en" data-astro-reload onclick="this.search=location.search;this.hash=location.hash">EN</a><span aria-hidden="true">/</span><a href="/portfolio/hr/projects/mila/" lang="hr" hreflang="hr" data-astro-reload aria-current="true" onclick="this.search=location.search;this.hash=location.hash">HR</a></nav><div class="site-tools"> <button type="button" aria-label="Promijeni temu" title="Promijeni temu" class="theme-toggle inline-flex items-center justify-center cursor-pointer" onclick="(function(){
+    const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+    try { localStorage.setItem('theme-choice', next); } catch {}
+    if (window.applyTheme) window.applyTheme(next);
+  })()" data-astro-cid-l6lhmie6> <svg class="technical-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#sun"></use></svg> <svg class="technical-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#moon"></use></svg> </button> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Otvori izbornik"> <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span> </button> </div> </div> <div id="site-menu" class="site-menu"> <nav class="site-nav font-bold" flex="~ col gap-4" aria-label="Glavna navigacija"> <ul class="nav-menu text-3.5" lg="flex-col items-start text-4"> <li> <a href="/portfolio/hr/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#home"></use></svg> <span>POČETNA</span>  </a> </li><li> <a href="/portfolio/hr/about/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#about"></use></svg> <span>O MENI</span>  </a> </li><li> <a href="/portfolio/hr/projects/" class="nav-link" aria-current="page">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#projects"></use></svg> <span>PROJEKTI</span>  </a> </li><li> <a href="/portfolio/hr/skills/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#skills"></use></svg> <span>VJEŠTINE</span>  </a> </li><li> <a href="/portfolio/hr/hobbies/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#hobbies"></use></svg> <span>HOBIJI</span>  </a> </li><li> <a href="/portfolio/hr/contact/" class="nav-link">  <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#mail"></use></svg> <span>KONTAKT</span>  </a> </li> </ul> <ul class="social" flex="~ row gap-1 justify-center"> <li> <a href="https://github.com/Orbital1403" target="_blank" rel="noopener noreferrer" title="github" data-no-swup class="social-link not-underline-hover inline-flex items-center"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#github"></use></svg> </a> </li><li> <a href="https://www.linkedin.com/in/gordan-grgic-0ba40a354/" target="_blank" rel="noopener noreferrer" title="linkedin" data-no-swup class="social-link not-underline-hover inline-flex items-center"> <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#linkedin"></use></svg> </a> </li> <li class="social-theme"><button type="button" aria-label="Promijeni temu" title="Promijeni temu" class="theme-toggle inline-flex items-center justify-center cursor-pointer" onclick="(function(){
+    const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+    try { localStorage.setItem('theme-choice', next); } catch {}
+    if (window.applyTheme) window.applyTheme(next);
+  })()" data-astro-cid-l6lhmie6> <svg class="technical-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#sun"></use></svg> <svg class="technical-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="/portfolio/icons.svg#moon"></use></svg> </button></li> </ul> </nav><script type="module">var e=/\/+$/;function t(t,n=`/`){let r=n.replace(e,``);return(r&&(t===r||t.startsWith(`${r}/`))?t.slice(r.length):t).replace(/^\/hr(?=\/|$)/,``).replace(e,``)||`/`}function n(e,t){return e===t||t!==`/`&&e.startsWith(`${t}/`)}function r(){let e=t(window.location.pathname,`/portfolio/`);document.querySelectorAll(`.site-header nav > ul:first-child a`).forEach(r=>{let i=t(new URL(r.href).pathname,`/portfolio/`);n(e,i)?r.setAttribute(`aria-current`,`page`):r.removeAttribute(`aria-current`)})}r(),document.addEventListener(`astro:page-load`,r);</script> </div> <div id="page-aside" class="page-aside"><nav class="page-contents" aria-label="Na ovoj stranici" data-astro-cid-nk5qsgel> <p data-astro-cid-nk5qsgel>NA OVOJ STRANICI</p> <a data-no-swup href="#from-frustration-to-a-project" data-astro-cid-nk5qsgel> Ideja </a><a data-no-swup href="#one-interface-for-everyday-listening" data-astro-cid-nk5qsgel> Mogućnosti </a><a data-no-swup href="#my-role-and-how-i-work" data-astro-cid-nk5qsgel> Moja uloga </a><a data-no-swup href="#development-example-keeping-favourites-consistent" data-astro-cid-nk5qsgel> Primjeri </a><a data-no-swup href="#testing-and-releases" data-astro-cid-nk5qsgel> Testiranje </a><a data-no-swup href="#hardware--foundation" data-astro-cid-nk5qsgel> Hardver </a><a data-no-swup href="#current-state" data-astro-cid-nk5qsgel> Trenutačno stanje </a> </nav></div> </header> <main data-astro-transition-scope="astro-7sypi5ud-1" id="main" class="outline-none" tabindex="-1">  <header class="page-heading" data-astro-cid-nk5qsgel> <a class="back-link" href="/portfolio/hr/projects/" data-astro-cid-nk5qsgel>← Sve bilješke o projektima</a> <p class="folio-label" data-astro-cid-nk5qsgel>HARDVER + SOFTVER + GLAZBA / BILJEŠKE 02</p> <h1 data-astro-cid-nk5qsgel>Audio streamer</h1> </header> <nav class="project-contents" aria-label="Sadržaj projekta" data-astro-cid-nk5qsgel> <a data-no-swup href="#from-frustration-to-a-project" data-astro-cid-nk5qsgel> Ideja </a><a data-no-swup href="#one-interface-for-everyday-listening" data-astro-cid-nk5qsgel> Mogućnosti </a><a data-no-swup href="#my-role-and-how-i-work" data-astro-cid-nk5qsgel> Moja uloga </a><a data-no-swup href="#development-example-keeping-favourites-consistent" data-astro-cid-nk5qsgel> Primjeri </a><a data-no-swup href="#testing-and-releases" data-astro-cid-nk5qsgel> Testiranje </a><a data-no-swup href="#hardware--foundation" data-astro-cid-nk5qsgel> Hardver </a><a data-no-swup href="#current-state" data-astro-cid-nk5qsgel> Trenutačno stanje </a> </nav>  <article class="prose" data-astro-cid-nk5qsgel> <h2 id="mila">MILA*</h2>
+<p><strong>Osobni audio streamer · U razvoju</strong></p>
+<ul>
+<li><strong>Cilj:</strong> lokalna hi-res glazba, internetski radio i streaming u jednom prilagodljivom playeru.</li>
+<li><strong>Moja uloga:</strong> zahtjevi, ponašanje sustava, testiranje na stvarnom uređaju i odluke o objavi; AI asistenti za programiranje pišu velik dio implementacije.</li>
+<li><strong>Trenutačno stanje:</strong> funkcionalan osobni prototip u aktivnom razvoju, za svakodnevno slušanje.</li>
+<li><strong>Provjera:</strong> automatizirani testovi i provjere uređaja; neke integracije, scenariji oporavka i ponašanje zvuka još zahtijevaju dodatnu provjeru.</li>
+</ul>
+<p>Glazbeni projekt koji povezuje moje zanimanje za računala, praktično rješavanje problema i svakodnevno slušanje. MILA* spaja postojeći hardver sa sučeljem koje mogu oblikovati prema vlastitim potrebama.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-player-queue-20261023.png" alt="MILA* reproducira album Finka, s formatima izvora i DAC-a iznad reda reprodukcije grupiranog po albumima" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Povećaj prikaz MILA* playera" loading="lazy" />
+<figcaption>Player — reprodukcija albuma, formati izvora i DAC-a te red reprodukcije · 23. listopada 2026. · Klikni za povećanje</figcaption>
+</figure>
+<h3 id="from-frustration-to-a-project">Od frustracije do projekta</h3>
+<p>Glazbu slušam svaki dan, uz veliku osobnu zbirku hi-res FLAC datoteka, internetski radio i streaming. Streameri koje sam koristio frustrirali su me: spori izbornici pri pretraživanju većih zbirki, povremeni prekidi veze i ograničene mogućnosti prilagodbe. Želio sam i izravnu kontrolu obrade zvuka — bit-perfect prijenos datoteka visoke rezolucije, izbjegavanje neželjenog preuzorkovanja i provjeru onoga što DAC stvarno prima.</p>
+<p>Odlučio sam izraditi svestran player: namjenski uređaj koji bez kompromisa povezuje lokalnu reprodukciju visoke rezolucije, internetski radio i streaming. Umjesto stalno uključenog glavnog računala, pogledao sam hardver koji sam već imao: Raspberry Pi 5, dodirni zaslon, brz NVMe disk za glazbu, USB DAC i linearno napajanje. Zapisao sam zahtjeve i počeo oblikovati streamer prema njima.</p>
+<p>Cilj je bio jasan: svestran player koji lako reproducira FLAC albume visoke rezolucije, drži radio i streaming pri ruci te ostaje potpuno odzivan i jasan u svom ponašanju.</p>
+<h3 id="one-interface-for-everyday-listening">Jedno sučelje za svakodnevno slušanje</h3>
+<p>Player povezuje kontrole reprodukcije s redom čekanja, favoritima i nedavno reproduciranim ili dodanim sadržajem. Filtri izvora omogućuju prelazak između lokalne glazbe, radija i streaminga unutar istog sučelja.</p>
+<p>Ugrađeni dodirni zaslon glavni je način upravljanja. Isto web-sučelje može se otvoriti s telefona ili računala u lokalnoj mreži. Reprodukcija ostaje na streameru; ostali uređaji služe kao daljinski upravljači.</p>
+<figure class="project-figure" style="max-width: 390px; margin-inline: auto;">
+<img src="/portfolio/images/projects/gstreamer/mila-mobile-player-20261023.jpg" alt="Mobilni MILA* player s omotom albuma, kontrolama reprodukcije, popisom pjesama i donjom navigacijom" width="514" height="789" data-group="cover" tabindex="0" role="button" aria-label="Povećaj mobilni prikaz MILA* playera" loading="lazy" />
+<figcaption>Mobilni prikaz — kontrole reprodukcije i pjesme albuma · 23. listopada 2026. · Klikni za povećanje</figcaption>
+</figure>
+<h3 id="a-library-i-can-explore">Zbirka koju mogu istraživati</h3>
+<p>Velika zbirka hi-res FLAC datoteka zahtijeva brzo i intuitivno sučelje. Lokalna glazba može se pregledavati po albumu, izvođaču, žanru ili mapi, uz pretraživanje, sortiranje i abecednu navigaciju. Brza NVMe pohrana na Pi-ju omogućuje trenutačno učitavanje omota i metapodataka.</p>
+<p>Želim da pregledavanje bude povezano sa slušanjem: otvori album, odaberi pjesmu, vrati se u zbirku i upravljaj redom reprodukcije bez gubitka mjesta.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-library.png" alt="Lokalna glazbena zbirka MILA* s omotima albuma i kontrolama pregledavanja" data-group="cover" tabindex="0" role="button" aria-label="Povećaj prikaz glazbene zbirke MILA*" loading="lazy" />
+<figcaption>Zbirka — albumi, izvođači, mape i stalne kontrole reprodukcije · Klikni za povećanje</figcaption>
+</figure>
+<h3 id="radio-without-the-clutter">Radio bez nereda</h3>
+<p>Radijski prikaz odvaja moju zbirku stanica od otkrivanja novih. Povezuje spremljene stanice, pretraživanje, nedavno slušano i filtre za zemlju, žanr i kvalitetu. Mogu se dodati i vlastiti streamovi.</p>
+<p>Pouzdano slušanje u pozadini važan je razvojni cilj. Kad stream ili veza zakažu, sučelje treba objasniti što se dogodilo i ponuditi jasan put oporavka. Dugo slušanje i provjere oporavka dio su preostalog testiranja.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-radio-stations-20261018.jpg" alt="MILA* Moje stanice sa spremljenim radijskim stanicama, filtrima i stalnim mini-playerom" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Povećaj prikaz radija MILA*" loading="lazy" />
+<figcaption>Radio — spremljene stanice, otkrivanje i mini-player · 18. listopada 2026. · Klikni za povećanje</figcaption>
+</figure>
+<h3 id="streaming-and-audio-control">Streaming i upravljanje zvukom</h3>
+<p>Qobuz je integriran preko Lyrion Music Servera. AirPlay, Spotify Connect i Bluetooth također su dio rada na prijamnicima, uz zasebno praćenje podrške i provjera tijekom razvoja.</p>
+<p>Glavni put reprodukcije koristi <strong>Lyrion Music Server → Squeezelite → USB DAC</strong>. Cilj mi je izbjeći nepotrebno preuzorkovanje i digitalne promjene glasnoće za podržani sadržaj. Sučelje razlikuje kvalitetu izvora od formata koji se trenutačno prijavljuje na izlazu DAC-a.</p>
+<p>Ta je razlika važna: izlaz prikazan kao 32-bitni ne pretvara komprimirani radijski stream u kvalitetniji izvor. Prikaz formata pomaže u istraživanju, ali sam po sebi ne dokazuje bit-perfect reprodukciju.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-now-playing-20261018.jpg" alt="MILA* prikaz trenutačne reprodukcije preko cijelog zaslona s omotom albuma BEAK, kontrolama i odvojenim oznakama formata izvora i DAC-a" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Povećaj prikaz MILA* playera preko cijelog zaslona" loading="lazy" />
+<figcaption>Trenutačna reprodukcija — slušanje preko cijelog zaslona · 18. listopada 2026. · Klikni za povećanje</figcaption>
+</figure>
+<h3 id="settings-that-belong-with-the-player">Postavke koje pripadaju playeru</h3>
+<p>Izgled, zvuk i usluge, pohrana glazbe i održavanje sustava organizirani su u četiri cjeline. Projekt uključuje teme i opcije zaslona, mjerače, podatke o uređaju i alate za sigurnosne kopije korisničkih podataka. Osjetljive radnje sustava imaju zaštićene kontrole.</p>
+<p>Čuvari zaslona i vizualni detalji dio su iskustva, ali koriste isti vizualni jezik kao zasloni za slušanje i pregledavanje.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-settings.png" alt="Postavke MILA* organizirane u četiri cjeline" data-group="cover" tabindex="0" role="button" aria-label="Povećaj prikaz postavki MILA*" loading="lazy" />
+<figcaption>Postavke — izgled, zvuk, pohrana i održavanje · Klikni za povećanje</figcaption>
+</figure>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-system-update-20261022.png" alt="Zaslon ažuriranja sustava MILA* s dostupnim paketima i zaštićenim kontrolama ažuriranja" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Povećaj prikaz ažuriranja sustava MILA*" loading="lazy" />
+<figcaption>Ažuriranja sustava — dostupni paketi i kontrole · 22. listopada 2026. · Klikni za povećanje</figcaption>
+</figure>
+<h3 id="my-role-and-how-i-work">Moja uloga i način rada</h3>
+<p>Moje iskustvo obuhvaća hardver, kontrolu kvalitete i analizu kvarova, a tako vodim i MILA*. Vodim projekt: definiram zahtjeve, odlučujem kako se sustav treba ponašati, testiram svaku izmjenu na stvarnom uređaju i odlučujem što se objavljuje. AI asistenti za programiranje pišu velik dio implementacije pod mojim vodstvom. Usmjeravanje tog rada i provjera rezultata zasebna su vještina.</p>
+<p>Temelj reprodukcije čine Lyrion i Squeezelite; moja aplikacija povezuje izvore, kontrole i funkcije uređaja u usklađeno iskustvo.</p>
+<p>Rad je iterativan: primijeti problem, ponovi ga, istraži uzrok, napravi izmjenu i provjeri rezultat. Primjeri u nastavku prate taj obrazac. Nakon završenog obrazovanja za Java developera kroz projekt produbljujem i razumijevanje Pythona.</p>
+<section class="case-file" aria-labelledby="development-example-keeping-favourites-consistent">
+<p class="case-label">Primjer iz razvoja · 01</p>
+<h3 id="development-example-keeping-favourites-consistent">Dosljedni favoriti</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>Jedna je radnja mogla dvaput dodati isti favorit. Spor odgovor mogao je stići nakon novije izmjene i ponovno prikazati stariji popis.</dd></div>
+<div><dt>02 / Istraživanje</dt><dd>Pregled razvoja pokazao je da dva prikaza popisa dijele istu temeljnu kolekciju. Otkrivena su i mjesta na kojima su stariji odgovori još mogli prebrisati aktualne favorite.</dd></div>
+<div><dt>03 / Izmjena</dt><dd>Popisi su razdvojeni, a novije potvrđene promjene sada imaju prednost pred ranijim odgovorima. Neizvjesna se radnja prijavljuje umjesto automatskog ponavljanja.</dd></div>
+<div><dt>04 / Provjera</dt><dd>Ciljane automatizirane provjere obuhvatile su dvostruka dodavanja, zakašnjele odgovore i potvrđene promjene. Dokumentirano ažuriranje instalirano je, a prikaz favorita pregledan na Pi-ju. Dulja uporaba i istodoban rad više klijenata ostaju dio daljnje provjere.</dd></div>
+</dl>
+</section>
+<section class="case-file" aria-labelledby="development-example-commands-that-only-looked-successful">
+<p class="case-label">Primjer iz razvoja · 02</p>
+<h3 id="development-example-commands-that-only-looked-successful">Naredbe koje su samo izgledale uspješno</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>Naredbe Play, Pause i Next mogle su zakazati bez obavijesti u sučelju. Odbijene naredbe tiho su se zanemarivale, a odgovor glazbenog poslužitelja koji je sadržavao pogrešku mogao se protumačiti kao uspjeh.</dd></div>
+<div><dt>02 / Istraživanje</dt><dd>Pregled je pratio naredbu od dodirnog gumba preko pozadinskog sustava do Lyrionova JSON-RPC sučelja. Nedostajući rezultat pretvarao se u prazan „uspjeh”. Izgubljen mrežni odgovor također ništa ne govori o tome je li naredba stvarno izvršena.</dd></div>
+<div><dt>03 / Izmjena</dt><dd>Svaka naredba sada završava jednim od triju ishoda: potvrđeno, odbijeno ili nepoznato. Nepoznat ishod prikazuje upozorenje da je naredba možda već izvršena. Naredbe se namjerno ne ponavljaju automatski: ponavljanje preklopne naredbe Play/Pause moglo bi poništiti onu koja je uspjela.</dd></div>
+<div><dt>04 / Provjera</dt><dd>Novi automatizirani scenariji obuhvatili su odbijene, neispravne i izgubljene odgovore. Ažuriranje je instalirano uz novu sigurnosnu kopiju; glazbeni poslužitelj nastavio je raditi, a player je prijavljivao reprodukciju prije i nakon instalacije.</dd></div>
+</dl>
+</section>
+<section class="case-file" aria-labelledby="development-example-a-lost-connection-without-false-alarms">
+<p class="case-label">Primjer iz razvoja · 03</p>
+<h3 id="development-example-a-lost-connection-without-false-alarms">Prekid veze bez lažnih uzbuna</h3>
+<dl class="case-steps">
+<div><dt>01 / Problem</dt><dd>Kad bi sučelje izgubilo kontakt s playerom, zaslon bi nastavio prikazivati posljednje poznato stanje bez naznake da je možda zastarjelo.</dd></div>
+<div><dt>02 / Istraživanje</dt><dd>Dohvat statusa već je ispravno obrađivao istek vremena i zakašnjele odgovore pa su nedostajale povratne informacije, a ne podaci. Pitanje je bilo što smatrati kvarom: jedan spor odgovor ili kartica preglednika u pozadini ne bi trebali izazvati uzbunu.</dd></div>
+<div><dt>03 / Izmjena</dt><dd>Dvije uzastopne neuspjele provjere statusa sada prikazuju diskretnu obavijest da status nije dostupan i da player prikazuje posljednju poznatu reprodukciju. Nakon povratka veze nakratko se pojavi obavijest o oporavku. Obavijest ništa ne pokreće ni ponavlja pa ne može prekinuti reprodukciju.</dd></div>
+<div><dt>04 / Provjera</dt><dd>Pet novih automatiziranih scenarija obuhvatilo je prekid, oporavak, pojedinačne pogreške i skrivenu stranicu. Na Pi-ju obavijest ostaje skrivena tijekom normalnih provjera; izgled je pregledan u odvojenom pretpregledu. Još nisam izazvao stvaran mrežni kvar na uređaju kako bih je provjerio ondje.</dd></div>
+</dl>
+</section>
+<p>Ovi primjeri pokazuju pristup koji donosim iz kontrole kvalitete: istražiti uzrok, dokumentirati izmjenu i provjeriti rezultat, uz jasno navođenje onoga što još nije provjereno.</p>
+<h3 id="testing-and-releases">Testiranje i objave</h3>
+<p>MILA* radi na uređaju koji svakodnevno slušam pa je izmjena dovršena tek nakon provjere.</p>
+<ul>
+<li><strong>Automatizirani testovi.</strong> Više od 1100 automatiziranih testova obuhvaća Python pozadinski sustav i JavaScript sučelje: naredbe reprodukcije, zbirku i red čekanja, radio, favorite, postavke i sam alat za instalaciju. Pokreću se prije instalacije izmjena.</li>
+<li><strong>Sigurna instalacija s povratkom na prethodnu verziju.</strong> Ažuriranja prolaze kroz instalacijski alat. Najprije stvara sigurnosnu kopiju i provjerava kopiju na mom računalu kontrolnim zbrojem. Zatim zamjenjuje samo programske datoteke i provjerava pokretanje sučelja, podudaranje svake datoteke s izdanjem i ispravnu dostupnost resursa stranice. Ako provjera ne uspije, automatski vraća prethodnu verziju. Glazbene usluge nastavljaju raditi tijekom ažuriranja.</li>
+<li><strong>Provjere na stvarnom uređaju.</strong> Nakon ažuriranja na Pi-ju provjeravam status, zbirku, red reprodukcije i radio, a zatim slušanje i dodirno upravljanje. Prolazak testova ne smatram dokazom da je zvuk ispravan.</li>
+</ul>
+<p>Povratak na prethodnu verziju obuhvaćen je ciljanim testovima; kontrolirana provjera na stvarnom hardveru još je na popisu.</p>
+<h3 id="hardware--foundation">Hardver i temelj sustava</h3>
+<p>Fotografije mog sustava za slušanje s dodirnim zaslonom, DAC-om, linearnim napajanjem i zvučnicima. Pozadine su ublažene radi prezentacije.</p>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-hardware-front-v2-1600.jpg" srcset="/images/projects/gstreamer/mila-hardware-front-v2-800.jpg 800w, /images/projects/gstreamer/mila-hardware-front-v2-1600.jpg 1396w" sizes="(max-width: 800px) 100vw, 760px" alt="MILA sustav za slušanje sprijeda, s dodirnim zaslonom, DAC-om, linearnim napajanjem i zvučnicima" data-index="0" data-group="mila-hardware" tabindex="0" role="button" aria-label="Povećaj prikaz hardverskog sustava MILA" loading="lazy" />
+<figcaption>Moj sustav za slušanje — prednji pogled · Klikni za povećanje</figcaption>
+</figure>
+<div class="mila-hardware-gallery">
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-hardware-angle-v2-1600.jpg" alt="MILA sustav za slušanje iz kuta" data-index="1" data-group="mila-hardware" tabindex="0" role="button" aria-label="Povećaj fotografiju hardvera iz kuta" loading="lazy" />
+<figcaption>Sustav iz drugog kuta · Klikni za povećanje</figcaption>
+</figure>
+<figure class="project-figure">
+<img src="/portfolio/images/projects/gstreamer/mila-hardware-player-v3.jpg" alt="MILA player na dodirnom zaslonu, s analognim VU mjeračima, Topping DAC-om i TeraDak linearnim napajanjem" data-index="2" data-group="mila-hardware" tabindex="0" role="button" aria-label="Povećaj fotografiju detalja hardvera" loading="lazy" />
+<figcaption>MILA player na dodirnom zaslonu, DAC i linearno napajanje · Klikni za povećanje</figcaption>
+</figure>
+</div>
+<table>
+<thead>
+<tr>
+<th>Komponenta</th>
+<th>Uloga</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi 5</td>
+<td>Namjensko računalo koje pokreće streamer</td>
+</tr>
+<tr>
+<td>NVMe disk</td>
+<td>Lokalna pohrana glazbe</td>
+</tr>
+<tr>
+<td>Topping E50 USB DAC</td>
+<td>Audioizlaz</td>
+</tr>
+<tr>
+<td>10-inčni dodirni zaslon</td>
+<td>Ugrađeno upravljačko sučelje</td>
+</tr>
+<tr>
+<td>Namjensko linearno napajanje</td>
+<td>Napajanje DAC-a</td>
+</tr>
+<tr>
+<td>Edifier MR5 zvučnici</td>
+<td>Moj sustav za slušanje</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Softver:</strong> Raspberry Pi OS · Lyrion Music Server · Squeezelite · Python · HTML/CSS/JavaScript</p>
+<h3 id="current-state">Trenutačno stanje</h3>
+<p>MILA* je funkcionalan osobni prototip u aktivnom razvoju. Trenutačan fokus su stabilno slušanje, oporavak nakon prekida i dosljedno ponašanje na različitim veličinama zaslona. Neke integracije i tijekovi rada još traže doradu i provjeru u stvarnim uvjetima prije stabilne objave.</p>
+<p>Izvorni kod nalazi se u privatnom repozitoriju. Rado ću u razgovoru predstaviti kod, testove i povijest objava.</p>
+ </article> <nav class="project-navigation" aria-label="Ostali projekti" data-astro-cid-nk5qsgel> <a href="/portfolio/hr/projects/portfolio/" data-astro-cid-nk5qsgel>← 01 / Portfolio</a> <a href="/portfolio/hr/projects/" data-astro-cid-nk5qsgel>← Svi projekti</a> <a href="/portfolio/hr/projects/grgagrow/" data-astro-cid-nk5qsgel>03 / grgaGrow →</a> </nav>  </main> <footer class="site-footer"> <p data-astro-cid-nns7i3if>© 2026 <a target="_blank" href="https://gordangrgic.com/hr/">Gordan Grgić</a></p> <button type="button" class="analytics-preferences" data-analytics-settings hidden data-astro-cid-fg2vtww3>Postavke kolačića</button> <section class="analytics-consent" aria-labelledby="analytics-heading" data-analytics-banner hidden data-astro-cid-fg2vtww3> <h2 id="analytics-heading" data-astro-cid-fg2vtww3>Neobavezna analitika</h2> <p data-astro-cid-fg2vtww3>
+Uz tvoju privolu Google Analytics koristi kolačiće za mjerenje posjeta. Svoj izbor možeš promijeniti bilo kada u postavkama kolačića.
+<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" data-astro-cid-fg2vtww3>Kako Google koristi podatke</a>.
+</p> <div class="analytics-actions" data-astro-cid-fg2vtww3> <button type="button" data-analytics-choice="denied" data-astro-cid-fg2vtww3>Odbij analitiku</button> <button type="button" data-analytics-choice="granted" data-astro-cid-fg2vtww3>Prihvati analitiku</button> </div> </section><script type="module">var e=`G-FBSDVWHLPQ`,t=`portfolio:analytics-consent:v1`,n=15552e6,r=["gordangrgic.com",`www.gordangrgic.com`].includes(location.hostname),i=window,a=!1,o=null;function s(){try{let e=JSON.parse(localStorage.getItem(t)??`null`);if(e&&[`granted`,`denied`].includes(e.choice)&&typeof e.at==`number`&&e.at<=Date.now()&&Date.now()-e.at<n)return e.choice}catch{}return null}function c(){if(!r||a||o!==`granted`)return;a=!0,i[`ga-disable-G-FBSDVWHLPQ`]=!1,i.dataLayer=i.dataLayer||[],i.gtag=function(){i.dataLayer.push(arguments)},i.gtag(`consent`,`default`,{analytics_storage:`denied`,ad_storage:`denied`,ad_user_data:`denied`,ad_personalization:`denied`}),i.gtag(`consent`,`update`,{analytics_storage:`granted`}),i.gtag(`js`,new Date),i.gtag(`config`,e,{allow_google_signals:!1,allow_ad_personalization_signals:!1,cookie_expires:n/1e3});let t=document.createElement(`script`);t.async=!0,t.src=`https://www.googletagmanager.com/gtag/js?id=${e}`,document.head.append(t)}function l(){for(let e of document.cookie.split(`;`)){let t=e.split(`=`)[0].trim();if(/^_ga(?:_|$)/.test(t))for(let e of[``,location.hostname,`.gordangrgic.com`])document.cookie=`${t}=; Max-Age=0; Path=/; SameSite=Lax${e?`; Domain=${e}`:``}`}}function u(){o=s();let e=document.querySelector(`[data-analytics-settings]`),t=document.querySelector(`[data-analytics-banner]`);e&&(e.hidden=!r),t&&(t.hidden=!r||o!==null),o===`granted`&&c()}document.addEventListener(`click`,e=>{if(!r||!(e.target instanceof Element))return;let n=document.querySelector(`[data-analytics-banner]`);if(e.target.closest(`[data-analytics-settings]`)){n&&(n.hidden=!1,n.querySelector(`button`)?.focus());return}let s=e.target.closest(`[data-analytics-choice]`)?.dataset.analyticsChoice;if(s===`granted`||s===`denied`){o=s;try{localStorage.setItem(t,JSON.stringify({choice:o,at:Date.now()}))}catch{}n&&(n.hidden=!0),document.querySelector(`[data-analytics-settings]`)?.focus(),o===`granted`?c():(i[`ga-disable-G-FBSDVWHLPQ`]=!0,l(),a&&location.reload())}}),window.addEventListener(`storage`,e=>{(e.key===t||e.key===null)&&(a&&s()!==`granted`?(i[`ga-disable-G-FBSDVWHLPQ`]=!0,l(),location.reload()):u())}),u(),document.addEventListener(`astro:page-load`,u);</script> </footer> <script type="module">document.addEventListener(`animationend`,e,!1);function e(){document.documentElement.classList.remove(`animation-prepared`),document.removeEventListener(`animationend`,e,!1)}var t=()=>{};function n(){let e=document.querySelector(`.site-header`),n=e?.querySelector(`.menu-toggle`);if(!e||!n||e.dataset.menuBound)return;e.dataset.menuBound=`true`;let r=t=>{e.dataset.menu=t?`open`:`closed`,n.setAttribute(`aria-expanded`,String(t)),n.setAttribute(`aria-label`,t?"Zatvori izbornik":"Otvori izbornik")};r(!1),n.addEventListener(`click`,()=>r(e.dataset.menu!==`open`)),e.querySelector(`.site-menu`)?.addEventListener(`click`,e=>{e.target.closest(`a`)&&r(!1)}),t=()=>{e.dataset.menu===`open`&&(r(!1),n.focus())}}n(),document.addEventListener(`astro:page-load`,n),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&t()});var r=[];function i(){let e=r.filter(e=>e.target.getBoundingClientRect().top<140).at(-1)??r[0];for(let{link:e}of r)e.removeAttribute(`aria-current`);e?.link.setAttribute(`aria-current`,`location`)}function a(){r=Array.from(document.querySelectorAll(`.page-contents a[href^="#"]`)).map(e=>({link:e,target:document.getElementById(decodeURIComponent(e.hash.slice(1)))})).filter(e=>e.target),i()}addEventListener(`scroll`,i,{passive:!0}),a(),document.addEventListener(`astro:page-load`,a);</script><script src="/portfolio/scripts/gallery-hr.726d673d1a8d.js" defer></script></body> </html>
