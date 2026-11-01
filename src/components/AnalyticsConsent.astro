@@ -1,10 +1,10 @@
 <button type="button" class="analytics-preferences" data-analytics-settings hidden>Cookie settings</button>
 
 <section class="analytics-consent" aria-labelledby="analytics-heading" data-analytics-banner hidden>
-  <h2 id="analytics-heading">A small note on analytics</h2>
+  <h2 id="analytics-heading">Optional analytics</h2>
   <p>
-    With your permission, Google Analytics uses cookies to help me understand visits and improve this portfolio.
-    You can decline or change your choice at any time using Cookie settings in the footer.
+    Google Analytics uses cookies to measure visits with your permission.
+    Change your choice anytime in Cookie settings.
     <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses data</a>.
   </p>
   <div class="analytics-actions">
@@ -128,15 +128,26 @@
 
 <style>
   [hidden] { display: none !important; }
+  :global(.site-footer) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 12px;
+  }
+  :global(.site-footer > p) {
+    margin: 0;
+    white-space: nowrap;
+  }
   .analytics-preferences {
     appearance: none;
     display: inline-block;
-    margin-top: 6px;
-    padding: 4px 0;
+    margin: 0;
+    padding: 10px 0;
+    white-space: nowrap;
     border: 0;
     background: transparent;
     color: var(--note-color, inherit);
-    font: 12px/1.6 var(--note-font, monospace);
+    font: 11px/1.6 var(--note-font, monospace);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
@@ -147,29 +158,29 @@
     z-index: 1000;
     inset: auto 16px 16px auto;
     box-sizing: border-box;
-    width: min(460px, calc(100vw - 32px));
+    width: min(360px, calc(100vw - 32px));
     max-height: calc(100dvh - 32px);
     overflow-y: auto;
-    padding: 20px;
+    padding: 16px;
     border: 1px solid currentColor;
     border-radius: 4px;
     background: var(--uno-colors-background, #f6f4ee);
     color: var(--uno-colors-primary, #24313b);
-    box-shadow: 0 6px 30px #0003;
+    box-shadow: 0 4px 18px #0002;
     text-align: left;
     text-shadow: none;
   }
-  h2 { margin: 0 0 10px; font: 600 16px var(--body-font, sans-serif); }
-  p { margin: 0; font-size: 14px; line-height: 1.6; }
-  .analytics-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  h2 { margin: 0 0 6px; font: 600 15px var(--body-font, sans-serif); }
+  p { margin: 0; font-size: 13px; line-height: 1.5; }
+  .analytics-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .analytics-actions button {
-    flex: 1 1 150px;
+    flex: 1 1 120px;
     min-height: 44px;
     padding: 8px 12px;
     border: 1px solid currentColor;
     border-radius: 3px;
     font: inherit;
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
   }
   button:hover { text-decoration: underline; }
