@@ -1,10 +1,10 @@
-<button type="button" class="analytics-preferences" data-analytics-settings hidden>Analytics preferences</button>
+<button type="button" class="analytics-preferences" data-analytics-settings hidden>Cookie settings</button>
 
 <section class="analytics-consent" aria-labelledby="analytics-heading" data-analytics-banner hidden>
   <h2 id="analytics-heading">A small note on analytics</h2>
   <p>
     With your permission, Google Analytics uses cookies to help me understand visits and improve this portfolio.
-    You can decline or change your choice at any time using Analytics preferences in the footer.
+    You can decline or change your choice at any time using Cookie settings in the footer.
     <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses data</a>.
   </p>
   <div class="analytics-actions">
@@ -129,10 +129,16 @@
 <style>
   [hidden] { display: none !important; }
   .analytics-preferences {
-    margin-top: 8px;
-    font: inherit;
-    font-size: 12px;
+    appearance: none;
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: var(--note-color, inherit);
+    font: 12px/1.6 var(--note-font, monospace);
     text-decoration: underline;
+    text-decoration-thickness: 1px;
     text-underline-offset: 3px;
     cursor: pointer;
   }
