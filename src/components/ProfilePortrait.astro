@@ -1,0 +1,33 @@
+<img
+  class="profile-portrait"
+  src="/images/profile/gordan-grgic.webp"
+  alt="Gordan Grgić"
+  width="480"
+  height="480"
+  loading="eager"
+  decoding="async"
+/>
+
+<style>
+  .profile-portrait {
+    float: right;
+    width: clamp(128px, 19vw, 176px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 8px 0 24px 28px;
+    border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 600px) {
+    .profile-portrait {
+      float: none;
+      display: block;
+      width: 128px;
+      margin: 0 0 24px;
+    }
+  }
+</style>
