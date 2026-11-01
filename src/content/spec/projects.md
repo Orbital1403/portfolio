@@ -21,4 +21,4 @@ The aim is a clear, honest account of what I have done and what I am learning, w
 
 ### Coursework & continued learning
 
-I have completed my Java studies and now want to deepen my understanding of Python through practical work on MILA\*. Course summaries and certificates are on the [Skills](/skills/) page.
+I have completed my Java studies and am currently attending the **AI & Machine Learning programme at ITAcademy**. I am building my knowledge of Python, data processing and AI/ML alongside practical work on MILA\* and grgaGrow. Details of my current studies and completed course certificates are on the [Skills](/skills/) page.
