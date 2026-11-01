@@ -7,7 +7,7 @@ categories: ["About", "Personal"]
 
 ### A practical mind, a curious nature
 
-I'm **Gordan Grgić**, originally from Zagreb and now based in Brussels. My work has taken me through electronics, quality control, repairs and renovation. Across those different settings, I have always enjoyed understanding a problem and finding a workable solution.
+I'm **Gordan Grgić**, originally from Zagreb. I've been living in Brussels for some time now. My technical experience includes work with electronic devices, quality control, calibration and fault analysis, alongside repairs and renovation. I have always enjoyed understanding a problem and finding a solution that works.
 
 ### It started with computers
 
