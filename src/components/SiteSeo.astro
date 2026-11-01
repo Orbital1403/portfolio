@@ -26,9 +26,9 @@ const pathname =
     ? Astro.url.pathname.slice(base.length) || '/'
     : Astro.url.pathname
 const canonical = new URL(pathname, configSite.website).toString()
-const shareImage = new URL(props.image ?? '/og/default.jpg', configSite.website).toString()
+const shareImage = new URL(props.image ?? '/og/portfolio.jpg', configSite.website).toString()
 const shareImageAlt =
-  props.imageAlt ?? 'Gordan Grgić — quality, testing and hardware/software work, with the MILA* audio streamer'
+  props.imageAlt ?? 'Gordan Grgić — practical technical work, quality, testing and personal projects'
 
 const seoLinks = [...configSEO.link]
 
