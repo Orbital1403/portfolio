@@ -6,7 +6,8 @@ export function normalizePath(path: string, base = '/') {
   const relative = prefix && (path === prefix || path.startsWith(`${prefix}/`))
     ? path.slice(prefix.length)
     : path
-  return relative.replace(trailingSlashes, '') || '/'
+  const localized = relative.replace(/^\/hr(?=\/|$)/, '')
+  return localized.replace(trailingSlashes, '') || '/'
 }
 
 export function isActivePath(path: string, target: string) {
