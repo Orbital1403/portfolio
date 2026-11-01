@@ -41,26 +41,26 @@ Developed through MILA\* (see [MILA* project notes](/projects/mila/)).
 
 Completed at Link Group (ITAcademy). Each certificate can be checked with its number on Link Group's validation page.
 
-- **Core Java Programming** · April 2025
+- **Core Java Programming**
   Object-oriented programming in Java: classes and objects, inheritance and polymorphism, interfaces and collections.
   <span class="certificate-meta">Certificate № 1745607098 · <a href="/certificates/core-java.pdf" target="_blank" rel="noopener noreferrer">View certificate</a> · <a href="https://www.link-group.eu/certificate/" target="_blank" rel="noopener noreferrer" title="Enter the certificate number on Link Group's validation page">Verify ↗</a></span>
 
-- **Advanced Java Programming** · April 2025
+- **Advanced Java Programming**
   Collections, lambda expressions, streams, multithreading and advanced object-oriented design.
   <span class="certificate-meta">Certificate № 1745607241 · <a href="/certificates/advanced-java.pdf" target="_blank" rel="noopener noreferrer">View certificate</a> · <a href="https://www.link-group.eu/certificate/" target="_blank" rel="noopener noreferrer" title="Enter the certificate number on Link Group's validation page">Verify ↗</a></span>
 
-- **Java Desktop Application Development** · April 2025
+- **Java Desktop Application Development**
   Desktop applications with Swing and AWT: windows and forms, event handling and database connectivity.
   <span class="certificate-meta">Certificate № 1745607267 · <a href="/certificates/java-desktop.pdf" target="_blank" rel="noopener noreferrer">View certificate</a> · <a href="https://www.link-group.eu/certificate/" target="_blank" rel="noopener noreferrer" title="Enter the certificate number on Link Group's validation page">Verify ↗</a></span>
 
 - **Java Web Application Development** · Completed
   Dynamic web applications with Servlets, JSP and JSTL, sessions and the MVC pattern, with an introduction to Spring Web MVC and JSF.
 
-- **Programming in HTML5 with JavaScript and CSS3** · April 2025
+- **Programming in HTML5 with JavaScript and CSS3**
   Semantic HTML5 pages, CSS3 layout with flexbox and grid, and JavaScript for DOM events and form validation.
   <span class="certificate-meta">Certificate № 1745663475 · <a href="/certificates/html5-javascript-css3.pdf" target="_blank" rel="noopener noreferrer">View certificate</a> · <a href="https://www.link-group.eu/certificate/" target="_blank" rel="noopener noreferrer" title="Enter the certificate number on Link Group's validation page">Verify ↗</a></span>
 
-- **MySQL Programming and Administration** · May 2025
+- **MySQL Programming and Administration**
   Writing SQL for MySQL databases and administering them.
   <span class="certificate-meta">Certificate № 1747132816 · <a href="/certificates/mysql.pdf" target="_blank" rel="noopener noreferrer">View certificate</a> · <a href="https://www.link-group.eu/certificate/" target="_blank" rel="noopener noreferrer" title="Enter the certificate number on Link Group's validation page">Verify ↗</a></span>
 
@@ -69,8 +69,8 @@ Completed at Link Group (ITAcademy). Each certificate can be checked with its nu
 <h2 id="education"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#education"/></svg> Education</h2>
 
 - **AI & Machine Learning — ITAcademy** · In progress
-- **Java Developer — ITAcademy** · November 2024 – December 2025 · Completed
-- **Electrotechnician — Electrotechnical High School, Zagreb** · 1996–2000
+- **Java Developer — ITAcademy** · Completed
+- **Electrotechnician — Electrotechnical High School, Zagreb**
 
 ---
 
