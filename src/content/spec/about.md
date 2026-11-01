@@ -39,6 +39,6 @@ I lead the project from requirements to release: I decide what it should do, sha
 
 I am interested in work that combines practical technical knowledge with investigation and attention to detail: testing, diagnostics, technical support or integration, especially where hardware meets software.
 
-I have completed my Java studies and am now turning my attention to Python. MILA\*, whose backend is written in Python, gives me a practical project through which to explore it.
+After completing my Java studies, I enrolled in the **AI & Machine Learning programme at ITAcademy**, which I am currently attending. The programme covers Python, data processing, machine learning, deep learning and deploying AI/ML systems. Alongside these studies, MILA\* gives me a practical project through which to deepen my understanding of Python.
 
 Away from projects, I enjoy music, cycling and finding out how things work.
