@@ -66,7 +66,7 @@ Completed at Link Group (ITAcademy). Each certificate can be checked with its nu
 
 ---
 
-## Education
+<h2 id="education"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#education"/></svg> Education</h2>
 
 - **AI & Machine Learning — ITAcademy** · In progress
 - **Java Developer — ITAcademy** · November 2024 – December 2025 · Completed
@@ -74,7 +74,7 @@ Completed at Link Group (ITAcademy). Each certificate can be checked with its nu
 
 ---
 
-## AI & Machine Learning — current studies
+<h2 id="ai--machine-learning--current-studies"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#ai"/></svg> AI &amp; Machine Learning — current studies</h2>
 
 I am currently attending the [AI & Machine Learning programme at ITAcademy](https://www.it-akademija.com/ai-i-machine-learning-program-obrazovanja). The published curriculum covers:
 
