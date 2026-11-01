@@ -11,23 +11,25 @@ Installation registers the pre-commit hook; it only formats supported source fil
 
 Page transitions use Astro’s built-in client router.
 
-## GitHub Pages
+## Production hosting: Cloudflare only
 
-Run `npm run build:pages` to generate `docs/` for the `/portfolio/` path.
-Commit the regenerated publication with source changes. GitHub Pages serves
-`main /docs` at https://orbital1403.github.io/portfolio/.
-Generated files are excluded from lint and pre-commit formatting.
+The only public hosting destination is https://gordangrgic.com/ and its www
+variant, served by the existing Cloudflare Pages project `portfolio`. GitHub
+Pages is retired. Keep the build command `node scripts/prepare-cloudflare.mjs`
+and output directory `cloudflare-dist`; `npm run build:cloudflare` performs the
+same local build, including TypeScript/Astro checks and gallery content hashes.
+Canonical/share URLs, sitemaps and robots.txt use the main domain.
 
-## Cloudflare Pages
+Keep this repository and `public/` assets in Git: Cloudflare builds from the main
+branch. The generated `docs/` copy is a legacy GitHub Pages artifact and is not
+needed by Cloudflare. Do not regenerate it or include it in routine publication
+commits. Existing legacy files and `build:pages` can be removed in a separate
+portfolio cleanup; retaining source history does not require a current Pages
+copy. Hand-written documentation in other projects is unrelated.
 
-The existing Cloudflare Pages project `portfolio` serves https://gordangrgic.com/
-and its www variant. Keep its build command `node scripts/prepare-cloudflare.mjs`
-and output directory `cloudflare-dist`. This command now builds directly from
-source at `/`, independently of `docs/`. Both publication commands check
-TypeScript and Astro before building, and version the gallery script by content.
-
-Both versions use canonical and share URLs on https://gordangrgic.com/;
-sitemaps and robots.txt also advertise the primary domain.
+Publication acceptance checks the exact commit's **Cloudflare Pages** result
+and the main domain. Do not wait for GitHub Pages or verify the former
+`orbital1403.github.io` address as a second public target.
 
 ## Photographs and share images
 
@@ -47,7 +49,7 @@ Based on https://github.com/moeyua/astro-theme-typography. Original licence reta
 
 ## My Garden application
 
-`public/demos/my-garden/` contains the v0.5 grgaGrow static application built from the separate Vrt project using `npm run build:hosted`. Its relative asset URLs support both Cloudflare at `/demos/my-garden/` and the GitHub Pages prefix. Copy only the build output when updating; never copy local environment files, sessions or server/device secrets. The browser bundle intentionally contains the Supabase project URL and publishable key; authenticated data access remains subject to RLS.
+`public/demos/my-garden/` contains the grgaGrow static application built from the separate Vrt project using `npm run build:hosted`. Its production address is `https://gordangrgic.com/demos/my-garden/`. Keep this package in Git for the Cloudflare build. Follow the Vrt project’s `docs/releasing.md` and run its `npm run verify:release -- /path/to/portfolio/public/demos/my-garden` against the prepared package and main domain. Copy only the build output when updating; never copy local environment files, sessions or server/device secrets. The browser bundle intentionally contains the Supabase project URL and publishable key; authenticated data access remains subject to RLS.
 
 Demo mode is simulated. Live mode supports email/password login, assigned sensor records and Open-Meteo weather with city search and opt-in browser geolocation. History includes up to 30 days, metric/sensor filters, statistics and a quality-labelled measurement log. Alerts include an owner-scoped cloud event log and opt-in device push, backed by a five-minute Supabase worker. The service worker is push-only and caches no private data. Physical sensors/ingestion, actual phone push display and automatic irrigation still need verification. City preferences currently stay in the user's browser.
 
@@ -55,7 +57,7 @@ Garden profiles and zones (v0.5) are stored in the existing Supabase project. Us
 
 ### Public Live projection (v0.13)
 
-The project page is `/projects/grgagrow/`. The former `/projects/smart-lawn/` address redirects to it on both publication targets, preserving existing section links. Media stays at its existing paths so previously shared image URLs continue to work.
+The project page is `/projects/grgagrow/`. The former `/projects/smart-lawn/` address redirects to it on the main domain, preserving existing section links. Media stays at its existing paths so previously shared image URLs continue to work.
 
 The grgaGrow project links separately to `/demos/my-garden/?public=grgagrow` (anonymous read-only selected readings, seven-day history, regional forecast and provisional sun/shade model) and `?mode=demo` (simulated data). Owners use `?mode=live` then Garden → Portfolio Live to manage publication. Exact coordinates and private controls stay outside the public feed. The sensor feed currently awaits physical hardware; no example readings are presented as Live.
 
