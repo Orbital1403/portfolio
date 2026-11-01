@@ -5,6 +5,16 @@
   font-style: normal;
   font-display: swap;
 }
+/* Precomposed Croatian letters use the original display outlines and metrics.
+   The base font lacks Č/Đ/Š/Ž and mispositions decomposed combining marks. */
+@font-face {
+  font-family: 'MyFont';
+  src: url('/fonts/myfont-hr-v1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+010C-010D, U+0110-0111, U+0160-0161, U+017D-017E;
+}
 :root {
   --uno-colors-primary: theme('colors.primary');
   --uno-colors-background: theme('colors.background');
