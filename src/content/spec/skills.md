@@ -7,7 +7,7 @@ My skills have grown through electronics, practical technical work and continued
 
 ---
 
-## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#check"/></svg> Quality & Failure Analysis
+## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#check"/></svg> Quality & Failure Analysis
 
 Gained in production and quality control at Siemens and Altpro.
 
@@ -17,7 +17,7 @@ Gained in production and quality control at Siemens and Altpro.
 
 ---
 
-## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#chip"/></svg> Hardware, Systems & Audio
+## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> Hardware, Systems & Audio
 
 - PC and electronics hardware: assembly, diagnostics, fault finding
 - Daily use of Linux, macOS and Windows
@@ -27,7 +27,7 @@ Gained in production and quality control at Siemens and Altpro.
 
 ---
 
-## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#code"/></svg> Testing & AI-assisted development
+## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#code"/></svg> Testing & AI-assisted development
 
 Developed through MILA\* (see [MILA* project notes](/projects/mila/)).
 
@@ -37,7 +37,7 @@ Developed through MILA\* (see [MILA* project notes](/projects/mila/)).
 
 ---
 
-## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#screen"/></svg> Courses & certificates
+## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#screen"/></svg> Courses & certificates
 
 Completed at Link Group (ITAcademy). Each certificate can be checked with its number on Link Group's validation page.
 
@@ -66,7 +66,7 @@ Completed at Link Group (ITAcademy). Each certificate can be checked with its nu
 
 ---
 
-<h2 id="education"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#education"/></svg> Education</h2>
+<h2 id="education"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#education"/></svg> Education</h2>
 
 - **AI & Machine Learning — ITAcademy** · In progress
 - **Java Developer — ITAcademy** · November 2024 – December 2025 · Completed
@@ -74,7 +74,7 @@ Completed at Link Group (ITAcademy). Each certificate can be checked with its nu
 
 ---
 
-<h2 id="ai--machine-learning--current-studies"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg#ai"/></svg> AI &amp; Machine Learning — current studies</h2>
+<h2 id="ai--machine-learning--current-studies"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#ai"/></svg> AI &amp; Machine Learning — current studies</h2>
 
 I am currently attending the [AI & Machine Learning programme at ITAcademy](https://www.it-akademija.com/ai-i-machine-learning-program-obrazovanja). The published curriculum covers:
 
