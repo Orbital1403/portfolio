@@ -6,6 +6,7 @@ import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import { themeConfig } from './src/.config'
+import bilingualPortfolio from './scripts/localize.mjs'
 
 const notFoundPath = /\/404(?:\.html|\/)?$/
 const formerGardenPath = /\/projects\/smart-lawn\/?$/
@@ -34,5 +35,6 @@ export default defineConfig({
     mdx({}),
     robotsTxt({ sitemap: new URL('sitemap-index.xml', themeConfig.site.website).href }),
     sitemap({ filter: page => !notFoundPath.test(page) && !formerGardenPath.test(page) }),
+    bilingualPortfolio(),
   ],
 })
