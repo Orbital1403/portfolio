@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions'
 import { themeConfig } from '~/.config'
 import SiteFooter from '~/components/SiteFooter.astro'
+import AnalyticsConsent from '~/components/AnalyticsConsent.astro'
 import SiteNavigation from '~/components/SiteNavigation.astro'
 import SiteTitle from '~/components/SiteTitle.astro'
 import SiteSeo from '~/components/SiteSeo.astro'
@@ -92,6 +93,7 @@ const lang = themeConfig.appearance.locale ?? 'en-us'
 
     <footer class="site-footer">
       <SiteFooter />
+      <AnalyticsConsent />
     </footer>
 
     <script>
