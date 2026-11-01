@@ -1,9 +1,9 @@
 ---
 title: Skills & Certifications
-description: Quality control, failure analysis, hardware and Linux skills from work experience, testing and safe releases from MILA*, and completed Java, web and MySQL courses with verifiable certificates.
+description: Practical skills in quality control, hardware, Linux and testing; completed Java, web and MySQL courses; and current AI & Machine Learning studies at ITAcademy.
 ---
 
-My skills have grown through electronics, practical technical work and continued learning. I have completed my Java studies at ITAcademy and am now focusing on learning Python. The certificates below document my coursework.
+My skills have grown through electronics, practical technical work and continued learning. I have completed my Java studies at ITAcademy and am currently attending its **AI & Machine Learning programme**. I am developing my knowledge of Python and AI/ML alongside practical projects. The certificates below document my completed coursework.
 
 ---
 
@@ -68,11 +68,20 @@ Completed at Link Group (ITAcademy). Each certificate can be checked with its nu
 
 ## Education
 
+- **AI & Machine Learning — ITAcademy** · In progress
 - **Java Developer — ITAcademy** · November 2024 – December 2025 · Completed
 - **Electrotechnician — Electrotechnical High School, Zagreb** · 1996–2000
 
 ---
 
-## Python — next learning focus
+## AI & Machine Learning — current studies
 
-The MILA\* backend is written in Python, which makes it my practical route into the language. This is an ongoing learning direction.
+I am currently attending the [AI & Machine Learning programme at ITAcademy](https://www.it-akademija.com/ai-i-machine-learning-program-obrazovanja). The published curriculum covers:
+
+- **Get Ready to Become an AI Engineer** — foundations for the programme.
+- **Python Programming Basics** — programming fundamentals in Python.
+- **Data Processing and AI/ML Models** — working with data and machine-learning models.
+- **Deep Learning with Keras, TF and PT** — neural networks and deep-learning tools.
+- **Managing AI/ML Pipelines & Systems Deployment** — preparing and deploying AI/ML systems.
+
+My studies are in progress. Alongside the coursework, the Python backend of MILA\* gives me a practical context for exploring the language.
