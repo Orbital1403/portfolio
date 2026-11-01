@@ -3,6 +3,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import HobbyCards from '~/components/HobbyCards.astro'
 import Icon from '~/components/Icon.astro'
 import GrgaGrowCard from '~/components/GrgaGrowCard.astro'
+import ProfilePortrait from '~/components/ProfilePortrait.astro'
 ---
 
 <LayoutDefault
@@ -11,6 +12,7 @@ import GrgaGrowCard from '~/components/GrgaGrowCard.astro'
 >
   <div class="notebook">
     <section class="intro">
+      <ProfilePortrait />
       <p class="folio-label">PERSONAL FIELD NOTES / ZAGREB → BRUSSELS</p>
       <h1>Curiosity.<br />A practical mind.</h1>
       <p class="lead">
@@ -166,6 +168,7 @@ import GrgaGrowCard from '~/components/GrgaGrowCard.astro'
     line-height: 1.7;
   }
   .intro {
+    display: flow-root;
     padding: 12px 0 28px;
     border-bottom: 1px solid currentColor;
   }
