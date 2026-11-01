@@ -21,11 +21,10 @@ same local build, including TypeScript/Astro checks and gallery content hashes.
 Canonical/share URLs, sitemaps and robots.txt use the main domain.
 
 Keep this repository and `public/` assets in Git: Cloudflare builds from the main
-branch. The generated `docs/` copy is a legacy GitHub Pages artifact and is not
-needed by Cloudflare. Do not regenerate it or include it in routine publication
-commits. Existing legacy files and `build:pages` can be removed in a separate
-portfolio cleanup; retaining source history does not require a current Pages
-copy. Hand-written documentation in other projects is unrelated.
+branch. The former generated `docs/` Pages copy and its build command have been
+removed; they are no longer maintained or needed by the production build.
+Old publications remain in Git history. This cleanup does not remove source,
+public application assets or the separate grgaGrow project's documentation.
 
 Publication acceptance checks the exact commit's **Cloudflare Pages** result
 and the main domain. Do not wait for GitHub Pages or verify the former

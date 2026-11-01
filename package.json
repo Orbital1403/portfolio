@@ -18,7 +18,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "astro sync && tsc --noEmit",
-    "build:pages": "node scripts/build-pages.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "prepare": "simple-git-hooks",
     "build:cloudflare": "node scripts/prepare-cloudflare.mjs",
