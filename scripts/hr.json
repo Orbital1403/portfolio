@@ -787,14 +787,10 @@
   "Semantic HTML5 pages, CSS3 layout with flexbox and grid, and JavaScript for DOM events and form validation.": "Semantičke HTML5 stranice, CSS3 raspored uz flexbox i grid te JavaScript za DOM događaje i provjeru obrazaca.",
   "Writing SQL for MySQL databases and administering them.": "Pisanje SQL-a za MySQL baze podataka i njihovo administriranje.",
   "· Completed": "· Završeno",
-  "Projects — Portfolio, MILA*, grgaGrow & Naša praonica — Gordan Grgić": "Projekti — Portfolio, MILA*, grgaGrow i Naša praonica — Gordan Grgić",
-  "Explore four personal projects: this portfolio, MILA*, grgaGrow and Naša praonica, a mobile web project for shared laundry rooms.": "Četiri osobna projekta: ovaj portfolio, MILA*, grgaGrow i Naša praonica, mobilni web projekt za zajedničke praonice.",
   "Four projects, each with its own story. Choose one to explore the idea, the work and its current state.": "Četiri projekta, svaki sa svojom pričom. Odaberi jedan i istraži ideju, rad i trenutačno stanje.",
   "Shared laundry + mobile web app": "Zajednička praonica + mobilna web aplikacija",
   "Mobile web": "Mobilni web",
   "Wi-Fi / sensors": "Wi-Fi / senzori",
-  "Naša praonica": "Naša praonica",
-  "Naša praonica — Shared laundry — Gordan Grgić": "Naša praonica — Zajednička praonica — Gordan Grgić",
   "MOBILE WEB + CONNECTED MACHINES / PROJECT 04": "MOBILNI WEB + POVEZANI STROJEVI / PROJEKT 04",
   "Check before you carry the laundry downstairs.": "Provjeri prije nego što odneseš rublje dolje.",
   "Brussels · Shared laundry rooms": "Bruxelles · Zajedničke praonice",
@@ -826,5 +822,9 @@
   "You only find out when you get downstairs.": "Saznaš tek kad siđeš dolje.",
   "02 / WITH THE APP": "02 / S APLIKACIJOM",
   "A quick check. One less wasted trip.": "Kratka provjera. Jedan uzaludan odlazak manje.",
-  "Check the machines before leaving your apartment.": "Provjeri strojeve prije nego što izađeš iz stana."
+  "Check the machines before leaving your apartment.": "Provjeri strojeve prije nego što izađeš iz stana.",
+  "Projects — Portfolio, MILA*, grgaGrow & Our laundry — Gordan Grgić": "Projekti — Portfolio, MILA*, grgaGrow i Naša praonica — Gordan Grgić",
+  "Explore four personal projects: this portfolio, MILA*, grgaGrow and Our laundry, a mobile web project for shared laundry rooms.": "Četiri osobna projekta: ovaj portfolio, MILA*, grgaGrow i Naša praonica, mobilni web projekt za zajedničke praonice.",
+  "Our laundry": "Naša praonica",
+  "Our laundry — Shared laundry — Gordan Grgić": "Naša praonica — Zajednička praonica — Gordan Grgić"
 }

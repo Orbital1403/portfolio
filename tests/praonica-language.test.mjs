@@ -10,10 +10,12 @@ test('project iframe and standalone demo link follow EN/HR without changing othe
   try {
     await mkdir(join(root, 'scripts'))
     await writeFile(join(root, 'scripts/gallery.js'), '')
-    await writeFile(join(root, 'index.html'), '<html lang="en"><head><title>Naša praonica</title></head><body><div class="site-tools"></div><iframe src="/demos/praonica/" title="Simulated mobile laundry prototype"></iframe><a class="open-demo" href="/demos/praonica/">Open the mobile prototype ↗</a><iframe src="/demos/my-garden/"></iframe></body></html>')
+    await writeFile(join(root, 'index.html'), '<html lang="en"><head><title>Our laundry</title></head><body><h1>Our laundry</h1><div class="site-tools"></div><iframe src="/demos/praonica/" title="Simulated mobile laundry prototype"></iframe><a class="open-demo" href="/demos/praonica/">Open the mobile prototype ↗</a><iframe src="/demos/my-garden/"></iframe></body></html>')
     await localizeBuild(root)
     const en = await readFile(join(root, 'index.html'), 'utf8')
     const hr = await readFile(join(root, 'hr/index.html'), 'utf8')
+    assert.match(en, /<h1>Our laundry<\/h1>/)
+    assert.match(hr, /<h1>Naša praonica<\/h1>/)
     assert.match(en, /<iframe src="\/demos\/praonica\/"/)
     assert.match(en, /class="open-demo" href="\/demos\/praonica\/"/)
     assert.match(hr, /<iframe src="\/demos\/praonica\/hr\/"/)
