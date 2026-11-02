@@ -967,7 +967,6 @@
   "01 / SELECTED WORK": "01 / IZDVOJENI PROJEKTI",
   "Built around real problems.": "Od stvarnih problema do projekata.",
   "Music, a garden and a shared laundry room. Three practical reasons to connect hardware and software.": "Glazba, vrt i zajednička praonica. Tri praktična razloga za povezivanje hardvera i softvera.",
-  "MILA touch player with the DAC and linear power supply in my listening setup": "MILA player na zaslonu osjetljivom na dodir, uz DAC i linearno napajanje u mojem sustavu za slušanje",
   "01 / HARDWARE + SOFTWARE + MUSIC": "01 / HARDVER + SOFTVER + GLAZBA",
   "A personal audio streamer for local hi-res music, radio and streaming. Used for everyday listening, refined through testing on the real device.": "Osobni audio streamer za lokalnu hi-res glazbu, radio i streaming. Koristim ga svakodnevno i dorađujem testiranjem na stvarnom uređaju.",
   "Requirements · Device testing · Releases": "Zahtjevi · Testiranje na uređaju · Objave",
@@ -1006,5 +1005,6 @@
   "AI & Machine Learning": "AI & Machine Learning",
   "Completed": "Završeno",
   "ITAcademy": "ITAcademy",
-  "In progress": "U tijeku"
+  "In progress": "U tijeku",
+  "MILA Now Playing screen showing BEAK and The Brazilian, with album artwork and playback controls": "MILA prikaz reprodukcije s izvođačem BEAK i skladbom The Brazilian, omotom albuma i kontrolama reprodukcije"
 }
