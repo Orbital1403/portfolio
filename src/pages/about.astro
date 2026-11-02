@@ -9,5 +9,12 @@ const { Content } = await render(entry)
 <LayoutDefault title="About — Gordan Grgić" description={entry.data.description}
   ><header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / MY STORY</p><h1>About me</h1>
-  </header><article class="prose"><Content /></article></LayoutDefault
+  </header><article class="prose about-story"><Content /></article></LayoutDefault
 >
+
+<style>
+  .about-story :global(h2) { font-size: 30px; margin: 56px 0 16px; }
+  @media (max-width: 600px) {
+    .about-story :global(h2) { font-size: 25px; margin-top: 44px; }
+  }
+</style>

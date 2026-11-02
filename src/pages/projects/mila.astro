@@ -1,6 +1,7 @@
 ---
 import { getEntry, render } from 'astro:content'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import ProjectOverview from '~/components/ProjectOverview.astro'
 
 const milaPost = await getEntry('spec', 'mila')
 if (!milaPost) throw new Error('No MILA post found')
@@ -27,9 +28,15 @@ const sections = [
 >
   <header class="page-heading">
     <a class="back-link" href="/projects/">← All project notes</a>
-    <p class="folio-label">HARDWARE + SOFTWARE + MUSIC / FIELD NOTES 02</p>
+    <p class="folio-label">HARDWARE + SOFTWARE + MUSIC / FIELD NOTES 01</p>
     <h1>Audio streamer</h1>
   </header>
+  <ProjectOverview id="mila" items={[
+    { label: 'Today', text: 'Working prototype used for everyday listening.' },
+    { label: 'My role', text: 'Requirements, troubleshooting, testing on the device and release decisions; AI coding assistants write much of the implementation.' },
+    { label: 'Example', text: 'Playback commands distinguish confirmed, rejected and unknown outcomes.' },
+    { label: 'Next step', text: 'Validate remaining integrations, interruption recovery and a controlled rollback on the real device.' },
+  ]} />
   <nav class="project-contents" aria-label="Project contents">
     {
       sections.map(([id, label]) => (
@@ -53,9 +60,8 @@ const sections = [
     <Content />
   </article>
   <nav class="project-navigation" aria-label="Other projects">
-    <a href="/projects/portfolio/">← 01 / Portfolio</a>
     <a href="/projects/">← All projects</a>
-    <a href="/projects/grgagrow/">03 / grgaGrow →</a>
+    <a href="/projects/grgagrow/">02 / grgaGrow →</a>
   </nav>
 </LayoutDefault>
 

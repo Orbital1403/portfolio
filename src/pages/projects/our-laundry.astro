@@ -1,6 +1,7 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import LaundrySystemPlan from '~/components/LaundrySystemPlan.astro'
+import ProjectOverview from '~/components/ProjectOverview.astro'
 ---
 
 <LayoutDefault
@@ -9,17 +10,23 @@ import LaundrySystemPlan from '~/components/LaundrySystemPlan.astro'
 >
   <header class="page-heading">
     <a class="back-link" href="/projects/">← All projects</a>
-    <p class="folio-label">MOBILE WEB + CONNECTED MACHINES / PROJECT 04</p>
+    <p class="folio-label">MOBILE WEB + CONNECTED MACHINES / PROJECT 03</p>
     <h1>Our laundry</h1>
     <p class="lead">Check before you carry the laundry downstairs.</p>
     <a class="try-demo" href="/demos/praonica/">Try the prototype ↗</a>
     <a class="plan-link" href="#system-plan">How it works ↓</a>
   </header>
   <div class="project-meta">
-    <span>In development</span><span>Brussels · Shared laundry rooms</span><span
+    <span>Interactive demo · Integration in development</span><span>Brussels · Shared laundry rooms</span><span
       >Python prototype · Planned Wi-Fi system</span
     >
   </div>
+  <ProjectOverview id="our-laundry" items={[
+    { label: 'Today', text: 'Interactive demo with simulated states; initial read-only observations from my own washer and dryer.' },
+    { label: 'My role', text: 'Defining machine states, checking them against actual use and planning the path from appliances to the phone.' },
+    { label: 'Example', text: 'A finished cycle, an open door and an available machine are treated as separate facts.' },
+    { label: 'Next step', text: 'Verify live integration and complete interruption and recovery checks before a building pilot.' },
+  ]} />
   <section class="laundry-storyboard" aria-label="The idea in two scenes">
     <figure>
       <img
@@ -106,7 +113,7 @@ import LaundrySystemPlan from '~/components/LaundrySystemPlan.astro'
   </section>
   <LaundrySystemPlan />
   <nav class="project-navigation" aria-label="Other projects">
-    <a href="/projects/">← All projects</a><a href="/projects/grgagrow/">03 / grgaGrow →</a>
+    <a href="/projects/grgagrow/">← 02 / grgaGrow</a><a href="/projects/portfolio/">04 / Portfolio →</a>
   </nav>
 </LayoutDefault>
 <style>

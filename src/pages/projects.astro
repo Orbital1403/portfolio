@@ -3,20 +3,10 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import Icon from '~/components/Icon.astro'
 const projects = [
   {
-    id: 'portfolio-project',
-    number: '01',
-    name: 'Portfolio',
-    category: 'Personal website',
-    href: '/projects/portfolio/',
-    image: '/og/default.jpg',
-    alt: 'Gordan Grgić portfolio identity',
-    description:
-      'The website you are exploring: adapting an Astro theme into a clear, personal account of my experience, practical work and current projects.',
-    tags: ['Astro', 'HTML / CSS', 'JavaScript'],
-  },
-  {
     id: 'mila',
-    number: '02',
+    number: '01',
+    status: 'Working prototype · Everyday listening',
+    stamp: '',
     name: 'MILA*',
     category: 'Hardware + software + music',
     href: '/projects/mila/',
@@ -28,7 +18,9 @@ const projects = [
   },
   {
     id: 'grgagrow',
-    number: '03',
+    number: '02',
+    status: 'Cloud app online · Sensors next',
+    stamp: 'Cloud online',
     name: 'grgaGrow',
     category: 'Soil monitoring + cloud application',
     href: '/projects/grgagrow/',
@@ -40,7 +32,9 @@ const projects = [
   },
   {
     id: 'our-laundry',
-    number: '04',
+    number: '03',
+    status: 'Interactive demo · Integration in development',
+    stamp: 'Interactive demo',
     name: 'Our laundry',
     category: 'Shared laundry + mobile web app',
     href: '/projects/our-laundry/',
@@ -50,12 +44,26 @@ const projects = [
       'A mobile-first project inspired by shared laundry rooms in Brussels: check machine status before carrying your laundry downstairs. Development starts with two personally owned test appliances; a future Wi-Fi sensor is being explored.',
     tags: ['Mobile web', 'Python', 'Wi-Fi / sensors'],
   },
+  {
+    id: 'portfolio-project',
+    number: '04',
+    status: 'Published · Ongoing improvements',
+    stamp: '',
+    name: 'Portfolio',
+    category: 'Personal website',
+    href: '/projects/portfolio/',
+    image: '/og/default.jpg',
+    alt: 'Gordan Grgić portfolio identity',
+    description:
+      'The website you are exploring: adapting an Astro theme into a clear, personal account of my experience, practical work and current projects.',
+    tags: ['Astro', 'HTML / CSS', 'JavaScript'],
+  },
 ]
 ---
 
 <LayoutDefault
-  title="Projects — Portfolio, MILA*, grgaGrow & Our laundry — Gordan Grgić"
-  description="Explore four personal projects: this portfolio, MILA*, grgaGrow and Our laundry, a mobile web project for shared laundry rooms."
+  title="Projects — MILA*, grgaGrow, Our laundry & Portfolio — Gordan Grgić"
+  description="Explore MILA*, grgaGrow, Our laundry and this portfolio: personal projects connecting hardware, software and practical testing."
 >
   <header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / PROJECTS</p>
@@ -73,7 +81,7 @@ const projects = [
           aria-labelledby={`${project.id}-title`}
         >
           <div class="card-image">
-            {project.number === '01' ? (
+            {project.id === 'portfolio-project' ? (
               <div
                 class="portfolio-preview"
                 role="img"
@@ -99,7 +107,7 @@ const projects = [
                 decoding="async"
               />
             )}
-            {['grgagrow', 'our-laundry'].includes(project.id) && <span class="development-stamp">IN DEVELOPMENT</span>}
+            {project.stamp && <span class="development-stamp">{project.stamp}</span>}
           </div>
           <div class="card-copy">
             <p class="card-label">
@@ -107,7 +115,7 @@ const projects = [
             </p>
             <div class="card-heading">
               <h2 id={`${project.id}-title`}>{project.name}</h2>
-              {!['grgagrow', 'our-laundry'].includes(project.id) && <span class="card-status">In development</span>}
+              <span class="card-status">{project.status}</span>
             </div>
             <p class="card-description">{project.description}</p>
             <ul class="card-tags" aria-label="Project topics">
@@ -277,7 +285,9 @@ const projects = [
     letter-spacing: 0.5px;
   }
   .card-status {
-    font: 9px/1.5 var(--note-font);
+    font: 11px/1.6 var(--note-font);
+    max-width: 100%;
+    overflow-wrap: anywhere;
     padding: 4px 7px;
     border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
   }

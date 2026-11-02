@@ -3,11 +3,11 @@ title: "Project notes"
 description: "MILA*: a personal audio streamer in development, combining hardware, music, software and careful testing."
 ---
 
-<p class="folio-label">01 / Portfolio</p>
+<p class="folio-label">04 / Portfolio</p>
 
 <h2 id="portfolio-project">Portfolio</h2>
 
-**Personal website · In development**
+**Personal website · Published and evolving**
 
 This website is also one of my projects. I am adapting an existing Astro theme into a portfolio that connects my experience, practical work and current interests.
 

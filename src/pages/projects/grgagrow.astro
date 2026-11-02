@@ -1,5 +1,6 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import ProjectOverview from '~/components/ProjectOverview.astro'
 
 const hardwareGallery = [
   {
@@ -212,10 +213,10 @@ const hardware = [
   <div class="lawn-notes">
     <header class="lawn-heading">
       <a href="/projects/">← All project notes</a>
-      <p class="folio-label">HARDWARE + SOFTWARE + GARDEN / FIELD NOTES 03</p>
+      <p class="folio-label">HARDWARE + SOFTWARE + GARDEN / FIELD NOTES 02</p>
       <h1>grgaGrow</h1>
       <p class="project-state">
-        In development <span>Cloud app online · Hardware integration next</span>
+        Cloud app online <span>Sensor integration next</span>
       </p>
       <p class="lead">A small lawn. A closer look beneath the surface.</p>
       <p>
@@ -241,6 +242,13 @@ const hardware = [
         Owner sign-in opens your private workspace.
       </p>
     </header>
+
+    <ProjectOverview id="grgagrow" items={[
+      { label: 'Today', text: 'Cloud app online with a public demo, history, weather and sun/shade. Physical readings are still pending.' },
+      { label: 'My role', text: 'Shaping the garden workflow, defining how readings are presented and checking software behaviour before connecting sensors.' },
+      { label: 'Example', text: 'Missing or stale readings stay visible; unreliable data does not trigger a watering suggestion.' },
+      { label: 'Next step', text: 'Assemble and test the ESP32 and probes on the bench, then verify device-to-cloud readings.' },
+    ]} />
 
     <figure class="dashboard-figure">
       <a
@@ -591,8 +599,8 @@ const hardware = [
     </section>
   </div>
   <nav class="project-navigation" aria-label="Other projects">
-    <a href="/projects/mila/">← 02 / MILA*</a>
-    <a href="/projects/">All projects →</a>
+    <a href="/projects/mila/">← 01 / MILA*</a>
+    <a href="/projects/our-laundry/">03 / Our laundry →</a>
   </nav>
 </LayoutDefault>
 

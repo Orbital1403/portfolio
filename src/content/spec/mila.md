@@ -5,12 +5,7 @@ description: "A working personal audio-streamer prototype in active development.
 
 ## MILA\*
 
-**Personal audio streamer · In development**
-
-- **Goal:** local hi-res music, internet radio and streaming in one responsive player.
-- **My role:** requirements, behaviour, testing on the real device and release decisions; AI coding assistants write much of the implementation.
-- **Current state:** a working personal prototype in active development, used for everyday listening.
-- **Validation:** automated tests and device checks; some integrations, recovery scenarios and audio behaviour still need further validation.
+**Personal audio streamer · Working prototype**
 
 A music project that brings together my interest in computers, practical problem-solving and everyday listening. MILA\* combines existing hardware with an interface I can shape around my own needs.
 
@@ -45,7 +40,7 @@ Navigating a large collection of hi-res FLAC files requires an interface that st
 I want browsing to feel connected to listening: inspect an album, choose a track, return to the collection and manage the queue without losing my place.
 
 <figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-library.png" alt="MILA* local music library with album artwork and browsing controls" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* library screenshot" loading="lazy" />
+<img src="/images/projects/gstreamer/mila-library.png" width="1280" height="720" alt="MILA* local music library with album artwork and browsing controls" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* library screenshot" loading="lazy" />
 <figcaption>Library — albums, artists, folders and persistent playback controls · Click to enlarge</figcaption>
 </figure>
 
@@ -80,7 +75,7 @@ Appearance, audio and services, music storage, and system maintenance are organi
 Screensavers and visual details are part of the experience, but they share the same design language as the listening and browsing screens.
 
 <figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-settings.png" alt="MILA* settings organised into four sections" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* settings screenshot" loading="lazy" />
+<img src="/images/projects/gstreamer/mila-settings.png" width="1280" height="720" alt="MILA* settings organised into four sections" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* settings screenshot" loading="lazy" />
 <figcaption>Settings — appearance, audio, storage and maintenance · Click to enlarge</figcaption>
 </figure>
 
@@ -147,17 +142,17 @@ The rollback path is covered by targeted tests; a controlled rollback on real ha
 Photographs of my listening setup, with the touch display, DAC, linear power supply and speakers. Backgrounds have been softened for presentation.
 
 <figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-hardware-front-v2-1600.jpg" srcset="/images/projects/gstreamer/mila-hardware-front-v2-800.jpg 800w, /images/projects/gstreamer/mila-hardware-front-v2-1600.jpg 1396w" sizes="(max-width: 800px) 100vw, 760px" alt="MILA listening setup viewed from the front, with touch display, DAC, linear power supply and speakers" data-index="0" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the MILA hardware setup" loading="lazy" />
+<img src="/images/projects/gstreamer/mila-hardware-front-v2-1600.jpg" width="1396" height="1127" srcset="/images/projects/gstreamer/mila-hardware-front-v2-800.jpg 800w, /images/projects/gstreamer/mila-hardware-front-v2-1600.jpg 1396w" sizes="(max-width: 800px) 100vw, 760px" alt="MILA listening setup viewed from the front, with touch display, DAC, linear power supply and speakers" data-index="0" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the MILA hardware setup" loading="lazy" />
 <figcaption>My listening setup — front view · Click to enlarge</figcaption>
 </figure>
 
 <div class="mila-hardware-gallery">
 <figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-hardware-angle-v2-1600.jpg" alt="MILA listening setup viewed at an angle" data-index="1" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the angled hardware photograph" loading="lazy" />
+<img src="/images/projects/gstreamer/mila-hardware-angle-v2-1600.jpg" width="1086" height="1448" alt="MILA listening setup viewed at an angle" data-index="1" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the angled hardware photograph" loading="lazy" />
 <figcaption>The setup from another angle · Click to enlarge</figcaption>
 </figure>
 <figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-hardware-player-v3.jpg" alt="MILA player on the touch display, with analog VU meters, Topping DAC and TeraDak linear power supply" data-index="2" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the hardware detail photograph" loading="lazy" />
+<img src="/images/projects/gstreamer/mila-hardware-player-v3.jpg" width="1448" height="1086" alt="MILA player on the touch display, with analog VU meters, Topping DAC and TeraDak linear power supply" data-index="2" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the hardware detail photograph" loading="lazy" />
 <figcaption>MILA player on the touch display, DAC and linear power supply · Click to enlarge</figcaption>
 </figure>
 </div>

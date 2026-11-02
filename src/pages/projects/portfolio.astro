@@ -1,6 +1,7 @@
 ---
 import { getEntry, render } from 'astro:content'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import ProjectOverview from '~/components/ProjectOverview.astro'
 const post = await getEntry('spec', 'projects')
 if (!post) throw new Error('No portfolio project post found')
 const { Content } = await render(post)
@@ -9,13 +10,19 @@ const { Content } = await render(post)
 <LayoutDefault title="Portfolio — Personal Website — Gordan Grgić" description="How I am adapting an Astro theme into my personal portfolio: structure, typography, project presentation and responsive layouts.">
   <header class="page-heading">
     <a class="back-link" href="/projects/">← All projects</a>
-    <p class="folio-label">PERSONAL WEBSITE / PROJECT 01</p>
+    <p class="folio-label">PERSONAL WEBSITE / PROJECT 04</p>
     <h1>Behind this website</h1>
   </header>
+  <ProjectOverview id="portfolio" items={[
+    { label: 'Today', text: 'Published in English and Croatian, with project notes and practical work.' },
+    { label: 'My role', text: 'Adapting an Astro theme, organising content and refining responsive layouts.' },
+    { label: 'Example', text: 'Shared design, translated content and checks for missing Croatian translations.' },
+    { label: 'Next step', text: 'Keep project evidence current and check readability, navigation and loading as the site evolves.' },
+  ]} />
   <article class="prose"><Content /></article>
   <nav class="project-navigation" aria-label="Other projects">
-    <a href="/projects/">← All projects</a>
-    <a href="/projects/mila/">02 / MILA* →</a>
+    <a href="/projects/our-laundry/">← 03 / Our laundry</a>
+    <a href="/projects/">All projects →</a>
   </nav>
 </LayoutDefault>
 
