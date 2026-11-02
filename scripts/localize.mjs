@@ -116,6 +116,7 @@ export async function localizeBuild(directory) {
           let translated = value
           if (translatableAttributes.has(name) || (meta && name === 'content' && metaNames.has(metaId))) translated = translate(value, missing)
           if (name === 'href') translated = hrLink(value)
+          if ((name === 'src' || name === 'href') && value === '/demos/praonica/') translated = '/demos/praonica/hr/'
           if (name === 'lang') translated = 'hr'
           if (meta && name === 'content' && metaId === 'og:url') translated = hrLink(value)
           if (meta && name === 'content' && metaId === 'og:locale') translated = 'hr_HR'
