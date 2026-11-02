@@ -5,18 +5,19 @@ const projects = [
   { id: 'portfolio-project', number: '01', name: 'Portfolio', category: 'Personal website', href: '/projects/portfolio/', image: '/og/default.jpg', alt: 'Gordan Grgić portfolio identity', description: 'The website you are exploring: adapting an Astro theme into a clear, personal account of my experience, practical work and current projects.', tags: ['Astro', 'HTML / CSS', 'JavaScript'] },
   { id: 'mila', number: '02', name: 'MILA*', category: 'Hardware + software + music', href: '/projects/mila/', image: '/images/projects/gstreamer/mila-player-queue-20261023.png', alt: 'MILA audio player with album artwork and a playback queue', description: 'A personal audio streamer bringing local hi-res music, internet radio and streaming together in one responsive interface. A working prototype used for everyday listening.', tags: ['Audio streamer', 'Python', 'Device testing'] },
   { id: 'grgagrow', number: '03', name: 'grgaGrow', category: 'Soil monitoring + cloud application', href: '/projects/grgagrow/', image: '/images/projects/smart-lawn/my-garden-dashboard.jpg', alt: 'grgaGrow garden monitoring dashboard', description: 'A garden application combining soil history, weekly reports, weather and a sun/shade model. Explore the software while physical sensor integration is still ahead.', tags: ['Garden monitoring', 'Cloud', 'ESP32 / RS485'] },
+  { id: 'praonica', number: '04', name: 'Naša praonica', category: 'Shared laundry + mobile web app', href: '/projects/praonica/', image: '/images/projects/praonica/laundry-before-800.webp', alt: 'A frustrated resident with tousled hair and a laundry basket finds both machines occupied', description: 'A mobile-first project inspired by shared laundry rooms in Brussels: check machine status before carrying your laundry downstairs. Development starts with two personally owned test appliances; a future Wi-Fi sensor is being explored.', tags: ['Mobile web', 'Python', 'Wi-Fi / sensors'] },
 ]
 ---
 
-<LayoutDefault title="Projects — Portfolio, MILA* & grgaGrow — Gordan Grgić" description="Explore three personal projects: this Astro portfolio, the MILA* audio streamer and grgaGrow garden monitoring application.">
+<LayoutDefault title="Projects — Portfolio, MILA*, grgaGrow & Naša praonica — Gordan Grgić" description="Explore four personal projects: this portfolio, MILA*, grgaGrow and Naša praonica, a mobile web project for shared laundry rooms.">
   <header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / PROJECTS</p>
     <h1>Project notes</h1>
-    <p class="project-intro">Three projects, each with its own story. Choose one to explore the idea, the work and its current state.</p>
+    <p class="project-intro">Four projects, each with its own story. Choose one to explore the idea, the work and its current state.</p>
   </header>
   <div class="project-cards">
     {projects.map(project => (
-      <a class="project-card" href={project.href} aria-labelledby={`${project.id}-title`}>
+      <a class:list={["project-card", { "laundry-card": project.id === "praonica" }]} href={project.href} aria-labelledby={`${project.id}-title`}>
         <div class="card-image">
           {project.number === '01' ? (
             <div class="portfolio-preview" role="img" aria-label="Portfolio website preview: Gordan Grgić, Curiosity. A practical mind.">
@@ -27,11 +28,12 @@ const projects = [
               <p class="preview-title">Curiosity.<br />A practical mind.</p>
               <p class="preview-footer">QUALITY · TESTING · HARDWARE + SOFTWARE</p>
             </div>
-          ) : <img src={project.image} alt={project.alt} width="1024" height="640" loading="lazy" decoding="async" />}
+          ) : <img src={project.image} alt={project.alt} width={project.id === 'praonica' ? 800 : 1024} height={project.id === 'praonica' ? 533 : 640} loading="lazy" decoding="async" />}
+          {project.id === 'praonica' && <span class="development-stamp">IN DEVELOPMENT</span>}
         </div>
         <div class="card-copy">
           <p class="card-label">{project.number} / {project.category}</p>
-          <div class="card-heading"><h2 id={`${project.id}-title`}>{project.name}</h2><span class="card-status">In development</span></div>
+          <div class="card-heading"><h2 id={`${project.id}-title`}>{project.name}</h2>{project.id !== 'praonica' && <span class="card-status">In development</span>}</div>
           <p class="card-description">{project.description}</p>
           <ul class="card-tags" aria-label="Project topics">{project.tags.map(tag => <li>{tag}</li>)}</ul>
           <span class="card-action">Explore the project <Icon name="arrow" /></span>
@@ -48,7 +50,7 @@ const projects = [
     if (window.location.pathname.replace(/\/$/, '') !== `${base}/projects`) return
     const hash = window.location.hash
     if (!hash || hash === '#main') return
-    const project = hash === '#portfolio-project' ? 'portfolio' : hash === '#grgagrow' ? 'grgagrow' : 'mila'
+    const project = hash === '#portfolio-project' ? 'portfolio' : hash === '#grgagrow' ? 'grgagrow' : hash === '#praonica' ? 'praonica' : 'mila'
     window.location.replace(`${base}/projects/${project}/${hash}`)
   }
   openLegacyProject()
@@ -63,6 +65,9 @@ const projects = [
   .project-card:focus-visible { outline: 2px solid #39776c; outline-offset: 5px; }
   .card-image { display: flex; align-items: center; background: color-mix(in srgb, currentColor 4%, transparent); border-right: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
   .card-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+  .laundry-card .card-image { position: relative; background: #f4f4ec; padding: 50px 0 12px; }
+  .laundry-card .card-image img { aspect-ratio: 3 / 2; object-fit: contain; }
+  .development-stamp { position: absolute; top: 20px; right: 18px; transform: rotate(-9deg); padding: 7px 11px; border: 3px double #39776c; border-radius: 3px 6px 2px 5px; color: #326b60; background: #f4f4ec; box-shadow: 1px 1px 0 #39776c55; font: 700 12px/1.5 var(--note-font); letter-spacing: 1.5px; text-transform: uppercase; }
   .portfolio-preview { box-sizing: border-box; width: 100%; padding: 28px; color: inherit; }
   .preview-address { font: 10px/1.6 var(--note-font); color: var(--note-color); margin: 0 0 20px; }
   .preview-name { font: 28px/1.1 'MyFont', monospace; margin: 0 0 16px; }

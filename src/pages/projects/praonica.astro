@@ -1,0 +1,48 @@
+---
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+---
+<LayoutDefault title="Naša praonica — Shared laundry — Gordan Grgić" description="A mobile web project for shared laundry rooms: check machine status before going downstairs. A local prototype, a simulated preview and a future Wi-Fi sensor concept.">
+  <header class="page-heading">
+    <a class="back-link" href="/projects/">← All projects</a>
+    <p class="folio-label">MOBILE WEB + CONNECTED MACHINES / PROJECT 04</p>
+    <h1>Naša praonica</h1>
+    <p class="lead">Check before you carry the laundry downstairs.</p>
+  </header>
+  <div class="project-meta"><span>In development</span><span>Brussels · Shared laundry rooms</span><span>Mobile web · Python · Wi-Fi concept</span></div>
+  <section class="laundry-storyboard" aria-label="The idea in two scenes">
+    <figure>
+      <img src="/images/projects/praonica/laundry-before.webp" srcset="/images/projects/praonica/laundry-before-800.webp 800w, /images/projects/praonica/laundry-before.webp 1536w" sizes="(max-width: 640px) 90vw, 45vw" width="1536" height="1024" alt="A frustrated resident with tousled hair and a laundry basket finds both machines occupied" decoding="async" />
+      <figcaption><span>01 / BEFORE</span><strong>A basket full. Every machine busy.</strong><p>You only find out when you get downstairs.</p></figcaption>
+    </figure>
+    <figure>
+      <img src="/images/projects/praonica/laundry-check-phone.webp" srcset="/images/projects/praonica/laundry-check-phone-800.webp 800w, /images/projects/praonica/laundry-check-phone.webp 1536w" sizes="(max-width: 640px) 90vw, 45vw" width="1536" height="1024" alt="The same resident calmly checks her phone at home with the laundry basket beside her" decoding="async" />
+      <figcaption><span>02 / WITH THE APP</span><strong>A quick check. One less wasted trip.</strong><p>Check the machines before leaving your apartment.</p></figcaption>
+    </figure>
+  </section>
+  <section class="project-story">
+    <div class="prose">
+      <h2>A small everyday frustration.</h2>
+      <p>In buildings with a shared laundry room, you can carry a full basket downstairs only to find every machine occupied. This project starts with a simple question: can residents see the state of the machines before leaving their apartment?</p>
+      <h2>One view, made for a phone.</h2>
+      <p>The first version focuses on a washing machine and a dryer: running, paused, programme finished, door state and an honest indication when the connection is unavailable. Shared use is free; payments and bookings are outside this first version.</p>
+      <p>A finished programme does not mean an empty machine. An open door does not prove that the laundry has been collected. Availability will need a separate, clearly defined confirmation.</p>
+      <h2>What has actually been checked?</h2>
+      <p>Development starts with a personally owned washing machine and dryer, used only as test appliances. Read-only integration has returned real states for operation, the end of a washing cycle, pause and an open dryer door, checked against actual use.</p>
+      <p>A local Python application is being developed around those observations. Its new live integration still needs a separate check. The end of a drying cycle, all interruption paths and long-term reliability are not yet confirmed.</p>
+      <h2>A path for other machines.</h2>
+      <p>For machines without a suitable API, the next idea is a Wi-Fi sensor that observes operation and door events. The hardware is a concept, not an installed or tested product. Detection must be checked on each supported machine, including pauses and loss of connectivity.</p>
+      <p>The aim is reliable information for residents, without remote starting or stopping. A future building pilot will also need private access and a clear way to confirm that laundry has been collected.</p>
+    </div>
+    <aside class="prototype">
+      <p class="folio-label">MOBILE PREVIEW / SIMULATED DATA</p>
+      <div class="phone"><iframe src="/demos/praonica/" title="Simulated mobile laundry prototype" loading="lazy"></iframe></div>
+      <p class="preview-note">This interactive preview uses simulated examples. It has no connection to real appliances and contains no private readings.</p>
+      <a class="open-demo" href="/demos/praonica/">Open the mobile prototype ↗</a>
+    </aside>
+  </section>
+  <nav class="project-navigation" aria-label="Other projects"><a href="/projects/">← All projects</a><a href="/projects/grgagrow/">03 / grgaGrow →</a></nav>
+</LayoutDefault>
+<style>
+.laundry-storyboard{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:0 0 44px}.laundry-storyboard figure{margin:0;border:1px solid color-mix(in srgb,currentColor 20%,transparent);min-width:0}.laundry-storyboard img{display:block;width:100%;height:auto;aspect-ratio:3/2;background:#f4f4ec}.laundry-storyboard figcaption{padding:18px 20px 20px;border-top:1px solid color-mix(in srgb,currentColor 16%,transparent)}.laundry-storyboard figcaption span{display:block;font:10px/1.7 var(--note-font);color:var(--note-color);margin-bottom:10px;letter-spacing:1px}.laundry-storyboard figcaption strong{display:block;font:600 17px/1.5 var(--body-font)}.laundry-storyboard figcaption p{font:13px/1.7 var(--body-font);color:var(--note-color);margin:8px 0 0}@media(max-width:640px){.laundry-storyboard{grid-template-columns:1fr;gap:18px;margin-bottom:32px}}
+.back-link{display:inline-block;margin-bottom:24px;font:11px/1.7 var(--note-font)}.lead{font:22px/1.5 var(--body-font);max-width:32ch;margin-top:18px}.project-meta{display:flex;flex-wrap:wrap;gap:10px 22px;border-block:1px solid color-mix(in srgb,currentColor 22%,transparent);padding:16px 0;margin:28px 0 38px;font:11px/1.7 var(--note-font);color:var(--note-color)}.project-story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,390px);gap:42px;align-items:start}.prose{min-width:0}.prose h2:first-child{margin-top:0}.prototype{min-width:0}.phone{width:100%;height:760px;border:7px solid #283f39;border-radius:30px;overflow:hidden;background:#f5f6ef;box-shadow:8px 10px 0 color-mix(in srgb,currentColor 8%,transparent)}iframe{width:100%;height:100%;border:0;display:block}.preview-note{font:11px/1.8 var(--note-font);color:var(--note-color);margin:20px 0 12px}.open-demo{font:12px/1.7 var(--note-font)}.source-note{font-size:12px}.project-navigation{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:40px;padding-top:20px;border-top:1px solid color-mix(in srgb,currentColor 20%,transparent);font:12px/1.7 var(--note-font)}@media(max-width:900px){.project-story{grid-template-columns:1fr}.prototype{max-width:390px;width:100%;margin:auto}.lead{font-size:20px}}@media(max-width:380px){.phone{height:700px;border-width:4px}.project-story{gap:28px}}
+</style>
