@@ -2,6 +2,8 @@
 const devices = document.querySelector('#devices');
 const banner = document.querySelector('#banner');
 const refresh = document.querySelector('#refresh');
+const overview = document.querySelector('#overview');
+const announcement = document.querySelector('#status-announcement');
 let payload = null;
 let arrival = 0;
 let failed = false;
@@ -30,23 +32,48 @@ function render() {
     payload.notice || (payload.busy ? 'Fetching appliance status…' : 'Integration service · automatic updates approximately every minute.');
   refresh.disabled = snapshot || serviceLost || payload.blocked || payload.busy || now < payload.next_at;
   refresh.querySelector('span').textContent = !snapshot && payload.next_at > now ? `Refresh in ${Math.ceil(payload.next_at-now)} s` : 'Refresh';
-  const cards = payload.devices.map((device, index) => {
+  // One presentation model keeps the overview and detail cards consistent.
+  const readings = payload.devices.map(device => {
     const stale = device.age_seconds != null && device.age_seconds + elapsed > 180;
     const usable = device.usable && !stale && !serviceLost;
     const state = usable ? device.state : null;
-    const card = node('article', 'card ' + ({RUNNING:'running',PAUSED:'paused',END_OF_CYCLE:'ended'}[state] || ''));
+    return {
+      device, usable,
+      modifier: {RUNNING:'running',PAUSED:'paused',END_OF_CYCLE:'ended'}[state] || '',
+      label: snapshot ? 'Saved snapshot' : serviceLost ? 'Status unknown' : stale ? 'Outdated reading' : device.label,
+      message: usable ? device.message : 'Machine availability is not confirmed.',
+      door: usable ? device.door : 'Unknown',
+      phase: usable ? device.phase : '—'
+    };
+  });
+  if (demo) {
+    const items = readings.map(reading => {
+      const item = node('article', 'overview-item ' + reading.modifier);
+      const text = node('div', 'overview-text');
+      const line = node('div', 'overview-line');
+      line.append(node('h2', '', reading.device.name), node('span', 'status', reading.label));
+      text.append(line, node('p', '', reading.message));
+      item.append(machine(), text);
+      return item;
+    });
+    overview.replaceChildren(...items);
+  }
+  const cards = readings.map((reading, index) => {
+    const {device, usable} = reading;
+    const card = node('article', 'card ' + reading.modifier);
     const top = node('div', 'card-top');
     const heading = node('div');
     heading.append(node('h2', '', device.name), node('p','model',`${device.model}`), node('p','model',device.detail));
     top.append(machine(), heading, node('span','number',`0${index+1}`));
-    card.append(top, node('div','status', snapshot ? 'Saved snapshot' : serviceLost ? 'Status unknown' : stale ? 'Outdated reading' : device.label));
-    card.append(node('p','message',usable ? device.message : 'Machine availability is not confirmed.'));
+    card.append(top, node('div','status', reading.label));
+    card.append(node('p','message',reading.message));
     const facts = node('dl','facts');
-    for (const [label,value] of [['Door',usable ? device.door : 'Unknown'],['Cycle phase',usable ? device.phase : '—']]) {
+    for (const [label,value] of [['Door',reading.door],['Cycle phase',reading.phase]]) {
       const item = node('div'); item.append(node('dt','',label),node('dd','',value)); facts.append(item);
     }
-    card.append(facts,node('p','timestamp',`${snapshot ? 'Snapshot time' : 'Last successful reading'}: ${date(device.received_at)}`));
-    if (snapshot || (!usable && device.received_at != null)) {
+    card.append(facts);
+    if (!demo) card.append(node('p','timestamp',`${snapshot ? 'Snapshot time' : 'Last successful reading'}: ${date(device.received_at)}`));
+    if (!demo && (snapshot || (!usable && device.received_at != null))) {
       const previous = device.previous || (device.usable ? device.label : 'Unknown');
       card.append(node('p','previous',`Previously recorded: ${previous}${snapshot ? ` · door: ${device.previous_door}` : ''}.`));
     }
@@ -54,9 +81,14 @@ function render() {
     return card;
   });
   devices.replaceChildren(...cards);
+  return readings;
 }
 const demo = document.querySelector('meta[name="praonica-mode"]')?.content === 'demo';
 if (demo) {
+  document.body.classList.add('demo');
+  refresh.hidden = true;
+  overview.hidden = false;
+  banner.removeAttribute('role');
   const demoPanel = node('div', 'demo-panel');
   const label = node('label', '', 'Try a dryer status: ');
   const select = node('select');
@@ -64,20 +96,26 @@ if (demo) {
   for (const [value, text] of [['RUNNING','Running'],['PAUSED','Pause'],['END_OF_CYCLE','Cycle finished'],['OFFLINE','Offline']]) {
     const option = node('option','',text); option.value=value; select.append(option);
   }
-  label.append(select); demoPanel.append(label, node('p','','SIMULATION · Not connected to real appliances.'));
-  banner.before(demoPanel);
+  label.append(select); demoPanel.append(label);
+  banner.after(demoPanel);
+  let previousValue = null;
   function simulate() {
     const now = Date.now()/1000;
     const value = select.value;
     const running = value === 'RUNNING';
     payload = {mode:'demo',server_at:now,next_at:null,busy:false,blocked:true,
-      notice:'SIMULATED MOBILE PROTOTYPE · Example states. This preview is not connected to real appliances.',
+      notice:'SIMULATION · Example states. No connection to real appliances.',
       devices:[
         {name:'Washer',model:'Prototype 01',detail:'Test appliance',state:'END_OF_CYCLE',usable:true,label:'Cycle finished',message:'The cycle has finished. Check whether the laundry has been collected.',door:'Closed',phase:'—',received_at:now,age_seconds:0},
         {name:'Dryer',model:'Prototype 02',detail:'Test appliance',state:value==='OFFLINE'?null:value,usable:value!=='OFFLINE',label:running?'Running':value==='PAUSED'?'Paused':value==='END_OF_CYCLE'?'Cycle finished':'Connection unavailable',message:running?'The cycle is running.':value==='PAUSED'?'The cycle is paused. The machine is still occupied.':value==='END_OF_CYCLE'?'The cycle has finished. Check whether the laundry has been collected.':'Machine availability is not confirmed.',door:value==='PAUSED'?'Open':'Closed',phase:running?'Drying':'—',received_at:now,age_seconds:0}
       ]};
-    arrival=performance.now(); failed=false; render();
-    document.querySelectorAll('.timestamp').forEach(element => {element.textContent='Simulated example · not an appliance reading';});
+    arrival=performance.now(); failed=false;
+    const readings = render();
+    if (previousValue !== null && previousValue !== value) {
+      const dryer = readings[1];
+      announcement.textContent = `${dryer.device.name}: ${dryer.label}. Door: ${dryer.door}. ${dryer.message}`;
+    }
+    previousValue = value;
     refresh.disabled=true;
   }
   select.addEventListener('change',simulate);
