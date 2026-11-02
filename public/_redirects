@@ -13,3 +13,9 @@
 /thank-you /contact/ 301
 /thank-you/ /contact/ 301
 /atom.xml / 301
+
+# English project slug; keep previously shared laundry links working.
+/projects/praonica /projects/our-laundry/ 301
+/projects/praonica/ /projects/our-laundry/ 301
+/hr/projects/praonica /hr/projects/our-laundry/ 301
+/hr/projects/praonica/ /hr/projects/our-laundry/ 301

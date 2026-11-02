@@ -5,7 +5,7 @@ const projects = [
   { id: 'portfolio-project', number: '01', name: 'Portfolio', category: 'Personal website', href: '/projects/portfolio/', image: '/og/default.jpg', alt: 'Gordan Grgić portfolio identity', description: 'The website you are exploring: adapting an Astro theme into a clear, personal account of my experience, practical work and current projects.', tags: ['Astro', 'HTML / CSS', 'JavaScript'] },
   { id: 'mila', number: '02', name: 'MILA*', category: 'Hardware + software + music', href: '/projects/mila/', image: '/images/projects/gstreamer/mila-player-queue-20261023.png', alt: 'MILA audio player with album artwork and a playback queue', description: 'A personal audio streamer bringing local hi-res music, internet radio and streaming together in one responsive interface. A working prototype used for everyday listening.', tags: ['Audio streamer', 'Python', 'Device testing'] },
   { id: 'grgagrow', number: '03', name: 'grgaGrow', category: 'Soil monitoring + cloud application', href: '/projects/grgagrow/', image: '/images/projects/smart-lawn/my-garden-dashboard.jpg', alt: 'grgaGrow garden monitoring dashboard', description: 'A garden application combining soil history, weekly reports, weather and a sun/shade model. Explore the software while physical sensor integration is still ahead.', tags: ['Garden monitoring', 'Cloud', 'ESP32 / RS485'] },
-  { id: 'praonica', number: '04', name: 'Our laundry', category: 'Shared laundry + mobile web app', href: '/projects/praonica/', image: '/images/projects/praonica/laundry-before-800.webp', alt: 'A frustrated resident with tousled hair and a laundry basket finds both machines occupied', description: 'A mobile-first project inspired by shared laundry rooms in Brussels: check machine status before carrying your laundry downstairs. Development starts with two personally owned test appliances; a future Wi-Fi sensor is being explored.', tags: ['Mobile web', 'Python', 'Wi-Fi / sensors'] },
+  { id: 'our-laundry', number: '04', name: 'Our laundry', category: 'Shared laundry + mobile web app', href: '/projects/our-laundry/', image: '/images/projects/our-laundry/laundry-before-800.webp', alt: 'A frustrated resident with tousled hair and a laundry basket finds both machines occupied', description: 'A mobile-first project inspired by shared laundry rooms in Brussels: check machine status before carrying your laundry downstairs. Development starts with two personally owned test appliances; a future Wi-Fi sensor is being explored.', tags: ['Mobile web', 'Python', 'Wi-Fi / sensors'] },
 ]
 ---
 
@@ -17,7 +17,7 @@ const projects = [
   </header>
   <div class="project-cards">
     {projects.map(project => (
-      <a class:list={["project-card", { "laundry-card": project.id === "praonica" }]} href={project.href} aria-labelledby={`${project.id}-title`}>
+      <a class:list={["project-card", { "laundry-card": project.id === "our-laundry" }]} href={project.href} aria-labelledby={`${project.id}-title`}>
         <div class="card-image">
           {project.number === '01' ? (
             <div class="portfolio-preview" role="img" aria-label="Portfolio website preview: Gordan Grgić, Curiosity. A practical mind.">
@@ -28,12 +28,12 @@ const projects = [
               <p class="preview-title">Curiosity.<br />A practical mind.</p>
               <p class="preview-footer">QUALITY · TESTING · HARDWARE + SOFTWARE</p>
             </div>
-          ) : <img src={project.image} alt={project.alt} width={project.id === 'praonica' ? 800 : 1024} height={project.id === 'praonica' ? 533 : 640} loading="lazy" decoding="async" />}
-          {project.id === 'praonica' && <span class="development-stamp">IN DEVELOPMENT</span>}
+          ) : <img src={project.image} alt={project.alt} width={project.id === 'our-laundry' ? 800 : 1024} height={project.id === 'our-laundry' ? 533 : 640} loading="lazy" decoding="async" />}
+          {project.id === 'our-laundry' && <span class="development-stamp">IN DEVELOPMENT</span>}
         </div>
         <div class="card-copy">
           <p class="card-label">{project.number} / {project.category}</p>
-          <div class="card-heading"><h2 id={`${project.id}-title`}>{project.name}</h2>{project.id !== 'praonica' && <span class="card-status">In development</span>}</div>
+          <div class="card-heading"><h2 id={`${project.id}-title`}>{project.name}</h2>{project.id !== 'our-laundry' && <span class="card-status">In development</span>}</div>
           <p class="card-description">{project.description}</p>
           <ul class="card-tags" aria-label="Project topics">{project.tags.map(tag => <li>{tag}</li>)}</ul>
           <span class="card-action">Explore the project <Icon name="arrow" /></span>
@@ -50,7 +50,7 @@ const projects = [
     if (window.location.pathname.replace(/\/$/, '') !== `${base}/projects`) return
     const hash = window.location.hash
     if (!hash || hash === '#main') return
-    const project = hash === '#portfolio-project' ? 'portfolio' : hash === '#grgagrow' ? 'grgagrow' : hash === '#praonica' ? 'praonica' : 'mila'
+    const project = hash === '#portfolio-project' ? 'portfolio' : hash === '#grgagrow' ? 'grgagrow' : (hash === '#praonica' || hash === '#our-laundry') ? 'our-laundry' : 'mila'
     window.location.replace(`${base}/projects/${project}/${hash}`)
   }
   openLegacyProject()

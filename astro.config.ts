@@ -9,6 +9,7 @@ import { themeConfig } from './src/.config'
 
 const notFoundPath = /\/404(?:\.html|\/)?$/
 const formerGardenPath = /\/projects\/smart-lawn\/?$/
+const formerLaundryPath = /\/projects\/praonica\/?$/
 
 // https://astro.build/config
 export default defineConfig({
@@ -33,7 +34,7 @@ export default defineConfig({
     UnoCSS({ injectReset: true }),
     mdx({}),
     robotsTxt({ sitemap: new URL('sitemap-index.xml', themeConfig.site.website).href }),
-    sitemap({ filter: page => !notFoundPath.test(page) && !formerGardenPath.test(page) }),
+    sitemap({ filter: page => !notFoundPath.test(page) && !formerGardenPath.test(page) && !formerLaundryPath.test(page) }),
     bilingualPortfolio(),
   ],
 })
