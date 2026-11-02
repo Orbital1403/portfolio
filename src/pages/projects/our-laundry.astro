@@ -1,10 +1,11 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import LaundrySystemPlan from '~/components/LaundrySystemPlan.astro'
 ---
 
 <LayoutDefault
   title="Our laundry — Shared laundry — Gordan Grgić"
-  description="A mobile web project for shared laundry rooms: check machine status before going downstairs. A local prototype, a simulated preview and a future Wi-Fi sensor concept."
+  description="A mobile web project for shared laundry rooms: a simulated preview and a planned system of Wi-Fi electricity meters, Supabase and QR labels."
 >
   <header class="page-heading">
     <a class="back-link" href="/projects/">← All projects</a>
@@ -12,10 +13,11 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     <h1>Our laundry</h1>
     <p class="lead">Check before you carry the laundry downstairs.</p>
     <a class="try-demo" href="/demos/praonica/">Try the prototype ↗</a>
+    <a class="plan-link" href="#system-plan">Equipment &amp; setup ↓</a>
   </header>
   <div class="project-meta">
     <span>In development</span><span>Brussels · Shared laundry rooms</span><span
-      >Mobile web · Python · Wi-Fi concept</span
+      >Python prototype · Planned Wi-Fi system</span
     >
   </div>
   <section class="laundry-storyboard" aria-label="The idea in two scenes">
@@ -80,15 +82,14 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
         separate check. The end of a drying cycle, all interruption paths and long-term reliability are not yet
         confirmed.
       </p>
-      <h2>A path for other machines.</h2>
+      <h2>A plan for one building.</h2>
       <p>
-        For machines without a suitable API, the next idea is a Wi-Fi sensor that observes operation and door events.
-        The hardware is a concept, not an installed or tested product. Detection must be checked on each supported
-        machine, including pauses and loss of connectivity.
+        The planned system uses separate Wi-Fi electricity measurement for each washer and dryer. Manufacturer APIs can
+        add explicit states on supported machines; the system does not depend on every machine having an API.
       </p>
       <p>
-        The aim is reliable information for residents, without remote starting or stopping. A future building pilot will
-        also need private access and a clear way to confirm that laundry has been collected.
+        QR labels are planned for machine identification, check-in and confirmation that the laundry has been collected.
+        The design focuses on status information, without remote starting or stopping.
       </p>
     </div>
     <aside class="prototype">
@@ -103,6 +104,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       <a class="open-demo" href="/demos/praonica/">Open the mobile prototype ↗</a>
     </aside>
   </section>
+  <LaundrySystemPlan />
   <nav class="project-navigation" aria-label="Other projects">
     <a href="/projects/">← All projects</a><a href="/projects/grgagrow/">03 / grgaGrow →</a>
   </nav>
@@ -223,7 +225,15 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     border: 1px solid currentColor;
     font: 600 13px/1.7 var(--note-font);
   }
-  .try-demo:focus-visible {
+  .plan-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin: 12px 0 0 16px;
+    font: 12px/1.7 var(--note-font);
+  }
+  .try-demo:focus-visible,
+  .plan-link:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 4px;
   }
@@ -240,6 +250,13 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
   @media (max-width: 900px) {
     .lead {
       font-size: 20px;
+    }
+  }
+  @media (max-width: 480px) {
+    .plan-link {
+      display: flex;
+      width: fit-content;
+      margin-left: 0;
     }
   }
   @media (max-width: 380px) {
