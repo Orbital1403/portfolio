@@ -29,11 +29,11 @@ const projects = [
               <p class="preview-footer">QUALITY · TESTING · HARDWARE + SOFTWARE</p>
             </div>
           ) : <img src={project.image} alt={project.alt} width={project.id === 'our-laundry' ? 800 : 1024} height={project.id === 'our-laundry' ? 533 : 640} loading="lazy" decoding="async" />}
-          {project.id === 'our-laundry' && <span class="development-stamp">IN DEVELOPMENT</span>}
+          {['grgagrow', 'our-laundry'].includes(project.id) && <span class="development-stamp">IN DEVELOPMENT</span>}
         </div>
         <div class="card-copy">
           <p class="card-label">{project.number} / {project.category}</p>
-          <div class="card-heading"><h2 id={`${project.id}-title`}>{project.name}</h2>{project.id !== 'our-laundry' && <span class="card-status">In development</span>}</div>
+          <div class="card-heading"><h2 id={`${project.id}-title`}>{project.name}</h2>{!['grgagrow', 'our-laundry'].includes(project.id) && <span class="card-status">In development</span>}</div>
           <p class="card-description">{project.description}</p>
           <ul class="card-tags" aria-label="Project topics">{project.tags.map(tag => <li>{tag}</li>)}</ul>
           <span class="card-action">Explore the project <Icon name="arrow" /></span>
@@ -63,7 +63,7 @@ const projects = [
   .project-card { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr); color: inherit; border: 1px solid color-mix(in srgb, currentColor 24%, transparent); text-decoration: none; overflow: hidden; transition: border-color .2s, background .2s; }
   .project-card:hover { color: inherit; background: color-mix(in srgb, #39776c 5%, transparent); border-color: #39776c; }
   .project-card:focus-visible { outline: 2px solid #39776c; outline-offset: 5px; }
-  .card-image { display: flex; align-items: center; background: color-mix(in srgb, currentColor 4%, transparent); border-right: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+  .card-image { position: relative; display: flex; align-items: center; background: color-mix(in srgb, currentColor 4%, transparent); border-right: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
   .card-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
   .laundry-card .card-image { position: relative; background: #f4f4ec; padding: 50px 0 12px; }
   .laundry-card .card-image img { aspect-ratio: 3 / 2; object-fit: contain; }
