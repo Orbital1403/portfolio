@@ -1,0 +1,269 @@
+<section id="signal-guide" class="signal-guide" aria-labelledby="signal-guide-title">
+  <header class="signal-heading">
+    <p class="signal-label">ILLUSTRATIVE SIGNALS / NOT REAL MEASUREMENTS</p>
+    <h3 id="signal-guide-title">What readings can tell us</h3>
+    <p>
+      These invented examples explain the proposed interpretation of readings. They are not real measurements or
+      validated detection thresholds.
+    </p>
+  </header>
+
+  <div class="signal-examples">
+    <figure>
+      <span class="chart-axis-label">Relative power</span>
+      <svg viewBox="0 0 320 136" aria-hidden="true" focusable="false">
+        <path class="signal-axis" d="M12 120H308"></path>
+        <path
+          class="signal-fill"
+          d="M12 108L30 108L42 45L57 31L69 50L81 35L95 53L106 38L120 40L132 105L168 105L181 42L195 36L208 57L221 33L235 54L248 38L265 50L278 39L308 43V120H12Z"
+        ></path>
+        <path
+          class="signal-trace"
+          d="M12 108L30 108L42 45L57 31L69 50L81 35L95 53L106 38L120 40L132 105L168 105L181 42L195 36L208 57L221 33L235 54L248 38L265 50L278 39L308 43"
+        ></path>
+      </svg>
+      <span class="chart-axis-label chart-time">Time →</span>
+      <figcaption>
+        <h4>A dip can be a pause</h4>
+        <p>
+          A brief low section is followed by renewed activity. A short drop must not be treated as a finished cycle.
+        </p>
+      </figcaption>
+    </figure>
+    <figure>
+      <span class="chart-axis-label">Relative power</span>
+      <svg viewBox="0 0 320 136" aria-hidden="true" focusable="false">
+        <path class="signal-axis" d="M12 120H308"></path>
+        <path
+          class="signal-fill"
+          d="M12 108L30 108L42 43L58 32L74 52L88 37L102 49L116 29L130 45L145 34L160 44L182 107L218 106L250 107L278 106L308 107V120H12Z"
+        ></path>
+        <path
+          class="signal-trace"
+          d="M12 108L30 108L42 43L58 32L74 52L88 37L102 49L116 29L130 45L145 34L160 44L182 107L218 106L250 107L278 106L308 107"
+        ></path>
+      </svg>
+      <span class="chart-axis-label chart-time">Time →</span>
+      <figcaption>
+        <h4>Low power is not availability</h4>
+        <p>
+          Activity settles into a low line. A low reading alone confirms neither a finished cycle nor an empty drum.
+        </p>
+      </figcaption>
+    </figure>
+    <figure>
+      <span class="chart-axis-label">Relative power</span>
+      <svg viewBox="0 0 320 136" aria-hidden="true" focusable="false">
+        <path class="signal-axis" d="M12 120H308"></path>
+        <rect class="signal-gap" x="174" y="16" width="134" height="104"></rect>
+        <path class="gap-boundary" d="M174 16V120"></path>
+        <path class="signal-fill" d="M12 108L30 108L42 45L57 31L69 50L81 35L95 53L106 38L120 40L135 29L151 46V120H12Z"
+        ></path>
+        <path class="signal-trace" d="M12 108L30 108L42 45L57 31L69 50L81 35L95 53L106 38L120 40L135 29L151 46"></path>
+        <circle class="last-reading" cx="151" cy="46" r="4"></circle>
+      </svg>
+      <span class="chart-axis-label chart-time">Time →</span>
+      <figcaption>
+        <h4>No fresh readings, no known state</h4>
+        <p>The trace stops and leaves a gap. When readings are missing or stale, the current state is unknown.</p>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="collection-guide">
+    <h4 class="collection-title">Proposed collection flow</h4>
+    <ol class="collection-flow">
+      <li>
+        <strong>Cycle end reported or estimated</strong>
+        <p>From a supported API, or meter-based rules that still need validation.</p>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+      </li>
+      <li>
+        <strong>Awaiting collection</strong>
+        <p>A finished programme does not confirm that the drum is empty.</p>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="resident-step">
+        <span class="confirmation-label">QR confirmation</span>
+        <strong>Resident confirms collection</strong>
+        <p>The resident uses the machine's QR page to confirm collection.</p>
+      </li>
+    </ol>
+    <p class="collection-note">
+      The app would then show availability according to resident confirmation, not a sensor measurement. QR labels do
+      not detect doors or an empty drum.
+    </p>
+  </div>
+</section>
+
+<style>
+  .signal-guide {
+    --signal-line: color-mix(in srgb, currentColor 20%, transparent);
+    --signal-green: color-mix(in srgb, #39776c 75%, currentColor);
+    min-width: 0;
+    margin: 34px 0;
+    scroll-margin-top: 28px;
+    font: 15px/1.75 var(--body-font);
+    text-shadow: none;
+    overflow-wrap: anywhere;
+  }
+  .signal-guide :is(h3, h4, p, figure, ol) {
+    margin: 0;
+  }
+  .signal-heading {
+    max-width: 76ch;
+    margin-bottom: 24px;
+  }
+  .signal-label,
+  .confirmation-label {
+    font: 11px/1.7 var(--note-font);
+    color: var(--note-color);
+  }
+  .signal-label {
+    letter-spacing: 0.5px;
+  }
+  .signal-heading h3 {
+    margin: 10px 0 12px;
+    font: 600 20px/1.5 var(--note-font);
+    letter-spacing: -0.4px;
+  }
+  .signal-examples {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .signal-examples figure {
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid var(--signal-line);
+    background: color-mix(in srgb, #39776c 4%, transparent);
+  }
+  .signal-examples svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 0;
+    overflow: visible;
+  }
+  .chart-axis-label {
+    display: block;
+    color: var(--note-color);
+    font: 10px/1.7 var(--note-font);
+  }
+  .chart-time {
+    margin-bottom: 20px;
+    text-align: right;
+  }
+  .signal-trace {
+    fill: none;
+    stroke: var(--signal-green);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .signal-axis,
+  .gap-boundary {
+    fill: none;
+    stroke: var(--signal-line);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+  .gap-boundary {
+    stroke-dasharray: 4 5;
+  }
+  .signal-fill {
+    fill: color-mix(in srgb, #39776c 10%, transparent);
+  }
+  .signal-gap {
+    fill: color-mix(in srgb, currentColor 4%, transparent);
+  }
+  .last-reading {
+    fill: var(--signal-green);
+  }
+  .signal-examples h4,
+  .collection-title {
+    font: 600 15px/1.55 var(--note-font);
+    letter-spacing: -0.2px;
+  }
+  .signal-examples h4 {
+    margin-bottom: 10px;
+  }
+  .signal-examples p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .collection-guide {
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--signal-line);
+  }
+  .collection-guide .collection-title {
+    margin-bottom: 16px;
+  }
+  .collection-flow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    padding: 0;
+    list-style: none;
+  }
+  .collection-flow li {
+    position: relative;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--signal-line);
+  }
+  .collection-flow strong {
+    display: block;
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+  .collection-flow p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .flow-arrow {
+    position: absolute;
+    top: 16px;
+    right: -25px;
+    width: 20px;
+    color: var(--note-color);
+    font: 20px/1.5 var(--note-font);
+    text-align: center;
+  }
+  .collection-flow .resident-step {
+    background: color-mix(in srgb, #39776c 6%, transparent);
+  }
+  .confirmation-label {
+    display: block;
+    margin-bottom: 7px;
+  }
+  .collection-guide .collection-note {
+    max-width: 84ch;
+    margin-top: 18px;
+    color: var(--note-color);
+    font-size: 14px;
+  }
+  @media (max-width: 700px) {
+    .signal-examples,
+    .collection-flow {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .signal-examples figure {
+      padding: 16px;
+    }
+    .signal-examples svg {
+      max-width: 400px;
+      margin-inline: auto;
+    }
+    .flow-arrow {
+      top: auto;
+      right: auto;
+      bottom: -30px;
+      left: 18px;
+      transform: rotate(90deg);
+    }
+  }
+</style>

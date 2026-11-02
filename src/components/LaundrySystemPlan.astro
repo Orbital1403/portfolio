@@ -1,3 +1,7 @@
+---
+import LaundrySignalGuide from './LaundrySignalGuide.astro'
+---
+
 <section id="system-plan" class="system-plan" aria-labelledby="system-plan-title">
   <header class="plan-heading">
     <p class="plan-label">PLANNED ARCHITECTURE / ONE BUILDING</p>
@@ -12,7 +16,7 @@
     <li>
       <span class="step-number" aria-hidden="true">01</span>
       <h3>Machine + meter</h3>
-      <p>A separate Wi-Fi electricity meter observes each machine's consumption, without switching its power.</p>
+      <p>A separate Wi-Fi electricity meter without a relay observes each machine, without switching its power.</p>
     </li>
     <li>
       <span class="step-number" aria-hidden="true">02</span>
@@ -52,52 +56,7 @@
     </div>
   </div>
 
-  <section class="equipment" aria-labelledby="equipment-title">
-    <h3 id="equipment-title">Equipment in the plan</h3>
-    <dl>
-      <div>
-        <dt>Washing machines</dt>
-        <dd>The building's washing machines, with their electrical connections and operating cycles checked first.</dd>
-      </div>
-      <div>
-        <dt>Tumble dryers</dt>
-        <dd>The building's dryers, assessed separately because their loads, pauses and cycle patterns can differ.</dd>
-      </div>
-      <div>
-        <dt>Wi-Fi electricity meters without relays</dt>
-        <dd>
-          Separate metering for each machine, with script support for HTTPS reporting. Suitability for the actual
-          electrical connection and load must be checked before installation.
-        </dd>
-      </div>
-      <div>
-        <dt>Wi-Fi networking with internet</dt>
-        <dd>Coverage at the machines and a reliable internet connection for sending readings.</dd>
-      </div>
-      <div>
-        <dt>QR labels</dt>
-        <dd>Labels linking each physical machine to its own page for resident check-in and collection confirmation.</dd>
-      </div>
-      <div>
-        <dt>Phone for setup and testing</dt>
-        <dd>For pairing, checking the mobile view and verifying the QR flow in the laundry room.</dd>
-      </div>
-      <div>
-        <dt>Computer for development and configuration</dt>
-        <dd>For preparing meter scripts, configuring the service and reviewing test readings.</dd>
-      </div>
-    </dl>
-  </section>
-
-  <aside class="status-rules" aria-labelledby="status-rules-title">
-    <h3 id="status-rules-title">Rules for interpreting status</h3>
-    <ul>
-      <li>A drop in power does not prove that a cycle has finished.</li>
-      <li>A finished cycle does not mean that the machine is available.</li>
-      <li>Missing or outdated readings mean the current state is unknown.</li>
-      <li>Electricity metering does not reveal whether the door is open.</li>
-    </ul>
-  </aside>
+  <LaundrySignalGuide />
 
   <details class="setup-details">
     <summary>Setup details</summary>
@@ -157,7 +116,7 @@
     overflow-wrap: anywhere;
     scroll-margin-top: 28px;
   }
-  .system-plan :is(h2, h3, p, ol, ul, dl, dd) {
+  .system-plan :is(h2, h3, p, ol) {
     margin: 0;
   }
   .plan-heading {
@@ -183,15 +142,24 @@
   .data-flow {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
+    gap: 24px;
     padding: 0;
     list-style: none;
   }
   .data-flow li {
+    position: relative;
     min-width: 0;
     padding: 18px;
     border: 1px solid var(--plan-line);
     background: color-mix(in srgb, #39776c 6%, transparent);
+  }
+  .data-flow li:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -20px;
+    top: 24px;
+    font: 19px/1 var(--note-font);
+    color: var(--note-color);
   }
   .step-number {
     display: inline-block;
@@ -216,34 +184,6 @@
   }
   .supporting-inputs p {
     font-size: 14px;
-  }
-  .equipment > h3 {
-    margin-bottom: 16px;
-  }
-  .equipment dl > div {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr);
-    gap: 24px;
-    padding: 16px 0;
-    border-top: 1px solid var(--plan-line);
-  }
-  .equipment dt {
-    font-weight: 600;
-  }
-  .equipment dd {
-    color: var(--note-color);
-  }
-  .status-rules {
-    margin: 26px 0;
-    padding: 20px 24px;
-    border-left: 3px solid color-mix(in srgb, #39776c 65%, currentColor);
-    background: color-mix(in srgb, #39776c 6%, transparent);
-  }
-  .status-rules ul {
-    padding-left: 20px;
-  }
-  .status-rules li + li {
-    margin-top: 5px;
   }
   .setup-details {
     border-block: 1px solid var(--plan-line);
@@ -287,7 +227,22 @@
   }
   @media (max-width: 1100px) {
     .data-flow {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .data-flow li {
+      padding-left: 58px;
+    }
+    .data-flow .step-number {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+    }
+    .data-flow li:not(:last-child)::after {
+      content: '↓';
+      top: auto;
+      bottom: -22px;
+      left: 18px;
+      right: auto;
     }
   }
   @media (max-width: 600px) {
@@ -296,25 +251,14 @@
       padding-top: 26px;
     }
     .data-flow,
-    .supporting-inputs,
-    .equipment dl > div {
+    .supporting-inputs {
       grid-template-columns: minmax(0, 1fr);
     }
     .data-flow li {
-      padding: 16px;
-    }
-    .step-number {
-      margin-bottom: 12px;
+      padding: 16px 16px 16px 52px;
     }
     .supporting-inputs {
       gap: 20px;
-    }
-    .equipment dl > div {
-      gap: 5px;
-      padding: 14px 0;
-    }
-    .status-rules {
-      padding: 18px 16px;
     }
   }
 </style>

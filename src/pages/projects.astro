@@ -2,55 +2,148 @@
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import Icon from '~/components/Icon.astro'
 const projects = [
-  { id: 'portfolio-project', number: '01', name: 'Portfolio', category: 'Personal website', href: '/projects/portfolio/', image: '/og/default.jpg', alt: 'Gordan Grgić portfolio identity', description: 'The website you are exploring: adapting an Astro theme into a clear, personal account of my experience, practical work and current projects.', tags: ['Astro', 'HTML / CSS', 'JavaScript'] },
-  { id: 'mila', number: '02', name: 'MILA*', category: 'Hardware + software + music', href: '/projects/mila/', image: '/images/projects/gstreamer/mila-player-queue-20261023.png', alt: 'MILA audio player with album artwork and a playback queue', description: 'A personal audio streamer bringing local hi-res music, internet radio and streaming together in one responsive interface. A working prototype used for everyday listening.', tags: ['Audio streamer', 'Python', 'Device testing'] },
-  { id: 'grgagrow', number: '03', name: 'grgaGrow', category: 'Soil monitoring + cloud application', href: '/projects/grgagrow/', image: '/images/projects/smart-lawn/my-garden-dashboard.jpg', alt: 'grgaGrow garden monitoring dashboard', description: 'A garden application combining soil history, weekly reports, weather and a sun/shade model. Explore the software while physical sensor integration is still ahead.', tags: ['Garden monitoring', 'Cloud', 'ESP32 / RS485'] },
-  { id: 'our-laundry', number: '04', name: 'Our laundry', category: 'Shared laundry + mobile web app', href: '/projects/our-laundry/', image: '/images/projects/praonica/laundry-before-800.webp', alt: 'A frustrated resident with tousled hair and a laundry basket finds both machines occupied', description: 'A mobile-first project inspired by shared laundry rooms in Brussels: check machine status before carrying your laundry downstairs. Development starts with two personally owned test appliances; a future Wi-Fi sensor is being explored.', tags: ['Mobile web', 'Python', 'Wi-Fi / sensors'] },
+  {
+    id: 'portfolio-project',
+    number: '01',
+    name: 'Portfolio',
+    category: 'Personal website',
+    href: '/projects/portfolio/',
+    image: '/og/default.jpg',
+    alt: 'Gordan Grgić portfolio identity',
+    description:
+      'The website you are exploring: adapting an Astro theme into a clear, personal account of my experience, practical work and current projects.',
+    tags: ['Astro', 'HTML / CSS', 'JavaScript'],
+  },
+  {
+    id: 'mila',
+    number: '02',
+    name: 'MILA*',
+    category: 'Hardware + software + music',
+    href: '/projects/mila/',
+    image: '/images/projects/gstreamer/mila-player-queue-20261023.png',
+    alt: 'MILA audio player with album artwork and a playback queue',
+    description:
+      'A personal audio streamer bringing local hi-res music, internet radio and streaming together in one responsive interface. A working prototype used for everyday listening.',
+    tags: ['Audio streamer', 'Python', 'Device testing'],
+  },
+  {
+    id: 'grgagrow',
+    number: '03',
+    name: 'grgaGrow',
+    category: 'Soil monitoring + cloud application',
+    href: '/projects/grgagrow/',
+    image: '/images/projects/smart-lawn/my-garden-dashboard.jpg',
+    alt: 'grgaGrow garden monitoring dashboard',
+    description:
+      'A garden application combining soil history, weekly reports, weather and a sun/shade model. Explore the software while physical sensor integration is still ahead.',
+    tags: ['Garden monitoring', 'Cloud', 'ESP32 / RS485'],
+  },
+  {
+    id: 'our-laundry',
+    number: '04',
+    name: 'Our laundry',
+    category: 'Shared laundry + mobile web app',
+    href: '/projects/our-laundry/',
+    image: '/images/projects/praonica/laundry-before-dog-800.webp',
+    alt: 'A frustrated resident with a laundry basket and a small dog beside her finds both machines occupied',
+    description:
+      'A mobile-first project inspired by shared laundry rooms in Brussels: check machine status before carrying your laundry downstairs. Development starts with two personally owned test appliances; a future Wi-Fi sensor is being explored.',
+    tags: ['Mobile web', 'Python', 'Wi-Fi / sensors'],
+  },
 ]
 ---
 
-<LayoutDefault title="Projects — Portfolio, MILA*, grgaGrow & Our laundry — Gordan Grgić" description="Explore four personal projects: this portfolio, MILA*, grgaGrow and Our laundry, a mobile web project for shared laundry rooms.">
+<LayoutDefault
+  title="Projects — Portfolio, MILA*, grgaGrow & Our laundry — Gordan Grgić"
+  description="Explore four personal projects: this portfolio, MILA*, grgaGrow and Our laundry, a mobile web project for shared laundry rooms."
+>
   <header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / PROJECTS</p>
     <h1>Project notes</h1>
-    <p class="project-intro">Four projects, each with its own story. Choose one to explore the idea, the work and its current state.</p>
+    <p class="project-intro">
+      Four projects, each with its own story. Choose one to explore the idea, the work and its current state.
+    </p>
   </header>
   <div class="project-cards">
-    {projects.map(project => (
-      <a class:list={["project-card", { "laundry-card": project.id === "our-laundry" }]} href={project.href} aria-labelledby={`${project.id}-title`}>
-        <div class="card-image">
-          {project.number === '01' ? (
-            <div class="portfolio-preview" role="img" aria-label="Portfolio website preview: Gordan Grgić, Curiosity. A practical mind.">
-              <p class="preview-address">gordangrgic.com</p>
-              <p class="preview-name">gordan grgić</p>
-              <div class="preview-rule"></div>
-              <p class="preview-note">PERSONAL FIELD NOTES / ZAGREB → BRUSSELS</p>
-              <p class="preview-title">Curiosity.<br />A practical mind.</p>
-              <p class="preview-footer">QUALITY · TESTING · HARDWARE + SOFTWARE</p>
+    {
+      projects.map((project) => (
+        <a
+          class:list={['project-card', { 'laundry-card': project.id === 'our-laundry' }]}
+          href={project.href}
+          aria-labelledby={`${project.id}-title`}
+        >
+          <div class="card-image">
+            {project.number === '01' ? (
+              <div
+                class="portfolio-preview"
+                role="img"
+                aria-label="Portfolio website preview: Gordan Grgić, Curiosity. A practical mind."
+              >
+                <p class="preview-address">gordangrgic.com</p>
+                <p class="preview-name">gordan grgić</p>
+                <div class="preview-rule" />
+                <p class="preview-note">PERSONAL FIELD NOTES / ZAGREB → BRUSSELS</p>
+                <p class="preview-title">
+                  Curiosity.
+                  <br />A practical mind.
+                </p>
+                <p class="preview-footer">QUALITY · TESTING · HARDWARE + SOFTWARE</p>
+              </div>
+            ) : (
+              <img
+                src={project.image}
+                alt={project.alt}
+                width={project.id === 'our-laundry' ? 800 : 1024}
+                height={project.id === 'our-laundry' ? 533 : 640}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            {['grgagrow', 'our-laundry'].includes(project.id) && <span class="development-stamp">IN DEVELOPMENT</span>}
+          </div>
+          <div class="card-copy">
+            <p class="card-label">
+              {project.number} / {project.category}
+            </p>
+            <div class="card-heading">
+              <h2 id={`${project.id}-title`}>{project.name}</h2>
+              {!['grgagrow', 'our-laundry'].includes(project.id) && <span class="card-status">In development</span>}
             </div>
-          ) : <img src={project.image} alt={project.alt} width={project.id === 'our-laundry' ? 800 : 1024} height={project.id === 'our-laundry' ? 533 : 640} loading="lazy" decoding="async" />}
-          {['grgagrow', 'our-laundry'].includes(project.id) && <span class="development-stamp">IN DEVELOPMENT</span>}
-        </div>
-        <div class="card-copy">
-          <p class="card-label">{project.number} / {project.category}</p>
-          <div class="card-heading"><h2 id={`${project.id}-title`}>{project.name}</h2>{!['grgagrow', 'our-laundry'].includes(project.id) && <span class="card-status">In development</span>}</div>
-          <p class="card-description">{project.description}</p>
-          <ul class="card-tags" aria-label="Project topics">{project.tags.map(tag => <li>{tag}</li>)}</ul>
-          <span class="card-action">Explore the project <Icon name="arrow" /></span>
-        </div>
-      </a>
-    ))}
+            <p class="card-description">{project.description}</p>
+            <ul class="card-tags" aria-label="Project topics">
+              {project.tags.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
+            <span class="card-action">
+              Explore the project <Icon name="arrow" />
+            </span>
+          </div>
+        </a>
+      ))
+    }
   </div>
 </LayoutDefault>
 
 <script>
   // Keep previously shared project and section links working.
+  const trailingSlashPattern = /\/$/
   function openLegacyProject() {
-    const base = import.meta.env.BASE_URL.replace(/\/$/, '')
-    if (window.location.pathname.replace(/\/$/, '') !== `${base}/projects`) return
+    const base = import.meta.env.BASE_URL.replace(trailingSlashPattern, '')
+    if (window.location.pathname.replace(trailingSlashPattern, '') !== `${base}/projects`) {
+      return
+    }
     const hash = window.location.hash
-    if (!hash || hash === '#main') return
-    const project = hash === '#portfolio-project' ? 'portfolio' : hash === '#grgagrow' ? 'grgagrow' : (hash === '#praonica' || hash === '#our-laundry') ? 'our-laundry' : 'mila'
+    if (!hash || hash === '#main') {
+      return
+    }
+    const legacyProjects = {
+      '#portfolio-project': 'portfolio',
+      '#grgagrow': 'grgagrow',
+      '#praonica': 'our-laundry',
+      '#our-laundry': 'our-laundry',
+    }
+    const project = legacyProjects[hash as keyof typeof legacyProjects] ?? 'mila'
     window.location.replace(`${base}/projects/${project}/${hash}`)
   }
   openLegacyProject()
@@ -58,36 +151,181 @@ const projects = [
 </script>
 
 <style>
-  .project-intro { max-width: 60ch; color: var(--note-color); margin: 18px 0 32px; }
-  .project-cards { display: grid; gap: 26px; margin-bottom: 48px; }
-  .project-card { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr); color: inherit; border: 1px solid color-mix(in srgb, currentColor 24%, transparent); text-decoration: none; overflow: hidden; transition: border-color .2s, background .2s; }
-  .project-card:hover { color: inherit; background: color-mix(in srgb, #39776c 5%, transparent); border-color: #39776c; }
-  .project-card:focus-visible { outline: 2px solid #39776c; outline-offset: 5px; }
-  .card-image { position: relative; display: flex; align-items: center; background: color-mix(in srgb, currentColor 4%, transparent); border-right: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
-  .card-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
-  .laundry-card .card-image { position: relative; background: #f4f4ec; padding: 50px 0 12px; }
-  .laundry-card .card-image img { aspect-ratio: 3 / 2; object-fit: contain; }
-  .development-stamp { position: absolute; top: 20px; right: 18px; transform: rotate(-9deg); padding: 7px 11px; border: 3px double #39776c; border-radius: 3px 6px 2px 5px; color: #326b60; background: #f4f4ec; box-shadow: 1px 1px 0 #39776c55; font: 700 12px/1.5 var(--note-font); letter-spacing: 1.5px; text-transform: uppercase; }
-  .portfolio-preview { box-sizing: border-box; width: 100%; padding: 28px; color: inherit; }
-  .preview-address { font: 10px/1.6 var(--note-font); color: var(--note-color); margin: 0 0 20px; }
-  .preview-name { font: 28px/1.1 'MyFont', monospace; margin: 0 0 16px; }
-  .preview-rule { border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent); margin-bottom: 24px; }
-  .preview-note, .preview-footer { font: 8px/1.8 var(--note-font); color: var(--note-color); margin: 0; }
-  .preview-title { font: 38px/1.1 'MyFont', monospace; margin: 14px 0 24px; }
-  .card-copy { padding: 24px; min-width: 0; }
-  .card-label { font: 10px/1.7 var(--note-font); letter-spacing: .8px; text-transform: uppercase; color: var(--note-color); margin: 0 0 14px; }
-  .card-heading { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .card-heading h2 { font: 40px/1.1 'MyFont', monospace; margin: 0; letter-spacing: .5px; }
-  .card-status { font: 9px/1.5 var(--note-font); padding: 4px 7px; border: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
-  .card-description { font: 14px/1.8 var(--body-font); margin: 16px 0; }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 6px 14px; list-style: none; padding: 0; margin: 0; font: 10px/1.7 var(--note-font); color: var(--note-color); }
-  .card-action { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); padding-top: 14px; margin-top: 20px; font: 11px/1.6 var(--note-font); }
-  @media (max-width: 680px) {
-    .project-card { grid-template-columns: 1fr; }
-    .card-image { border-right: 0; border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
-    .card-image img { aspect-ratio: 16 / 9; }
-    .card-copy { padding: 20px; }
-    .card-heading h2 { font-size: 36px; }
+  .project-intro {
+    max-width: 60ch;
+    color: var(--note-color);
+    margin: 18px 0 32px;
   }
-  @media (prefers-reduced-motion: reduce) { .project-card { transition: none; } }
+  .project-cards {
+    display: grid;
+    gap: 26px;
+    margin-bottom: 48px;
+  }
+  .project-card {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+    color: inherit;
+    border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+    text-decoration: none;
+    overflow: hidden;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+  .project-card:hover {
+    color: inherit;
+    background: color-mix(in srgb, #39776c 5%, transparent);
+    border-color: #39776c;
+  }
+  .project-card:focus-visible {
+    outline: 2px solid #39776c;
+    outline-offset: 5px;
+  }
+  .card-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: color-mix(in srgb, currentColor 4%, transparent);
+    border-right: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  }
+  .card-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .laundry-card .card-image {
+    position: relative;
+    background: #f4f4ec;
+    padding: 50px 0 12px;
+  }
+  .laundry-card .card-image img {
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+  }
+  .development-stamp {
+    position: absolute;
+    top: 20px;
+    right: 18px;
+    transform: rotate(-9deg);
+    padding: 7px 11px;
+    border: 3px double #39776c;
+    border-radius: 3px 6px 2px 5px;
+    color: #326b60;
+    background: #f4f4ec;
+    box-shadow: 1px 1px 0 #39776c55;
+    font: 700 12px/1.5 var(--note-font);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .portfolio-preview {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 28px;
+    color: inherit;
+  }
+  .preview-address {
+    font: 10px/1.6 var(--note-font);
+    color: var(--note-color);
+    margin: 0 0 20px;
+  }
+  .preview-name {
+    font:
+      28px/1.1 'MyFont',
+      monospace;
+    margin: 0 0 16px;
+  }
+  .preview-rule {
+    border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    margin-bottom: 24px;
+  }
+  .preview-note,
+  .preview-footer {
+    font: 8px/1.8 var(--note-font);
+    color: var(--note-color);
+    margin: 0;
+  }
+  .preview-title {
+    font:
+      38px/1.1 'MyFont',
+      monospace;
+    margin: 14px 0 24px;
+  }
+  .card-copy {
+    padding: 24px;
+    min-width: 0;
+  }
+  .card-label {
+    font: 10px/1.7 var(--note-font);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--note-color);
+    margin: 0 0 14px;
+  }
+  .card-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .card-heading h2 {
+    font:
+      40px/1.1 'MyFont',
+      monospace;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+  .card-status {
+    font: 9px/1.5 var(--note-font);
+    padding: 4px 7px;
+    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  }
+  .card-description {
+    font: 14px/1.8 var(--body-font);
+    margin: 16px 0;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font: 10px/1.7 var(--note-font);
+    color: var(--note-color);
+  }
+  .card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    padding-top: 14px;
+    margin-top: 20px;
+    font: 11px/1.6 var(--note-font);
+  }
+  @media (max-width: 680px) {
+    .project-card {
+      grid-template-columns: 1fr;
+    }
+    .card-image {
+      border-right: 0;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    }
+    .card-image img {
+      aspect-ratio: 16 / 9;
+    }
+    .card-copy {
+      padding: 20px;
+    }
+    .card-heading h2 {
+      font-size: 36px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .project-card {
+      transition: none;
+    }
+  }
 </style>
