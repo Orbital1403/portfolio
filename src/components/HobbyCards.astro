@@ -1,12 +1,15 @@
 ---
 import Icon from '~/components/Icon.astro'
 import { thumbnail } from '~/utils/images'
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props
 const cards = [
   {
     number: '01',
     title: 'PC on the wall',
     category: 'COMPUTERS / HARDWARE',
     image: '/images/hobbies/pc_on_wall/final-look/cover-page-v2.jpg',
+    compactImage: '/images/home/pc-on-wall.webp',
     alt: 'Completed wall-mounted PC with exposed components',
     href: '/hobbies/pc-wall/',
     description:
@@ -17,6 +20,7 @@ const cards = [
     title: 'Garden makeover',
     category: 'OUTDOORS / PRACTICAL WORK',
     image: '/images/hobbies/garden-makeover/final-look/cover-page-v2.jpeg',
+    compactImage: '/images/home/garden-makeover.webp',
     alt: 'Finished garden renovation',
     href: '/hobbies/garden-makeover/',
     description: 'My first garden renovation: soil preparation, drainage, waterproofing and the finishing details.',
@@ -24,13 +28,13 @@ const cards = [
 ]
 ---
 
-<div class="hobby-cards">
+<div class:list={['hobby-cards', { 'hobby-cards-compact': compact }]}>
   {
     cards.map((card) => (
       <a class="hobby-card" href={card.href}>
         <div class="card-photo">
           <>
-            <img src={thumbnail(card.image)} alt={card.alt} loading="lazy" decoding="async" width="800" height="600" />
+            <img src={compact ? card.compactImage : thumbnail(card.image)} alt={card.alt} loading="lazy" decoding="async" width={compact ? 320 : 800} height={compact ? 240 : 600} />
             <span class="card-number">{card.number}</span>
           </>
         </div>
@@ -153,5 +157,25 @@ const cards = [
     .hobby-cards {
       grid-template-columns: 1fr;
     }
+  }
+  .hobby-cards-compact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .hobby-cards-compact .hobby-card {
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr);
+    align-items: center;
+  }
+  .hobby-cards-compact .card-photo { margin: 7px; }
+  .hobby-cards-compact :is(.card-number, .category, .card-link) { display: none; }
+  .hobby-cards-compact .card-copy { padding: 15px 20px; }
+  .hobby-cards-compact h3 { margin: 0 0 7px; font: 400 25px/1.2 'MyFont', monospace; }
+  .hobby-cards-compact .card-copy p { margin: 0; font: 14px/1.7 var(--body-font); }
+  @media (max-width: 420px) {
+    .hobby-cards-compact .hobby-card { grid-template-columns: 88px minmax(0, 1fr); }
+    .hobby-cards-compact .card-copy { padding: 13px 12px; }
+    .hobby-cards-compact h3 { font-size: 22px; }
+    .hobby-cards-compact .card-copy p { font-size: 13px; }
   }
 </style>

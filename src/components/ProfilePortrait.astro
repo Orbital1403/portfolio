@@ -1,11 +1,17 @@
+---
+interface Props { hero?: boolean }
+const { hero = false } = Astro.props
+---
+
 <img
-  class="profile-portrait"
+  class:list={['profile-portrait', { 'portrait-hero': hero }]}
   src="/images/profile/gordan-grgic.webp"
   alt="Gordan Grgić"
   width="480"
   height="480"
   loading="eager"
   decoding="async"
+  fetchpriority={hero ? 'high' : 'auto'}
 />
 
 <style>
@@ -29,5 +35,14 @@
       width: 128px;
       margin: 0 0 24px;
     }
+  }
+  .profile-portrait.portrait-hero {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
   }
 </style>
