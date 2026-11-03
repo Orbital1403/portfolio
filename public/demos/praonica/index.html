@@ -1,16 +1,17 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Our laundry · simulated mobile prototype</title><meta name="praonica-mode" content="demo"><meta name="description" content="A preview of the washer and dryer."><link rel="stylesheet" href="./style.css?v=e1562b7242da"><script src="./app.js?v=c52ca41643d5" defer></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Our laundry · simulated mobile prototype</title><meta name="praonica-mode" content="demo"><meta name="description" content="A preview of the washer and dryer."><link rel="stylesheet" href="./style.css?v=68e4f1faef1e"><script src="./fixtures.js?v=a383a2d1b746" defer></script><script src="./energy.js?v=aa8e053c3354" defer></script><script src="./app.js?v=f2b77dfeaf5c" defer></script></head>
 <body>
 <header><a class="brand" href="/projects/our-laundry/" aria-label="Our laundry, project"><span class="brandmark">◉</span> OUR LAUNDRY</a><span class="local"><span></span> Simulated prototype</span></header>
 <main>
 <div class="intro"><div><p class="eyebrow">SHARED SPACE · FREE TO USE</p><h1>How is the laundry doing?</h1><p class="subtitle">Your washer and dryer, at a glance.</p></div><button id="refresh" type="button">↻ <span>Refresh</span></button></div>
 <div id="banner" class="banner" role="status">SIMULATION · Not connected to real appliances.</div>
-<section id="overview" class="status-overview" aria-label="Both appliances at a glance" hidden></section>
+<section id="monthly-energy" class="energy-summary" aria-labelledby="monthly-energy-title" hidden></section>
+<section id="overview" class="status-overview" aria-label="All simulated appliances at a glance" hidden></section>
 <p id="status-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
 <noscript><p class="banner warning">Enable JavaScript to try the simulated appliance states. This preview is not connected to real appliances.</p></noscript>
 <section id="devices" class="devices" aria-label="Appliance status"></section>
 <section class="note"><span class="note-icon" aria-hidden="true">i</span><div><h2>A finished cycle does not mean an available machine.</h2><p>Check whether the laundry has been collected. An open door does not confirm an empty drum.</p></div></section>
-<footer><span>Development prototype · two test appliances</span><span>Status only · no appliance controls</span></footer>
+<footer><span>Simulated inventory · 5 washers + 3 dryers</span><span>Status only · no appliance controls</span></footer>
 </main>
 </body></html>

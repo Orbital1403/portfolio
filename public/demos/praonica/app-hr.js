@@ -53,6 +53,7 @@ function render() {
       const line = node('div', 'overview-line');
       line.append(node('h2', '', reading.device.name), node('span', 'status', reading.label));
       text.append(line, node('p', '', reading.message));
+      PraonicaDemoEnergy.appendCompact(text, reading.device);
       item.append(machine(), text);
       return item;
     });
@@ -72,6 +73,7 @@ function render() {
       const item = node('div'); item.append(node('dt','',label),node('dd','',value)); facts.append(item);
     }
     card.append(facts);
+    if (demo) PraonicaDemoEnergy.appendCard(card, device);
     if (!demo) card.append(node('p','timestamp',`${snapshot ? 'Vrijeme snimke' : 'Zadnje uspješno očitanje'}: ${date(device.received_at)}`));
     if (!demo && (snapshot || (!usable && device.received_at != null))) {
       const previous = device.previous || (device.usable ? device.label : 'Nepoznato');
@@ -81,6 +83,7 @@ function render() {
     return card;
   });
   devices.replaceChildren(...cards);
+  if (demo) PraonicaDemoEnergy.renderOverview(document.querySelector('#monthly-energy'), payload.devices);
   return readings;
 }
 const demo = document.querySelector('meta[name="praonica-mode"]')?.content === 'demo';
@@ -90,9 +93,9 @@ if (demo) {
   overview.hidden = false;
   banner.removeAttribute('role');
   const demoPanel = node('div', 'demo-panel');
-  const label = node('label', '', 'Isprobaj prikaz sušilice: ');
+  const label = node('label', '', 'Isprobaj status sušilice 1: ');
   const select = node('select');
-  select.setAttribute('aria-label', 'Simulirano stanje sušilice');
+  select.setAttribute('aria-label', 'Simulirano stanje sušilice 1');
   for (const [value, text] of [['RUNNING','U radu'],['PAUSED','Pauza'],['END_OF_CYCLE','Program završen'],['OFFLINE','Bez veze']]) {
     const option = node('option','',text); option.value=value; select.append(option);
   }
@@ -102,17 +105,13 @@ if (demo) {
   function simulate() {
     const now = Date.now()/1000;
     const value = select.value;
-    const running = value === 'RUNNING';
     payload = {mode:'demo',server_at:now,next_at:null,busy:false,blocked:true,
-      notice:'SIMULACIJA · Primjeri stanja. Nema veze sa stvarnim uređajima.',
-      devices:[
-        {name:'Perilica',model:'Prototip 01',detail:'Testni uređaj',state:'END_OF_CYCLE',usable:true,label:'Program završen',message:'Program je završio. Potrebno je provjeriti je li rublje preuzeto.',door:'Zatvorena',phase:'—',received_at:now,age_seconds:0},
-        {name:'Sušilica',model:'Prototip 02',detail:'Testni uređaj',state:value==='OFFLINE'?null:value,usable:value!=='OFFLINE',label:running?'U radu':value==='PAUSED'?'Pauzirano':value==='END_OF_CYCLE'?'Program završen':'Veza nedostupna',message:running?'Program je u tijeku.':value==='PAUSED'?'Program je pauziran. Stroj je i dalje zauzet.':value==='END_OF_CYCLE'?'Program je završio. Potrebno je provjeriti je li rublje preuzeto.':'Dostupnost stroja nije potvrđena.',door:value==='PAUSED'?'Otvorena':'Zatvorena',phase:running?'Sušenje':'—',received_at:now,age_seconds:0}
-      ]};
+      notice:'SIMULACIJA · 5 perilica i 3 sušilice. Primjeri stanja, nisu stvarni uređaji.',
+      devices: PraonicaDemoFixtures.createDevices(now, value, document.documentElement.lang)};
     arrival=performance.now(); failed=false;
     const readings = render();
     if (previousValue !== null && previousValue !== value) {
-      const dryer = readings[1];
+      const dryer = readings.find(reading => reading.device.id === 'demo-dryer-1');
       announcement.textContent = `${dryer.device.name}: ${dryer.label}. Vrata: ${dryer.door}. ${dryer.message}`;
     }
     previousValue = value;

@@ -1,16 +1,17 @@
 <!doctype html>
 <html lang="hr">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Naša praonica · simulirani mobilni prototip</title><meta name="praonica-mode" content="demo"><meta name="description" content="Lokalni pregled perilice i sušilice."><link rel="stylesheet" href="../style.css?v=e1562b7242da"><script src="../app-hr.js?v=231ec2ba5234" defer></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Naša praonica · simulirani mobilni prototip</title><meta name="praonica-mode" content="demo"><meta name="description" content="Lokalni pregled perilice i sušilice."><link rel="stylesheet" href="../style.css?v=68e4f1faef1e"><script src="../fixtures.js?v=a383a2d1b746" defer></script><script src="../energy.js?v=aa8e053c3354" defer></script><script src="../app-hr.js?v=719f7a8b78fd" defer></script></head>
 <body>
 <header><a class="brand" href="/hr/projects/our-laundry/" aria-label="Naša praonica, projekt"><span class="brandmark">◉</span> NAŠA PRAONICA</a><span class="local"><span></span> Simulirani prototip</span></header>
 <main>
 <div class="intro"><div><p class="eyebrow">ZAJEDNIČKI PROSTOR · BESPLATNO KORIŠTENJE</p><h1>Kako stoji rublje?</h1><p class="subtitle">Pregled perilice i sušilice na jednom mjestu.</p></div><button id="refresh" type="button">↻ <span>Osvježi</span></button></div>
 <div id="banner" class="banner" role="status">SIMULACIJA · Nema veze sa stvarnim uređajima.</div>
-<section id="overview" class="status-overview" aria-label="Kratki pregled oba uređaja" hidden></section>
+<section id="monthly-energy" class="energy-summary" aria-labelledby="monthly-energy-title" hidden></section>
+<section id="overview" class="status-overview" aria-label="Kratki pregled svih simuliranih uređaja" hidden></section>
 <p id="status-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
 <noscript><p class="banner warning">Omogući JavaScript za isprobavanje simuliranih stanja uređaja. Ovaj prikaz nije povezan sa stvarnim uređajima.</p></noscript>
 <section id="devices" class="devices" aria-label="Stanje uređaja"></section>
 <section class="note"><span class="note-icon" aria-hidden="true">i</span><div><h2>Završen program još ne znači slobodan stroj.</h2><p>Provjeri je li rublje preuzeto. Otvorena vrata ne potvrđuju da je bubanj prazan.</p></div></section>
-<footer><span>Razvojni prototip · dva testna uređaja</span><span>Samo pregled stanja · bez upravljanja uređajima</span></footer>
+<footer><span>Simulirani inventar · 5 perilica + 3 sušilice</span><span>Samo pregled stanja · bez upravljanja uređajima</span></footer>
 </main>
 </body></html>

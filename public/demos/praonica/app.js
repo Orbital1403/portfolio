@@ -53,6 +53,7 @@ function render() {
       const line = node('div', 'overview-line');
       line.append(node('h2', '', reading.device.name), node('span', 'status', reading.label));
       text.append(line, node('p', '', reading.message));
+      PraonicaDemoEnergy.appendCompact(text, reading.device);
       item.append(machine(), text);
       return item;
     });
@@ -72,6 +73,7 @@ function render() {
       const item = node('div'); item.append(node('dt','',label),node('dd','',value)); facts.append(item);
     }
     card.append(facts);
+    if (demo) PraonicaDemoEnergy.appendCard(card, device);
     if (!demo) card.append(node('p','timestamp',`${snapshot ? 'Snapshot time' : 'Last successful reading'}: ${date(device.received_at)}`));
     if (!demo && (snapshot || (!usable && device.received_at != null))) {
       const previous = device.previous || (device.usable ? device.label : 'Unknown');
@@ -81,6 +83,7 @@ function render() {
     return card;
   });
   devices.replaceChildren(...cards);
+  if (demo) PraonicaDemoEnergy.renderOverview(document.querySelector('#monthly-energy'), payload.devices);
   return readings;
 }
 const demo = document.querySelector('meta[name="praonica-mode"]')?.content === 'demo';
@@ -90,9 +93,9 @@ if (demo) {
   overview.hidden = false;
   banner.removeAttribute('role');
   const demoPanel = node('div', 'demo-panel');
-  const label = node('label', '', 'Try a dryer status: ');
+  const label = node('label', '', 'Try dryer 1 status: ');
   const select = node('select');
-  select.setAttribute('aria-label', 'Simulated dryer status');
+  select.setAttribute('aria-label', 'Simulated dryer 1 status');
   for (const [value, text] of [['RUNNING','Running'],['PAUSED','Pause'],['END_OF_CYCLE','Cycle finished'],['OFFLINE','Offline']]) {
     const option = node('option','',text); option.value=value; select.append(option);
   }
@@ -102,17 +105,13 @@ if (demo) {
   function simulate() {
     const now = Date.now()/1000;
     const value = select.value;
-    const running = value === 'RUNNING';
     payload = {mode:'demo',server_at:now,next_at:null,busy:false,blocked:true,
-      notice:'SIMULATION · Example states. No connection to real appliances.',
-      devices:[
-        {name:'Washer',model:'Prototype 01',detail:'Test appliance',state:'END_OF_CYCLE',usable:true,label:'Cycle finished',message:'The cycle has finished. Check whether the laundry has been collected.',door:'Closed',phase:'—',received_at:now,age_seconds:0},
-        {name:'Dryer',model:'Prototype 02',detail:'Test appliance',state:value==='OFFLINE'?null:value,usable:value!=='OFFLINE',label:running?'Running':value==='PAUSED'?'Paused':value==='END_OF_CYCLE'?'Cycle finished':'Connection unavailable',message:running?'The cycle is running.':value==='PAUSED'?'The cycle is paused. The machine is still occupied.':value==='END_OF_CYCLE'?'The cycle has finished. Check whether the laundry has been collected.':'Machine availability is not confirmed.',door:value==='PAUSED'?'Open':'Closed',phase:running?'Drying':'—',received_at:now,age_seconds:0}
-      ]};
+      notice:'SIMULATION · 5 washers and 3 dryers. Example states, not real appliances.',
+      devices: PraonicaDemoFixtures.createDevices(now, value, document.documentElement.lang)};
     arrival=performance.now(); failed=false;
     const readings = render();
     if (previousValue !== null && previousValue !== value) {
-      const dryer = readings[1];
+      const dryer = readings.find(reading => reading.device.id === 'demo-dryer-1');
       announcement.textContent = `${dryer.device.name}: ${dryer.label}. Door: ${dryer.door}. ${dryer.message}`;
     }
     previousValue = value;
