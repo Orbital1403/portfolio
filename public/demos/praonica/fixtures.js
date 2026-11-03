@@ -38,8 +38,10 @@
     return profiles.map(([type, number, state, phase, door], index) => ({
       id: `demo-${type}-${number}`, type, name: `${l[type]} ${number}`,
       model: `${l.example} ${String(index + 1).padStart(2, '0')}`, detail: l.detail,
+      simulated:true, pickup_confirmed:(type==='washer' && number===4) || (type==='dryer' && number===2),
       state, usable: state !== null, label: l.states[state] || l.offline,
-      message: l.messages[state] || l.unavailable,
+      message: ((type==='washer' && number===4) || (type==='dryer' && number===2)) ?
+        (language==='hr' ? 'SIMULACIJA · Preuzimanje rublja je potvrđeno.' : 'SIMULATION · Laundry collection has been confirmed.') : l.messages[state] || l.unavailable,
       door: state === null ? l.unknown : door === 'OPEN' ? l.open : l.closed,
       phase: l.phases[phase] || '—', received_at: now, age_seconds: 0
     }));

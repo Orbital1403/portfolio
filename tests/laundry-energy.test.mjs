@@ -51,7 +51,7 @@ test('only dryer 1 follows the control; a current outage does not erase a histor
       assert.equal(energy.summarize(devices).totalWh, 188000)
       assert.equal(devices[0].name, language === 'hr' ? 'Perilica 1' : 'Washer 1')
       assert.equal(devices[5].name, language === 'hr' ? 'Sušilica 1' : 'Dryer 1')
-      assert.ok(devices[3].message.includes(language === 'hr' ? 'nije potvrđena' : 'not confirmed'))
+      assert.ok(devices[3].message.includes(language === 'hr' ? 'je potvrđeno' : 'has been confirmed'))
     }
   }
 })

@@ -4,6 +4,10 @@ const banner = document.querySelector('#banner');
 const refresh = document.querySelector('#refresh');
 const overview = document.querySelector('#overview');
 const announcement = document.querySelector('#status-announcement');
+const query = new URLSearchParams(location.search);
+const selectedMachine = query.get('machine');
+const dashboard = LaundryNavigation.createDashboard(overview, {language:document.documentElement.lang,icon:machine,
+  href:device => '?machine='+encodeURIComponent(device.id)+'&state='+encodeURIComponent(payload.devices.find(d=>d.id==='demo-dryer-1').state || 'OFFLINE')});
 let payload = null;
 let arrival = 0;
 let failed = false;
@@ -39,6 +43,7 @@ function render() {
     const state = usable ? device.state : null;
     return {
       device, usable,
+      availability: LaundryNavigation.classify(device,{fresh:usable,simulatedPickup:true,language:document.documentElement.lang}),
       modifier: {RUNNING:'running',PAUSED:'paused',END_OF_CYCLE:'ended'}[state] || '',
       label: snapshot ? 'Saved snapshot' : serviceLost ? 'Status unknown' : stale ? 'Outdated reading' : device.label,
       message: usable ? device.message : 'Machine availability is not confirmed.',
@@ -46,27 +51,24 @@ function render() {
       phase: usable ? device.phase : '—'
     };
   });
-  if (demo) {
-    const items = readings.map(reading => {
-      const item = node('article', 'overview-item ' + reading.modifier);
-      const text = node('div', 'overview-text');
-      const line = node('div', 'overview-line');
-      line.append(node('h2', '', reading.device.name), node('span', 'status', reading.label));
-      text.append(line, node('p', '', reading.message));
-      PraonicaDemoEnergy.appendCompact(text, reading.device);
-      item.append(machine(), text);
-      return item;
-    });
-    overview.replaceChildren(...items);
-  }
-  const cards = readings.map((reading, index) => {
+  if (!selectedMachine) dashboard.render(readings);
+  overview.hidden = !!selectedMachine;
+  devices.hidden = !selectedMachine;
+  devices.className = 'devices single-machine';
+  const navigation = document.querySelector('#machine-navigation');
+  navigation.hidden = !selectedMachine;
+  navigation.querySelector('a').href = './?state='+encodeURIComponent(payload.devices.find(d=>d.id==='demo-dryer-1').state || 'OFFLINE');
+  const visibleReadings = selectedMachine ? readings.filter(r=>r.device.id===selectedMachine) : [];
+  const cards = visibleReadings.map((reading, index) => {
     const {device, usable} = reading;
-    const card = node('article', 'card ' + reading.modifier);
+    const card = node('article', 'card tone-' + reading.availability.key + ' ' + reading.modifier);
     const top = node('div', 'card-top');
     const heading = node('div');
     heading.append(node('h2', '', device.name), node('p','model',`${device.model}`), node('p','model',device.detail));
-    top.append(machine(), heading, node('span','number',`0${index+1}`));
-    card.append(top, node('div','status', reading.label));
+    top.append(machine(), heading, node('span','number',String(payload.devices.findIndex(d=>d.id===device.id)+1).padStart(2,'0')));
+    card.append(top, node('div','status', reading.availability.label));
+    card.append(node('p','model',reading.label));
+    if (reading.availability.hint) card.append(node('p','model',reading.availability.hint));
     card.append(node('p','message',reading.message));
     const facts = node('dl','facts');
     for (const [label,value] of [['Door',reading.door],['Cycle phase',reading.phase]]) {
@@ -82,8 +84,10 @@ function render() {
     if (device.error) card.append(node('p','error',device.error));
     return card;
   });
+  if (selectedMachine && !cards.length) cards.push(node('p','banner warning','Unknown appliance. Return to all machines.'));
   devices.replaceChildren(...cards);
   if (demo) PraonicaDemoEnergy.renderOverview(document.querySelector('#monthly-energy'), payload.devices);
+  document.querySelector('#monthly-energy').hidden = !!selectedMachine;
   return readings;
 }
 const demo = document.querySelector('meta[name="praonica-mode"]')?.content === 'demo';
@@ -100,7 +104,9 @@ if (demo) {
     const option = node('option','',text); option.value=value; select.append(option);
   }
   label.append(select); demoPanel.append(label);
-  banner.after(demoPanel);
+  overview.after(demoPanel);
+  demoPanel.hidden = !!selectedMachine;
+  if (['RUNNING','PAUSED','END_OF_CYCLE','OFFLINE'].includes(query.get('state'))) select.value=query.get('state');
   let previousValue = null;
   function simulate() {
     const now = Date.now()/1000;
