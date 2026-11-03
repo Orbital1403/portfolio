@@ -88,9 +88,11 @@ function render() {
   devices.replaceChildren(...cards);
   if (demo) PraonicaDemoEnergy.renderOverview(document.querySelector('#monthly-energy'), payload.devices);
   document.querySelector('#monthly-energy').hidden = !!selectedMachine;
+  bookingView?.update();
   return readings;
 }
 const demo = document.querySelector('meta[name="praonica-mode"]')?.content === 'demo';
+const bookingView=globalThis.LaundryBookings?.mount({root:document.querySelector('#reservations'),selectedMachine,getDevices:()=>payload?.devices||[],language:document.documentElement.lang,demo:true});
 if (demo) {
   document.body.classList.add('demo');
   refresh.hidden = true;
