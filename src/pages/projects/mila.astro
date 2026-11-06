@@ -8,6 +8,7 @@ const sections = [
   ['from-frustration-to-a-project', 'The idea'],
   ['one-interface-for-everyday-listening', 'The app'],
   ['guide', 'Quick guide'],
+  ['streaming', 'Streaming'],
   ['mobile', 'On your phone'],
   ['download', 'Version & download'],
   ['my-role-and-how-i-work', 'Behind the app'],
@@ -18,10 +19,10 @@ const sections = [
 <LayoutDefault
   title="MILA* — Audio Application for Raspberry Pi — Gordan Grgić"
   description="An audio application for local music, internet radio and streaming. Explore the interface, a quick guide and the status of MILA Pi 1.0."
-  image="/images/projects/mila-v1/player-panik.jpg"
-  imageAlt="MILA player receiving Radio Panik, with source and DAC formats"
-  imageWidth={1280}
-  imageHeight={720}
+  image="/images/projects/mila-varied/dead-can-dance-fullscreen.jpg"
+  imageAlt="MILA full-screen Now Playing with Dead Can Dance album artwork"
+  imageWidth={1600}
+  imageHeight={883}
 >
   <header class="page-heading mila-heading">
     <a class="back-link" href="/projects/">← All project notes</a><p class="folio-label">
@@ -36,15 +37,15 @@ const sections = [
     </div>
   </header><figure class="project-figure">
     <img
-      src="/images/projects/mila-v1/player-panik.jpg"
-      width="1280"
-      height="720"
-      alt="MILA player receiving Radio Panik, with source and DAC formats"
+      src="/images/projects/mila-varied/dead-can-dance-fullscreen.jpg"
+      width="1600"
+      height="883"
+      alt="MILA full-screen Now Playing with Dead Can Dance album artwork"
       data-group="cover"
       tabindex="0"
       role="button"
       loading="eager"
-    /><figcaption>Player — Radio Panik · Captured from Raspberry Pi, 6 November 2026</figcaption>
+    /><figcaption>Now Playing — full-screen album view · Captured from Raspberry Pi</figcaption>
   </figure>
   <nav slot="aside" class="page-contents" aria-label="On this page">
     <p>ON THIS PAGE</p>{
@@ -60,6 +61,12 @@ const sections = [
     <a href="/projects/">← All projects</a><a href="/projects/grgagrow/">02 / grgaGrow →</a>
   </nav>
 </LayoutDefault>
+<script>
+  import { initMilaVideo } from '~/lib/mila-video'
+
+  initMilaVideo()
+  document.addEventListener('astro:page-load', initMilaVideo)
+</script>
 <style>
   .mila-heading {
     margin-bottom: 24px;
@@ -297,6 +304,7 @@ const sections = [
   :global(.mila-release-data > div) {
     display: grid;
     grid-template-columns: 140px 1fr;
+    align-items: center;
     gap: 20px;
     border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
     padding: 12px 0;
@@ -415,6 +423,258 @@ const sections = [
     :global(.mila-section) {
       padding-top: 30px;
       margin-top: 32px;
+    }
+  }
+
+  :global(.mila-availability-layout) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    align-items: start;
+  }
+  :global(.mila-os-list) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  :global(.mila-os-card) {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  }
+  :global(.mila-os-card svg),
+  :global(.mila-tech-card svg) {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    color: var(--mila-accent);
+  }
+  :global(.mila-os-card strong),
+  :global(.mila-os-card small),
+  :global(.mila-tech-card strong),
+  :global(.mila-tech-card small) {
+    display: block;
+  }
+  :global(.mila-os-card small),
+  :global(.mila-tech-card small) {
+    font-size: 12px;
+    line-height: 1.6;
+    opacity: 0.75;
+  }
+  :global(.mila-tech-grid) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  :global(.mila-tech-card) {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 14px;
+    border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  }
+  @media (max-width: 900px) {
+    :global(.mila-availability-layout) {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 540px) {
+    :global(.mila-tech-grid) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  :global(main .prose .mila-story h3) {
+    font: 700 18px/1.4 var(--body-font);
+    letter-spacing: 0;
+    text-transform: none;
+    margin: 0 0 10px;
+  }
+  :global(main .prose .mila-features > div) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  :global(main .prose .mila-features .mila-number) {
+    position: static;
+    margin: 0;
+    line-height: 1.4;
+  }
+  :global(main .prose .mila-features h3) {
+    margin: 0;
+  }
+  :global(main .prose .mila-step summary) {
+    padding: 18px 8px;
+    gap: 16px;
+    border-radius: 3px;
+  }
+  :global(main .prose .mila-step summary .mila-number) {
+    margin: 0;
+    flex: 0 0 24px;
+  }
+  :global(main .prose .mila-step summary:focus) {
+    outline: none;
+  }
+  :global(main .prose .mila-step summary:focus-visible) {
+    outline: 2px solid var(--mila-accent);
+    outline-offset: 4px;
+  }
+  :global(main .prose .mila-step-body .project-figure:last-child) {
+    margin-bottom: 12px;
+  }
+  @media (max-width: 650px) {
+    :global(.mila-os-list) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  :global(.mila-video) {
+    padding: 16px;
+    border: 2px solid var(--mila-accent);
+    background: color-mix(in srgb, var(--mila-accent) 7%, transparent);
+  }
+  :global(.mila-video-label) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  :global(.mila-video-label strong) {
+    font: 700 19px var(--body-font);
+  }
+  :global(.mila-video-label > span) {
+    font: 12px var(--note-font);
+  }
+  :global(.mila-video-stage) {
+    position: relative;
+  }
+  :global(.mila-video-play:not([hidden])) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: absolute;
+    inset: 0 0 45px;
+    z-index: 1;
+    width: 100%;
+    color: white;
+    background: linear-gradient(#0003, #0008);
+    cursor: pointer;
+    border: 0;
+  }
+  :global(.mila-video-play > .mila-play-wave) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 48px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #15332de6;
+    border: 1px solid #a5cec0;
+    box-shadow: 0 4px 24px #0005;
+  }
+  :global(.mila-play-wave i) {
+    display: block;
+    width: 4px;
+    height: var(--bar-height);
+    background: #b5dfcf;
+    border-radius: 3px;
+    transform-origin: center;
+  }
+  :global(.mila-video-play:hover .mila-play-wave i),
+  :global(.mila-video-play:focus-visible .mila-play-wave i) {
+    animation: mila-wave-pulse 850ms ease-in-out infinite alternate;
+    animation-delay: var(--bar-delay);
+  }
+  @keyframes mila-wave-pulse {
+    from {
+      transform: scaleY(0.55);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(.mila-video-play .mila-play-wave i) {
+      animation: none !important;
+    }
+  }
+  :global(.mila-video-play > strong) {
+    color: #fff;
+    font: 700 18px var(--body-font);
+    text-shadow: 0 2px 4px #000;
+  }
+  :global(.mila-video-play:focus-visible) {
+    outline: 3px solid var(--mila-accent);
+    outline-offset: 4px;
+  }
+
+  :global(.mila-video-return:not([hidden])) {
+    position: fixed;
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--text-color, #23333c);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    cursor: pointer;
+    font: 12px/1.4 var(--note-font);
+  }
+  :global(html.dark .mila-video-return) {
+    background: transparent;
+    color: #e2eae5;
+  }
+  :global(.mila-return-wave) {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    width: 25px;
+    height: 28px;
+    color: var(--mila-accent);
+  }
+  :global(.mila-return-wave i) {
+    display: block;
+    width: 4px;
+    height: 14px;
+    background: currentColor;
+    border-radius: 2px;
+  }
+  :global(.mila-video-return:not(.has-audio-meter) i) {
+    animation: mila-wave-pulse 850ms ease-in-out infinite alternate;
+  }
+  :global(.mila-video-return i:nth-child(2)) {
+    animation-delay: 150ms;
+  }
+  :global(.mila-video-return i:nth-child(3)) {
+    animation-delay: 300ms;
+  }
+  :global(.mila-video-return:focus-visible) {
+    outline: 2px solid var(--mila-accent);
+    outline-offset: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(.mila-video-return i) {
+      animation: none !important;
+    }
+  }
+  @media (max-width: 540px) {
+    :global(.mila-video-return:not([hidden])) {
+      right: 12px;
+      bottom: 16px;
+      padding: 10px 12px;
     }
   }
 </style>
