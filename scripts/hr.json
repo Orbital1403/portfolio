@@ -1176,5 +1176,7 @@
   "Raspberry Pi installer first · image later": "Prvo Raspberry Pi installer · image poslije",
   "The next step is an installer tested on a separate Raspberry Pi card. A distribution image comes later. Neither is publicly available yet; a public release will include its version, supported hardware, installation guide, checksum and release notes.": "Sljedeći je korak installer uz provjeru na zasebnoj Raspberry Pi kartici. Distribucijski image dolazi poslije. Ni jedno ni drugo još nije javno dostupno; javno izdanje sadržavat će oznaku verzije, podržani hardver, upute za instalaciju, kontrolni zbroj i bilješke o izdanju.",
   "Pi 1.0 is stable in my development and listening setup. The player identity and VU update is installed; I have confirmed sound, touch, numeric input, VU/UI and card views on this same setup.": "Pi 1.0 stabilan je u mojem razvojnom sustavu za slušanje. Nadogradnja identiteta playera i VU prikaza je instalirana; na tom istom sustavu potvrdio sam zvuk, dodir, brojčani unos, VU/UI i prikaz kartica.",
-  "Player identity and VU update — installed and confirmed on the same setup": "Identitet playera i VU — instalirano i potvrđeno na istom sustavu"
+  "Player identity and VU update — installed and confirmed on the same setup": "Identitet playera i VU — instalirano i potvrđeno na istom sustavu",
+  "66 seconds · No audio": "60 sekundi · Bez zvuka",
+  "Video guide · English text · 66 seconds · No audio": "Video vodič · Hrvatski tekst · 60 sekundi · Bez zvuka"
 }
