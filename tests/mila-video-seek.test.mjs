@@ -110,3 +110,35 @@ test('single click toggles playback, while double click only seeks', async (t) =
   assert.equal(video.currentTime, 35)
   assert.equal(video.paused, true)
 })
+
+test('opening fullscreen uses the stage and falls back to native video', async () => {
+  const { openMilaVideoFullscreen } = await import('../src/lib/mila-video.ts')
+  const calls = []
+  const stage = {
+    async requestFullscreen() {
+      calls.push('stage')
+    },
+  }
+  const native = {
+    webkitEnterFullscreen() {
+      calls.push('native')
+    },
+  }
+  const blocked = {
+    async requestFullscreen() {
+      throw new Error('blocked')
+    },
+  }
+  assert.equal(await openMilaVideoFullscreen(stage, native), true)
+  assert.deepEqual(calls, ['stage'])
+  calls.length = 0
+  assert.equal(await openMilaVideoFullscreen(blocked, native), true)
+  assert.deepEqual(calls, ['native'])
+  assert.equal(await openMilaVideoFullscreen({}, {}), false)
+  const blockedNative = {
+    webkitEnterFullscreen() {
+      throw new Error('blocked')
+    },
+  }
+  assert.equal(await openMilaVideoFullscreen({}, blockedNative), false)
+})

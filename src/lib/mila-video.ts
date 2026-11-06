@@ -25,6 +25,31 @@ export function getVideoSeekOffset(position: number, width: number) {
   return position < width / 2 ? -5 : 5
 }
 
+export async function openMilaVideoFullscreen(
+  stage: { requestFullscreen?: () => Promise<void> },
+  video: { webkitEnterFullscreen?: () => void },
+) {
+  try {
+    if (stage.requestFullscreen) {
+      await stage.requestFullscreen()
+      return true
+    }
+  }
+  catch {
+    // Some browsers only support native video fullscreen.
+  }
+  try {
+    if (video.webkitEnterFullscreen) {
+      video.webkitEnterFullscreen()
+      return true
+    }
+  }
+  catch {
+    // Keep inline playback available when fullscreen is blocked.
+  }
+  return false
+}
+
 export function initMilaVideo() {
   document.querySelectorAll<HTMLElement>('.mila-video-stage').forEach((stage) => {
     if (stage.dataset.ready)
@@ -91,7 +116,10 @@ export function initMilaVideo() {
       })
       sync()
     }
-    play.addEventListener('click', start)
+    play.addEventListener('click', () => {
+      start()
+      void openMilaVideoFullscreen(stage, video as HTMLVideoElement & { webkitEnterFullscreen?: () => void })
+    })
     if (mediaControls && timeline) {
       // Native controls are the no-JavaScript and unsupported-browser fallback.
       mediaControls.hidden = false
