@@ -1178,5 +1178,8 @@
   "Pi 1.0 is stable in my development and listening setup. The player identity and VU update is installed; I have confirmed sound, touch, numeric input, VU/UI and card views on this same setup.": "Pi 1.0 stabilan je u mojem razvojnom sustavu za slušanje. Nadogradnja identiteta playera i VU prikaza je instalirana; na tom istom sustavu potvrdio sam zvuk, dodir, brojčani unos, VU/UI i prikaz kartica.",
   "Player identity and VU update — installed and confirmed on the same setup": "Identitet playera i VU — instalirano i potvrđeno na istom sustavu",
   "66 seconds · No audio": "60 sekundi · Bez zvuka",
-  "Video guide · English text · 66 seconds · No audio": "Video vodič · Hrvatski tekst · 60 sekundi · Bez zvuka"
+  "Video guide · English text · 66 seconds · No audio": "Video vodič · Hrvatski tekst · 60 sekundi · Bez zvuka",
+  "72 seconds · No audio": "66 sekundi · Bez zvuka",
+  "Video guide · English animated text · 72 seconds · No audio": "Video vodič · Hrvatski animirani tekst · 66 sekundi · Bez zvuka",
+  "MILA video guide with animated on-screen descriptions": "MILA video vodič s animiranim opisima na zaslonu"
 }
