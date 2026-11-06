@@ -19,6 +19,12 @@ export function isVideoDoubleTap(previous: { time: number, side: string } | null
     && current.time > previous.time && current.time - previous.time <= 350
 }
 
+export function getVideoSeekOffset(position: number, width: number) {
+  if (!Number.isFinite(position) || !Number.isFinite(width) || width <= 0 || position < 0 || position > width)
+    return null
+  return position < width / 2 ? -5 : 5
+}
+
 export function initMilaVideo() {
   document.querySelectorAll<HTMLElement>('.mila-video-stage').forEach((stage) => {
     if (stage.dataset.ready)
@@ -32,6 +38,17 @@ export function initMilaVideo() {
     play.hidden = false
     let visible = true
     let dragging = false
+    let controlsTimer: number | undefined
+    const revealControls = () => {
+      stage.dataset.controlsVisible = 'true'
+      window.clearTimeout(controlsTimer)
+      controlsTimer = window.setTimeout(() => {
+        if (dragging)
+          revealControls()
+        else
+          delete stage.dataset.controlsVisible
+      }, 2500)
+    }
     const mediaControls = stage.querySelector<HTMLElement>('.mila-video-controls')
     const timeline = stage.querySelector<HTMLInputElement>('.mila-video-timeline')
     const timeLabel = stage.querySelector<HTMLOutputElement>('.mila-video-time')
@@ -39,7 +56,6 @@ export function initMilaVideo() {
     const fullscreen = stage.querySelector<HTMLButtonElement>('.mila-video-fullscreen')
     const playLabel = toggle?.querySelector<HTMLElement>('.mila-label-play')
     const pauseLabel = toggle?.querySelector<HTMLElement>('.mila-label-pause')
-    const seekButtons = Array.from(stage.querySelectorAll<HTMLButtonElement>('[data-seek]'))
     const formatTime = (time: number) => Number.isFinite(time) ? `${Math.floor(time / 60)}:${String(Math.floor(time % 60)).padStart(2, '0')}` : '--:--'
     const sync = () => {
       const ready = getVideoSeekTarget(video.currentTime, video.duration, 0) !== null
@@ -57,9 +73,6 @@ export function initMilaVideo() {
         playLabel.hidden = !video.paused
       if (pauseLabel)
         pauseLabel.hidden = video.paused
-      seekButtons.forEach((button) => {
-        button.disabled = !ready
-      })
     }
     const seek = (offset: number) => {
       const target = getVideoSeekTarget(video.currentTime, video.duration, offset)
@@ -99,6 +112,7 @@ export function initMilaVideo() {
       })
       timeline.addEventListener('pointerdown', () => {
         dragging = true
+        revealControls()
       })
       timeline.addEventListener('input', () => {
         const target = getVideoSeekTarget(timeline.valueAsNumber, video.duration, 0)
@@ -109,6 +123,7 @@ export function initMilaVideo() {
       })
       const finishDrag = () => {
         dragging = false
+        revealControls()
         sync()
       }
       timeline.addEventListener('change', finishDrag)
@@ -133,11 +148,6 @@ export function initMilaVideo() {
         }
       })
     }
-    seekButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        seek(Number(button.dataset.seek))
-      })
-    })
     stage.addEventListener('keydown', (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
         return
@@ -193,6 +203,7 @@ export function initMilaVideo() {
       }
       else {
         lastTap = tap
+        revealControls()
       }
     })
     const suppressGestureClick = (event: MouseEvent) => {
@@ -202,7 +213,21 @@ export function initMilaVideo() {
       }
     }
     video.addEventListener('click', suppressGestureClick, { capture: true })
-    video.addEventListener('dblclick', suppressGestureClick, { capture: true })
+    video.addEventListener('dblclick', (event) => {
+      if (performance.now() < ignoreClickUntil) {
+        suppressGestureClick(event)
+        return
+      }
+      const rect = video.getBoundingClientRect()
+      if (video.controls && event.clientY > rect.bottom - 60)
+        return
+      const offset = getVideoSeekOffset(event.clientX - rect.left, rect.width)
+      if (offset !== null) {
+        event.preventDefault()
+        event.stopPropagation()
+        seek(offset)
+      }
+    }, { capture: true })
     video.addEventListener('play', () => {
       play.hidden = true
       update()
@@ -225,6 +250,7 @@ export function initMilaVideo() {
     document.addEventListener('visibilitychange', update)
     document.addEventListener('fullscreenchange', update)
     const cleanup = () => {
+      window.clearTimeout(controlsTimer)
       observer.disconnect()
       document.removeEventListener('visibilitychange', update)
       document.removeEventListener('fullscreenchange', update)

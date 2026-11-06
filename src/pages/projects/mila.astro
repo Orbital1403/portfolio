@@ -746,4 +746,26 @@ const sections = [
   :global(.mila-video-stage:fullscreen .mila-video-controls) {
     flex-shrink: 0;
   }
+
+  :global(.mila-video-controls) {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+  }
+  :global(.mila-video-stage:has(:focus-visible) .mila-video-controls),
+  :global(.mila-video-stage[data-controls-visible='true'] .mila-video-controls) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  @media (hover: hover) {
+    :global(.mila-video-stage:hover .mila-video-controls) {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(.mila-video-controls) {
+      transition: none;
+    }
+  }
 </style>
