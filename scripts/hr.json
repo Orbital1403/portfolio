@@ -1169,5 +1169,12 @@
   "66 seconds · Voice narration": "60 sekundi · Glasovna naracija",
   "Video guide · English narration · 66 seconds": "Video vodič · Hrvatska naracija · 60 sekundi",
   "Return to the playing video": "Vrati se na video koji svira",
-  "Back to video": "Natrag na video"
+  "Back to video": "Natrag na video",
+  "Status & availability": "Status i dostupnost",
+  "Pi 1.0 is stable in my private listening setup. The player identity and VU update is installed; I have confirmed sound, touch, numeric input, VU/UI and card views on the test device.": "Pi 1.0 stabilan je u mojem privatnom sustavu za slušanje. Nadogradnja identiteta playera i VU prikaza je instalirana; na testnom uređaju potvrdio sam zvuk, dodir, brojčani unos, VU/UI i prikaz kartica.",
+  "Latest update": "Posljednja nadogradnja",
+  "Player identity and VU update — installed and confirmed on the test device": "Identitet playera i VU — instalirano i potvrđeno na testnom uređaju",
+  "Long-term goal · after the Raspberry Pi release": "Dugoročni cilj · nakon Raspberry Pi izdanja",
+  "Raspberry Pi installer first · image later": "Prvo Raspberry Pi installer · image poslije",
+  "The next step is an installer tested on a separate Raspberry Pi card. A distribution image comes later. Neither is publicly available yet; a public release will include its version, supported hardware, installation guide, checksum and release notes.": "Sljedeći je korak installer uz provjeru na zasebnoj Raspberry Pi kartici. Distribucijski image dolazi poslije. Ni jedno ni drugo još nije javno dostupno; javno izdanje sadržavat će oznaku verzije, podržani hardver, upute za instalaciju, kontrolni zbroj i bilješke o izdanju."
 }
