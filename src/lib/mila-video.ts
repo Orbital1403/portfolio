@@ -52,10 +52,6 @@ export function initMilaVideo() {
     const mediaControls = stage.querySelector<HTMLElement>('.mila-video-controls')
     const timeline = stage.querySelector<HTMLInputElement>('.mila-video-timeline')
     const timeLabel = stage.querySelector<HTMLOutputElement>('.mila-video-time')
-    const toggle = stage.querySelector<HTMLButtonElement>('.mila-video-toggle')
-    const fullscreen = stage.querySelector<HTMLButtonElement>('.mila-video-fullscreen')
-    const playLabel = toggle?.querySelector<HTMLElement>('.mila-label-play')
-    const pauseLabel = toggle?.querySelector<HTMLElement>('.mila-label-pause')
     const formatTime = (time: number) => Number.isFinite(time) ? `${Math.floor(time / 60)}:${String(Math.floor(time % 60)).padStart(2, '0')}` : '--:--'
     const sync = () => {
       const ready = getVideoSeekTarget(video.currentTime, video.duration, 0) !== null
@@ -69,10 +65,6 @@ export function initMilaVideo() {
       }
       if (timeLabel)
         timeLabel.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`
-      if (playLabel)
-        playLabel.hidden = !video.paused
-      if (pauseLabel)
-        pauseLabel.hidden = video.paused
     }
     const seek = (offset: number) => {
       const target = getVideoSeekTarget(video.currentTime, video.duration, offset)
@@ -100,16 +92,10 @@ export function initMilaVideo() {
       sync()
     }
     play.addEventListener('click', start)
-    if (mediaControls && timeline && toggle && fullscreen) {
+    if (mediaControls && timeline) {
       // Native controls are the no-JavaScript and unsupported-browser fallback.
       mediaControls.hidden = false
       video.controls = false
-      toggle.addEventListener('click', () => {
-        if (video.paused)
-          start()
-        else
-          video.pause()
-      })
       timeline.addEventListener('pointerdown', () => {
         dragging = true
         revealControls()
@@ -129,24 +115,6 @@ export function initMilaVideo() {
       timeline.addEventListener('change', finishDrag)
       timeline.addEventListener('pointerup', finishDrag)
       timeline.addEventListener('pointercancel', finishDrag)
-      fullscreen.addEventListener('click', async () => {
-        try {
-          if (document.fullscreenElement) {
-            await document.exitFullscreen()
-          }
-          else if (stage.requestFullscreen) {
-            await stage.requestFullscreen()
-          }
-          else {
-            const nativeVideo = video as HTMLVideoElement & { webkitEnterFullscreen?: () => void }
-            video.controls = true
-            nativeVideo.webkitEnterFullscreen?.()
-          }
-        }
-        catch {
-          video.controls = true
-        }
-      })
     }
     stage.addEventListener('keydown', (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
@@ -167,6 +135,7 @@ export function initMilaVideo() {
         seek(event.key === 'ArrowLeft' ? -5 : 5)
       }
     }, { capture: true })
+    let clickTimer: number | undefined
     let lastTap: { time: number, side: string, paused: boolean } | null = null
     let touchStart: { x: number, y: number, paused: boolean } | null = null
     let ignoreClickUntil = 0
@@ -190,6 +159,7 @@ export function initMilaVideo() {
       }
       const tap = { time: performance.now(), side: event.clientX < rect.left + rect.width / 2 ? 'left' : 'right', paused: origin.paused }
       if (isVideoDoubleTap(lastTap, tap)) {
+        window.clearTimeout(clickTimer)
         event.preventDefault()
         event.stopPropagation()
         ignoreClickUntil = performance.now() + 500
@@ -213,7 +183,19 @@ export function initMilaVideo() {
       }
     }
     video.addEventListener('click', suppressGestureClick, { capture: true })
+    video.addEventListener('click', (event) => {
+      if (event.detail > 1)
+        return
+      window.clearTimeout(clickTimer)
+      clickTimer = window.setTimeout(() => {
+        if (video.paused)
+          start()
+        else
+          video.pause()
+      }, 350)
+    })
     video.addEventListener('dblclick', (event) => {
+      window.clearTimeout(clickTimer)
       if (performance.now() < ignoreClickUntil) {
         suppressGestureClick(event)
         return
@@ -251,6 +233,7 @@ export function initMilaVideo() {
     document.addEventListener('fullscreenchange', update)
     const cleanup = () => {
       window.clearTimeout(controlsTimer)
+      window.clearTimeout(clickTimer)
       observer.disconnect()
       document.removeEventListener('visibilitychange', update)
       document.removeEventListener('fullscreenchange', update)

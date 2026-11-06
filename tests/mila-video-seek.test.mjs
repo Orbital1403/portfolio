@@ -31,3 +31,82 @@ test('mouse and touchpad double-clicks select a five-second skip by half of the 
   assert.equal(getVideoSeekOffset(900, 800), null)
   assert.equal(getVideoSeekOffset(0, 0), null)
 })
+
+test('single click toggles playback, while double click only seeks', async (t) => {
+  const { initMilaVideo } = await import('../src/lib/mila-video.ts')
+  const listeners = new Map()
+  const timers = new Map()
+  let nextTimer = 0
+  const video = {
+    paused: true,
+    ended: false,
+    controls: true,
+    currentTime: 30,
+    duration: 117,
+    addEventListener(name, handler) {
+      const handlers = listeners.get(name) || []
+      handlers.push(handler)
+      listeners.set(name, handlers)
+    },
+    play() {
+      this.paused = false
+      return Promise.resolve()
+    },
+    pause() { this.paused = true },
+    getBoundingClientRect() { return { left: 0, width: 800, bottom: 600 } },
+  }
+  const element = () => ({ hidden: true, addEventListener() {} })
+  const play = element()
+  const back = element()
+  const timeline = element()
+  const controls = element()
+  const stage = {
+    dataset: {},
+    addEventListener() {},
+    querySelector(selector) {
+      return { 'video': video, '.mila-video-play': play, '.mila-video-return': back, '.mila-video-controls': controls, '.mila-video-timeline': timeline }[selector] || null
+    },
+  }
+  const old = Object.fromEntries(['document', 'window', 'IntersectionObserver'].map(key => [key, globalThis[key]]))
+  t.after(() => {
+    for (const [key, value] of Object.entries(old)) {
+      if (value === undefined)
+        delete globalThis[key]
+      else globalThis[key] = value
+    }
+  })
+  globalThis.document = { querySelectorAll: () => [stage], addEventListener() {}, hidden: false }
+  globalThis.window = {
+    setTimeout(fn) {
+      timers.set(++nextTimer, fn)
+      return nextTimer
+    },
+    clearTimeout(id) { timers.delete(id) },
+    addEventListener() {},
+  }
+  globalThis.IntersectionObserver = class { observe() {} }
+  initMilaVideo()
+  assert.equal(video.controls, false)
+  assert.equal(controls.hidden, false)
+  const dispatch = (name, detail = 1) => {
+    const event = { detail, clientX: 600, clientY: 200, preventDefault() {}, stopPropagation() {} }
+    for (const handler of listeners.get(name) || []) handler(event)
+  }
+  const flush = () => {
+    const pending = [...timers.values()]
+    timers.clear()
+    pending.forEach(fn => fn())
+  }
+  dispatch('click')
+  flush()
+  assert.equal(video.paused, false)
+  dispatch('click')
+  flush()
+  assert.equal(video.paused, true)
+  dispatch('click')
+  dispatch('click', 2)
+  dispatch('dblclick', 2)
+  flush()
+  assert.equal(video.currentTime, 35)
+  assert.equal(video.paused, true)
+})
