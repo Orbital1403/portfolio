@@ -561,7 +561,7 @@ const sections = [
     justify-content: center;
     gap: 12px;
     position: absolute;
-    inset: 0 0 45px;
+    inset: 0;
     z-index: 1;
     width: 100%;
     color: white;
@@ -676,5 +676,74 @@ const sections = [
       bottom: 16px;
       padding: 10px 12px;
     }
+  }
+
+  :global(.mila-video-canvas) {
+    position: relative;
+  }
+  :global(.mila-video-canvas video) {
+    touch-action: manipulation;
+  }
+  :global(.mila-video-seek) {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  :global(.mila-video-seek button) {
+    min-width: 64px;
+    min-height: 44px;
+    padding: 8px 12px;
+    font: 12px var(--note-font);
+    color: var(--mila-accent);
+    background: transparent;
+    border: 1px solid color-mix(in srgb, var(--mila-accent) 50%, transparent);
+    cursor: pointer;
+  }
+  :global(.mila-video-seek button:disabled) {
+    opacity: 0.4;
+    cursor: default;
+  }
+  :global(.mila-video-seek button:focus-visible) {
+    outline: 2px solid var(--mila-accent);
+    outline-offset: 3px;
+  }
+  :global(.mila-video-progress) {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  :global(.mila-video-timeline) {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 32px;
+    cursor: pointer;
+    accent-color: var(--mila-accent);
+    touch-action: none;
+  }
+  :global(.mila-video-time) {
+    flex-shrink: 0;
+    font: 12px var(--note-font);
+  }
+  :global(.mila-video-stage:fullscreen) {
+    display: flex;
+    flex-direction: column;
+    background: #1a242b;
+    color: #e9efec;
+    padding: 12px;
+  }
+  :global(.mila-video-stage:fullscreen .mila-video-canvas) {
+    flex: 1;
+    min-height: 0;
+  }
+  :global(.mila-video-stage:fullscreen video) {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  :global(.mila-video-stage:fullscreen .mila-video-controls) {
+    flex-shrink: 0;
   }
 </style>
