@@ -215,6 +215,18 @@ export function initMilaVideo() {
       if (event.detail > 1)
         return
       window.clearTimeout(clickTimer)
+      const nativeVideo = video as HTMLVideoElement & {
+        webkitEnterFullscreen?: () => void
+        webkitDisplayingFullscreen?: boolean
+      }
+      if (!document.fullscreenElement && !nativeVideo.webkitDisplayingFullscreen
+        && (typeof stage.requestFullscreen === 'function' || typeof nativeVideo.webkitEnterFullscreen === 'function')) {
+        // Request directly from this gesture: delayed callbacks lose activation.
+        void openMilaVideoFullscreen(stage, nativeVideo)
+        if (video.paused)
+          start()
+        return
+      }
       clickTimer = window.setTimeout(() => {
         if (video.paused)
           start()

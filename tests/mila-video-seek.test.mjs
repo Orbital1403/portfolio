@@ -109,6 +109,29 @@ test('single click toggles playback, while double click only seeks', async (t) =
   flush()
   assert.equal(video.currentTime, 35)
   assert.equal(video.paused, true)
+  let fullscreenRequests = 0
+  stage.requestFullscreen = async () => {
+    fullscreenRequests++
+    document.fullscreenElement = stage
+  }
+  dispatch('click')
+  flush()
+  assert.equal(fullscreenRequests, 1)
+  assert.equal(video.paused, false)
+  dispatch('click')
+  flush()
+  assert.equal(video.paused, true)
+  assert.equal(fullscreenRequests, 1)
+  document.fullscreenElement = null
+  dispatch('click')
+  flush()
+  assert.equal(fullscreenRequests, 2)
+  assert.equal(video.paused, false)
+  document.fullscreenElement = null
+  dispatch('click')
+  flush()
+  assert.equal(fullscreenRequests, 3)
+  assert.equal(video.paused, false)
 })
 
 test('opening fullscreen uses the stage and falls back to native video', async () => {
