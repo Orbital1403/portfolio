@@ -1,147 +1,50 @@
 ---
-title: "MILA* audio streamer"
-description: "A working personal audio-streamer prototype in active development."
+title: "MILA* audio application"
+description: "A personal audio application for Raspberry Pi, with a guide to the interface and Pi 1.0 availability."
 ---
 
-## MILA\*
-
-**Personal audio streamer · Working prototype**
-
-A music project that brings together my interest in computers, practical problem-solving and everyday listening. MILA\* combines existing hardware with an interface I can shape around my own needs.
-
-<figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-player-queue-20261023.png" alt="MILA* playing a Fink album, with source and DAC formats above an album-grouped queue" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* player screenshot" loading="lazy" />
-<figcaption>Player — album playback, source and DAC formats, and queue · 23 October 2026 · Click to enlarge</figcaption>
-</figure>
-
-### From frustration to a project
-
-I listen to music every day, with a large personal library of hi-res FLAC files alongside internet radio and streaming. The streamers I used frustrated me: slow menus when browsing larger collections, occasional connection drops, and limited ways to adapt the system. I also wanted direct control over audio processing — ensuring bit-perfect delivery for high-resolution files, avoiding unwanted resampling, and verifying what the DAC actually receives.
-
-I set out to build a true all-rounder: a dedicated player that unites high-resolution local playback, internet radio, and streaming without compromise. Rather than keeping my main computer running, I looked at the hardware I already had: a Raspberry Pi 5, touch display, fast NVMe disk for local audio storage, USB DAC and linear power supply. I put my requirements on paper and began shaping a streamer around them.
-
-The goal was straightforward: make an all-rounder player that handles high-resolution FLAC albums effortlessly, keeps radio and streaming within easy reach, and remains completely responsive and transparent in how it behaves.
-
-### One interface for everyday listening
-
-The Player brings playback controls together with the queue, favourites and recently played or added content. Source filters let me move between local music, radio and streaming without switching to a different interface.
-
-The built-in touch display is the main control surface. The same web interface can also be opened from a phone or computer on the local network. Playback stays on the streamer; those other devices act as remote controls.
-
-<figure class="project-figure" style="max-width: 390px; margin-inline: auto;">
-<img src="/images/projects/gstreamer/mila-mobile-player-20261023.jpg" alt="MILA* mobile player with album artwork, playback controls, track list and bottom navigation" width="514" height="789" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* mobile player screenshot" loading="lazy" />
-<figcaption>Mobile view — playback controls and album tracks · 23 October 2026 · Click to enlarge</figcaption>
-</figure>
-
-### A library I can explore
-
-Navigating a large collection of hi-res FLAC files requires an interface that stays swift and intuitive. Local music can be browsed by album, artist, genre or folder, supported by search, sorting and alphabet navigation. High-speed NVMe storage on the Pi keeps album art and metadata loading instantly.
-
-I want browsing to feel connected to listening: inspect an album, choose a track, return to the collection and manage the queue without losing my place.
-
-<figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-library.png" width="1280" height="720" alt="MILA* local music library with album artwork and browsing controls" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* library screenshot" loading="lazy" />
-<figcaption>Library — albums, artists, folders and persistent playback controls · Click to enlarge</figcaption>
-</figure>
-
-### Radio without the clutter
-
-The radio view separates my own station collection from discovery. It brings together saved stations, search, recently played content and filters for country, genre and quality. Personal streams can also be added.
-
-Reliable background listening is a central development goal. When a stream or connection fails, the interface should explain what happened and provide a clear way to recover. Long listening sessions and recovery checks are part of the remaining validation.
-
-<figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-radio-stations-20261018.jpg" alt="MILA* My Stations with saved radio stations, discovery filters and the persistent mini-player" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* radio screenshot" loading="lazy" />
-<figcaption>Radio — saved stations, discovery and the mini-player · 18 October 2026 · Click to enlarge</figcaption>
-</figure>
-
-### Streaming and audio control
-
-Qobuz browsing is integrated through Lyrion Music Server. AirPlay, Spotify Connect and Bluetooth are also part of the receiver work, with individual support and validation tracked during development.
-
-The main playback path uses **Lyrion Music Server → Squeezelite → USB DAC**. My aim is to avoid unnecessary resampling and digital volume changes for supported content. The interface distinguishes source quality from the format currently reported at the DAC output.
-
-That distinction matters: an output shown as 32-bit does not turn a compressed radio stream into higher-quality source material. The format display supports investigation; it is not, by itself, proof of bit-perfect reproduction.
-
-<figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-now-playing-20261018.jpg" alt="MILA* full-screen Now Playing view with BEAK album artwork, playback controls and separate source and DAC format labels" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* full-screen player screenshot" loading="lazy" />
-<figcaption>Now Playing — full-screen listening view · 18 October 2026 · Click to enlarge</figcaption>
-</figure>
-
-### Settings that belong with the player
-
-Appearance, audio and services, music storage, and system maintenance are organised into four sections. The project includes theme and display options, meters, device information and user-data backup tools. Sensitive system actions use protected controls.
-
-Screensavers and visual details are part of the experience, but they share the same design language as the listening and browsing screens.
-
-<figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-settings.png" width="1280" height="720" alt="MILA* settings organised into four sections" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* settings screenshot" loading="lazy" />
-<figcaption>Settings — appearance, audio, storage and maintenance · Click to enlarge</figcaption>
-</figure>
-
-<figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-system-update-20261022.png" alt="MILA* system update screen listing available packages and protected update controls" width="1024" height="600" data-group="cover" tabindex="0" role="button" aria-label="Enlarge the MILA* system update screenshot" loading="lazy" />
-<figcaption>System updates — available packages and update controls · 22 October 2026 · Click to enlarge</figcaption>
-</figure>
-
-### My role and how I work
-
-My background is in hardware, quality control and failure analysis, and I run MILA\* the same way. I lead the project: I define the requirements, decide how it should behave, test every change on the real device and decide what is released. AI coding assistants write much of the implementation under that direction. Directing that work and verifying the result is a skill in its own right.
-
-The playback foundation comes from Lyrion and Squeezelite; my application connects the sources, controls and device functions into a coherent experience.
-
-The work is iterative: notice a problem, reproduce it, investigate the cause, make a change and check the result. The examples below follow that pattern. I am also using the project to deepen my understanding of Python after completing my Java studies.
-
-<section class="case-file" aria-labelledby="development-example-keeping-favourites-consistent">
-<p class="case-label">Development example · 01</p>
-<h3 id="development-example-keeping-favourites-consistent">Keeping favourites consistent</h3>
-<dl class="case-steps">
-<div><dt>01 / Problem</dt><dd>A single action could add the same favourite twice. A slow response could also arrive after a newer change and bring an older list back into view.</dd></div>
-<div><dt>02 / Investigation</dt><dd>The development review found that two list views shared the same underlying collection. It also identified places where older responses could still overwrite current favourites.</dd></div>
-<div><dt>03 / Change</dt><dd>The lists were separated, and newer confirmed changes now take priority over earlier responses. An uncertain operation is reported rather than automatically repeated.</dd></div>
-<div><dt>04 / Check</dt><dd>Targeted automated checks covered duplicate additions, late responses and confirmed changes. The documented update was installed and the Favourites view was inspected on the Pi. Longer use and simultaneous-client checks remain part of ongoing validation.</dd></div>
-</dl>
+<div class="mila-story">
+<section id="from-frustration-to-a-project" class="mila-section"><h2>From frustration to a project</h2>
+<p>I listen to music every day, with a large personal library of hi-res FLAC files alongside internet radio and streaming. The streamers I used frustrated me: slow menus when browsing larger collections, occasional connection drops, and limited ways to adapt the system. I also wanted direct control over audio processing — ensuring bit-perfect delivery for high-resolution files, avoiding unwanted resampling, and verifying what the DAC actually receives.</p>
+<p>I set out to build a true all-rounder: a dedicated player that unites high-resolution local playback, internet radio, and streaming without compromise. Rather than keeping my main computer running, I looked at the hardware I already had: a Raspberry Pi 5, touch display, fast NVMe disk for local audio storage, USB DAC and linear power supply. I put my requirements on paper and began shaping a streamer around them.</p>
+<p>The goal was straightforward: make an all-rounder player that handles high-resolution FLAC albums effortlessly, keeps radio and streaming within easy reach, and remains completely responsive and transparent in how it behaves.</p>
 </section>
 
-<section class="case-file" aria-labelledby="development-example-commands-that-only-looked-successful">
-<p class="case-label">Development example · 02</p>
-<h3 id="development-example-commands-that-only-looked-successful">Commands that only looked successful</h3>
-<dl class="case-steps">
-<div><dt>01 / Problem</dt><dd>Play, Pause and Next could fail without the interface saying so. Rejected commands were silently ignored, and an error-shaped reply from the music server could be read as a success.</dd></div>
-<div><dt>02 / Investigation</dt><dd>The review followed a command from the touch button through the backend to Lyrion's JSON-RPC interface. A missing result was being turned into an empty "success". A response lost on the network also says nothing about whether the command actually ran.</dd></div>
-<div><dt>03 / Change</dt><dd>Every command now ends in one of three outcomes: confirmed, rejected or unknown. An unknown outcome shows a warning that the command may already have run. Commands are deliberately not repeated automatically: repeating a Play/Pause toggle could undo a command that had in fact succeeded.</dd></div>
-<div><dt>04 / Check</dt><dd>New automated cases covered rejected, malformed and lost responses. The update was installed with a fresh backup; the music server kept running and the player reported playback before and after the installation.</dd></div>
-</dl>
+<section id="one-interface-for-everyday-listening" class="mila-section">
+<p class="mila-kicker">01 / THE APPLICATION</p><h2>Built around listening.</h2>
+<p>MILA is an audio application I develop around my own music collection and everyday listening. I wanted local albums, internet radio and streaming within easy reach, with clear playback controls and useful feedback when something goes wrong.</p>
+<div class="mila-features">
+<div><span class="mila-number">01</span><h3>Find your music</h3><p>Browse albums, artists, genres and folders. Keep favourites and listening history close.</p></div>
+<div><span class="mila-number">02</span><h3>Stay with the music</h3><p>Manage playback and the queue from one place, with separate source and DAC format information.</p></div>
+<div><span class="mila-number">03</span><h3>Choose your screen</h3><p>Use the touch display or open the same interface in a browser on your local network.</p></div>
+</div></section>
+<section id="guide" class="mila-section"><p class="mila-kicker">02 / A QUICK WALKTHROUGH</p><h2>From your library to your next track.</h2>
+<p>Open a step to see the screen and the controls. This is a guide to using MILA once it is installed; the Raspberry Pi installation guide will accompany the public download.</p>
+<figure class="mila-video"><video controls playsinline preload="metadata" poster="/images/projects/mila-v1/player-panik.jpg" aria-label="MILA video guide with on-screen instructions"><source src="/videos/mila-guide-en.mp4" data-hr-src="/videos/mila-guide-hr.mp4" type="video/mp4" /></video><figcaption>Video guide · English text · 53 seconds · No audio</figcaption></figure>
+<details id="a-library-i-can-explore" class="mila-step" open><summary><span class="mila-number">01</span><span><strong>Choose an album</strong><small>Start in Library.</small></span><span class="mila-plus" aria-hidden="true">+</span></summary><div class="mila-step-body"><p>Open Library, select Albums and choose a cover to inspect the tracks. Use search or switch to Artists, Genres or Folders when you know what you want to hear.</p><figure class="project-figure"><img src="/images/projects/mila-v1/library.jpg" width="1280" height="720" alt="MILA album library with artwork, browsing controls and the mini-player" data-group="cover" tabindex="0" role="button" loading="lazy"/><figcaption>Library — browse without losing playback controls</figcaption></figure></div></details>
+<details class="mila-step" ><summary><span class="mila-number">02</span><span><strong>Listen and manage the queue</strong><small>Keep the next track in view.</small></span><span class="mila-plus" aria-hidden="true">+</span></summary><div class="mila-step-body"><p>Select Play on an album or track, then open Player. Pause, skip, seek and inspect the album tracks. Open Queue to manage the wider listening order. Source and DAC labels describe different parts of the audio path.</p><figure class="project-figure"><img src="/images/projects/mila-v1/player-panik.jpg" width="1280" height="720" alt="MILA player with live radio information and station presets" data-group="cover" tabindex="0" role="button" loading="lazy"/><figcaption>Player — playback controls, audio information and radio presets</figcaption></figure></div></details>
+<details id="radio-without-the-clutter" class="mila-step"><summary><span class="mila-number">03</span><span><strong>Make radio your own</strong><small>Saved stations, with discovery nearby.</small></span><span class="mila-plus" aria-hidden="true">+</span></summary><div class="mila-step-body"><p>Open Radio to see My Stations. Use Discover to look for something new, filter by country, genre or quality, or use Add Stream for a station URL you already have.</p><figure class="project-figure"><img src="/images/projects/mila-v1/radio.jpg" width="1280" height="720" alt="MILA radio with Radio Panik, Radio Student and Yammat FM logos" data-group="cover" tabindex="0" role="button" loading="lazy"/><figcaption>Radio — your station collection and discovery filters</figcaption></figure></div></details>
+<details id="settings-that-belong-with-the-player" class="mila-step"><summary><span class="mila-number">04</span><span><strong>Set up your listening space</strong><small>Appearance, audio and maintenance.</small></span><span class="mila-plus" aria-hidden="true">+</span></summary><div class="mila-step-body"><p>Open Settings and choose the relevant section: display, audio and services, music storage, network, maintenance or updates. Remote access to protected system controls uses the System PIN.</p><figure class="project-figure"><img src="/images/projects/mila-v1/settings.jpg" width="1280" height="720" alt="MILA settings overview with six sections" data-group="cover" tabindex="0" role="button" loading="lazy"/><figcaption>Settings overview · Remote HTTP view</figcaption></figure></div></details>
+<p class="mila-note">Screenshots captured from the running Raspberry Pi on 6 November 2026, with real album covers and station logos. Radio Panik is shown in the Player views. Click any image to enlarge.</p></section>
+<section id="mobile" class="mila-section mila-mobile-layout"><div><p class="mila-kicker">03 / THE SAME APP, ANOTHER SCREEN</p><h2>Your phone is the remote.</h2>
+<p>Playback stays on the Raspberry Pi. Your phone or computer controls the same player through a browser on the local network, without a separate mobile app.</p>
+<p>The mobile layout keeps artwork, playback controls and the queue close together. On a larger screen, Now Playing gives the music more space.</p>
+<span id="streaming-and-audio-control"></span><p class="mila-note">Source quality and DAC output are shown separately. A DAC format label alone is not proof of bit-perfect playback.</p></div>
+<figure class="project-figure mila-phone"><img src="/images/projects/mila-v1/mobile-panik.jpg" width="390" height="844" alt="MILA mobile player receiving Radio Panik with station presets" data-group="cover" tabindex="0" role="button" loading="lazy"/><figcaption>Mobile player · Live Raspberry Pi screenshot</figcaption></figure>
 </section>
-
-<section class="case-file" aria-labelledby="development-example-a-lost-connection-without-false-alarms">
-<p class="case-label">Development example · 03</p>
-<h3 id="development-example-a-lost-connection-without-false-alarms">A lost connection without false alarms</h3>
-<dl class="case-steps">
-<div><dt>01 / Problem</dt><dd>When the interface lost contact with the player, the screen simply kept showing the last known state, with no sign that it might be out of date.</dd></div>
-<div><dt>02 / Investigation</dt><dd>Status polling already handled timeouts and late responses correctly, so the gap was feedback, not data. The real question was which failures should count: a single slow reply or a browser tab in the background should not raise an alarm.</dd></div>
-<div><dt>03 / Change</dt><dd>Two consecutive failed status checks now show a quiet notice that the status is unavailable and that the player is showing the last known playback. When contact returns, a short recovery message appears and then disappears. The notice never restarts or repeats anything, so it cannot interrupt playback.</dd></div>
-<div><dt>04 / Check</dt><dd>Five new automated cases covered an outage, recovery, single failures and a hidden page. On the Pi the notice stays hidden during normal polling; its appearance was reviewed in an isolated preview. I have not yet caused a real network fault on the device to see it there.</dd></div>
-</dl>
-</section>
-
-These examples show the approach I bring from quality control: work through the cause, document the change and check the result, including saying clearly what has not been checked yet.
-
-### Testing and releases
-
-MILA\* runs on a device I listen to every day, so a change is only finished once it has been checked.
-
-- **Automated tests.** More than 1,100 automated tests cover the Python backend and the JavaScript interface: playback commands, library and queue, radio, favourites, settings and the installation tool itself. They are run before changes are installed.
-- **Safe installation with rollback.** Updates go through an installation tool. It first creates a backup and verifies the copy on my computer by checksum. It then replaces only the program files, and checks that the interface starts, that every installed file matches the release and that every page resource is served correctly. If a check fails, the previous version is restored automatically. The music services keep running during an update.
-- **Checks on the real device.** After an update I check status, library, queue and radio on the Pi, and finally listening and touch. Passing tests are not treated as proof that the sound is right.
-
-The rollback path is covered by targeted tests; a controlled rollback on real hardware is still on the list.
-
-### Hardware & foundation
-
-Photographs of my listening setup, with the touch display, DAC, linear power supply and speakers. Backgrounds have been softened for presentation.
-
-<figure class="project-figure">
+<figure class="project-figure"><img src="/images/projects/mila-v1/now-playing-panik.jpg" width="1280" height="720" alt="MILA full-screen Now Playing with artwork and audio format labels" data-group="cover" tabindex="0" role="button" loading="lazy"/><figcaption>Now Playing — Radio Panik · Live Raspberry Pi screenshot</figcaption></figure>
+<section id="download" class="mila-section mila-release"><span id="current-state"></span><p class="mila-kicker">04 / VERSION &amp; AVAILABILITY</p><div class="mila-release-heading"><h2>MILA for Raspberry Pi</h2><span class="mila-version">Pi 1.0</span></div>
+<p>The first version is stable in my private development and listening setup. A reviewed update is prepared, while a clean distribution image is a separate next step.</p>
+<dl class="mila-release-data">
+<div><dt>Current version</dt><dd>Pi 1.0 — private installation</dd></div>
+<div><dt>Test platform</dt><dd>Raspberry Pi 5 · Raspberry Pi OS · USB DAC</dd></div>
+<div><dt>Next update</dt><dd>Prepared and reviewed; not installed yet</dd></div>
+<div><dt>Public download</dt><dd>Not available yet</dd></div>
+</dl><div class="mila-download-state"><span aria-hidden="true">↓</span><div><strong>Raspberry Pi image — coming later</strong><p>The image has not been created. A public release will include its version, compatible hardware, installation guide, checksum and release notes.</p></div></div></section>
+<section id="my-role-and-how-i-work" class="mila-section"><p class="mila-kicker">05 / BEHIND THE APPLICATION</p><h2>From a listening problem to a tested change.</h2>
+<p>My background is in hardware, quality control and failure analysis. I define the requirements and expected behaviour, reproduce problems, test installed versions on the device and decide which changes are accepted. AI coding assistants write substantial parts of the implementation.</p>
+<div class="mila-engineering"><div id="development-example-keeping-favourites-consistent"><span id="development-example-commands-that-only-looked-successful"></span><h3>Honest command feedback</h3><p>A lost response does not prove that a command failed. MILA distinguishes confirmed, rejected and unknown outcomes, and avoids automatically repeating a command that may already have run.</p></div><div id="testing-and-releases"><span id="development-example-a-lost-connection-without-false-alarms"></span><h3>Checks beyond the happy path</h3><p>Automated checks cover late responses, stale queue actions and private profile data. Installation work includes backups and recovery checks. Local tests, CI results and listening or touch checks on the device are recorded separately.</p></div></div>
+<div id="hardware--foundation" class="mila-platform"><h3>Development and test environment</h3><p>I develop the application on a Raspberry Pi 5 with a 10-inch touch display, NVMe storage and a Topping E50 USB DAC. This is my test configuration, not a claim of compatibility with every Pi or DAC.</p><p>Photographs of the setup I use to develop and test the application. Backgrounds have been softened for presentation.</p><figure class="project-figure">
 <img src="/images/projects/gstreamer/mila-hardware-front-v2-1600.jpg" width="1396" height="1127" srcset="/images/projects/gstreamer/mila-hardware-front-v2-800.jpg 800w, /images/projects/gstreamer/mila-hardware-front-v2-1600.jpg 1396w" sizes="(max-width: 800px) 100vw, 760px" alt="MILA listening setup viewed from the front, with touch display, DAC, linear power supply and speakers" data-index="0" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the MILA hardware setup" loading="lazy" />
 <figcaption>My listening setup — front view · Click to enlarge</figcaption>
 </figure>
@@ -157,19 +60,8 @@ Photographs of my listening setup, with the touch display, DAC, linear power sup
 </figure>
 </div>
 
-| Component                     | Role                                    |
-| ----------------------------- | --------------------------------------- |
-| Raspberry Pi 5                | Dedicated computer running the streamer |
-| NVMe disk                     | Local music storage                     |
-| Topping E50 USB DAC           | Audio output                            |
-| 10-inch touch display         | Built-in control interface              |
-| Dedicated linear power supply | DAC power                               |
-| Edifier MR5 speakers          | My listening setup                      |
+<p class="mila-stack">Python · HTML / CSS / JavaScript<br/>Lyrion Music Server → Squeezelite → USB DAC</p></div>
+<p>The source is private. I can walk through the application, selected code and testing approach in a conversation.</p>
+<a class="mila-text-link" href="/contact/">Discuss the project →</a></section>
 
-**Software:** Raspberry Pi OS · Lyrion Music Server · Squeezelite · Python · HTML/CSS/JavaScript
-
-### Current state
-
-MILA\* is a working personal prototype in active development. The current focus is stable listening, recovery after interruptions and consistent behaviour across screen sizes. Some integrations and workflows still need refinement and real-world validation before a stable release.
-
-The source code is in a private repository. I am happy to walk through it, the tests and the release history in a conversation.
+</div>

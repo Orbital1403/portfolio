@@ -15,6 +15,8 @@ const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
 const translatableAttributes = new Set(['alt', 'title', 'aria-label', 'placeholder', 'data-title', 'data-caption'])
 const metaNames = new Set(['description', 'og:title', 'og:description', 'og:image:alt', 'twitter:title', 'twitter:description', 'twitter:image:alt'])
 const tokenPattern = /<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->|<(?:[^"'<>]|"[^"]*"|'[^']*')*>|[^<]+/gi
+const sourceTagPattern = /^<source\b/i
+const localizedMediaPattern = /\bdata-hr-src=["']([^"']+)/
 const attributePattern = /([\w:-]+)(\s*=\s*)("[^"]*"|'[^']*')/g
 
 function translate(value, missing) {
@@ -116,6 +118,11 @@ export async function localizeBuild(directory) {
           let translated = value
           if (translatableAttributes.has(name) || (meta && name === 'content' && metaNames.has(metaId))) translated = translate(value, missing)
           if (name === 'href') translated = hrLink(value)
+          if (name === 'src' && sourceTagPattern.test(token)) {
+            const localizedSource = token.match(localizedMediaPattern)?.[1]
+            if (localizedSource)
+              translated = localizedSource
+          }
           if ((name === 'src' || name === 'href') && value === '/demos/praonica/') translated = '/demos/praonica/hr/'
           if (name === 'lang') translated = 'hr'
           if (meta && name === 'content' && metaId === 'og:url') translated = hrLink(value)
