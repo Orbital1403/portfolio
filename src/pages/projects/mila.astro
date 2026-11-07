@@ -790,6 +790,16 @@ const sections = [
       font-size: 11px;
     }
   }
+  @media (max-width: 360px) {
+    :global(.mila-video-controls) {
+      width: calc(100% - 8px);
+      gap: 3px;
+      font-size: 10px;
+    }
+    :global(.mila-video-toggle) {
+      width: 26px;
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     :global(.mila-video-controls) {
       transition: none;
