@@ -553,6 +553,7 @@ const sections = [
   }
   :global(.mila-video-stage) {
     position: relative;
+    padding-bottom: 64px;
   }
   :global(.mila-video-play:not([hidden])) {
     display: flex;
@@ -684,39 +685,84 @@ const sections = [
   :global(.mila-video-canvas video) {
     touch-action: manipulation;
   }
-  :global(.mila-video-progress) {
+  :global(.mila-video-controls) {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-top: 12px;
+    gap: 10px;
+    width: min(470px, calc(100% - 24px));
+    box-sizing: border-box;
+    padding: 5px 10px;
+    border: 1px solid #a5cec033;
+    border-radius: 9px;
+    background: #1a292eb3;
+    backdrop-filter: blur(10px);
+    color: #e5efeb;
+    box-shadow: 0 5px 24px #0003;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    font: 12px var(--note-font);
+  }
+  :global(.mila-video-controls[hidden]) {
+    display: none;
+  }
+  :global(.mila-video-toggle),
+  :global(.mila-video-speed) {
+    flex-shrink: 0;
+    height: 36px;
+    border: 0;
+    padding: 0 5px;
+    background: transparent;
+    color: #c0dfd3;
+    font: inherit;
+    cursor: pointer;
+  }
+  :global(.mila-video-toggle) {
+    width: 32px;
+    font-size: 18px;
+  }
+  :global(.mila-video-speed option) {
+    background: #1a292e;
+    color: #e5efeb;
+  }
+  :global(.mila-video-controls :focus-visible) {
+    outline: 2px solid #a5cec0;
+    outline-offset: 2px;
   }
   :global(.mila-video-timeline) {
     display: block;
+    flex: 1;
     width: 100%;
-    min-width: 0;
+    min-width: 35px;
     min-height: 32px;
+    margin: 0;
     cursor: pointer;
-    accent-color: var(--mila-accent);
+    accent-color: #a5cec0;
     touch-action: none;
   }
-  :global(.mila-video-time) {
+  :global(.mila-video-time),
+  :global(.mila-video-remaining) {
     flex-shrink: 0;
-    font: 12px var(--note-font);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
   }
   :global(.mila-video-stage:fullscreen) {
-    display: flex;
-    flex-direction: column;
+    box-sizing: border-box;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
     background: #1a242b;
     color: #e9efec;
-    padding: 12px;
-    box-sizing: border-box;
     width: 100%;
     height: 100%;
     overflow: hidden;
   }
   :global(.mila-video-stage:fullscreen .mila-video-canvas) {
-    flex: 1 1 0;
-    min-height: 0;
+    width: 100%;
+    height: 100%;
   }
   :global(.mila-video-stage:fullscreen video) {
     position: absolute;
@@ -729,26 +775,19 @@ const sections = [
     object-fit: contain;
   }
   :global(.mila-video-stage:fullscreen .mila-video-controls) {
-    flex: 0 0 auto;
-    width: 100%;
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  :global(.mila-video-controls) {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
+    bottom: calc(8px + env(safe-area-inset-bottom));
   }
   :global(.mila-video-stage:has(:focus-visible) .mila-video-controls),
-  :global(.mila-video-stage[data-controls-visible='true'] .mila-video-controls) {
+  :global(.mila-video-stage[data-controls-visible='true'] .mila-video-controls),
+  :global(.mila-video-stage[data-started='true'][data-paused='true'] .mila-video-controls) {
     opacity: 1;
     pointer-events: auto;
   }
-  @media (hover: hover) {
-    :global(.mila-video-stage:hover .mila-video-controls) {
-      opacity: 1;
-      pointer-events: auto;
+  @media (max-width: 420px) {
+    :global(.mila-video-controls) {
+      gap: 5px;
+      padding: 4px 6px;
+      font-size: 11px;
     }
   }
   @media (prefers-reduced-motion: reduce) {

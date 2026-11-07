@@ -77,6 +77,11 @@ export function initMilaVideo() {
     const mediaControls = stage.querySelector<HTMLElement>('.mila-video-controls')
     const timeline = stage.querySelector<HTMLInputElement>('.mila-video-timeline')
     const timeLabel = stage.querySelector<HTMLOutputElement>('.mila-video-time')
+    const remainingLabel = stage.querySelector<HTMLOutputElement>('.mila-video-remaining')
+    const toggle = stage.querySelector<HTMLButtonElement>('.mila-video-toggle')
+    const playIcon = toggle?.querySelector<HTMLElement>('.mila-control-play')
+    const pauseIcon = toggle?.querySelector<HTMLElement>('.mila-control-pause')
+    const speed = stage.querySelector<HTMLSelectElement>('.mila-video-speed')
     const formatTime = (time: number) => Number.isFinite(time) ? `${Math.floor(time / 60)}:${String(Math.floor(time % 60)).padStart(2, '0')}` : '--:--'
     const sync = () => {
       const ready = getVideoSeekTarget(video.currentTime, video.duration, 0) !== null
@@ -89,7 +94,18 @@ export function initMilaVideo() {
         }
       }
       if (timeLabel)
-        timeLabel.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`
+        timeLabel.textContent = formatTime(video.currentTime)
+      if (remainingLabel)
+        remainingLabel.textContent = `−${formatTime(Math.max(0, video.duration - video.currentTime))}`
+      stage.dataset.paused = String(video.paused)
+      if (toggle)
+        toggle.setAttribute('aria-label', toggle.querySelector(video.paused ? '.mila-label-play' : '.mila-label-pause')?.textContent || '')
+      if (playIcon)
+        playIcon.hidden = !video.paused
+      if (pauseIcon)
+        pauseIcon.hidden = video.paused
+      if (speed)
+        speed.value = String(video.playbackRate)
     }
     const seek = (offset: number) => {
       const target = getVideoSeekTarget(video.currentTime, video.duration, offset)
@@ -120,6 +136,22 @@ export function initMilaVideo() {
       start()
       void openMilaVideoFullscreen(stage, video as HTMLVideoElement & { webkitEnterFullscreen?: () => void })
     })
+    toggle?.addEventListener('click', () => {
+      if (video.paused)
+        start()
+      else
+        video.pause()
+      revealControls()
+      sync()
+    })
+    speed?.addEventListener('change', () => {
+      const rate = Number(speed.value)
+      if ([0.75, 1, 1.25, 1.5, 2].includes(rate))
+        video.playbackRate = rate
+      revealControls()
+    })
+    stage.addEventListener('pointermove', revealControls)
+    stage.addEventListener('pointerdown', revealControls)
     if (mediaControls && timeline) {
       // Native controls are the no-JavaScript and unsupported-browser fallback.
       mediaControls.hidden = false
@@ -252,13 +284,15 @@ export function initMilaVideo() {
     }, { capture: true })
     video.addEventListener('play', () => {
       play.hidden = true
+      stage.dataset.started = 'true'
+      revealControls()
       update()
     })
     video.addEventListener('ended', () => {
       play.hidden = false
       update()
     })
-    for (const event of ['timeupdate', 'loadedmetadata', 'durationchange', 'pause'])
+    for (const event of ['timeupdate', 'loadedmetadata', 'durationchange', 'pause', 'ratechange'])
       video.addEventListener(event, update)
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting

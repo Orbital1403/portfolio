@@ -43,6 +43,7 @@ test('single click toggles playback, while double click only seeks', async (t) =
     controls: true,
     currentTime: 30,
     duration: 117,
+    playbackRate: 1,
     addEventListener(name, handler) {
       const handlers = listeners.get(name) || []
       handlers.push(handler)
@@ -60,11 +61,24 @@ test('single click toggles playback, while double click only seeks', async (t) =
   const back = element()
   const timeline = element()
   const controls = element()
+  const toggleHandlers = {}
+  const toggle = {
+    addEventListener(name, handler) { toggleHandlers[name] = handler },
+    setAttribute(name, value) { this[name] = value },
+    querySelector(selector) { return { textContent: selector === '.mila-label-play' ? 'Play video' : 'Pause video' } },
+  }
+  const speedHandlers = {}
+  const speed = {
+    value: '1',
+    addEventListener(name, handler) { speedHandlers[name] = handler },
+  }
+  const elapsed = {}
+  const remaining = {}
   const stage = {
     dataset: {},
     addEventListener() {},
     querySelector(selector) {
-      return { 'video': video, '.mila-video-play': play, '.mila-video-return': back, '.mila-video-controls': controls, '.mila-video-timeline': timeline }[selector] || null
+      return { 'video': video, '.mila-video-play': play, '.mila-video-return': back, '.mila-video-controls': controls, '.mila-video-timeline': timeline, '.mila-video-toggle': toggle, '.mila-video-speed': speed, '.mila-video-time': elapsed, '.mila-video-remaining': remaining }[selector] || null
     },
   }
   const old = Object.fromEntries(['document', 'window', 'IntersectionObserver'].map(key => [key, globalThis[key]]))
@@ -109,6 +123,23 @@ test('single click toggles playback, while double click only seeks', async (t) =
   flush()
   assert.equal(video.currentTime, 35)
   assert.equal(video.paused, true)
+  assert.equal(elapsed.textContent, '0:35')
+  assert.equal(remaining.textContent, '−1:22')
+  toggleHandlers.click()
+  assert.equal(video.paused, false)
+  assert.equal(toggle['aria-label'], 'Pause video')
+  toggleHandlers.click()
+  assert.equal(video.paused, true)
+  assert.equal(toggle['aria-label'], 'Play video')
+  speed.value = '1.5'
+  speedHandlers.change()
+  assert.equal(video.playbackRate, 1.5)
+  speed.value = '99'
+  speedHandlers.change()
+  assert.equal(video.playbackRate, 1.5)
+  assert.equal(stage.dataset.controlsVisible, 'true')
+  flush()
+  assert.equal(stage.dataset.controlsVisible, undefined)
   let fullscreenRequests = 0
   stage.requestFullscreen = async () => {
     fullscreenRequests++
