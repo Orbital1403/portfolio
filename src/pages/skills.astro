@@ -11,3 +11,18 @@ const { Content } = await render(entry)
     <p class="folio-label">PERSONAL FIELD NOTES / EXPERIENCE & EDUCATION</p><h1>Skills & experience</h1>
   </header><article class="prose"><Content /></article></LayoutDefault
 >
+
+<style is:global>
+  .prose .skill-item-icon {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    margin-right: 8px;
+    vertical-align: -3px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .prose li:has(.skill-item-icon) {
+    list-style: none;
+  }
+</style>
