@@ -72,7 +72,7 @@ export function initMilaVideo() {
     let visible = true
     let dragging = false
     let controlsTimer: number | undefined
-    const revealControls = () => {
+    const revealControls = (delay = 2500) => {
       stage.dataset.controlsVisible = 'true'
       window.clearTimeout(controlsTimer)
       controlsTimer = window.setTimeout(() => {
@@ -80,7 +80,7 @@ export function initMilaVideo() {
           revealControls()
         else
           delete stage.dataset.controlsVisible
-      }, 2500)
+      }, delay)
     }
     const mediaControls = stage.querySelector<HTMLElement>('.mila-video-controls')
     const timeline = stage.querySelector<HTMLInputElement>('.mila-video-timeline')
@@ -173,8 +173,10 @@ export function initMilaVideo() {
         video.playbackRate = rate
       revealControls()
     })
-    stage.addEventListener('pointermove', revealControls)
-    stage.addEventListener('pointerdown', revealControls)
+    stage.addEventListener('pointerenter', () => revealControls())
+    stage.addEventListener('pointermove', () => revealControls())
+    stage.addEventListener('pointerdown', () => revealControls())
+    stage.addEventListener('pointerleave', () => revealControls(600))
     if (mediaControls && timeline) {
       // Native controls are the no-JavaScript and unsupported-browser fallback.
       mediaControls.hidden = false
