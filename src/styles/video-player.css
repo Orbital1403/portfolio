@@ -243,11 +243,18 @@ html.dark .mila-video-return {
 .mila-video-stage:fullscreen .mila-video-controls {
   bottom: calc(8px + env(safe-area-inset-bottom));
 }
+.mila-video-controls:focus-within,
 .mila-video-stage:has(:focus-visible) .mila-video-controls,
 .mila-video-stage[data-controls-visible='true'] .mila-video-controls,
 .mila-video-stage[data-started='true'][data-paused='true'] .mila-video-controls {
   opacity: 1;
   pointer-events: auto;
+}
+@media (hover: hover) {
+  .mila-video-controls:hover {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 @media (max-width: 420px) {
   .mila-video-controls {
