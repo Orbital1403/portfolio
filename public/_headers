@@ -1,3 +1,9 @@
+https://gordangrgic.com/*
+  Strict-Transport-Security: max-age=300
+
+https://www.gordangrgic.com/*
+  Strict-Transport-Security: max-age=300
+
 /demos/my-garden/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
