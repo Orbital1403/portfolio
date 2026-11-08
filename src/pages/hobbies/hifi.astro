@@ -53,7 +53,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     <section>
       <h2>The system I listen to</h2><div class="equipment-grid">
         <article class="equipment-card speaker-equipment">
-          <img src="/images/hobbies/hifi/speaker.jpg" alt="Polk R700" width="800" height="500" loading="lazy" /><div
+          <img src="/images/hobbies/hifi/speaker.jpg" alt="Polk R700" width="1200" height="1600" loading="lazy" /><div
             class="equipment-copy"
           >
             <p class="equipment-role">Speakers</p><h3>Polk R700</h3><p>
@@ -199,8 +199,9 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     align-items: center;
   }
   .speaker-equipment img {
-    height: 360px;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
     margin: 0;
   }
   .equipment-note {
