@@ -3,37 +3,83 @@ title: Skills & Certifications
 description: Practical skills in quality control, hardware, Linux and testing; completed Java, web and MySQL courses; and current AI & Machine Learning studies at ITAcademy.
 ---
 
-My skills have grown through electronics, practical technical work and continued learning. I have completed my Java studies at ITAcademy and am currently attending its **AI & Machine Learning programme**. I am developing my knowledge of Python and AI/ML alongside practical projects. The certificates below document my completed coursework.
+My experience brings together industrial electronics, quality control, fault analysis and practical technical work. Today, I build on that foundation through projects that connect hardware and software, alongside continued education.
 
----
+## Testing & fault analysis
 
-## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#check"/></svg> Diagnostics, Analysis & Resolution
+At Siemens, I analysed returned devices and documented findings that contributed to improvements within the department. At Altpro, I worked in quality control, measurement and calibration for railway safety systems, in close cooperation with development.
 
-Gained in production and quality control at Siemens and Altpro.
+- Investigating and reproducing problems
 
-- Failure analysis of returned (complaint) devices, with detailed written documentation
-- Calibration and measurement of industrial instruments
-- Working closely with development teams so findings lead to improvements
+- Measuring and comparing results with expected behaviour
 
----
+- Documenting findings and the conditions in which a problem occurs
 
-## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> Hardware, Systems & Audio
+- Checking solutions and the possible effects of a change
 
-- PC and electronics hardware: assembly, diagnostics, fault finding
+## Programming & databases
+
+I have over a year of hands-on experience with Java and MySQL. I completed Java Developer studies and continue to develop my knowledge through personal projects.
+
+- Java — object-oriented programming, collections, exceptions, lambda expressions and streams
+
+- Desktop applications — Swing and AWT, forms, event handling and database connectivity
+
+- Web applications — Servlets, JSP, JSTL, sessions and MVC
+
+- MySQL & SQL — relational database design, queries and working with data
+
+- HTML, CSS & JavaScript — page structure, styling and interactions
+
+- Python — developing my knowledge through personal projects and current studies
+
+## Hardware & systems
+
+From assembling computers to repairing appliances, I enjoy understanding how the parts of a system work together and locating the source of a problem.
+
+- PC assembly and hardware diagnostics
+
+- Industrial electronics, measurement and calibration
+
 - Daily use of Linux, macOS and Windows
-- Raspberry Pi 5: headless setup, systemd services, ALSA audio, remote deployment
-- Hands-on technician work: appliances, electrics, boilers, renovation
-- MILA\*: a personal audio streamer in development that I lead from requirements to release (see [MILA* project notes](/projects/mila/))
 
----
+- Raspberry Pi, system services and USB audio
 
-## <svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#code"/></svg> Testing & AI-assisted development
+- Practical experience with appliance repairs and installations
 
-Developed through MILA\* (see [MILA* project notes](/projects/mila/)).
+## Applying these skills in personal projects
 
-- Reproducing problems, tracing their cause and checking each fix, with automated tests and on the real device
-- Safe releases: backups verified by checksum, post-installation checks and automatic rollback
-- AI-assisted development: I set the requirements and verify the result; AI coding assistants write much of the implementation
+### MILA — audio streamer
+
+I define requirements and expected behaviour, investigate problems, check installed versions on the device and decide which changes are acceptable. One example is handling a command when its response never arrives. The player may already have performed the action, so the system needs to communicate the uncertain outcome and avoid an unintended repeat.
+
+### grgaGrow — garden application
+
+I shape how readings, history and alerts are presented. I pay particular attention to missing or stale readings and whether the available data supports a reliable recommendation. Connecting the physical sensors is the next stage of the project.
+
+### Working with AI tools
+
+AI coding assistants write substantial parts of the implementation under my direction. My work includes defining problems, deciding how the product should behave, verifying results and accepting changes. Through this process, I also develop my own understanding of the code and the system.
+
+<h2 id="ai--machine-learning--current-studies">Python & AI — current studies</h2>
+
+I am attending the AI & Machine Learning programme at ITAcademy, developing my knowledge of Python, data processing and artificial intelligence. The programme covers:
+
+- Python programming
+
+- Data processing and machine-learning models
+
+- Deep learning with Keras, TensorFlow and PyTorch
+
+- Preparing and deploying AI/ML systems
+
+I also explore Python through personal projects that connect hardware and software.
+
+<h2 id="education">Education</h2>
+
+- **Electrotechnician — Electrotechnical High School, Zagreb**
+- **Java Developer — ITAcademy** · Completed
+- **AI & Machine Learning — ITAcademy** · In progress
 
 ---
 
@@ -63,25 +109,3 @@ Completed at Link Group (ITAcademy). Each certificate can be checked with its nu
 - **MySQL Programming and Administration**
   Writing SQL for MySQL databases and administering them.
   <span class="certificate-meta">Certificate № 1747132816 · <a href="/certificates/mysql.pdf" target="_blank" rel="noopener noreferrer">View certificate</a> · <a href="https://www.link-group.eu/certificate/" target="_blank" rel="noopener noreferrer" title="Enter the certificate number on Link Group's validation page">Verify ↗</a></span>
-
----
-
-<h2 id="education"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#education"/></svg> Education</h2>
-
-- **AI & Machine Learning — ITAcademy** · In progress
-- **Java Developer — ITAcademy** · Completed
-- **Electrotechnician — Electrotechnical High School, Zagreb**
-
----
-
-<h2 id="ai--machine-learning--current-studies"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#ai"/></svg> AI &amp; Machine Learning — current studies</h2>
-
-I am currently attending the [AI & Machine Learning programme at ITAcademy](https://www.it-akademija.com/ai-i-machine-learning-program-obrazovanja). The published curriculum covers:
-
-- **Get Ready to Become an AI Engineer** — foundations for the programme.
-- **Python Programming Basics** — programming fundamentals in Python.
-- **Data Processing and AI/ML Models** — working with data and machine-learning models.
-- **Deep Learning with Keras, TF and PT** — neural networks and deep-learning tools.
-- **Managing AI/ML Pipelines & Systems Deployment** — preparing and deploying AI/ML systems.
-
-My studies are in progress. Alongside the coursework, the Python backend of MILA\* gives me a practical context for exploring the language.
