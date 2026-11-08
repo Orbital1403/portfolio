@@ -1277,5 +1277,10 @@
   "Deep learning with Keras, TensorFlow and PyTorch": "Duboko učenje uz Keras, TensorFlow i PyTorch",
   "Preparing and deploying AI/ML systems": "Priprema i implementacija AI/ML sustava",
   "I also explore Python through personal projects that connect hardware and software.": "Python dodatno istražujem kroz vlastite projekte koji povezuju hardver i softver.",
-  "Skills & experience": "Vještine i iskustvo"
+  "Skills & experience": "Vještine i iskustvo",
+  "Explore MILA →": "Istraži MILA-u →",
+  "Explore grgaGrow →": "Istraži grgaGrow →",
+  "Our laundry — shared laundry application": "Naša praonica — aplikacija za zajedničku praonicu",
+  "I define machine states and the resident workflow, and check how the interface handles uncertain or outdated information. A finished cycle, an open door and an available machine are treated as separate facts. The public demo uses simulated states; live integration and recovery checks remain in development.": "Definiram stanja strojeva i način korištenja za stanare te provjeravam kako sučelje postupa s neizvjesnim ili zastarjelim informacijama. Završeni ciklus, otvorena vrata i slobodan stroj promatraju se kao zasebne činjenice. Javni demo koristi simulirana stanja; povezivanje sa stvarnim uređajima i provjere oporavka još su u razvoju.",
+  "Explore Our laundry →": "Istraži Našu praonicu →"
 }

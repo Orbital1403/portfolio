@@ -49,15 +49,25 @@ From assembling computers to repairing appliances, I enjoy understanding how the
 
 <h2 id="applying-these-skills-in-personal-projects"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#projects"/></svg> Applying these skills in personal projects</h2>
 
-### MILA — audio streamer
+### <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261108#audio"/></svg> MILA — audio streamer
 
 I define requirements and expected behaviour, investigate problems, check installed versions on the device and decide which changes are acceptable. One example is handling a command when its response never arrives. The player may already have performed the action, so the system needs to communicate the uncertain outcome and avoid an unintended repeat.
 
-### grgaGrow — garden application
+[Explore MILA →](/projects/mila/)
+
+### <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261108#leaf"/></svg> grgaGrow — garden application
 
 I shape how readings, history and alerts are presented. I pay particular attention to missing or stale readings and whether the available data supports a reliable recommendation. Connecting the physical sensors is the next stage of the project.
 
-### Working with AI tools
+[Explore grgaGrow →](/projects/grgagrow/)
+
+### <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261108#washer"/></svg> Our laundry — shared laundry application
+
+I define machine states and the resident workflow, and check how the interface handles uncertain or outdated information. A finished cycle, an open door and an available machine are treated as separate facts. The public demo uses simulated states; live integration and recovery checks remain in development.
+
+[Explore Our laundry →](/projects/our-laundry/)
+
+### <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#ai"/></svg> Working with AI tools
 
 AI coding assistants write substantial parts of the implementation under my direction. My work includes defining problems, deciding how the product should behave, verifying results and accepting changes. Through this process, I also develop my own understanding of the code and the system.
 
