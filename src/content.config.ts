@@ -7,20 +7,30 @@ const spec = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/spec' }),
 })
 
+// A plain URL uses the standard gallery crop. Sized photos keep their original frame.
+const hobbyPhoto = z.preprocess(
+  value => typeof value === 'string' ? { src: value } : value,
+  z.object({
+    src: z.string(),
+    size: z.tuple([z.number().int().positive(), z.number().int().positive()]).optional(),
+    fullRow: z.boolean().optional(),
+  }),
+)
+
 // Practical projects and photographic stages.
 const hobbies = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/hobbies' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date().optional(),
-    cover: z.string().optional(),
+    cover: hobbyPhoto.optional(),
     summary: z.string().optional(),
     tags: z.array(z.string()).optional(),
     steps: z
       .array(
         z.object({
           title: z.string(),
-          images: z.array(z.string()),
+          images: z.array(hobbyPhoto),
           caption: z.string().optional(),
         }),
       )

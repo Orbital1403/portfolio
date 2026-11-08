@@ -53,7 +53,9 @@ const lesson = data.lesson
     data.cover && (
       <figure class="hobby-cover">
         <img
-          src={esc(data.cover)}
+          src={esc(data.cover.src)}
+          width={data.cover.size?.[0]}
+          height={data.cover.size?.[1]}
           alt={`${data.title} — finished project`}
           data-group="cover"
           data-index="0"
@@ -101,8 +103,8 @@ const lesson = data.lesson
           <figure class="comparison-photo">
             <>
               <img
-                src={esc(thumbnail(data.cover))}
-                data-src={esc(data.cover)}
+                src={esc(thumbnail(data.cover.src))}
+                data-src={esc(data.cover.src)}
                 alt={`${data.title} after`}
                 loading="lazy"
                 decoding="async"
@@ -138,16 +140,18 @@ const lesson = data.lesson
               </div>
             </header>
             <div class:list={['hobby-photo-grid', { 'single-photo': step.images.length === 1 }]}>
-              {step.images.map((img: string, i: number) => (
-                <figure class="hobby-photo">
+              {step.images.map((photo, i) => (
+                <figure class:list={['hobby-photo', { 'full-row': photo.fullRow }]}>
                   <img
-                    src={esc(thumbnail(img))}
+                    src={esc(thumbnail(photo.src))}
+                    width={photo.size?.[0]}
+                    height={photo.size?.[1]}
                     alt={`${step.title} – ${i + 1}`}
                     loading="lazy"
                     decoding="async"
                     data-group={String(sIdx)}
                     data-index={String(i)}
-                    data-src={esc(img)}
+                    data-src={esc(photo.src)}
                     data-title={step.title}
                     data-caption={step.caption || ''}
                   />

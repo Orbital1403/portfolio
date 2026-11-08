@@ -1,7 +1,9 @@
 ---
 title: "PC on the Wall"
 date: 2025-09-01
-cover: /images/hobbies/pc_on_wall/final-look/cover-page-v2.jpg
+cover:
+  src: /images/hobbies/pc_on_wall/final-look/cover-page-v2.jpg
+  size: [1086, 1448]
 summary: "An open-frame wall-mounted PC, from the mounting board to the first power-on."
 tags: [pc, diy, wall-mount]
 steps:
@@ -45,8 +47,10 @@ steps:
   - title: First Power-On
     caption: The first start-up and a closer look at the voltage display.
     images:
-      - /images/hobbies/pc_on_wall/first-power-on/first_power_on-v2.jpg
-      - /images/hobbies/pc_on_wall/first-power-on/voltage_display-v2.jpg
+      - src: /images/hobbies/pc_on_wall/first-power-on/first_power_on-v2.jpg
+        size: [800, 1067]
+      - src: /images/hobbies/pc_on_wall/first-power-on/voltage_display-v2.jpg
+        size: [800, 1067]
 lesson: "Component layout, mounting points and cable routing need to be planned together. Keeping the parts accessible matters as much as the finished appearance."
 ---
 

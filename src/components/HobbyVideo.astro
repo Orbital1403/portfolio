@@ -77,10 +77,11 @@ const { src, poster, label, portrait = true, preload = 'none' } = Astro.props
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
     background: #17201e;
   }
   .portrait video {
     aspect-ratio: 9 / 16;
-    object-fit: contain;
   }
 </style>

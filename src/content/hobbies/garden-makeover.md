@@ -1,7 +1,9 @@
 ---
 title: "Garden Makeover"
 date: 2025-09-27
-cover: /images/hobbies/garden-makeover/final-look/cover-page-v2.jpeg
+cover:
+  src: /images/hobbies/garden-makeover/final-look/cover-page-v2.jpeg
+  size: [1448, 1086]
 summary: "My first garden renovation: clearing, drainage, waterproofing and the finished lawn."
 tags: [garden, diy, lawn, makeover]
 steps:
@@ -30,7 +32,9 @@ steps:
     images:
       - /images/hobbies/garden-makeover/patio-waterproofing/waterproofing-and-forms-v2.jpg
       - /images/hobbies/garden-makeover/patio-waterproofing/self-levelling-done-v2.jpg
-      - /images/hobbies/garden-makeover/patio-waterproofing/layers-cross-section-v2.jpg
+      - src: /images/hobbies/garden-makeover/patio-waterproofing/layers-cross-section-v2.jpg
+        size: [800, 486]
+        fullRow: true
 
   - title: Drainage & Edging
     caption: "Digging the drainage trenches, adding aggregate and installing the drain."

@@ -514,14 +514,21 @@ html.dark .prose :is(th, td) {
   margin: 0;
   min-width: 0;
 }
+.hobby-photo.full-row {
+  grid-column: 1 / -1;
+}
 .hobby-photo img {
   display: block;
   width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   cursor: zoom-in;
 }
-.single-photo img {
+.hobby-photo img:where(:not([width])) {
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.single-photo img:where(:not([width])) {
   aspect-ratio: 16/9;
 }
 .hobby-photo img:focus-visible,
@@ -554,7 +561,7 @@ html.dark :is(.hobby-photo img, .hobby-cover img):focus-visible {
     padding-bottom: 24px;
     margin-bottom: 24px;
   }
-  .single-photo img {
+  .single-photo img:where(:not([width])) {
     aspect-ratio: 4/3;
   }
 }
