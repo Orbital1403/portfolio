@@ -61,6 +61,10 @@ const endpoint = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(configured) ?
       <div class="honey" aria-hidden="true">
         <label>Leave this empty<input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
       </div>
+      <p class="privacy-note">
+        I use your details to respond to your message.
+        <a href="/privacy/">Read the privacy notice.</a>
+      </p>
       <div class="form-bottom">
         <span class="reply-note">Leave an address where I can reply.</span><button
           type="submit"
@@ -85,6 +89,12 @@ const endpoint = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(configured) ?
   </section>
 </LayoutDefault>
 <style>
+  .privacy-note {
+    font-family: var(--body-font);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-block: 1rem;
+  }
   .contact-page {
     font-family: 'IBM Plex Mono', monospace;
     max-width: 720px;
