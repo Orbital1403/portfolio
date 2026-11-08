@@ -14,10 +14,13 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
       <div class="hero-copy">
         <p class="eyebrow hero-label">GORDAN GRGIĆ / ZAGREB → BRUSSELS</p>
         <h1 id="home-title">Curiosity.<br />A practical mind.</h1>
-        <p class="hero-location">I'm Gordan, originally from Zagreb. I've been living in Brussels for some time now.</p>
+        <p class="hero-location">
+          My background is in industrial electronics, quality control and fault analysis. Today, I bring that experience
+          to personal projects that connect hardware and software.
+        </p>
         <p class="hero-lead">
-          Industrial electronics, quality control and fault analysis are my foundation. Today, I bring that practical
-          approach to testing and projects that connect hardware and software.
+          Based in Brussels, I’m looking for a role in testing, technical support or integration — work where I can
+          investigate problems, verify solutions and see how they perform in everyday use.
         </p>
         <div class="hero-actions">
           <a class="primary-action not-underline-hover" href="#selected-work">Explore my work <Icon name="arrow" /></a>
@@ -37,7 +40,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
         <h2 id="work-title">Built around real problems.</h2>
         <p>Music, a garden and a shared laundry room. Three practical reasons to connect hardware and software.</p>
       </header>
-      <a class="home-project main-project not-underline-hover" href="/projects/mila/">
+      <a class="home-project main-project not-underline-hover" href="/projects/mila/#my-role-and-how-i-work">
         <div class="project-photo mila-photo">
           <img
             src="/images/projects/gstreamer/mila-now-playing-20261018.jpg"
@@ -56,8 +59,11 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
             A personal audio streamer for local hi-res music, radio and streaming. Used for everyday listening, refined
             through testing on the real device.
           </p>
-          <p class="project-focus">Requirements · Device testing · Releases</p>
-          <span class="project-link">Explore MILA* <Icon name="arrow" /></span>
+          <p class="project-description">
+            What if the player runs a command, but the response never arrives? MILA shows an uncertain outcome and
+            avoids automatically repeating an action that could undo what just happened.
+          </p>
+          <span class="project-link">How I check player behaviour <Icon name="arrow" /></span>
         </div>
       </a>
       <div class="supporting-projects">
@@ -154,7 +160,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
 
     <section class="home-section" aria-labelledby="skills-title">
       <header class="section-header">
-        <p class="eyebrow">03 / SKILLS &amp; LEARNING</p>
+        <p class="eyebrow">03 / SKILLS &amp; EXPERIENCE</p>
         <h2 id="skills-title">A practical foundation. Still learning.</h2>
       </header>
       <dl class="capabilities">
@@ -187,7 +193,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           >
         </div>
       </div>
-      <a class="section-link quiet-link" href="/skills/">Skills &amp; course certificates <Icon name="arrow" /></a>
+      <a class="section-link quiet-link" href="/skills/">Skills &amp; experience <Icon name="arrow" /></a>
     </section>
 
     <section class="home-section" aria-labelledby="practical-title">

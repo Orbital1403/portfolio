@@ -1,0 +1,44 @@
+[
+  {
+    "file": "ibm-plex-mono-normal-400.ttf",
+    "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n5ig.ttf",
+    "sha256": "a7fdc993f9f0387caedba4e42521136fa97e4c0837ae6239bf0413ccf8af00c2",
+    "bytes": 128812
+  },
+  {
+    "file": "ibm-plex-mono-normal-500.ttf",
+    "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJ8lc.ttf",
+    "sha256": "4fc14a73ca53ba9d32fd759ae1ca1a3133326035d0dd337862b3ee1633cc156e",
+    "bytes": 129916
+  },
+  {
+    "file": "ibm-plex-mono-normal-600.ttf",
+    "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAO8lc.ttf",
+    "sha256": "754dfc9d50cf7aabfb6b108d2c2f7d20a3f1f2cc6f6c01640c6728091272cec0",
+    "bytes": 133444
+  },
+  {
+    "file": "ibm-plex-mono-normal-700.ttf",
+    "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3pQP8lc.ttf",
+    "sha256": "5b2232ff598dd39860f606526399f64be06f0c286a638bad8a83e98c44c41ff6",
+    "bytes": 131040
+  },
+  {
+    "file": "ibm-plex-sans-italic-400.ttf",
+    "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXEKVElMYYaJe8bpLHnCwDKhdTEG46kmUZQCX598fQbM4jw8V78x9OWIhqbQ6g9.ttf",
+    "sha256": "20cce584e83aebf7f7188abf9e3b47c20d84d7cfdd3450b2f97063c187a85aae",
+    "bytes": 220108
+  },
+  {
+    "file": "ibm-plex-sans-normal-400.ttf",
+    "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSD6llzAA.ttf",
+    "sha256": "6dbe082463cf749cfa057d45c3048c90f4df031496498e5b5bdfd0b6babb9d16",
+    "bytes": 205252
+  },
+  {
+    "file": "ibm-plex-sans-normal-700.ttf",
+    "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSDDV5zAA.ttf",
+    "sha256": "e129a20e8ff7c907ffd07124b573e88c323b7b18afc934d4aa539a3e0f2fe100",
+    "bytes": 205220
+  }
+]

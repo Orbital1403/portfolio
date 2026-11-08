@@ -8,6 +8,8 @@ const hardwareGallery = [
     width: 800,
     height: 800,
     title: 'ESP32-S3 controller',
+    description:
+      'The controller will bridge RS485 probes and Wi-Fi. Its board variant, pin mapping and power requirements still need bench verification.',
     detail: 'RS485 / CAN · Wi-Fi · DIN housing',
     alt: 'Waveshare reference photograph of the ESP32-S3-RS485-CAN controller in its DIN-rail housing',
     source: 'https://www.waveshare.com/product/esp32-s3-rs485-can.htm',
@@ -18,6 +20,8 @@ const hardwareGallery = [
     width: 400,
     height: 400,
     title: 'Moisture + temperature',
+    description:
+      'The first probe will measure soil moisture and temperature over RS485 / Modbus RTU. Its register map, address and calibration will be checked before use.',
     detail: 'RS485 soil probe',
     alt: 'Renke reference image of a soil temperature and moisture probe',
     source: 'https://www.renkeer.com/product/soil-moisture-sensor/',
@@ -28,6 +32,8 @@ const hardwareGallery = [
     width: 500,
     height: 500,
     title: 'Moisture + temperature + pH',
+    description:
+      'The second probe adds experimental pH measurement. Both probes need distinct Modbus addresses and individual calibration checks.',
     detail: 'Combined probe · Experimental pH',
     alt: 'Renke reference image of a multi-parameter soil probe with metal sensing pins',
     source: 'https://www.renkeer.com/product/soil-nutrient-sensor/',
@@ -38,6 +44,8 @@ const hardwareGallery = [
     width: 1024,
     height: 171,
     title: 'Garden cable',
+    description:
+      'BITNER BiTsensor LP0170 has two shielded twisted pairs, 0.34 mm² conductors and a 6.5 mm outer diameter. One pair is planned for data and the other for sensor power.',
     detail: 'BITNER BiTsensor · Shielded twisted pairs',
     alt: 'BITNER BiTsensor cable family reference photograph showing blue and green jackets, shielding and two conductor pairs',
     source: 'https://onninen.pl/en/product/BITNER-bitsensor-data-cable-pe-pvc-blue-2x2x22awg-drum-LP0170,429024',
@@ -48,6 +56,8 @@ const hardwareGallery = [
     width: 608,
     height: 608,
     title: 'Outdoor DC power supply',
+    description:
+      'The build is planned around 12 V DC. The delivered supply model, output rating and compatibility must be verified before connecting the probes.',
     detail: 'MEAN WELL OWA-60E · Reference model',
     alt: 'MEAN WELL OWA-60E reference photograph showing a sealed power adapter with fixed cables and a European mains plug',
     source: 'https://www.meanwellaustralia.com.au/products/owa-60e',
@@ -155,51 +165,6 @@ const hardwareGallery = [
     vendor: 'DeoDap',
   },
 ]
-
-const hardware = [
-  {
-    number: '01',
-    title: 'ESP32-S3 controller',
-    status: 'Ordered',
-    description:
-      'One ESP32-S3-RS485-CAN controller will bridge the wired probes and Wi-Fi. USB-C provides the programming connection. The delivered board variant, pin mapping and power requirements will be checked before assembly.',
-  },
-  {
-    number: '02',
-    title: 'Two wired soil probes',
-    status: 'Ordered',
-    description:
-      'One moisture / temperature probe and one combined moisture / temperature / pH probe. Both are intended for RS485 / Modbus RTU. Their actual register maps, addresses and calibration will be verified individually; pH remains experimental.',
-  },
-  {
-    number: '03',
-    title: 'The garden cable',
-    status: 'Ordered',
-    description:
-      'BITNER BiTsensor LP0170: two twisted pairs with a foil shield, 0.34 mm² conductors and a 6.5 mm outer diameter. One pair is planned for RS485 data and the other for sensor power. Cable-entry fit and communication over the final route still need testing.',
-  },
-  {
-    number: '04',
-    title: 'Power & protection',
-    status: 'Ordered',
-    description:
-      'The supply is ordered for the planned 12 V DC system, alongside five inline holders with 1 A fuses and 5.5 × 2.1 mm DC adapters. The supply model, output rating and compatibility still need checking; the final fuse value follows measured demand.',
-  },
-  {
-    number: '05',
-    title: 'Distribution & termination',
-    status: 'Ordered',
-    description:
-      'A UK2.5B terminal-block kit will organise power and signal connections on the DIN rail. Ordered 120 Ω / 0.5 W metal-film resistors provide termination parts for the RS485 bus. Placement depends on the final route and any termination already built into the devices.',
-  },
-  {
-    number: '06',
-    title: 'A serviceable enclosure',
-    status: 'Ordered',
-    description:
-      'A 230 × 150 × 85 mm box, two 10 cm DIN rails, 2 m of 4 × 0.5 mm² internal cable and five PG7 glands form the assembly kit. The layout will keep connections accessible; gland fit, strain relief and sealing will be checked before outdoor use.',
-  },
-]
 ---
 
 <LayoutDefault
@@ -243,12 +208,27 @@ const hardware = [
       </p>
     </header>
 
-    <ProjectOverview id="grgagrow" items={[
-      { label: 'Today', text: 'Cloud app online with a public demo, history, weather and sun/shade. Physical readings are still pending.' },
-      { label: 'My role', text: 'Shaping the garden workflow, defining how readings are presented and checking software behaviour before connecting sensors.' },
-      { label: 'Example', text: 'Missing or stale readings stay visible; unreliable data does not trigger a watering suggestion.' },
-      { label: 'Next step', text: 'Assemble and test the ESP32 and probes on the bench, then verify device-to-cloud readings.' },
-    ]} />
+    <ProjectOverview
+      id="grgagrow"
+      items={[
+        {
+          label: 'Today',
+          text: 'Cloud app online with a public demo, history, weather and sun/shade. Physical readings are still pending.',
+        },
+        {
+          label: 'My role',
+          text: 'Shaping the garden workflow, defining how readings are presented and checking software behaviour before connecting sensors.',
+        },
+        {
+          label: 'Example',
+          text: 'Missing or stale readings stay visible; unreliable data does not trigger a watering suggestion.',
+        },
+        {
+          label: 'Next step',
+          text: 'Assemble and test the ESP32 and probes on the bench, then verify device-to-cloud readings.',
+        },
+      ]}
+    />
 
     <figure class="dashboard-figure">
       <a
@@ -430,55 +410,57 @@ const hardware = [
         Reference photos below show component types and assembly accessories. Models, dimensions and pictured quantities
         may differ from the ordered parts.
       </p>
-      <div class="hardware-gallery" aria-label="Reference photos of hardware component types">
-        {
-          hardwareGallery.map((item, index) => (
-            <figure class="hardware-photo">
-              <img
-                src={`/images/projects/smart-lawn/hardware/${item.image}`}
-                width={item.width}
-                height={item.height}
-                alt={item.alt}
-                loading="lazy"
-                decoding="async"
-                data-index={index}
-                data-group="grgagrow-hardware"
-                data-title={`${item.title} — ${item.detail}. Reference image of this component type.`}
-                tabindex="0"
-                role="button"
-                aria-label={`Enlarge ${item.title}`}
-              />
-              <figcaption>
-                <h3>{item.title}</h3>
-                <p>{item.detail}</p>
-                {item.source && (
-                  <a href={item.source} target="_blank" rel="noopener noreferrer">
-                    Photo: {item.vendor} ↗
-                  </a>
-                )}
-              </figcaption>
-            </figure>
-          ))
-        }
-      </div>
-      <p class="note">
-        Click a photo to enlarge. Each image links to its source. Assembly and specification checks are still ahead.
-      </p>
-      <h3 class="hardware-build-title">What each part brings to the build</h3>
-      <div class="hardware-grid">
-        {
-          hardware.map((item) => (
-            <article class="hardware-item">
-              <div class="hardware-label">
-                <span>{item.number} / HARDWARE</span>
-                <span>{item.status}</span>
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))
-        }
-      </div>
+      {
+        [hardwareGallery.slice(0, 5), hardwareGallery.slice(5)].map((items, group) => {
+          const gallery = (
+            <div class="hardware-gallery">
+              {items.map((item, index) => (
+                <figure class="hardware-photo">
+                  <img
+                    src={`/images/projects/smart-lawn/hardware/${item.image}`}
+                    width={item.width}
+                    height={item.height}
+                    alt={item.alt}
+                    loading="lazy"
+                    decoding="async"
+                    data-index={group === 0 ? index : index + 5}
+                    data-group="grgagrow-hardware"
+                    data-title={`${item.title} — ${item.detail}. Reference image of this component type.`}
+                    tabindex="0"
+                    role="button"
+                    aria-label={`Enlarge ${item.title}`}
+                  />
+                  <figcaption>
+                    <h3>{item.title}</h3>
+                    <p>{item.detail}</p>
+                    {'description' in item && <p class="hardware-description">{item.description}</p>}
+                    <a href={item.source} target="_blank" rel="noopener noreferrer">
+                      Photo: {item.vendor} ↗
+                    </a>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          )
+          return group === 0 ? (
+            gallery
+          ) : (
+            <details class="hardware-accessories">
+              <summary>Assembly accessories and specifications</summary>
+              <p class="note">
+                The assembly kit includes UK2.5B terminals, 120 Ω / 0.5 W termination resistors, five inline 1 A fuse
+                holders and 5.5 × 2.1 mm DC adapters. Fuse selection follows measured demand; termination depends on the
+                final cable route and the devices.
+              </p>
+              <p class="note">
+                The enclosure kit includes a 230 × 150 × 85 mm box, two 10 cm DIN rails, 2 m of 4 × 0.5 mm² wire and
+                five PG7 glands. Cable fit, strain relief and sealing still need checking.
+              </p>
+              {gallery}
+            </details>
+          )
+        })
+      }
       <div class="engineering-note">
         <p class="small-label">BEFORE THE FIRST OUTDOOR READING</p>
         <h3>Build on the bench. Then move into the garden.</h3>
@@ -736,8 +718,7 @@ const hardware = [
     line-height: 1.8;
     opacity: 0.75;
   }
-  .feature-grid,
-  .hardware-grid {
+  .feature-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
@@ -747,8 +728,7 @@ const hardware = [
     border-top: 2px solid color-mix(in srgb, #39776c 50%, transparent);
     padding: 14px 0 0;
   }
-  .feature-grid p,
-  .hardware-grid p {
+  .feature-grid p {
     font-size: 14px;
     line-height: 1.8;
     margin: 10px 0 0;
@@ -814,10 +794,6 @@ const hardware = [
     text-align: center;
     margin-bottom: 0;
   }
-  .hardware-item {
-    border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-    padding-top: 14px;
-  }
   .hardware-progress {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -834,8 +810,18 @@ const hardware = [
     margin: 6px 0 0;
     font: 13px/1.6 var(--note-font);
   }
-  .hardware-build-title {
-    margin-top: 32px;
+  .hardware-accessories {
+    margin: 24px 0;
+    border-block: 1px solid var(--line);
+    padding: 18px 0;
+  }
+  .hardware-accessories summary {
+    cursor: pointer;
+    font: 14px/1.7 var(--note-font);
+  }
+  .hardware-photo .hardware-description {
+    font: 13px/1.8 var(--body-font, sans-serif);
+    margin-top: 12px;
   }
   .hardware-gallery {
     display: grid;
@@ -879,14 +865,6 @@ const hardware = [
   .hardware-photo a {
     display: inline-block;
     margin-top: 10px;
-  }
-  .hardware-label {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    flex-wrap: wrap;
-    font: 9px/1.8 var(--note-font);
-    opacity: 0.7;
   }
   .roadmap {
     list-style: decimal-leading-zero;
@@ -955,7 +933,6 @@ const hardware = [
       font-size: 20px;
     }
     .feature-grid,
-    .hardware-grid,
     .software-gallery {
       grid-template-columns: 1fr;
       gap: 20px;

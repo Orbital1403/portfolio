@@ -4,6 +4,8 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
 
 <LayoutDefault
   title="Music & my hi-fi system — Gordan Grgić"
+  image="/og/hifi.jpg"
+  imageAlt="My hi-fi system with Polk R700 speakers, amplifier and touch-screen streamer"
   description="My personal hi-fi system, with self-assembled speaker cables, a Linux Mint streamer and a love of everyday listening."
 >
   <article class="hifi-page">
@@ -24,7 +26,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       />
     </figure>
     <section>
-      <h2>Cables I made myself</h2><p>
+      <h2 id="cables">Cables I made myself</h2><p>
         I assembled the cables for my own system using Van den Hul CS – 122 HYBRID speaker cable and Van den Hul
         connectors. Choosing the lengths and fitting the connectors let me adapt the wiring to the equipment and its
         position in the room.
@@ -50,20 +52,20 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     </section>
     <section>
       <h2>The system I listen to</h2><div class="equipment-grid">
-        <article class="equipment-card">
-          <img src="/images/hobbies/hifi/speaker.jpg" alt="Polk R700" width="800" height="500" loading="lazy" /><p
-            class="equipment-role"
+        <article class="equipment-card speaker-equipment">
+          <img src="/images/hobbies/hifi/speaker.jpg" alt="Polk R700" width="800" height="500" loading="lazy" /><div
+            class="equipment-copy"
           >
-            Speakers
-          </p><h3>Polk R700</h3><p>
-            The R700 uses a ring-radiator tweeter, a 6.5-inch midrange driver and two 8-inch woofers. Separate drivers
-            cover different frequency ranges, while its Power Port 2.0 bass-reflex system extends the low-frequency
-            output. Speaker position and the room still influence the result.
-          </p><a
-            href="https://www.polkaudio.com/en-us/product/home-speakers/floor-standing/reserve-r700/300035.html"
-            target="_blank"
-            rel="noopener noreferrer">Manufacturer ↗</a
-          >
+            <p class="equipment-role">Speakers</p><h3>Polk R700</h3><p>
+              The R700 uses a ring-radiator tweeter, a 6.5-inch midrange driver and two 8-inch woofers. Separate drivers
+              cover different frequency ranges, while its Power Port 2.0 bass-reflex system extends the low-frequency
+              output. Speaker position and the room still influence the result.
+            </p><p class="equipment-note">The granite slab provides a rigid, level base beneath the speaker feet.</p><a
+              href="https://www.polkaudio.com/en-us/product/home-speakers/floor-standing/reserve-r700/300035.html"
+              target="_blank"
+              rel="noopener noreferrer">Manufacturer ↗</a
+            >
+          </div>
         </article><article class="equipment-card">
           <img
             src="/images/hobbies/hifi/amplifier.jpg"
@@ -104,19 +106,14 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
             playback software, while the 14-inch touch display provides local control. Bit-perfect playback depends on
             the software and audio configuration passing the original samples through without resampling or digital
             volume changes.
-          </p><p>14-inch touch display · Linux Mint</p><a
-            href="https://forum.mele.cn/product/Quieter4C-en.html"
-            target="_blank"
-            rel="noopener noreferrer">Manufacturer ↗</a
+          </p><p>14-inch touch display · Linux Mint</p><p>
+            I use the MeLE Quieter4C Mini PC with Linux Mint as a streamer, configured for bit-perfect playback in my
+            listening setup.
+          </p><a href="https://forum.mele.cn/product/Quieter4C-en.html" target="_blank" rel="noopener noreferrer"
+            >Manufacturer ↗</a
           >
         </article><article class="equipment-card">
-          <img
-            src="/images/hobbies/hifi/cable-detail.jpg"
-            alt="Van den Hul CS – 122 HYBRID (halogen free)"
-            width="800"
-            height="500"
-            loading="lazy"
-          /><p class="equipment-role">Speaker cable &amp; connectors</p><h3>
+          <p class="equipment-role">Speaker cable &amp; connectors</p><h3>
             Van den Hul CS – 122 HYBRID (halogen free)
           </h3><p>
             The CS – 122 HYBRID has a conductor cross-section of 2.96 mm² per lead and a halogen-free jacket. Conductor
@@ -128,26 +125,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
             rel="noopener noreferrer">Manufacturer ↗</a
           >
         </article>
-      </div><p class="equipment-credit">
-        DAC photograph © TOPPING. Other equipment details are from my own photographs.
-      </p><p>
-        I use the MeLE Quieter4C Mini PC with Linux Mint as a streamer, configured for bit-perfect playback in my
-        listening setup.
-      </p><figure>
-        <img
-          src="/images/hobbies/hifi/speaker.jpg"
-          alt="Polk R700 speaker in my listening space"
-          width="1200"
-          height="1600"
-          loading="lazy"
-          class="speaker-photo"
-          data-group="hifi"
-          data-index="3"
-        /><figcaption>
-          The granite slab provides a rigid, level base beneath the speaker feet. Its acoustic effect would need to be
-          assessed in the room.
-        </figcaption>
-      </figure>
+      </div>
     </section>
 
     <section>
@@ -213,6 +191,22 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     object-fit: contain;
     margin-bottom: 18px;
   }
+  .speaker-equipment {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+  }
+  .speaker-equipment img {
+    height: 360px;
+    object-fit: cover;
+    margin: 0;
+  }
+  .equipment-note {
+    color: var(--note-color);
+    font-size: 13px;
+  }
   .equipment-card h3 {
     font-size: 18px;
     margin-bottom: 12px;
@@ -220,12 +214,19 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
   .equipment-card p {
     margin-bottom: 12px;
   }
-  .equipment-role,
-  .equipment-credit {
+  .equipment-role {
     font: 12px/1.7 var(--note-font);
     color: var(--note-color);
   }
   @media (max-width: 540px) {
+    .speaker-equipment {
+      grid-template-columns: 1fr;
+    }
+    .speaker-equipment img {
+      height: auto;
+      max-height: 440px;
+      object-fit: contain;
+    }
     .equipment-grid {
       grid-template-columns: 1fr;
     }

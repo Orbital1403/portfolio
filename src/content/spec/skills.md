@@ -1,5 +1,5 @@
 ---
-title: Skills & Certifications
+title: Skills & experience
 description: Practical skills in quality control, hardware, Linux and testing; completed Java, web and MySQL courses; and current AI & Machine Learning studies at ITAcademy.
 ---
 
