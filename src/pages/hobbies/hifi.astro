@@ -130,18 +130,14 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     </section>
 
     <section>
-      <h2>The system in use</h2><p>A short recording of my listening setup.</p><HobbyVideo
+      <h2 id="listening-testing">Listening room — testing<span class="testing-dots" aria-hidden="true">...</span></h2>
+      <h3>The system in use</h3><p>A short recording of my listening setup.</p><HobbyVideo
         portrait={false}
         src="/videos/hifi/system-test.mp4"
         poster="/images/hobbies/hifi/video-poster.jpg"
         label="The system in use"
       />
-    </section>
-    <section>
-      <h2 id="listening-testing">Listening room — testing<span class="testing-dots" aria-hidden="true">...</span></h2><p
-      >
-        Two longer recordings from listening sessions at home.
-      </p><div class="listening-videos">
+      <p>Two longer recordings from listening sessions at home.</p><div class="listening-videos">
         <figure>
           <HobbyVideo
             src="/videos/hifi/listening-1.mp4"
