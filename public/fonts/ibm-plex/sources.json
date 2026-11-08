@@ -1,44 +1,72 @@
 [
   {
-    "file": "ibm-plex-mono-normal-400.ttf",
+    "file": "ibm-plex-mono-normal-400.woff2",
     "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n5ig.ttf",
-    "sha256": "a7fdc993f9f0387caedba4e42521136fa97e4c0837ae6239bf0413ccf8af00c2",
-    "bytes": 128812
+    "sha256": "832554f500ca9aff67a3ed84524c8461e6c9aa5689116c4bf0e9940e11b65ef4",
+    "bytes": 37264,
+    "originalFile": "ibm-plex-mono-normal-400.ttf",
+    "originalSha256": "a7fdc993f9f0387caedba4e42521136fa97e4c0837ae6239bf0413ccf8af00c2",
+    "originalBytes": 128812,
+    "conversion": "Lossless WOFF2 via fontTools 4.60.1; cmap, metrics and all glyph outlines verified"
   },
   {
-    "file": "ibm-plex-mono-normal-500.ttf",
+    "file": "ibm-plex-mono-normal-500.woff2",
     "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJ8lc.ttf",
-    "sha256": "4fc14a73ca53ba9d32fd759ae1ca1a3133326035d0dd337862b3ee1633cc156e",
-    "bytes": 129916
+    "sha256": "697c3fbd4bde60ed04eb3a8894f2d6a83c02cf7d4ba3eddb0d718371d10a1b1b",
+    "bytes": 38120,
+    "originalFile": "ibm-plex-mono-normal-500.ttf",
+    "originalSha256": "4fc14a73ca53ba9d32fd759ae1ca1a3133326035d0dd337862b3ee1633cc156e",
+    "originalBytes": 129916,
+    "conversion": "Lossless WOFF2 via fontTools 4.60.1; cmap, metrics and all glyph outlines verified"
   },
   {
-    "file": "ibm-plex-mono-normal-600.ttf",
+    "file": "ibm-plex-mono-normal-600.woff2",
     "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAO8lc.ttf",
-    "sha256": "754dfc9d50cf7aabfb6b108d2c2f7d20a3f1f2cc6f6c01640c6728091272cec0",
-    "bytes": 133444
+    "sha256": "4287eb9c660f9383aea2acd7c284bc2eb32708c35aa2749af9187787aaefa39f",
+    "bytes": 39120,
+    "originalFile": "ibm-plex-mono-normal-600.ttf",
+    "originalSha256": "754dfc9d50cf7aabfb6b108d2c2f7d20a3f1f2cc6f6c01640c6728091272cec0",
+    "originalBytes": 133444,
+    "conversion": "Lossless WOFF2 via fontTools 4.60.1; cmap, metrics and all glyph outlines verified"
   },
   {
-    "file": "ibm-plex-mono-normal-700.ttf",
+    "file": "ibm-plex-mono-normal-700.woff2",
     "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3pQP8lc.ttf",
-    "sha256": "5b2232ff598dd39860f606526399f64be06f0c286a638bad8a83e98c44c41ff6",
-    "bytes": 131040
+    "sha256": "3b61f79aa96fe4949420aaa3bd0f01d69452194279bfba58adce96b4418e04cb",
+    "bytes": 38452,
+    "originalFile": "ibm-plex-mono-normal-700.ttf",
+    "originalSha256": "5b2232ff598dd39860f606526399f64be06f0c286a638bad8a83e98c44c41ff6",
+    "originalBytes": 131040,
+    "conversion": "Lossless WOFF2 via fontTools 4.60.1; cmap, metrics and all glyph outlines verified"
   },
   {
-    "file": "ibm-plex-sans-italic-400.ttf",
+    "file": "ibm-plex-sans-italic-400.woff2",
     "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXEKVElMYYaJe8bpLHnCwDKhdTEG46kmUZQCX598fQbM4jw8V78x9OWIhqbQ6g9.ttf",
-    "sha256": "20cce584e83aebf7f7188abf9e3b47c20d84d7cfdd3450b2f97063c187a85aae",
-    "bytes": 220108
+    "sha256": "c17e832b65296d7f8886b9fe385099b4c883253a5a14b1556ecb03a1b98aecc0",
+    "bytes": 76332,
+    "originalFile": "ibm-plex-sans-italic-400.ttf",
+    "originalSha256": "20cce584e83aebf7f7188abf9e3b47c20d84d7cfdd3450b2f97063c187a85aae",
+    "originalBytes": 220108,
+    "conversion": "Lossless WOFF2 via fontTools 4.60.1; cmap, metrics and all glyph outlines verified"
   },
   {
-    "file": "ibm-plex-sans-normal-400.ttf",
+    "file": "ibm-plex-sans-normal-400.woff2",
     "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSD6llzAA.ttf",
-    "sha256": "6dbe082463cf749cfa057d45c3048c90f4df031496498e5b5bdfd0b6babb9d16",
-    "bytes": 205252
+    "sha256": "84dd35ccb72c2c8aef46fa545a1cd1097185c8a16790249fca9f3dc24406a444",
+    "bytes": 70068,
+    "originalFile": "ibm-plex-sans-normal-400.ttf",
+    "originalSha256": "6dbe082463cf749cfa057d45c3048c90f4df031496498e5b5bdfd0b6babb9d16",
+    "originalBytes": 205252,
+    "conversion": "Lossless WOFF2 via fontTools 4.60.1; cmap, metrics and all glyph outlines verified"
   },
   {
-    "file": "ibm-plex-sans-normal-700.ttf",
+    "file": "ibm-plex-sans-normal-700.woff2",
     "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSDDV5zAA.ttf",
-    "sha256": "e129a20e8ff7c907ffd07124b573e88c323b7b18afc934d4aa539a3e0f2fe100",
-    "bytes": 205220
+    "sha256": "142eb56185608994582d4c06ce17fa18a79a9b198230ea0b4af1e67fddfea533",
+    "bytes": 69240,
+    "originalFile": "ibm-plex-sans-normal-700.ttf",
+    "originalSha256": "e129a20e8ff7c907ffd07124b573e88c323b7b18afc934d4aa539a3e0f2fe100",
+    "originalBytes": 205220,
+    "conversion": "Lossless WOFF2 via fontTools 4.60.1; cmap, metrics and all glyph outlines verified"
   }
 ]

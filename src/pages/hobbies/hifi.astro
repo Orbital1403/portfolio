@@ -1,4 +1,5 @@
 ---
+import HobbyVideo from '~/components/HobbyVideo.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 ---
 
@@ -129,26 +130,29 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     </section>
 
     <section>
-      <h2>The system in use</h2><p>A short recording of my listening setup.</p><video
-        controls
-        playsinline
-        preload="metadata"
+      <h2>The system in use</h2><p>A short recording of my listening setup.</p><HobbyVideo
+        portrait={false}
+        src="/videos/hifi/system-test.mp4"
         poster="/images/hobbies/hifi/video-poster.jpg"
-        ><source src="/videos/hifi/system-test.mp4" type="video/mp4" /></video
-      >
+        label="The system in use"
+      />
     </section>
     <section>
       <h2>Listening room — testing</h2><p>Two longer recordings from listening sessions at home.</p><div
         class="listening-videos"
       >
         <figure>
-          <video controls playsinline preload="none" poster="/images/hobbies/hifi/listening-1-poster.jpg"
-            ><source src="/videos/hifi/listening-1.mp4" type="video/mp4" /></video
-          ><figcaption>Listening session 1</figcaption>
+          <HobbyVideo
+            src="/videos/hifi/listening-1.mp4"
+            poster="/images/hobbies/hifi/listening-1-poster.jpg"
+            label="Listening session 1"
+          /><figcaption>Listening session 1</figcaption>
         </figure><figure>
-          <video controls playsinline preload="none" poster="/images/hobbies/hifi/listening-2-poster.jpg"
-            ><source src="/videos/hifi/listening-2.mp4" type="video/mp4" /></video
-          ><figcaption>Listening session 2</figcaption>
+          <HobbyVideo
+            src="/videos/hifi/listening-2.mp4"
+            poster="/images/hobbies/hifi/listening-2-poster.jpg"
+            label="Listening session 2"
+          /><figcaption>Listening session 2</figcaption>
         </figure>
       </div>
     </section>

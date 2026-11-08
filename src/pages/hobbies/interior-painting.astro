@@ -1,4 +1,5 @@
 ---
+import HobbyVideo from '~/components/HobbyVideo.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 ---
 
@@ -86,43 +87,28 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     <section id="video" class="section media">
       <div class="section-heading"><h2>The work on film</h2></div><div class="grid three">
         <figure class="clip">
-          <video
-            controls
-            playsinline
-            preload="none"
+          <HobbyVideo
+            src="/videos/interior-painting/zastita.mp4"
             poster="/images/hobbies/interior-painting/poster-zastita.jpg"
-            aria-label="Preparing to paint"
-            ><source src="/videos/interior-painting/zastita.mp4" type="video/mp4" /><a
-              href="/videos/interior-painting/zastita.mp4">Preparing to paint</a
-            ></video
-          ><figcaption>
+            label="Preparing to paint"
+          /><figcaption>
             <strong>Preparing to paint</strong>Furniture, kitchen units and windows under protective sheeting.
           </figcaption>
         </figure><figure class="clip featured-clip">
-          <video
-            controls
-            playsinline
-            preload="none"
+          <HobbyVideo
+            src="/videos/interior-painting/bojanje.mp4"
             poster="/images/hobbies/interior-painting/poster-bojanje.jpg"
-            aria-label="Spray painting"
-            ><source src="/videos/interior-painting/bojanje.mp4" type="video/mp4" /><a
-              href="/videos/interior-painting/bojanje.mp4">Spray painting</a
-            ></video
-          ><figcaption>
+            label="Spray painting"
+          /><figcaption>
             <strong>Spray painting</strong>Painting in a 120 m² apartment. Watch the rhythm of the passes and the change
             of direction at the edge of the wall.
           </figcaption>
         </figure><figure class="clip">
-          <video
-            controls
-            playsinline
-            preload="none"
+          <HobbyVideo
+            src="/videos/interior-painting/obilazak.mp4"
             poster="/images/hobbies/interior-painting/poster-obilazak.jpg"
-            aria-label="Walking through the space"
-            ><source src="/videos/interior-painting/obilazak.mp4" type="video/mp4" /><a
-              href="/videos/interior-painting/obilazak.mp4">Walking through the space</a
-            ></video
-          ><figcaption>
+            label="Walking through the space"
+          /><figcaption>
             <strong>Walking through the space</strong>Walls and ceiling in natural light. This clip is silent.
           </figcaption>
         </figure>

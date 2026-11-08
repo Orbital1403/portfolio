@@ -1,3 +1,11 @@
+/** Keep a single active player so audio and floating return controls never overlap. */
+export function pauseOtherVideos(current: { pause: () => void }, videos: Iterable<{ pause: () => void }>) {
+  for (const video of videos) {
+    if (video !== current)
+      video.pause()
+  }
+}
+
 export function shouldShowVideoReturn(state: {
   paused: boolean
   ended: boolean
@@ -82,6 +90,7 @@ export function initMilaVideo() {
     const playIcon = toggle?.querySelector<HTMLElement>('.mila-control-play')
     const pauseIcon = toggle?.querySelector<HTMLElement>('.mila-control-pause')
     const speed = stage.querySelector<HTMLSelectElement>('.mila-video-speed')
+    const mute = stage.querySelector<HTMLButtonElement>('.mila-video-mute')
     const formatTime = (time: number) => Number.isFinite(time) ? `${Math.floor(time / 60)}:${String(Math.floor(time % 60)).padStart(2, '0')}` : '--:--'
     const sync = () => {
       const ready = getVideoSeekTarget(video.currentTime, video.duration, 0) !== null
@@ -97,6 +106,15 @@ export function initMilaVideo() {
         timeLabel.textContent = formatTime(video.currentTime)
       if (remainingLabel)
         remainingLabel.textContent = `−${formatTime(Math.max(0, video.duration - video.currentTime))}`
+      if (mute) {
+        mute.setAttribute('aria-label', mute.querySelector(video.muted ? '.mila-label-unmute' : '.mila-label-mute')?.textContent || '')
+        const soundOn = mute.querySelector<HTMLElement>('.mila-sound-on')
+        const soundOff = mute.querySelector<HTMLElement>('.mila-sound-off')
+        if (soundOn)
+          soundOn.hidden = video.muted
+        if (soundOff)
+          soundOff.hidden = !video.muted
+      }
       stage.dataset.paused = String(video.paused)
       if (toggle)
         toggle.setAttribute('aria-label', toggle.querySelector(video.paused ? '.mila-label-play' : '.mila-label-pause')?.textContent || '')
@@ -141,6 +159,11 @@ export function initMilaVideo() {
         start()
       else
         video.pause()
+      revealControls()
+      sync()
+    })
+    mute?.addEventListener('click', () => {
+      video.muted = !video.muted
       revealControls()
       sync()
     })
@@ -283,6 +306,7 @@ export function initMilaVideo() {
       }
     }, { capture: true })
     video.addEventListener('play', () => {
+      pauseOtherVideos(video, Array.from(document.querySelectorAll<HTMLVideoElement>('.mila-video-stage video')))
       play.hidden = true
       stage.dataset.started = 'true'
       revealControls()
@@ -292,7 +316,7 @@ export function initMilaVideo() {
       play.hidden = false
       update()
     })
-    for (const event of ['timeupdate', 'loadedmetadata', 'durationchange', 'pause', 'ratechange'])
+    for (const event of ['timeupdate', 'loadedmetadata', 'durationchange', 'pause', 'ratechange', 'volumechange'])
       video.addEventListener(event, update)
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting

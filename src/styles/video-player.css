@@ -1,0 +1,285 @@
+.mila-video {
+  padding: 16px;
+  border: 2px solid var(--mila-accent);
+  background: color-mix(in srgb, var(--mila-accent) 7%, transparent);
+}
+.mila-video-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.mila-video-label strong {
+  font: 700 19px var(--body-font);
+}
+.mila-video-label > span {
+  font: 12px var(--note-font);
+}
+.mila-video-stage {
+  position: relative;
+  padding-bottom: 64px;
+}
+.mila-video-play:not([hidden]) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  color: white;
+  background: linear-gradient(#0003, #0008);
+  cursor: pointer;
+  border: 0;
+}
+.mila-video-play > .mila-play-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 48px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #15332de6;
+  border: 1px solid #a5cec0;
+  box-shadow: 0 4px 24px #0005;
+}
+.mila-play-wave i {
+  display: block;
+  width: 4px;
+  height: var(--bar-height);
+  background: #b5dfcf;
+  border-radius: 3px;
+  transform-origin: center;
+}
+.mila-video-play:hover .mila-play-wave i,
+.mila-video-play:focus-visible .mila-play-wave i {
+  animation: mila-wave-pulse 850ms ease-in-out infinite alternate;
+  animation-delay: var(--bar-delay);
+}
+@keyframes mila-wave-pulse {
+  from {
+    transform: scaleY(0.55);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mila-video-play .mila-play-wave i {
+    animation: none !important;
+  }
+}
+.mila-video-play > strong {
+  color: #fff;
+  font: 700 18px var(--body-font);
+  text-shadow: 0 2px 4px #000;
+}
+.mila-video-play:focus-visible {
+  outline: 3px solid var(--mila-accent);
+  outline-offset: 4px;
+}
+
+.mila-video-return:not([hidden]) {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: var(--text-color, #23333c);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
+  font: 12px/1.4 var(--note-font);
+}
+html.dark .mila-video-return {
+  background: transparent;
+  color: #e2eae5;
+}
+.mila-return-wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  width: 25px;
+  height: 28px;
+  color: var(--mila-accent);
+}
+.mila-return-wave i {
+  display: block;
+  width: 4px;
+  height: 14px;
+  background: currentColor;
+  border-radius: 2px;
+}
+.mila-video-return i {
+  animation: mila-wave-pulse 850ms ease-in-out infinite alternate;
+}
+.mila-video-return i:nth-child(2) {
+  animation-delay: 150ms;
+}
+.mila-video-return i:nth-child(3) {
+  animation-delay: 300ms;
+}
+.mila-video-return:focus-visible {
+  outline: 2px solid var(--mila-accent);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mila-video-return i {
+    animation: none !important;
+  }
+}
+@media (max-width: 540px) {
+  .mila-video-return:not([hidden]) {
+    right: 12px;
+    bottom: 16px;
+    padding: 10px 12px;
+  }
+}
+
+.mila-video-canvas {
+  position: relative;
+}
+.mila-video-canvas video {
+  touch-action: manipulation;
+}
+.mila-video-controls {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(470px, calc(100% - 24px));
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: 1px solid #a5cec033;
+  border-radius: 9px;
+  background: #1a292eb3;
+  backdrop-filter: blur(10px);
+  color: #e5efeb;
+  box-shadow: 0 5px 24px #0003;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  font: 12px var(--note-font);
+}
+.mila-video-controls[hidden] {
+  display: none;
+}
+.mila-video-toggle,
+.mila-video-speed {
+  flex-shrink: 0;
+  height: 36px;
+  border: 0;
+  padding: 0 5px;
+  background: transparent;
+  color: #c0dfd3;
+  font: inherit;
+  cursor: pointer;
+}
+.mila-video-toggle {
+  width: 32px;
+  font-size: 18px;
+}
+.mila-video-speed option {
+  background: #1a292e;
+  color: #e5efeb;
+}
+.mila-video-controls :focus-visible {
+  outline: 2px solid #a5cec0;
+  outline-offset: 2px;
+}
+.mila-video-timeline {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-width: 35px;
+  min-height: 32px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #a5cec0;
+  touch-action: none;
+}
+.mila-video-time,
+.mila-video-remaining {
+  flex-shrink: 0;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.mila-video-stage:fullscreen {
+  box-sizing: border-box;
+  padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  background: #1a242b;
+  color: #e9efec;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.mila-video-stage:fullscreen .mila-video-canvas {
+  width: 100%;
+  height: 100%;
+}
+.mila-video-stage:fullscreen video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  margin: 0;
+  max-height: none;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.mila-video-stage:fullscreen .mila-video-controls {
+  bottom: calc(8px + env(safe-area-inset-bottom));
+}
+.mila-video-stage:has(:focus-visible) .mila-video-controls,
+.mila-video-stage[data-controls-visible='true'] .mila-video-controls,
+.mila-video-stage[data-started='true'][data-paused='true'] .mila-video-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (max-width: 420px) {
+  .mila-video-controls {
+    gap: 5px;
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+}
+@media (max-width: 360px) {
+  .mila-video-controls {
+    width: calc(100% - 8px);
+    gap: 3px;
+    font-size: 10px;
+  }
+  .mila-video-toggle {
+    width: 26px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mila-video-controls {
+    transition: none;
+  }
+}
+
+.mila-video-mute {
+  flex-shrink: 0;
+  width: 28px;
+  height: 36px;
+  padding: 0 3px;
+  border: 0;
+  background: transparent;
+  color: #c0dfd3;
+  cursor: pointer;
+  font: 18px var(--note-font);
+}

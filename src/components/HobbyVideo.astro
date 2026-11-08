@@ -1,0 +1,86 @@
+---
+import '~/styles/video-player.css'
+interface Props {
+  src: string
+  poster: string
+  label: string
+  portrait?: boolean
+  preload?: 'none' | 'metadata'
+}
+const { src, poster, label, portrait = true, preload = 'none' } = Astro.props
+---
+
+<div class:list={['hobby-video', { portrait }]}>
+  <div class="mila-video-stage">
+    <div class="mila-video-canvas">
+      <button class="mila-video-play" type="button" aria-label="Play video" hidden>
+        <span class="mila-play-wave" aria-hidden="true"
+          ><i style="--bar-height:12px;--bar-delay:0ms"></i><i style="--bar-height:22px;--bar-delay:100ms"></i><i
+            style="--bar-height:28px;--bar-delay:200ms"></i><i style="--bar-height:17px;--bar-delay:300ms"></i></span
+        ><strong>Play video</strong>
+      </button>
+      <video tabindex="0" controls playsinline preload={preload} poster={poster} aria-label={label}>
+        <source src={src} type="video/mp4" />
+        <a href={src}>{label}</a>
+      </video>
+    </div>
+    <div class="mila-video-controls" role="group" aria-label="Video controls" hidden>
+      <button class="mila-video-toggle" type="button" aria-label="Play video"
+        ><span class="mila-label-play" hidden>Play video</span><span class="mila-label-pause" hidden>Pause video</span
+        ><span class="mila-control-play" aria-hidden="true">▶</span><span
+          class="mila-control-pause"
+          aria-hidden="true"
+          hidden>Ⅱ</span
+        ></button
+      >
+      <output class="mila-video-time" aria-label="Elapsed time">0:00</output>
+      <input
+        class="mila-video-timeline"
+        type="range"
+        min="0"
+        max="100"
+        step="0.1"
+        value="0"
+        aria-label="Video position"
+        disabled
+      />
+      <output class="mila-video-remaining" aria-label="Remaining time">−0:00</output>
+      <select class="mila-video-speed" aria-label="Playback speed"
+        ><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option
+        ><option value="1.5">1.5×</option><option value="2">2×</option></select
+      >
+      <button class="mila-video-mute" type="button" aria-label="Mute video"
+        ><span class="mila-label-mute" hidden>Mute video</span><span class="mila-label-unmute" hidden>Unmute video</span
+        ><span class="mila-sound-on" aria-hidden="true">♪</span><span class="mila-sound-off" aria-hidden="true" hidden
+          >×</span
+        ></button
+      >
+    </div>
+    <button class="mila-video-return" type="button" hidden aria-label="Return to the playing video"
+      ><span class="mila-return-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Back to video</span
+      ></button
+    >
+  </div>
+</div>
+<script>
+  import { initMilaVideo } from '~/lib/mila-video'
+
+  initMilaVideo()
+  document.addEventListener('astro:page-load', initMilaVideo)
+</script>
+<style>
+  .hobby-video {
+    --mila-accent: #39776c;
+    min-width: 0;
+  }
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #17201e;
+  }
+  .portrait video {
+    aspect-ratio: 9 / 16;
+    object-fit: contain;
+  }
+</style>
