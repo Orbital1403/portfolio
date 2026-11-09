@@ -2,7 +2,7 @@
 
 The lawn photograph was supplied by Gordan Grgić in the grgaGrow planning conversation. Its publication copy has been resized and stripped of camera metadata.
 
-The component photographs are reference images from the Espressif, DFRobot and Adafruit product pages, and RS Components (Mean Well RS-series housing reference supplied by the user) linked in `sources.json`. These legacy reference assets are retained from the earlier concept gallery. They illustrate proposed component types; they are not photographs of an assembled grgaGrow system or a final bill of materials.
+The component photographs are reference images from the Espressif, DFRobot and Adafruit product pages, and RS Components (Mean Well RS-series housing reference supplied by the user) linked in `sources.json`. Source links from the earlier concept gallery are retained in sources.json. They illustrate proposed component types; they are not photographs of an assembled grgaGrow system or a final bill of materials.
 
 Third-party photographs remain the property of their respective owners. The repository's MIT licence does not apply to these photographs.
 
@@ -56,7 +56,7 @@ The captures contain only the public demo view. Private owner settings, coordina
 
 Clean product photographs replace the supplied shop screenshots. The published assets contain no browser chrome, prices, shopping cart, notifications or purchase details. The original screenshots are not copied into the repository.
 
-- `hardware/crimper-ferrules-reference.jpg`: DeoDap photograph of a crimper and ferrule assortment on a workbench, without text overlays. It illustrates assembly tools; pictured quantities and model are not an order confirmation.
+- `hardware/crimper-ferrules-reference.webp`: DeoDap photograph of a crimper and ferrule assortment on a workbench, without text overlays. It illustrates assembly tools; pictured quantities and model are not an order confirmation.
 - `hardware/termination-resistor-reference.jpg`: SRK Electronics close-up of a blue axial metal-film resistor, from its 120 Ω / 0.5 W listing. This is a type reference, not verification of the delivered component's value or rating.
 - `hardware/enclosure-opaque-reference.jpg`: VXB opaque-lid enclosure photograph, replacing the clear-lid Adafruit reference. Mounting tabs and supplier can differ from the ordered enclosure.
 - `hardware/gel-joint-box-reference.jpg`: JINH CNP3106 gel-joint housing with an example lever-connector arrangement. The pictured connector layout does not establish the selected wiring topology, cable fit or underground protection.

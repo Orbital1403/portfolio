@@ -127,7 +127,7 @@
         "image": "https://www.fuse-china.com/photo/pl151138762-16awg_gauge_5x20mm_inline_glass_tube_fuse_holder_splash_proof_waterproof.jpg"
       },
       {
-        "asset": "hardware/dc-connectors-reference.jpg",
+        "asset": "hardware/dc-connectors-reference.webp",
         "provider": "Adafruit",
         "page": "https://www.adafruit.com/product/369",
         "image": "https://cdn-shop.adafruit.com/970x728/369-03.jpg"
@@ -189,7 +189,7 @@
     "note": "Clean manufacturer and merchant product photographs. Reference types and assembly tools; not delivery or field-test evidence. Existing DFRobot PG7 photograph retained for its quality.",
     "assets": [
       {
-        "asset": "hardware/crimper-ferrules-reference.jpg",
+        "asset": "hardware/crimper-ferrules-reference.webp",
         "provider": "DeoDap",
         "page": "https://deodap.in/products/approx-1200-piece-ferrule-crimping-tool-kit-set",
         "image": "https://deodap.in/cdn/shop/files/Wire-Ferrule-Crimping-Tool-Kit-01.jpg?v=1751514959&width=1946",

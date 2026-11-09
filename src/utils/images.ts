@@ -1,6 +1,6 @@
-const jpegExtension = /(\.jpe?g)$/i
+const thumbnailExtension = /(\.(?:jpe?g|webp))$/i
 
-/** The 800 px copy written next to each hobby photograph by scripts/optimize-images.mjs. */
+/** The 800 px JPEG or WebP copy stored next to each hobby photograph. */
 export function thumbnail(path: string) {
-  return path.replace(jpegExtension, '-800$1')
+  return path.replace(thumbnailExtension, '-800$1')
 }

@@ -58,7 +58,7 @@ description: "A personal audio application for Raspberry Pi, with a guide to the
 <figcaption>The setup from another angle · Click to enlarge</figcaption>
 </figure>
 <figure class="project-figure">
-<img src="/images/projects/gstreamer/mila-hardware-player-v3.jpg" width="1448" height="1086" alt="MILA player on the touch display, with analog VU meters, Topping DAC and TeraDak linear power supply" data-index="2" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the hardware detail photograph" loading="lazy" />
+<img src="/images/projects/gstreamer/mila-hardware-player-v3.webp" width="1448" height="1086" alt="MILA player on the touch display, with analog VU meters, Topping DAC and TeraDak linear power supply" data-index="2" data-group="mila-hardware" tabindex="0" role="button" aria-label="Enlarge the hardware detail photograph" loading="lazy" />
 <figcaption>MILA player on the touch display, DAC and linear power supply · Click to enlarge</figcaption>
 </figure>
 </div>

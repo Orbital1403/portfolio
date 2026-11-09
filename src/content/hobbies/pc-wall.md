@@ -2,7 +2,7 @@
 title: "PC on the Wall"
 date: 2025-09-01
 cover:
-  src: /images/hobbies/pc_on_wall/final-look/cover-page-v2.jpg
+  src: /images/hobbies/pc_on_wall/final-look/cover-page-v2.webp
   size: [1086, 1448]
 summary: "An open-frame wall-mounted PC, from the mounting board to the first power-on."
 tags: [pc, diy, wall-mount]
@@ -17,7 +17,7 @@ steps:
     caption: Preparing the MDF mounting board and choosing the anthracite finish.
     images:
       - /images/hobbies/pc_on_wall/materials-board/mdf_board-v2.jpg
-      - /images/hobbies/pc_on_wall/materials-board/antraciet_color_code-v2.jpg
+      - /images/hobbies/pc_on_wall/materials-board/antraciet_color_code-v2.webp
 
   - title: Drilling & Inserts
     caption: Drilling the mounting holes and fitting threaded T-nut inserts.
@@ -36,20 +36,20 @@ steps:
     images:
       - /images/hobbies/pc_on_wall/component-mounting/gpu_standoffs-v2.jpg
       - /images/hobbies/pc_on_wall/component-mounting/hdd_ssd_mount-v2.jpg
-      - /images/hobbies/pc_on_wall/component-mounting/motherboard_cables-v2.jpg
+      - /images/hobbies/pc_on_wall/component-mounting/motherboard_cables-v2.webp
 
   - title: Electronics & Details
     caption: Adding the temperature module and piezo buzzer.
     images:
-      - /images/hobbies/pc_on_wall/electronics-details/piezo_buzzer-v2.jpg
-      - /images/hobbies/pc_on_wall/electronics-details/temp_modul-v2.jpg
+      - /images/hobbies/pc_on_wall/electronics-details/piezo_buzzer-v2.webp
+      - /images/hobbies/pc_on_wall/electronics-details/temp_modul-v2.webp
 
   - title: First Power-On
     caption: The first start-up and a closer look at the voltage display.
     images:
-      - src: /images/hobbies/pc_on_wall/first-power-on/first_power_on-v2.jpg
+      - src: /images/hobbies/pc_on_wall/first-power-on/first_power_on-v2.webp
         size: [800, 1067]
-      - src: /images/hobbies/pc_on_wall/first-power-on/voltage_display-v2.jpg
+      - src: /images/hobbies/pc_on_wall/first-power-on/voltage_display-v2.webp
         size: [800, 1067]
 lesson: "Component layout, mounting points and cable routing need to be planned together. Keeping the parts accessible matters as much as the finished appearance."
 ---
