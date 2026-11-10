@@ -35,21 +35,56 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       <div class="cable-photos">
         <figure>
           <img
-            src="/images/hobbies/hifi/cable-detail.jpg"
+            src="/images/hobbies/hifi/speaker-cables-jumpers-v2.webp"
             alt="Close-up of the speaker cables and connectors I assembled"
-            width="1200"
-            height="1600"
+            width="1086"
+            height="1448"
             loading="lazy"
             data-group="hifi"
             data-index="2"
-          /><figcaption>
-            Made by hand, connected for everyday listening. Van den Hul cable and connectors at the speaker terminals.
-          </figcaption>
+          /><figcaption>My speaker cable and replacement jumpers at the speaker terminals.</figcaption>
         </figure>
       </div>
       <a href="https://www.vandenhul.com/product/cs-122-hybrid-halogen-free/" target="_blank" rel="noopener noreferrer"
         >Cable specifications ↗</a
       >
+      <h3>Speaker jumpers I made myself</h3>
+      <p>
+        I was not happy with the factory terminal links on my Polk R700 speakers, so I made replacement jumpers using
+        Oehlbach Silverline SP-40 cable (silver-plated copper, 2 × 4 mm²) and Viborg VB401R banana plugs.
+      </p>
+      <p>After the change, the bass sounded much more powerful to me.</p>
+      <p>
+        <a
+          href="https://oehlbach.com/en/cableconfigurator/loudspeaker/one-amplifier/single-connection-on-the-speaker/"
+          target="_blank"
+          rel="noopener noreferrer">Oehlbach cable configurator ↗</a
+        >
+        ·
+        <a
+          href="https://www.audiophonics.fr/en/banana-plugs/viborg-vb401r-p-18654.html"
+          target="_blank"
+          rel="noopener noreferrer">Banana plug details ↗</a
+        >
+      </p>
+    </section>
+    <section>
+      <h2 id="power-cable">A power cable I assembled</h2>
+      <p>
+        I also assembled the power cable for my hi-fi system. This photograph shows the mains plug and braided cable.
+      </p>
+      <figure class="power-cable-photo">
+        <img
+          src="/images/hobbies/hifi/handmade-power-cable-v2.webp"
+          width="1086"
+          height="1448"
+          loading="lazy"
+          alt="The mains plug and braided power cable I assembled for my hi-fi system"
+          data-group="hifi-power-cable"
+          data-index="0"
+        />
+        <figcaption>My assembled power cable</figcaption>
+      </figure>
     </section>
     <section>
       <h2>The system I listen to</h2><div class="equipment-grid">
@@ -97,12 +132,15 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
           >
         </article><article class="equipment-card">
           <img
-            src="/images/hobbies/hifi/streamer.jpg"
-            alt="MeLE Quieter4C Mini PC"
-            width="800"
-            height="500"
+            src="/images/hobbies/hifi/display-linux-mint-v2.webp"
+            alt="My 14-inch touch display running Linux Mint with a compact keyboard"
+            width="1448"
+            height="1086"
             loading="lazy"
-          /><p class="equipment-role">Streamer</p><h3>MeLE Quieter4C Mini PC</h3><p>
+            data-group="hifi-display"
+            data-index="0"
+          /><p class="equipment-note">My 14-inch touch display</p>
+          <p class="equipment-role">Streamer</p><h3>MeLE Quieter4C Mini PC</h3><p>
             The Quieter4C is a fanless mini PC, so cooling adds no fan noise to the listening space. Linux Mint runs the
             playback software, while the 14-inch touch display provides local control. Bit-perfect playback depends on
             the software and audio configuration passing the original samples through without resampling or digital
@@ -129,6 +167,54 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </div>
     </section>
 
+    <section>
+      <h2 id="room-measurements">Room measurements &amp; speaker placement</h2>
+      <p>I used my miniDSP UMIK-1 microphone with Room EQ Wizard (REW) to measure my listening room.</p>
+      <p>
+        The measurements showed more pronounced bass from the left speaker, which was closer to a wall. I used these
+        measurements to guide speaker placement and find the sweet spot in my room.
+      </p>
+      <div class="room-measurement-images">
+        <figure class="measurement-microphone">
+          <img
+            src="/images/hobbies/hifi/umik-1.webp"
+            width="304"
+            height="350"
+            loading="lazy"
+            alt="miniDSP UMIK-1 USB measurement microphone with its stand"
+            data-group="room-measurements"
+            data-index="0"
+          />
+          <figcaption>UMIK-1 measurement microphone · Product photograph by miniDSP</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/hobbies/hifi/rew-measurement-example.webp"
+            width="640"
+            height="416"
+            loading="lazy"
+            alt="Illustrative REW frequency-response measurement from the miniDSP guide"
+            data-group="room-measurements"
+            data-index="1"
+          />
+          <figcaption>
+            Illustrative REW measurement from the miniDSP guide.
+            <a
+              href="https://www.minidsp.com/applications/acoustic-measurements/acoustic-measurements"
+              target="_blank"
+              rel="noopener noreferrer">Example source ↗</a
+            >
+          </figcaption>
+        </figure>
+      </div>
+      <p>
+        <a href="https://www.minidsp.com/products/acoustic-measurement/umik-1" target="_blank" rel="noopener noreferrer"
+          >UMIK-1 microphone ↗</a
+        >
+        ·
+        <a href="https://www.roomeqwizard.com/" target="_blank" rel="noopener noreferrer">Room EQ Wizard (REW) ↗</a>
+      </p>
+    </section>
     <section>
       <h2 id="listening-testing">Listening room — testing<span class="testing-dots" aria-hidden="true">...</span></h2>
       <h3>The system in use</h3><p>A short recording of my listening setup.</p><HobbyVideo
@@ -163,6 +249,28 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
   </article>
 </LayoutDefault>
 <style>
+  .power-cable-photo {
+    max-width: 440px;
+    margin: 26px 0;
+  }
+
+  .room-measurement-images {
+    display: grid;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    margin: 28px 0;
+  }
+  .measurement-microphone img {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) {
+    .room-measurement-images {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
   .testing-dots {
     display: inline-block;
     animation: testing-dots 2s steps(1, end) infinite;

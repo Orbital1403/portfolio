@@ -1,0 +1,49 @@
+{
+  "note": "Third-party reference images. Copyright remains with the respective owners. These assets are excluded from the repository MIT licence.",
+  "umik-1.webp": {
+    "provider": "miniDSP",
+    "page": "https://www.minidsp.com/products/acoustic-measurement/umik-1",
+    "image": "https://www.minidsp.com/images/stories/virtuemart/product/282A1844.jpg",
+    "role": "Manufacturer product photograph",
+    "sha256": "a6e38024023a6a1f61fadd3272f06f1ecc13a82085295edf960cc453cb594d1a"
+  },
+  "rew-measurement-example.webp": {
+    "provider": "miniDSP / Room EQ Wizard",
+    "page": "https://www.minidsp.com/applications/acoustic-measurements/acoustic-measurements",
+    "image": "https://www.minidsp.com/images/appnotes/umik-1-acoustic/umik-1-acoustic-after.png",
+    "role": "Illustrative measurement screenshot from the miniDSP guide",
+    "sha256": "7d94663e23184295e023454317a02d0aae453fdebabff82bfd85c3360dde2273"
+  },
+  "userPhotographs": {
+    "credit": "Photographs supplied by Gordan Grgić. Backgrounds and exposure retouched with ImageGen for presentation.",
+    "images": [
+      {
+        "name": "display-linux-mint-v2.webp",
+        "original": "20261110_100350.jpg",
+        "focus": "14-inch display and keyboard",
+        "width": 1448,
+        "height": 1086,
+        "bytes": 144162,
+        "sha256": "29bf213d9f9af261ee7212373921e13a65de67787a63979689433367a4bcb52c"
+      },
+      {
+        "name": "speaker-cables-jumpers-v2.webp",
+        "original": "20261110_100131.jpg",
+        "focus": "Speaker terminals, speaker cable and jumper loops",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 53776,
+        "sha256": "59b90d35844c8eb2a159918223b591bc48272cb05e9e7fc54771dfd7441992c6"
+      },
+      {
+        "name": "handmade-power-cable-v2.webp",
+        "original": "20261110_100248.jpg",
+        "focus": "Power cable and mains plug",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 30834,
+        "sha256": "3df6e4587d16ab11ed80059a074435ac0354f4f597b8db9ef5d0801805c2e7aa"
+      }
+    ]
+  }
+}
