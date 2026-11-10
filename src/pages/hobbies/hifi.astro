@@ -249,6 +249,16 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
   </article>
 </LayoutDefault>
 <style>
+  .system-photo {
+    aspect-ratio: 1236 / 1086;
+    overflow: hidden;
+  }
+  .system-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+  }
   .power-cable-photo {
     max-width: 440px;
     margin: 26px 0;
