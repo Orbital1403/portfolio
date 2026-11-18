@@ -57,7 +57,7 @@ I define requirements and expected behaviour, investigate problems, check instal
 
 ### <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261108#leaf"/></svg> grgaGrow — garden application
 
-I shape how readings, history and alerts are presented. I pay particular attention to missing or stale readings and whether the available data supports a reliable recommendation. Connecting the physical sensors is the next stage of the project.
+I shape how readings, history and alerts are presented, and check missing or stale data. Bench checks with one ESP32 controller and one probe showed a response to wetting the soil. Calibration, continuous monitoring and delivery of physical readings to the cloud remain unverified.
 
 [Explore grgaGrow →](/projects/grgagrow/)
 

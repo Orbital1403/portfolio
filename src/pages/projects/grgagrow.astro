@@ -9,7 +9,7 @@ const hardwareGallery = [
     height: 800,
     title: 'ESP32-S3 controller',
     description:
-      'The controller will bridge RS485 probes and Wi-Fi. Its board variant, pin mapping and power requirements still need bench verification.',
+      'A Waveshare ESP32-S3-RS485-CAN Rev 2.2 has run the standalone TH diagnostic on the bench. Wi-Fi delivery of probe readings to the cloud remains unverified.',
     detail: 'RS485 / CAN · Wi-Fi · DIN housing',
     alt: 'Waveshare reference photograph of the ESP32-S3-RS485-CAN controller in its DIN-rail housing',
     source: 'https://www.waveshare.com/product/esp32-s3-rs485-can.htm',
@@ -21,7 +21,7 @@ const hardwareGallery = [
     height: 400,
     title: 'Moisture + temperature',
     description:
-      'The first probe will measure soil moisture and temperature over RS485 / Modbus RTU. Its register map, address and calibration will be checked before use.',
+      'One TH probe returned valid RS485 / Modbus RTU responses in water, dry soil and the same soil after wetting. Its readings are not calibrated.',
     detail: 'RS485 soil probe',
     alt: 'Renke reference image of a soil temperature and moisture probe',
     source: 'https://www.renkeer.com/product/soil-moisture-sensor/',
@@ -33,7 +33,7 @@ const hardwareGallery = [
     height: 500,
     title: 'Moisture + temperature + pH',
     description:
-      'The second probe adds experimental pH measurement. Both probes need distinct Modbus addresses and individual calibration checks.',
+      'The planned second probe adds experimental pH measurement. It has not been tested with the controller; separate addressing and calibration remain future checks.',
     detail: 'Combined probe · Experimental pH',
     alt: 'Renke reference image of a multi-parameter soil probe with metal sensing pins',
     source: 'https://www.renkeer.com/product/soil-nutrient-sensor/',
@@ -57,7 +57,7 @@ const hardwareGallery = [
     height: 608,
     title: 'Outdoor DC power supply',
     description:
-      'The build is planned around 12 V DC. The delivered supply model, output rating and compatibility must be verified before connecting the probes.',
+      'The first TH bench checks used a separate nominal 12 V supply. The outdoor power arrangement, protection and enclosure still need installation checks.',
     detail: 'MEAN WELL OWA-60E · Reference model',
     alt: 'MEAN WELL OWA-60E reference photograph showing a sealed power adapter with fixed cables and a European mains plug',
     source: 'https://www.meanwellaustralia.com.au/products/owa-60e',
@@ -173,7 +173,7 @@ const hardwareGallery = [
   imageWidth={1265}
   imageHeight={712}
   title="grgaGrow — Smart garden technology — Gordan Grgić"
-  description="grgaGrow connects soil history, seven-day reports, weather and sun/shade with a private garden journal. Explore the cloud app and the ordered ESP32 / RS485 hardware."
+  description="Explore the grgaGrow cloud app and the first ESP32 / RS485 probe bench tests. Soil history, weather and sun/shade are available; physical readings are not yet connected to Live."
 >
   <div class="lawn-notes">
     <header class="lawn-heading">
@@ -181,13 +181,14 @@ const hardwareGallery = [
       <p class="folio-label">HARDWARE + SOFTWARE + GARDEN / FIELD NOTES 02</p>
       <h1>grgaGrow</h1>
       <p class="project-state">
-        Cloud app online <span>Sensor integration next</span>
+        Cloud app online <span>First probe bench-tested</span>
       </p>
       <p class="lead">A small lawn. A closer look beneath the surface.</p>
       <p>
         What started as an idea for watering my 49 m² lawn is becoming <strong>grgaGrow</strong> — a garden app that brings
         soil history, weather, light and everyday care into one place. The cloud app is online, with public views and a private
-        owner workspace. Two wired probes and an ESP32 controller will connect it to the soil.
+        owner workspace. An ESP32 controller and one wired probe have passed initial bench checks. Their readings are not
+        yet connected to the cloud app.
       </p>
       <div class="project-actions">
         <a class="demo-link" href="/demos/my-garden/?mode=demo" target="_blank" rel="noopener noreferrer"
@@ -203,8 +204,8 @@ const hardwareGallery = [
         <a href="#lawn-hardware">Explore the hardware ↓</a>
       </div>
       <p class="note">
-        Live: public readings, regional weather and sun/shade · Demo: simulated readings. Live and Demo need no account.
-        Owner sign-in opens your private workspace.
+        Public Live: shared garden context, weather and sun/shade; physical probe readings are not yet connected. Demo:
+        simulated readings. Both need no account. Owner sign-in opens your private workspace.
       </p>
     </header>
 
@@ -213,19 +214,19 @@ const hardwareGallery = [
       items={[
         {
           label: 'Today',
-          text: 'Cloud app online with a public demo, history, weather and sun/shade. Physical readings are still pending.',
+          text: 'Cloud app online; one TH probe bench-tested. Calibration, continuous operation and delivery of physical readings to Live remain unverified.',
         },
         {
           label: 'My role',
-          text: 'Shaping the garden workflow, defining how readings are presented and checking software behaviour before connecting sensors.',
+          text: 'Defining the garden workflow and expected behaviour, carrying out bench checks and interpreting the results.',
         },
         {
           label: 'Example',
-          text: 'Missing or stale readings stay visible; unreliable data does not trigger a watering suggestion.',
+          text: 'A probe response changed after wetting the same soil. That shows a response to wetting, not calibrated moisture accuracy.',
         },
         {
           label: 'Next step',
-          text: 'Assemble and test the ESP32 and probes on the bench, then verify device-to-cloud readings.',
+          text: 'Verify periodic readings from one physical probe, then progress toward local setup and device-to-cloud delivery.',
         },
       ]}
     />
@@ -303,9 +304,9 @@ const hardwareGallery = [
           <span class="small-label">PRIVATE / ALERTS & HISTORY</span>
           <h3>From an alert to the evidence.</h3>
           <p>
-            An alert explains what happened, which probe was involved and when it was detected. Open sensor history
-            takes the owner to the matching chart and highlights that time. The cloud alert log is available; phone push
-            delivery still needs physical confirmation.
+            An alert links to the matching sensor history. Generic test push delivery to a locked Samsung S25 Ultra and
+            opening Alerts were confirmed in Chrome and Samsung Internet. A push triggered by actual dry soil remains
+            unverified.
           </p>
         </article>
         <article>
@@ -376,7 +377,8 @@ const hardwareGallery = [
           remove only the readings that have been acknowledged.
         </p>
         <p class="note">
-          This verifies the software model locally. ESP32 firmware and real flash power-loss testing still come next.
+          The production ESP32 firmware foundation has native tests, simulated-probe checks and an ESP32 build verified
+          in CI. Real flash power-loss recovery and the complete physical delivery path remain unverified.
         </p>
       </div>
       <p>
@@ -385,25 +387,29 @@ const hardwareGallery = [
         stay outside it. The owner can disable publication. Demo values never become real sensor records, and Live shows
         waiting for data until physical readings arrive.
       </p>
+      <p>
+        I define the requirements and expected behaviour, carry out bench checks and decide which results are supported
+        by the evidence. AI coding assistants write substantial parts of the implementation under my direction.
+      </p>
       <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
       <p class="note">
-        The app and cloud services are online. Physical ingestion, soil calibration, ESP32 firmware and real flash
-        power-loss recovery still require hardware validation. Watering thresholds remain preliminary; automatic
-        irrigation is not active.
+        The app and cloud services are online. The installed bench diagnostic is separate from the production firmware.
+        Calibration, continuous physical monitoring, device-to-cloud delivery and power-loss recovery remain unverified.
+        Watering thresholds remain preliminary; automatic irrigation is not active.
       </p>
     </section>
 
     <section aria-labelledby="lawn-hardware">
-      <p class="folio-label">03 / HARDWARE — THE ORDERED BUILD</p>
-      <h2 id="lawn-hardware">Two probes. One path to the dashboard.</h2>
+      <p class="folio-label">03 / HARDWARE — FIRST BENCH RESULTS</p>
+      <h2 id="lawn-hardware">One probe. The first physical responses.</h2>
       <p>
-        The first build now includes the two soil probes, ESP32 controller, garden cable, power supply and cabinet
-        components. The aim is a wired installation that can be inspected and serviced, with readings sent over Wi-Fi to
-        grgaGrow. The parts are ordered; assembly, calibration and testing in the lawn are still ahead.
+        A standalone diagnostic is installed on the Waveshare ESP32-S3-RS485-CAN Rev 2.2. One temperature-and-moisture
+        probe returned valid Modbus responses on the bench. The intended garden installation uses two wired probes, but
+        the second probe and the full Wi-Fi-to-cloud path have not been verified.
       </p>
-      <dl class="hardware-progress" aria-label="Hardware progress as of 30 October 2026">
-        <div><dt>Procurement</dt><dd>Main components ordered</dd></div>
-        <div><dt>Next milestone</dt><dd>First bench assembly</dd></div>
+      <dl class="hardware-progress" aria-label="Hardware progress as of 18 November 2026">
+        <div><dt>Bench result</dt><dd>One TH probe responding</dd></div>
+        <div><dt>Next milestone</dt><dd>Periodic physical readings</dd></div>
         <div><dt>Field status</dt><dd>Not yet installed</dd></div>
       </dl>
       <p class="note">
@@ -463,15 +469,16 @@ const hardwareGallery = [
       }
       <div class="engineering-note">
         <p class="small-label">BEFORE THE FIRST OUTDOOR READING</p>
-        <h3>Build on the bench. Then move into the garden.</h3>
+        <h3>A response is evidence. Accuracy needs more.</h3>
         <p>
-          Start with one probe, confirm its power and protocol, then give the second probe its own Modbus address before
-          testing them together. The final cable route, termination and sealed joints will be checked as one assembly.
+          On 17 November, separate single-query tests returned valid responses with one probe in water, dry soil and the
+          same soil after wetting. The moisture register changed after wetting. Temperature and moisture units follow
+          the seller manual; these checks do not establish calibration, accuracy or reliable long-term operation.
         </p>
         <p>
-          Connection preparation includes gel-filled cable-joint boxes, crimped wire-end ferrules and wire labels. The
-          PG7 glands must fit the 6.5 mm garden cable, and the delivered probes must explicitly support the intended
-          buried installation. Automatic watering comes after reliable monitoring.
+          A local candidate for periodic readings has passed synthetic checks and an ESP32 build. The Mac display path
+          has also been tested with simulated hardware. Neither proves six actual periodic readings. Cable routing,
+          protection, sealed joints and suitability for burial remain installation checks.
         </p>
       </div>
       <div
@@ -489,9 +496,13 @@ const hardwareGallery = [
         <div class="architecture-node">Ingestion → PostgreSQL</div>
         <p class="flow-label">↓ Authenticated access</p>
         <div class="architecture-node app-node">grgaGrow / My Garden</div>
-        <p class="note architecture-note">Planned hardware connection · Real readings pending · *pH is experimental</p>
+        <p class="note architecture-note">
+          Planned full data path · One TH probe bench-tested · Cloud delivery pending · *pH is experimental
+        </p>
       </div>
-      <p class="note">Hardware snapshot: 30 October 2026 · Ordered components, with delivery and bench checks ahead.</p>
+      <p class="note">
+        Hardware snapshot: 18 November 2026 · First single-probe bench responses confirmed · Field installation pending.
+      </p>
     </section>
 
     <section aria-labelledby="lawn-site">
@@ -544,15 +555,17 @@ const hardwareGallery = [
           </p>
         </li>
         <li>
-          <strong>Hardware integration next</strong><p>
-            Verify the delivered board and probe documentation, implement the firmware, then test communication,
-            calibration and recovery on the bench.
+          <strong>Periodic readings next</strong><p>
+            The first single-probe responses are confirmed. Next, verify periodic physical readings and the Mac display.
+            Local software and ESP32 build checks are complete for a candidate; the new periodic version has not been
+            physically accepted.
           </p>
         </li>
         <li>
           <strong>Connect and observe</strong><p>
-            Verify device-to-cloud ingestion, collect real readings and compare both locations through ordinary watering
-            and weather changes. Use those observations to review soil references and thresholds.
+            Local module monitoring and phone-based Wi-Fi setup are being planned; they are not available features.
+            Later, verify device-to-cloud delivery, calibration and field operation before comparing both garden
+            locations and reviewing watering thresholds.
           </p>
         </li>
         <li>
@@ -576,7 +589,8 @@ const hardwareGallery = [
         </div>
       </div>
       <p class="note">
-        Project snapshot: 30 October 2026 · Live measurements pending hardware connection · Demo uses simulated data
+        Project snapshot: 18 November 2026 · Initial TH bench responses confirmed · Physical readings not yet connected
+        to Live · Demo uses simulated data
       </p>
     </section>
   </div>
