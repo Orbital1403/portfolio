@@ -2,6 +2,9 @@
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import ProjectOverview from '~/components/ProjectOverview.astro'
 
+const firmwareExample =
+  'Response readRegisters(const Request& request, Exchange& exchange, uint32_t budget_ms) {\n  Frame outgoing, incoming;\n  if (!encodeRequest(request, outgoing) || budget_ms == 0) return error(Status::InvalidRequest);\n  switch (exchange.transact(outgoing, budget_ms, incoming)) {\n    case Io::Complete:\n      return decodeResponse(request, incoming);\n    case Io::Timeout:\n      return error(Status::Timeout);\n    case Io::Fault:\n      return error(Status::TransportFault);\n  }\n  return error(Status::TransportFault);\n}'
+
 const hardwareGallery = [
   {
     image: 'esp32-s3-rs485-can.jpg',
@@ -381,6 +384,20 @@ const hardwareGallery = [
           in CI. Real flash power-loss recovery and the complete physical delivery path remain unverified.
         </p>
       </div>
+      <div class="engineering-note firmware-example" aria-labelledby="firmware-example-title">
+        <p class="small-label">FIRMWARE / C++17</p>
+        <h3 id="firmware-example-title">A timeout stays a timeout.</h3>
+        <p>
+          This is an actual excerpt from the shared firmware module used by the bench diagnostic. A complete response
+          goes to validation; a timeout or transport fault returns an explicit error.
+        </p>
+        <p class="note">modbus_rtu.cpp · readRegisters</p>
+        <pre tabindex="0" aria-label="C++ firmware source excerpt"><code>{firmwareExample}</code></pre>
+        <p class="note">
+          The separate decoder checks CRC, address, function and frame length before exposing registers. These checks do
+          not establish calibration or continuous operation.
+        </p>
+      </div>
       <p>
         The cloud workspace uses Supabase authentication and owner-scoped database access. A separate public projection
         exposes only the selected garden data; exact coordinates, private diary entries, alerts and calibration notes
@@ -389,7 +406,7 @@ const hardwareGallery = [
       </p>
       <p>
         I define the requirements and expected behaviour, carry out bench checks and decide which results are supported
-        by the evidence. AI coding assistants write substantial parts of the implementation under my direction.
+        by the evidence.
       </p>
       <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
       <p class="note">
@@ -821,6 +838,17 @@ const hardwareGallery = [
   }
   .engineering-note > p:not(.note):not(.small-label) {
     font-size: 14px;
+  }
+  .firmware-example pre {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 16px;
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    font: 12px/1.7 var(--note-font);
+    white-space: pre;
+  }
+  .firmware-example pre:focus-visible {
+    outline: 2px solid #39776c;
   }
   .engineering-note > p:first-child {
     margin-top: 0;
