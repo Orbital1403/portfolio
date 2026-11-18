@@ -1431,7 +1431,6 @@
   "Controller LED — original focus from the first bench session.": "LED-ica kontrolera — izvorni fokus s prvog stolnog rada.",
   "Enlarge the controller LED photograph": "Povećaj fotografiju LED-ice kontrolera",
   "CONTROLLER DETAIL / The original focus of the bench photograph is preserved.": "DETALJ KONTROLERA / Sačuvan je izvorni fokus stolne fotografije.",
-  "The first two photographs use AI-assisted editing for presentation. The current reading follows the original photograph; test results and calibration limits are described separately.": "Prve dvije fotografije obrađene su uz pomoć AI-ja za prikaz. Očitanje struje preuzeto je s izvorne fotografije; rezultati pokusa i granice kalibracije opisani su zasebno.",
   "FIRMWARE / C++17": "FIRMWARE / C++17",
   "A timeout stays a timeout.": "Istek vremena ostaje pogreška.",
   "This is an actual excerpt from the shared firmware module used by the bench diagnostic. A complete response goes to validation; a timeout or transport fault returns an explicit error.": "Ovo je stvarni isječak zajedničkog modula firmwarea koji koristi stolna dijagnostika. Cijeli odgovor ide na provjeru; istek vremena ili kvar komunikacije vraća izričitu pogrešku.",
