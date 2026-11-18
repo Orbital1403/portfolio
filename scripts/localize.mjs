@@ -14,7 +14,8 @@ const decode = value => value.replace(/&(#x[\da-f]+|#\d+|amp|quot|apos|lt|gt|nbs
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 const translatableAttributes = new Set(['alt', 'title', 'aria-label', 'placeholder', 'data-title', 'data-caption'])
 const metaNames = new Set(['description', 'og:title', 'og:description', 'og:image:alt', 'twitter:title', 'twitter:description', 'twitter:image:alt'])
-const tokenPattern = /<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->|<(?:[^"'<>]|"[^"]*"|'[^']*')*>|[^<]+/gi
+const firmwareBlockPattern = /^<pre\b/i
+const tokenPattern = /<pre\s[^>]*data-firmware-code="true"[^>]*>[\s\S]*?<\/pre\s*>|<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->|<(?:[^"'<>]|"[^"]*"|'[^']*')*>|[^<]+/gi
 const sourceTagPattern = /^<source\b/i
 const localizedMediaPattern = /\bdata-hr-src=["']([^"']+)/
 const attributePattern = /([\w:-]+)(\s*=\s*)("[^"]*"|'[^']*')/g
@@ -95,6 +96,9 @@ export async function localizeBuild(directory) {
     const path = '/' + relative(root, file).replace(/index\.html$/, '')
     const english = await readFile(file, 'utf8')
     let croatian = english.replace(tokenPattern, token => {
+      // Preserve highlighted firmware as one block; code is identical in both languages.
+      if (firmwareBlockPattern.test(token))
+        return token
       if (/^<style\b|^<!--/i.test(token)) return token
       if (/^<script\b/i.test(token)) {
         if (token.includes('application/ld+json')) {
