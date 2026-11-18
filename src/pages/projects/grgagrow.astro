@@ -804,7 +804,7 @@ const hardwareGallery = [
     outline-offset: 3px;
   }
   figcaption {
-    font: 10px/1.8 var(--note-font);
+    font: 12px/1.8 var(--note-font);
     margin-top: 12px;
     opacity: 0.75;
   }
@@ -852,7 +852,7 @@ const hardwareGallery = [
     overflow-x: auto;
     padding: 16px;
     border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-    font: 12px/1.7 var(--note-font);
+    font: 14px/1.7 var(--note-font);
     white-space: pre;
   }
   .firmware-example :global(pre:focus-visible) {
@@ -977,7 +977,7 @@ const hardwareGallery = [
   }
   .hardware-photo p,
   .hardware-photo a {
-    font: 10px/1.7 var(--note-font);
+    font: 12px/1.7 var(--note-font);
     margin: 0;
   }
   .hardware-photo a {
@@ -1026,6 +1026,10 @@ const hardwareGallery = [
     color: #aed1c2;
   }
   @media (max-width: 600px) {
+    .firmware-example :global(pre) {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
     .hardware-progress {
       grid-template-columns: 1fr;
       gap: 14px;
