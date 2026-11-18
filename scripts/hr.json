@@ -1417,5 +1417,20 @@
   "My 14-inch touch display running Linux Mint with a compact keyboard": "Moj 14-inčni dodirni zaslon s Linux Mintom i kompaktnom tipkovnicom",
   "My 14-inch touch display": "Moj 14-inčni dodirni zaslon",
   "— a garden app that brings soil history, weather, light and everyday care into one place. The cloud app is online, with public views and a private owner workspace. An ESP32 controller and one wired probe have passed initial bench checks. Their readings are not yet connected to the cloud app.": "— vrtnu aplikaciju koja na jednom mjestu povezuje povijest mjerenja tla, vrijeme, svjetlo i svakodnevnu njegu. Aplikacija u oblaku je dostupna, s javnim prikazima i privatnim prostorom vlasnika. ESP32 kontroler i jedna žičana sonda prošli su prve stolne provjere. Njihova očitanja još nisu povezana s aplikacijom u oblaku.",
-  "I define the requirements and expected behaviour, carry out bench checks and decide which results are supported by the evidence. AI coding assistants write substantial parts of the implementation under my direction.": "Definiram zahtjeve i očekivano ponašanje, provodim stolne provjere i procjenjujem koje rezultate dokazi podupiru. AI asistenti pišu znatan dio implementacije pod mojim vodstvom."
+  "I define the requirements and expected behaviour, carry out bench checks and decide which results are supported by the evidence. AI coding assistants write substantial parts of the implementation under my direction.": "Definiram zahtjeve i očekivano ponašanje, provodim stolne provjere i procjenjujem koje rezultate dokazi podupiru. AI asistenti pišu znatan dio implementacije pod mojim vodstvom.",
+  "First connections on the bench.": "Prvo spajanje na stolu.",
+  "Photographs from the first grgaGrow bench tests": "Fotografije prvih grgaGrow stolnih provjera",
+  "Edited photograph of the first grgaGrow bench setup with an ESP32 controller, separate supply and one TH probe in water": "Obrađena fotografija prvog grgaGrow stolnog sklopa s ESP32 kontrolerom, zasebnim napajanjem i jednom TH sondom u vodi",
+  "First bench setup — one controller and one TH probe during a water test. Edited photograph.": "Prvi stolni sklop — jedan kontroler i jedna TH sonda tijekom pokusa u vodi. Obrađena fotografija.",
+  "Enlarge the bench setup photograph": "Povećaj fotografiju stolnog sklopa",
+  "FIRST BENCH SETUP / One ESP32 controller and one TH probe during a water test.": "PRVI STOLNI SKLOP / Jedan ESP32 kontroler i jedna TH sonda tijekom pokusa u vodi.",
+  "Edited bench photograph showing the controller and a multimeter displaying 48.31 mA DC": "Obrađena stolna fotografija kontrolera i multimetra s prikazom 48,31 mA DC",
+  "Controller current check — approximately 48.3 mA in this test, not the maximum system current. Edited photograph.": "Provjera struje kontrolera — približno 48,3 mA u ovom pokusu, ne maksimalna struja sustava. Obrađena fotografija.",
+  "Enlarge the current measurement photograph": "Povećaj fotografiju mjerenja struje",
+  "CURRENT CHECK / Approximately 48.3 mA in this test; not a maximum-current rating.": "PROVJERA STRUJE / Približno 48,3 mA u ovom pokusu; nije maksimalna nazivna struja.",
+  "Original close-up photograph of the controller LED with a naturally out-of-focus workbench behind it": "Izvorna fotografija detalja LED-ice kontrolera s prirodno zamućenim radnim stolom u pozadini",
+  "Controller LED — original focus from the first bench session.": "LED-ica kontrolera — izvorni fokus s prvog stolnog rada.",
+  "Enlarge the controller LED photograph": "Povećaj fotografiju LED-ice kontrolera",
+  "CONTROLLER DETAIL / The original focus of the bench photograph is preserved.": "DETALJ KONTROLERA / Sačuvan je izvorni fokus stolne fotografije.",
+  "The first two photographs use AI-assisted editing for presentation. The current reading follows the original photograph; test results and calibration limits are described separately.": "Prve dvije fotografije obrađene su uz pomoć AI-ja za prikaz. Očitanje struje preuzeto je s izvorne fotografije; rezultati pokusa i granice kalibracije opisani su zasebno."
 }

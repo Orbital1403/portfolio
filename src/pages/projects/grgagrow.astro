@@ -412,6 +412,64 @@ const hardwareGallery = [
         <div><dt>Next milestone</dt><dd>Periodic physical readings</dd></div>
         <div><dt>Field status</dt><dd>Not yet installed</dd></div>
       </dl>
+      <h3 id="lawn-bench">First connections on the bench.</h3>
+      <div class="software-gallery bench-gallery" aria-label="Photographs from the first grgaGrow bench tests">
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/bench/bench-setup.webp"
+            alt="Edited photograph of the first grgaGrow bench setup with an ESP32 controller, separate supply and one TH probe in water"
+            width="1536"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-bench"
+            data-index="0"
+            data-title="First bench setup — one controller and one TH probe during a water test. Edited photograph."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the bench setup photograph"
+          />
+          <figcaption>FIRST BENCH SETUP / One ESP32 controller and one TH probe during a water test.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/bench/controller-current.webp"
+            alt="Edited bench photograph showing the controller and a multimeter displaying 48.31 mA DC"
+            width="1448"
+            height="1086"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-bench"
+            data-index="1"
+            data-title="Controller current check — approximately 48.3 mA in this test, not the maximum system current. Edited photograph."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the current measurement photograph"
+          />
+          <figcaption>CURRENT CHECK / Approximately 48.3 mA in this test; not a maximum-current rating.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/bench/controller-led.webp"
+            alt="Original close-up photograph of the controller LED with a naturally out-of-focus workbench behind it"
+            width="1600"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-bench"
+            data-index="2"
+            data-title="Controller LED — original focus from the first bench session."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the controller LED photograph"
+          />
+          <figcaption>CONTROLLER DETAIL / The original focus of the bench photograph is preserved.</figcaption>
+        </figure>
+      </div>
+      <p class="note">
+        The first two photographs use AI-assisted editing for presentation. The current reading follows the original
+        photograph; test results and calibration limits are described separately.
+      </p>
       <p class="note">
         Reference photos below show component types and assembly accessories. Models, dimensions and pictured quantities
         may differ from the ordered parts.
@@ -708,6 +766,9 @@ const hardwareGallery = [
   .software-gallery figure {
     margin: 0;
     min-width: 0;
+  }
+  .bench-gallery > figure:first-child {
+    grid-column: 1 / -1;
   }
   .software-gallery img {
     border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
