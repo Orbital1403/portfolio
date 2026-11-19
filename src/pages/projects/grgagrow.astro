@@ -853,7 +853,8 @@ const hardwareGallery = [
     padding: 16px;
     border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
     font: 14px/1.7 var(--note-font);
-    white-space: pre;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
   .firmware-example :global(pre:focus-visible) {
     outline: 2px solid #39776c;
@@ -1026,10 +1027,6 @@ const hardwareGallery = [
     color: #aed1c2;
   }
   @media (max-width: 600px) {
-    .firmware-example :global(pre) {
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
     .hardware-progress {
       grid-template-columns: 1fr;
       gap: 14px;
