@@ -21,6 +21,7 @@
 /hr/projects/praonica/ /hr/projects/our-laundry/ 301
 
 # Keep older media URLs working after local media cleanup.
+/images/projects/smart-lawn/bench/bench-setup.webp /images/projects/smart-lawn/bench/bench-setup-front.webp 301
 /images/hobbies/interior-painting/finishcontrol-5500-800.jpg /images/hobbies/interior-painting/finishcontrol-5500.jpg 301
 /images/hobbies/interior-painting/hodnik-800.jpg /images/hobbies/interior-painting/hodnik.jpg 301
 /images/hobbies/interior-painting/poster-bojanje-800.jpg /images/hobbies/interior-painting/poster-bojanje.jpg 301
