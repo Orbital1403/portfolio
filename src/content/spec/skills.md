@@ -67,9 +67,9 @@ I define machine states and the resident workflow, and check how the interface h
 
 [Explore Our laundry →](/projects/our-laundry/)
 
-### <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#ai"/></svg> Working with AI tools
+### <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#code"/></svg> How I work on projects
 
-AI coding assistants write substantial parts of the implementation under my direction. My work includes defining problems, deciding how the product should behave, verifying results and accepting changes. Through this process, I also develop my own understanding of the code and the system.
+I define the problem, decide how the product should behave, verify the results and decide which changes to accept. Through this process, I also develop my understanding of the code and the system.
 
 <h2 id="ai--machine-learning--current-studies"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#ai"/></svg> Python & AI — current studies</h2>
 

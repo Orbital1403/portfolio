@@ -33,7 +33,7 @@ Music has always mattered to me. I explore it, travel for it and enjoy the equip
 
 That interest led to **[MILA\*](/projects/mila/)**, my personal audio streamer. I had the components at home and a clear idea of what frustrated me about existing players. I put my requirements on paper and began developing an interface around my own listening habits.
 
-I lead the project from requirements to release: I decide what it should do, shape its behaviour, test every change on the real hardware and document what I find. AI coding assistants write much of the code under that direction. It is still in development, and I am learning as it grows.
+I lead the project from requirements to release: I decide what it should do, shape its behaviour, test every change on the real hardware and document what I find. It is still in development, and I am learning as it grows.
 
 ## Where I want to go
 
