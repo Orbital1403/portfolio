@@ -872,7 +872,7 @@ html.dark main .prose .case-steps dt {
 }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-  body:has(#lawn-bench) .gg-lightbox {
+  body:has(#lawn-bench, #hardware--foundation) .gg-lightbox {
     .gg-lb-stage {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
