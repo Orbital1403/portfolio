@@ -196,7 +196,8 @@
     font-size: 13px;
     cursor: pointer;
   }
-  @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
+  @media (orientation: portrait) and (max-width: 600px),
+    (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
     :global(main:has(#lawn-bench)) .analytics-consent {
       position: static;
       display: flex;
