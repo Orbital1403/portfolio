@@ -248,6 +248,19 @@ const steps = [
     grid-column: 1 / -1;
   }
   @media (max-width: 600px) {
+    .probe-sketch {
+      position: relative;
+      width: min(100%, 212px);
+      aspect-ratio: auto;
+      height: 150px;
+      margin-bottom: 4px;
+    }
+    .probe-sketch img {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      translate: 0 -50%;
+    }
     .reading-grid,
     .connection-notes,
     .bench-connection {
