@@ -1,12 +1,14 @@
-<button type="button" class="analytics-preferences" data-analytics-settings hidden>Cookie settings</button>
-
 <section class="analytics-consent" aria-labelledby="analytics-heading" data-analytics-banner hidden>
-  <h2 id="analytics-heading">Optional analytics</h2>
-  <p>
-    Google Analytics uses cookies to measure visits with your permission.
-    Change your choice anytime in Cookie settings.
-    <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses data</a>.
-  </p>
+  <div>
+    <h2 id="analytics-heading">Optional analytics</h2>
+    <p>
+      Google Analytics uses cookies to measure visits with your permission. Change your choice anytime in Cookie
+      settings.
+      <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer"
+        >How Google uses data</a
+      >.
+    </p>
+  </div>
   <div class="analytics-actions">
     <button type="button" data-analytics-choice="denied">Decline analytics</button>
     <button type="button" data-analytics-choice="granted">Accept analytics</button>
@@ -24,6 +26,7 @@
     'ga-disable-G-FBSDVWHLPQ'?: boolean
   }
   let started = false
+  let openedFromSettings = false
   let choice: 'granted' | 'denied' | null = null
 
   function readChoice(): typeof choice {
@@ -78,6 +81,7 @@
   }
 
   function init() {
+    openedFromSettings = false
     choice = readChoice()
     const settings = document.querySelector<HTMLButtonElement>('[data-analytics-settings]')
     const banner = document.querySelector<HTMLElement>('[data-analytics-banner]')
@@ -91,6 +95,7 @@
     const banner = document.querySelector<HTMLElement>('[data-analytics-banner]')
     if (event.target.closest('[data-analytics-settings]')) {
       if (banner) {
+        openedFromSettings = true
         banner.hidden = false
         banner.querySelector<HTMLButtonElement>('button')?.focus()
       }
@@ -101,8 +106,16 @@
     choice = selected
     try { localStorage.setItem(storageKey, JSON.stringify({ choice, at: Date.now() })) }
     catch { /* Honour the choice for this page even when storage is blocked. */ }
-    if (banner) banner.hidden = true
-    document.querySelector<HTMLButtonElement>('[data-analytics-settings]')?.focus()
+    const inlineBanner = banner && getComputedStyle(banner).position === 'static'
+    if (banner) {
+      banner.hidden = true
+    }
+    if (inlineBanner && !openedFromSettings) {
+      banner.closest('main')?.focus({ preventScroll: true })
+    } else {
+      document.querySelector<HTMLButtonElement>('[data-analytics-settings]')?.focus()
+    }
+    openedFromSettings = false
     if (choice === 'granted') {
       startAnalytics()
     }
@@ -138,7 +151,7 @@
     margin: 0;
     white-space: nowrap;
   }
-  .analytics-preferences {
+  :global(.analytics-preferences) {
     appearance: none;
     display: inline-block;
     margin: 0;
@@ -183,6 +196,47 @@
     font-size: 13px;
     cursor: pointer;
   }
-  button:hover { text-decoration: underline; }
-  button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
+    :global(main:has(#lawn-bench)) .analytics-consent {
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 16px;
+      width: 100%;
+      max-height: none;
+      overflow: visible;
+      margin: 0 0 16px;
+      padding: 8px 12px;
+      box-shadow: none;
+      > div:first-child {
+        flex: 1 1 230px;
+      }
+      h2 {
+        margin-bottom: 3px;
+      }
+      p {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .analytics-actions {
+        flex: 0 1 auto;
+        margin-top: 0;
+      }
+      .analytics-actions button {
+        flex: 0 0 auto;
+        padding: 6px 8px;
+      }
+    }
+  }
+  button:hover,
+  :global(.analytics-preferences:hover) {
+    text-decoration: underline;
+  }
+  button:focus-visible,
+  :global(.analytics-preferences:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
 </style>

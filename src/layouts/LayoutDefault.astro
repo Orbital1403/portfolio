@@ -82,12 +82,13 @@ const lang = themeConfig.appearance.locale ?? 'en-us'
     </header>
 
     <main id="main" class="outline-none" transition:animate="fade" tabindex="-1">
+      <AnalyticsConsent />
       <slot />
     </main>
 
     <footer class="site-footer">
       <SiteFooter />
-      <AnalyticsConsent />
+      <button type="button" class="analytics-preferences" data-analytics-settings hidden>Cookie settings</button>
     </footer>
 
     <script>
