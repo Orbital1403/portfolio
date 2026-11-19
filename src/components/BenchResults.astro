@@ -1,0 +1,268 @@
+---
+const quantityLabels = ['Temperature', 'Moisture channel', 'Experimental pH']
+const soil = ['22.6 °C', '19.4 %', '6.5']
+const readings = [
+  { label: 'In water', alt: 'Illustration of a probe in a glass of water', values: ['21.5 °C', '100.0 %', '4.5'] },
+  { label: 'In soil', alt: 'Illustration of a probe in potting soil', values: soil },
+]
+const steps = [
+  ['Terminal request', 'The computer asks the ESP32 for a reading.'],
+  ['Probe response', 'The ESP32 sends a Modbus request over RS485 and waits for the THP probe to respond.'],
+  ['Message checks', 'The firmware checks the address, function, length and checksum (CRC).'],
+  ['Readout', 'Values from a valid response appear in the terminal.'],
+]
+---
+
+<div class="bench-results">
+  <section aria-labelledby="bench-readings">
+    <h4 id="bench-readings">THP bench readings</h4>
+    <div class="reading-grid">
+      {readings.map(({ label, alt, values }, index) => (
+        <figure class="reading-card">
+          <div class:list={['probe-sketch', { 'soil-sketch': index === 1 }]}>
+            <img
+              src="/images/projects/smart-lawn/bench/thp-water-and-soil.webp"
+              width="900"
+              height="450"
+              alt={alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption>
+            <h5>{label}</h5>
+            <dl class="reading-values">
+              {values.map((value, n) => <div><dt>{quantityLabels[n]}</dt><dd>{value}</dd></div>)}
+            </dl>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    <p class="bench-note">Individual bench readings.</p>
+  </section>
+
+  <section aria-labelledby="bench-wiring">
+    <h4 id="bench-wiring">Bench connections</h4>
+    <div class="bench-connection">
+      <div class="bench-node"><strong>THP probe</strong><small>Temperature, moisture and pH</small></div>
+      <div class="connection-label">RS485 <span aria-hidden="true">↔</span></div>
+      <div class="bench-node"><strong>ESP32-S3</strong><small>Diagnostic firmware</small></div>
+      <div class="connection-label">USB <span aria-hidden="true">↔</span></div>
+      <div class="bench-node"><strong>Computer</strong><small>Readings in the terminal</small></div>
+    </div>
+    <div class="connection-notes">
+      <p><strong>Bench power</strong><br />A separate 12 V adapter powers the THP probe.</p>
+      <p class="pending"><strong>ESP32 → cloud → grgaGrow Live</strong><br />Delivery of physical probe readings still needs verification.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="bench-reading-flow">
+    <h4 id="bench-reading-flow">From request to readout</h4>
+    <ol class="reading-flow">
+      {steps.map(([title, description]) => (
+        <li><strong>{title}</strong><small>{description}</small></li>
+      ))}
+    </ol>
+    <div class="reading-grid">
+      <div class="flow-result">
+        <h5>Example from soil</h5>
+        <dl class="reading-values">
+          {soil.map((value, n) => <div><dt>{quantityLabels[n]}</dt><dd>{value}</dd></div>)}
+        </dl>
+      </div>
+      <div class="flow-result">
+        <h5>If no response arrives</h5>
+        <p>The firmware reports a timeout. That request produces no new reading.</p>
+      </div>
+    </div>
+    <p class="bench-note"><a href="#firmware-example-title">View the C++ excerpt · modbus_rtu.cpp ↑</a></p>
+  </section>
+
+  <section aria-labelledby="bench-firmware">
+    <h4 id="bench-firmware">Two firmware builds, one shared test</h4>
+    <div class="firmware-merge">
+      <div class="bench-node"><strong>TH firmware</strong><small>Temperature and moisture<br />Probe response confirmed on the bench</small></div>
+      <div class="bench-node"><strong>THP firmware</strong><small>Temperature, moisture and pH<br />Readings in water and soil</small></div>
+      <div class="connection-label merge-arrow" aria-hidden="true">↘ &nbsp; ↙</div>
+      <div class="bench-node pending">
+        <strong>Joint diagnostic firmware</strong>
+        <small>Two probes on one RS485 bus, with separate readings for each.<br />The candidate passed local checks. The joint bench test is pending.</small>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .bench-results {
+    --bench-border: color-mix(in srgb, currentColor 25%, transparent);
+    --bench-tint: color-mix(in srgb, #39776c 6%, transparent);
+    margin: 26px 0;
+  }
+  .bench-results section {
+    padding: 18px 0;
+    border-top: 1px solid var(--bench-border);
+  }
+  h4 {
+    margin: 0 0 12px;
+    font: 600 20px/1.35 var(--body-font);
+  }
+  h5 {
+    margin: 0 0 8px;
+    font: 600 16px/1.35 var(--body-font);
+  }
+  .reading-grid,
+  .connection-notes,
+  .firmware-merge {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .reading-card,
+  .bench-node,
+  .flow-result {
+    min-width: 0;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid var(--bench-border);
+    background: var(--bench-tint);
+  }
+  .reading-card,
+  .bench-node {
+    text-align: center;
+  }
+  .probe-sketch {
+    width: min(100%, 168px);
+    aspect-ratio: 1;
+    margin: 0 auto 8px;
+    overflow: hidden;
+  }
+  .probe-sketch img {
+    display: block;
+    width: 200%;
+    max-width: none;
+    height: auto;
+  }
+  .soil-sketch img {
+    transform: translateX(-50%);
+  }
+  :global(html.dark) .probe-sketch img {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  figcaption {
+    margin: 0;
+  }
+  .reading-values {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    margin: 0;
+    padding-top: 8px;
+    border-top: 1px solid var(--bench-border);
+    text-align: center;
+  }
+  .reading-values div {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 3px;
+  }
+  dt {
+    font: 12px/1.35 var(--body-font);
+  }
+  dd {
+    margin: 0;
+    font: 15px/1.35 var(--note-font);
+    white-space: nowrap;
+  }
+  .bench-note {
+    margin: 10px 0 0;
+    font: 12px/1.6 var(--note-font);
+  }
+  .bench-note a {
+    text-underline-offset: 3px;
+  }
+  .bench-connection {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 6px;
+  }
+  .connection-label {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    font: 11px/1.3 var(--note-font);
+  }
+  .connection-label span,
+  .merge-arrow {
+    font-size: 20px;
+  }
+  .bench-node strong,
+  .bench-node small,
+  .reading-flow strong,
+  .reading-flow small {
+    display: block;
+  }
+  small {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .connection-notes {
+    margin-top: 12px;
+  }
+  .connection-notes p {
+    margin: 0;
+    padding: 8px 10px;
+    background: var(--bench-tint);
+    border-left: 2px solid #39776c;
+    font-size: 13px;
+  }
+  .connection-notes .pending,
+  .firmware-merge .pending {
+    border-style: dashed;
+  }
+  .reading-flow {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    padding: 0;
+    margin: 0 0 12px;
+    list-style: none;
+    counter-reset: reading-step;
+  }
+  .reading-flow li {
+    counter-increment: reading-step;
+    padding: 8px;
+    border-top: 2px solid #39776c;
+    background: var(--bench-tint);
+  }
+  .reading-flow li::before {
+    content: counter(reading-step, decimal-leading-zero);
+    font: 12px/1.5 var(--note-font);
+  }
+  .flow-result p {
+    margin: 0;
+    font-size: 14px;
+  }
+  .merge-arrow,
+  .firmware-merge .pending {
+    grid-column: 1 / -1;
+  }
+  @media (max-width: 600px) {
+    .reading-grid,
+    .connection-notes,
+    .bench-connection {
+      grid-template-columns: 1fr;
+    }
+    .bench-connection .connection-label {
+      grid-auto-flow: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .bench-connection .connection-label span {
+      transform: rotate(90deg);
+    }
+    .reading-flow {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
