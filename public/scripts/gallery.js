@@ -76,8 +76,12 @@
   }
   function open(item) {
     const source = el => el.dataset.src || el.getAttribute('src')
+    const scopeSelector = '[data-gallery-scope]'
+    const scope = item.closest(scopeSelector)
     const seen = new Set()
-    items = [...document.querySelectorAll(selector)].filter((el) => {
+    items = [...(scope || document).querySelectorAll(selector)].filter((el) => {
+      if (el.closest(scopeSelector) !== scope)
+        return false
       const src = source(el)
       if (seen.has(src))
         return false
