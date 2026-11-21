@@ -17,26 +17,33 @@ const steps = [
   <section aria-labelledby="bench-readings">
     <h4 id="bench-readings">THP bench readings</h4>
     <div class="reading-grid">
-      {readings.map(({ label, alt, values }, index) => (
-        <figure class="reading-card">
-          <div class:list={['probe-sketch', { 'soil-sketch': index === 1 }]}>
-            <img
-              src="/images/projects/smart-lawn/bench/thp-water-and-soil.webp"
-              width="900"
-              height="450"
-              alt={alt}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <figcaption>
-            <h5>{label}</h5>
-            <dl class="reading-values">
-              {values.map((value, n) => <div><dt>{quantityLabels[n]}</dt><dd>{value}</dd></div>)}
-            </dl>
-          </figcaption>
-        </figure>
-      ))}
+      {
+        readings.map(({ label, alt, values }, index) => (
+          <figure class="reading-card">
+            <div class:list={['probe-sketch', { 'soil-sketch': index === 1 }]}>
+              <img
+                src="/images/projects/smart-lawn/bench/thp-water-and-soil.webp"
+                width="900"
+                height="450"
+                alt={alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption>
+              <h5>{label}</h5>
+              <dl class="reading-values">
+                {values.map((value, n) => (
+                  <div>
+                    <dt>{quantityLabels[n]}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </figcaption>
+          </figure>
+        ))
+      }
     </div>
     <p class="bench-note">Individual bench readings.</p>
   </section>
@@ -52,22 +59,41 @@ const steps = [
     </div>
     <div class="connection-notes">
       <p><strong>Bench power</strong><br />A separate 12 V adapter powers the THP probe.</p>
-      <p class="pending"><strong>ESP32 → cloud → grgaGrow Live</strong><br />Delivery of physical probe readings still needs verification.</p>
+      <p>
+        <strong>ESP32 → cloud → grgaGrow Live</strong><br />Bench readings from both probes are uploaded and
+        acknowledged.
+      </p>
     </div>
   </section>
 
   <section aria-labelledby="bench-reading-flow">
     <h4 id="bench-reading-flow">From request to readout</h4>
     <ol class="reading-flow">
-      {steps.map(([title, description]) => (
-        <li><strong>{title}</strong><small>{description}</small></li>
-      ))}
+      {
+        steps.map(([title, description]) => (
+          <li>
+            <>
+              <strong>{title}</strong>
+              <small>{description}</small>
+            </>
+          </li>
+        ))
+      }
     </ol>
     <div class="reading-grid">
       <div class="flow-result">
         <h5>Example from soil</h5>
         <dl class="reading-values">
-          {soil.map((value, n) => <div><dt>{quantityLabels[n]}</dt><dd>{value}</dd></div>)}
+          {
+            soil.map((value, n) => (
+              <div>
+                <>
+                  <dt>{quantityLabels[n]}</dt>
+                  <dd>{value}</dd>
+                </>
+              </div>
+            ))
+          }
         </dl>
       </div>
       <div class="flow-result">
@@ -81,12 +107,19 @@ const steps = [
   <section aria-labelledby="bench-firmware">
     <h4 id="bench-firmware">Two firmware builds, one shared test</h4>
     <div class="firmware-merge">
-      <div class="bench-node"><strong>TH firmware</strong><small>Temperature and moisture<br />Probe response confirmed on the bench</small></div>
-      <div class="bench-node"><strong>THP firmware</strong><small>Temperature, moisture and pH<br />Readings in water and soil</small></div>
+      <div class="bench-node">
+        <strong>TH firmware</strong><small>Temperature and moisture<br />Probe response confirmed on the bench</small>
+      </div>
+      <div class="bench-node">
+        <strong>THP firmware</strong><small>Temperature, moisture and pH<br />Readings in water and soil</small>
+      </div>
       <div class="connection-label merge-arrow" aria-hidden="true">↘ &nbsp; ↙</div>
-      <div class="bench-node pending">
-        <strong>Joint diagnostic firmware</strong>
-        <small>Two probes on one RS485 bus, with separate readings for each.<br />The candidate passed local checks. The joint bench test is pending.</small>
+      <div class="bench-node">
+        <strong>grgaGrow firmware</strong>
+        <small
+          >Two probes on one RS485 bus, with separate readings for each.<br />Running on the bench with both probes and
+          cloud uploads.</small
+        >
       </div>
     </div>
   </section>

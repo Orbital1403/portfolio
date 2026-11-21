@@ -7,6 +7,73 @@ import ProjectOverview from '~/components/ProjectOverview.astro'
 const firmwareExample =
   'Response readRegisters(const Request& request, Exchange& exchange, uint32_t budget_ms) {\n  Frame outgoing, incoming;\n  if (!encodeRequest(request, outgoing) || budget_ms == 0) return error(Status::InvalidRequest);\n  switch (exchange.transact(outgoing, budget_ms, incoming)) {\n    case Io::Complete:\n      return decodeResponse(request, incoming);\n    case Io::Timeout:\n      return error(Status::Timeout);\n    case Io::Fault:\n      return error(Status::TransportFault);\n  }\n  return error(Status::TransportFault);\n}'
 
+const scanExample =
+  'for (unsigned unit = 1; unit <= 247; ++unit) {\n  const auto u = static_cast<uint8_t>(unit);\n  const auto th = holding(bus_, u, soil::TemperatureMoistureRegister, 2, timing_.scan_budget_ms);\n  if (th.status != modbus::Status::Ok || th.count != 2) continue;\n  const auto ph = holding(bus_, u, soil::PhRegister, 1, timing_.scan_budget_ms);\n  const bool has_ph = ph.status == modbus::Status::Ok && ph.count == 1 &&\n                      ph.registers[0] > 0 && ph.registers[0] <= 140;\n  for (size_t i = 0; i < channels_.size(); ++i)\n    if (channels_[i].unit == u && channels_[i].has_ph == has_ph) still_there[i] = true;\n  auto& slot = found[has_ph ? 1 : 0];\n  if (!slot) slot = u;\n}'
+
+const bridgeExample =
+  'const char* allowed(const gg::modbus::Frame& f) {\n  const auto* b = f.bytes.data();\n  if (f.size < 8) return "short";\n  const uint16_t c = crc(b, f.size - 2);\n  if (b[f.size - 2] != (c & 0xff) || b[f.size - 1] != (c >> 8)) return "crc";\n  if (b[0] < 1 || b[0] > 247) return "unit";\n  const uint16_t reg = (b[2] << 8) | b[3];\n  switch (b[1]) {\n    case 3:\n    case 4:\n      return f.size == 8 ? nullptr : "length";\n    case 0x10: {\n      const uint16_t count = (b[4] << 8) | b[5];\n      if (f.size != 11 || reg != AddressRegister || count != 1 || b[6] != 2) return "write-locked";\n      const uint16_t value = (b[7] << 8) | b[8];\n      return (value >= 1 && value <= 247) ? nullptr : "value";\n    }\n    default:\n      return "function";\n  }\n}'
+
+const firmwareFixes = [
+  {
+    title: 'An address write that never left the board',
+    problem: 'Both probes shipped at Modbus address 02. Every attempt to move the TH probe ended as "outcome unknown".',
+    cause:
+      'The guarded UART transmit path only passed 8-byte frames, the size of a read. The 11-byte FC10 write was silently dropped.',
+    fix: 'A RAM-only image sent the full frame. TH moved to 03, survived a power cycle, and both probes now share one bus.',
+  },
+  {
+    title: 'A crash before the first reading',
+    problem: 'The first flashed firmware restarted in a loop during start-up.',
+    cause: 'Resetting the reading queue built a temporary of about 13 KB on a main-task stack of 3.5 KB.',
+    fix: 'The queue reset no longer builds that temporary on the stack. The board boots and stays up.',
+  },
+  {
+    title: 'Wi-Fi that could never connect',
+    problem: 'The board stayed offline after the first flash.',
+    cause: 'The first configuration named a 5 GHz network. The ESP32-S3 radio only supports 2.4 GHz.',
+    fix: 'A 2.4 GHz network, NTP time and the first acknowledged uploads to Supabase.',
+  },
+  {
+    title: 'Zeros after power-up',
+    problem: 'Right after power-up both probes answered with 0 °C and 0 % moisture.',
+    cause: 'A valid Modbus reply is not yet a settled measurement.',
+    fix: 'For the first 30 seconds the firmware marks answers as not settled and withholds the values.',
+  },
+  {
+    title: 'pH that needs time',
+    problem: 'The pH register returned values before the probe could measure.',
+    cause:
+      'The THP probe needs about five minutes of power after a real power loss; a software restart does not reset it.',
+    fix: 'pH is withheld until the warm-up has passed. Temperature and moisture are still reported.',
+  },
+  {
+    title: 'A probe that moved',
+    problem: 'A probe that stops answering at its configured address would leave a permanent gap.',
+    cause: 'Addresses can change during service work, and a single missed reply after a reset is normal.',
+    fix: 'The firmware asks again, then scans addresses 1–247 read-only and recognises each probe by its pH register.',
+  },
+  {
+    title: 'Updates without a cable',
+    problem: 'Every firmware change needed USB and download mode.',
+    cause: 'The original partition table had no room for a second image.',
+    fix: 'An OTA layout with two 3 MB slots and a rollback bootloader. The board fetched a release from Supabase, verified it and restarted on it.',
+  },
+]
+
+const probeServiceTabs = [
+  ['Device', 'Listens to the installed firmware over USB: version, Wi-Fi, time, both probes, queue and uploads.'],
+  ['Probes', 'Live temperature, moisture and pH with history and a stability state.'],
+  ['Bus scan', 'Read-only FC03 sweep of Modbus units 1–247.'],
+  [
+    'Change address',
+    'FC10 write to register 0x0080, only after typing a confirmation and reading back the new address.',
+  ],
+  ['Calibration', 'Two-point pH (buffers 7 and 4) and moisture. Raw readings stay unchanged.'],
+  ['Burial mode', 'Slow polling and stability guidance while probes settle in soil.'],
+  ['Firmware update', 'Checks the partition table first and writes only the application slot.'],
+  ['Frame log', 'Every transmitted and received frame, also saved to a log file.'],
+]
+
 const hardwareGallery = [
   {
     image: 'esp32-s3-rs485-can.jpg',
@@ -14,7 +81,7 @@ const hardwareGallery = [
     height: 800,
     title: 'ESP32-S3 controller',
     description:
-      'A Waveshare ESP32-S3-RS485-CAN Rev 2.2 has run the standalone TH diagnostic on the bench. Wi-Fi delivery of probe readings to the cloud remains unverified.',
+      'A Waveshare ESP32-S3-RS485-CAN Rev 2.2 runs the grgaGrow firmware on 12 V: it polls both probes, keeps a local queue and uploads over Wi-Fi with OTA updates.',
     detail: 'RS485 / CAN · Wi-Fi · DIN housing',
     alt: 'Waveshare reference photograph of the ESP32-S3-RS485-CAN controller in its DIN-rail housing',
     source: 'https://www.waveshare.com/product/esp32-s3-rs485-can.htm',
@@ -26,7 +93,7 @@ const hardwareGallery = [
     height: 400,
     title: 'Moisture + temperature',
     description:
-      'One TH probe returned valid RS485 / Modbus RTU responses in water, dry soil and the same soil after wetting. Its readings are not calibrated.',
+      'The TH probe answers at Modbus address 03 on the shared RS485 bus. It responded in water, dry soil and wet soil; its readings are not calibrated.',
     detail: 'RS485 soil probe',
     alt: 'Renke reference image of a soil temperature and moisture probe',
     source: 'https://www.renkeer.com/product/soil-moisture-sensor/',
@@ -38,7 +105,7 @@ const hardwareGallery = [
     height: 500,
     title: 'Moisture + temperature + pH',
     description:
-      'The planned second probe adds experimental pH measurement. It has not been tested with the controller; separate addressing and calibration remain future checks.',
+      'The THP probe answers at address 02 and adds experimental pH, valid about five minutes after power-up. Buffer-solution checks are next.',
     detail: 'Combined probe · Experimental pH',
     alt: 'Renke reference image of a multi-parameter soil probe with metal sensing pins',
     source: 'https://www.renkeer.com/product/soil-nutrient-sensor/',
@@ -62,7 +129,7 @@ const hardwareGallery = [
     height: 608,
     title: 'Outdoor DC power supply',
     description:
-      'The first TH bench checks used a separate nominal 12 V supply. The outdoor power arrangement, protection and enclosure still need installation checks.',
+      'The controller and both probes now run from one 12 V adapter without USB. Outdoor protection and the enclosure are installation checks.',
     detail: 'MEAN WELL OWA-60E · Reference model',
     alt: 'MEAN WELL OWA-60E reference photograph showing a sealed power adapter with fixed cables and a European mains plug',
     source: 'https://www.meanwellaustralia.com.au/products/owa-60e',
@@ -178,7 +245,7 @@ const hardwareGallery = [
   imageWidth={1265}
   imageHeight={712}
   title="grgaGrow — Smart garden technology — Gordan Grgić"
-  description="Explore the grgaGrow cloud app and the first ESP32 / RS485 probe bench tests. Soil history, weather and sun/shade are available; physical readings are not yet connected to Live."
+  description="Explore the grgaGrow cloud app and its ESP32 / RS485 hardware: two soil probes, custom firmware with OTA updates and an internal probe service tool, now on the way from the bench into the garden."
 >
   <div class="lawn-notes">
     <header class="lawn-heading">
@@ -186,14 +253,14 @@ const hardwareGallery = [
       <p class="folio-label">HARDWARE + SOFTWARE + GARDEN / FIELD NOTES 02</p>
       <h1>grgaGrow</h1>
       <p class="project-state">
-        Cloud app online <span>First probe bench-tested</span>
+        Cloud app online <span>Two probes uploading from the bench</span>
       </p>
       <p class="lead">A small lawn. A closer look beneath the surface.</p>
       <p>
         What started as an idea for watering my 49 m² lawn is becoming <strong>grgaGrow</strong> — a garden app that brings
         soil history, weather, light and everyday care into one place. The cloud app is online, with public views and a private
-        owner workspace. An ESP32 controller and one wired probe have passed initial bench checks. Their readings are not
-        yet connected to the cloud app.
+        owner workspace. An ESP32 controller with my own firmware reads two wired probes on the bench and uploads their readings
+        to the cloud. Next, the probes go into the lawn.
       </p>
       <div class="project-actions">
         <a class="demo-link" href="/demos/my-garden/?mode=demo" target="_blank" rel="noopener noreferrer"
@@ -209,7 +276,7 @@ const hardwareGallery = [
         <a href="#lawn-hardware">Explore the hardware ↓</a>
       </div>
       <p class="note">
-        Public Live: shared garden context, weather and sun/shade; physical probe readings are not yet connected. Demo:
+        Public Live: shared garden context, weather and sun/shade; field readings follow the installation. Demo:
         simulated readings. Both need no account. Owner sign-in opens your private workspace.
       </p>
     </header>
@@ -219,7 +286,7 @@ const hardwareGallery = [
       items={[
         {
           label: 'Today',
-          text: 'Cloud app online; one TH probe bench-tested. Calibration, continuous operation and delivery of physical readings to Live remain unverified.',
+          text: 'Cloud app online; firmware on the ESP32 reads two probes and uploads over Wi-Fi with OTA updates. Calibration and field operation are still to be verified.',
         },
         {
           label: 'My role',
@@ -231,7 +298,7 @@ const hardwareGallery = [
         },
         {
           label: 'Next step',
-          text: 'Verify periodic readings from one physical probe, then progress toward local setup and device-to-cloud delivery.',
+          text: 'Bury both probes in the lawn, check readings in soil, then calibrate pH and moisture before reviewing watering thresholds.',
         },
       ]}
     />
@@ -382,8 +449,8 @@ const hardwareGallery = [
           remove only the readings that have been acknowledged.
         </p>
         <p class="note">
-          The production ESP32 firmware foundation has native tests, simulated-probe checks and an ESP32 build verified
-          in CI. Real flash power-loss recovery and the complete physical delivery path remain unverified.
+          The production ESP32 firmware has native tests, simulated-probe checks and a CI build. On the bench, its first
+          uploads were acknowledged and the queue emptied. Flash durability across a power loss remains unverified.
         </p>
       </div>
       <div class="engineering-note firmware-example" aria-labelledby="firmware-example-title">
@@ -419,24 +486,24 @@ const hardwareGallery = [
       </p>
       <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
       <p class="note">
-        The app and cloud services are online. The installed bench diagnostic is separate from the production firmware.
-        Calibration, continuous physical monitoring, device-to-cloud delivery and power-loss recovery remain unverified.
-        Watering thresholds remain preliminary; automatic irrigation is not active.
+        The app and cloud services are online, and the production firmware delivers bench readings to them. Calibration,
+        continuous field monitoring and flash durability across a power loss remain unverified. Watering thresholds
+        remain preliminary; automatic irrigation is not active.
       </p>
     </section>
 
     <section aria-labelledby="lawn-hardware">
-      <p class="folio-label">03 / HARDWARE — FIRST BENCH RESULTS</p>
-      <h2 id="lawn-hardware">One probe. The first physical responses.</h2>
+      <p class="folio-label">03 / HARDWARE — FROM BENCH TO FIELD</p>
+      <h2 id="lawn-hardware">Two probes. One bus. Readings in the cloud.</h2>
       <p>
-        A standalone diagnostic is installed on the Waveshare ESP32-S3-RS485-CAN Rev 2.2. One temperature-and-moisture
-        probe returned valid Modbus responses on the bench. The intended garden installation uses two wired probes, but
-        the second probe and the full Wi-Fi-to-cloud path have not been verified.
+        The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
+        and a second probe with experimental pH over one RS485 bus, queues the samples and uploads them over Wi-Fi. The
+        bench version is complete; the probes are about to go into the lawn.
       </p>
-      <dl class="hardware-progress" aria-label="Hardware progress as of 18 November 2026">
-        <div><dt>Bench result</dt><dd>One TH probe responding</dd></div>
-        <div><dt>Next milestone</dt><dd>Periodic physical readings</dd></div>
-        <div><dt>Field status</dt><dd>Not yet installed</dd></div>
+      <dl class="hardware-progress" aria-label="Hardware progress as of 21 November 2026">
+        <div><dt>Bench result</dt><dd>Two probes uploading</dd></div>
+        <div><dt>Next milestone</dt><dd>Readings from the soil</dd></div>
+        <div><dt>Field status</dt><dd>Installation in progress</dd></div>
       </dl>
       <h3 id="lawn-bench">First connections on the bench.</h3>
       <div
@@ -497,6 +564,97 @@ const hardwareGallery = [
         </figure>
       </div>
       <BenchResults />
+      <h3 id="lawn-firmware-log">Seven problems between the bench and the cloud.</h3>
+      <p>
+        Most of the work happened between a probe that answers and a reading that can be trusted. Each card is a real
+        problem from the bench, what caused it and what changed.
+      </p>
+      <ol class="fix-log">
+        {
+          firmwareFixes.map((item) => (
+            <li>
+              <h4>{item.title}</h4>
+              <dl>
+                <div>
+                  <>
+                    <dt>Problem</dt>
+                    <dd>{item.problem}</dd>
+                  </>
+                </div>
+                <div>
+                  <>
+                    <dt>Cause</dt>
+                    <dd>{item.cause}</dd>
+                  </>
+                </div>
+                <div>
+                  <>
+                    <dt>Fix</dt>
+                    <dd>{item.fix}</dd>
+                  </>
+                </div>
+              </dl>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="engineering-note firmware-example" aria-labelledby="scan-example-title">
+        <p class="small-label">FIRMWARE / C++17</p>
+        <h3 id="scan-example-title">Find the probe instead of losing the reading.</h3>
+        <p>
+          When a probe stops answering, the driver asks once more, then sweeps the bus read-only. A unit that answers
+          the temperature/moisture registers and a valid pH register is the THP probe; one without pH is the TH probe.
+        </p>
+        <p class="note">soil_probes.cpp · SoilProbes::scan</p>
+        <Code
+          code={scanExample}
+          lang="cpp"
+          themes={{ light: 'github-light', dark: 'github-dark' }}
+          tabindex="0"
+          aria-labelledby="scan-example-title"
+          data-firmware-code="true"
+        />
+        <p class="note">
+          A new address is used only if it does not belong to the other probe, and it is saved for the next start.
+        </p>
+      </div>
+
+      <h3 id="lawn-probe-service">An internal tool for the probes.</h3>
+      <p>
+        To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
+        local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
+        bootloader and talks to the probes through it. Nothing is written to flash; a power cycle returns the board to
+        its installed firmware.
+      </p>
+      <dl class="tool-tabs">
+        {
+          probeServiceTabs.map(([name, text]) => (
+            <div>
+              <>
+                <dt>{name}</dt>
+                <dd>{text}</dd>
+              </>
+            </div>
+          ))
+        }
+      </dl>
+      <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
+        <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
+        <h3 id="bridge-example-title">Reads are allowed. Writes are locked.</h3>
+        <p>
+          The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
+          register with a value from 1 to 247. Everything else is answered with DENY.
+        </p>
+        <p class="note">bridge-image/main/entry.cpp · allowed (excerpt)</p>
+        <Code
+          code={bridgeExample}
+          lang="cpp"
+          themes={{ light: 'github-light', dark: 'github-dark' }}
+          tabindex="0"
+          aria-labelledby="bridge-example-title"
+          data-firmware-code="true"
+        />
+      </div>
       <p class="note">
         Reference photos below show component types and assembly accessories. Models, dimensions and pictured quantities
         may differ from the ordered parts.
@@ -553,7 +711,7 @@ const hardwareGallery = [
         })
       }
       <div class="engineering-note">
-        <p class="small-label">BEFORE THE FIRST OUTDOOR READING</p>
+        <p class="small-label">BEFORE THE FIRST FIELD READING</p>
         <h3>A response is evidence. Accuracy needs more.</h3>
         <p>
           On 17 November, separate single-query tests returned valid responses with one probe in water, dry soil and the
@@ -561,9 +719,9 @@ const hardwareGallery = [
           the seller manual; these checks do not establish calibration, accuracy or reliable long-term operation.
         </p>
         <p>
-          A local candidate for periodic readings has passed synthetic checks and an ESP32 build. The Mac display path
-          has also been tested with simulated hardware. Neither proves six actual periodic readings. Cable routing,
-          protection, sealed joints and suitability for burial remain installation checks.
+          On 21 November, the production firmware ran on the 12 V adapter with both probes reporting good readings in
+          air and uploads acknowledged by the cloud. Readings in air are not soil measurements. Cable routing,
+          protection, sealed joints and suitability for burial are checked during installation.
         </p>
       </div>
       <div
@@ -582,11 +740,12 @@ const hardwareGallery = [
         <p class="flow-label">↓ Authenticated access</p>
         <div class="architecture-node app-node">grgaGrow / My Garden</div>
         <p class="note architecture-note">
-          Planned full data path · One TH probe bench-tested · Cloud delivery pending · *pH is experimental
+          Full data path verified on the bench · Field installation in progress · *pH is experimental
         </p>
       </div>
       <p class="note">
-        Hardware snapshot: 18 November 2026 · First single-probe bench responses confirmed · Field installation pending.
+        Hardware snapshot: 21 November 2026 · Two probes uploading from the bench · OTA updates working · Field
+        installation in progress.
       </p>
     </section>
 
@@ -619,8 +778,8 @@ const hardwareGallery = [
           data-group="cover"
         />
         <figcaption>
-          THE TEST SITE / My 49 m² lawn. Monitoring is not installed yet; placement and cable routes must also suit the
-          robotic mower.
+          THE TEST SITE / My 49 m² lawn. The probes go in next; placement and cable routes must also suit the robotic
+          mower.
         </figcaption>
       </figure>
       <p>
@@ -640,17 +799,15 @@ const hardwareGallery = [
           </p>
         </li>
         <li>
-          <strong>Periodic readings next</strong><p>
-            The first single-probe responses are confirmed. Next, verify periodic physical readings and the Mac display.
-            Local software and ESP32 build checks are complete for a candidate; the new periodic version has not been
-            physically accepted.
+          <strong>Bench version complete</strong><p>
+            Firmware on the ESP32 reads two probes, recovers from restarts, finds a probe that moved and uploads to the
+            cloud. Updates arrive over Wi-Fi. The Probe Service tool covers scanning, addressing and calibration.
           </p>
         </li>
         <li>
           <strong>Connect and observe</strong><p>
-            Local module monitoring and phone-based Wi-Fi setup are being planned; they are not available features.
-            Later, verify device-to-cloud delivery, calibration and field operation before comparing both garden
-            locations and reviewing watering thresholds.
+            Bury both probes, check readings in soil and calibrate pH and moisture. Then compare both garden locations
+            and review watering thresholds.
           </p>
         </li>
         <li>
@@ -674,8 +831,8 @@ const hardwareGallery = [
         </div>
       </div>
       <p class="note">
-        Project snapshot: 18 November 2026 · Initial TH bench responses confirmed · Physical readings not yet connected
-        to Live · Demo uses simulated data
+        Project snapshot: 21 November 2026 · Two probes uploading from the bench · Field installation in progress · Demo
+        uses simulated data
       </p>
     </section>
   </div>
@@ -915,6 +1072,51 @@ const hardwareGallery = [
     text-align: center;
     margin-bottom: 0;
   }
+  .fix-log {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .fix-log li {
+    min-width: 0;
+    margin: 0;
+    padding: 16px 18px;
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
+  .fix-log h4 {
+    margin: 0 0 10px;
+    font: 700 14px/1.5 var(--note-font);
+  }
+  .fix-log dl,
+  .tool-tabs {
+    margin: 0;
+  }
+  .fix-log dl div {
+    margin-top: 8px;
+  }
+  .fix-log dt,
+  .tool-tabs dt {
+    font: 10px/1.8 var(--note-font);
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+  .fix-log dd,
+  .tool-tabs dd {
+    margin: 2px 0 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .tool-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 20px;
+    margin: 20px 0;
+    padding: 18px 0;
+    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
   .hardware-progress {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1029,6 +1231,10 @@ const hardwareGallery = [
     color: #aed1c2;
   }
   @media (max-width: 600px) {
+    .fix-log,
+    .tool-tabs {
+      grid-template-columns: 1fr;
+    }
     .hardware-progress {
       grid-template-columns: 1fr;
       gap: 14px;
