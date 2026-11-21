@@ -1,9 +1,9 @@
 ---
-const quantityLabels = ['Temperature', 'Moisture channel', 'Experimental pH']
+const quantityLabels = ['Temperature', 'Moisture channel', 'pH']
 const soil = ['22.6 °C', '19.4 %', '6.5']
 const readings = [
   { label: 'In water', alt: 'Illustration of a probe in a glass of water', values: ['21.5 °C', '100.0 %', '4.5'] },
-  { label: 'In soil', alt: 'Illustration of a probe in potting soil', values: soil },
+  { label: 'First reading in a pot', alt: 'Illustration of a probe in potting soil', values: soil },
 ]
 const steps = [
   ['Terminal request', 'The computer asks the ESP32 for a reading.'],
@@ -38,7 +38,7 @@ const steps = [
         </figure>
       ))}
     </div>
-    <p class="bench-note">Individual bench readings.</p>
+    <p class="bench-note">The THP probe was tested on its own, first in water and then in moist soil in a pot.</p>
   </section>
 
   <section aria-labelledby="bench-wiring">
@@ -52,7 +52,7 @@ const steps = [
     </div>
     <div class="connection-notes">
       <p><strong>Bench power</strong><br />A separate 12 V adapter powers the THP probe.</p>
-      <p class="pending"><strong>ESP32 → cloud → grgaGrow Live</strong><br />Delivery of physical probe readings still needs verification.</p>
+      <p><strong>ESP32-S3 → Wi-Fi → cloud</strong><br />In a later test the controller ran on 12 V with USB unplugged. The cloud acknowledged its first bench samples; they are test data, not a live feed.</p>
     </div>
   </section>
 
@@ -75,7 +75,7 @@ const steps = [
         <p>The firmware reports a timeout. That request produces no new reading.</p>
       </div>
     </div>
-    <p class="bench-note"><a href="#firmware-example-title">View the C++ excerpt · modbus_rtu.cpp ↑</a></p>
+    <p class="bench-note"><a href="#firmware-example-title">View the C++ excerpt · modbus_rtu.cpp ↓</a></p>
   </section>
 
   <section aria-labelledby="bench-firmware">
@@ -84,9 +84,9 @@ const steps = [
       <div class="bench-node"><strong>TH firmware</strong><small>Temperature and moisture<br />Probe response confirmed on the bench</small></div>
       <div class="bench-node"><strong>THP firmware</strong><small>Temperature, moisture and pH<br />Readings in water and soil</small></div>
       <div class="connection-label merge-arrow" aria-hidden="true">↘ &nbsp; ↙</div>
-      <div class="bench-node pending">
+      <div class="bench-node">
         <strong>Joint diagnostic firmware</strong>
-        <small>Two probes on one RS485 bus, with separate readings for each.<br />The candidate passed local checks. The joint bench test is pending.</small>
+        <small>Two probes on one RS485 bus, with separate readings for each.<br />Both probes responded in air during the joint bench test, each at its own address.</small>
       </div>
     </div>
   </section>
@@ -216,10 +216,6 @@ const steps = [
     border-left: 2px solid #39776c;
     font-size: 13px;
   }
-  .connection-notes .pending,
-  .firmware-merge .pending {
-    border-style: dashed;
-  }
   .reading-flow {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -244,7 +240,7 @@ const steps = [
     font-size: 14px;
   }
   .merge-arrow,
-  .firmware-merge .pending {
+  .firmware-merge > :last-child {
     grid-column: 1 / -1;
   }
   @media (max-width: 600px) {

@@ -2,6 +2,7 @@
 import { Code } from 'astro:components'
 import BenchResults from '~/components/BenchResults.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import ProbeReadingCards from '~/components/ProbeReadingCards.astro'
 import ProjectOverview from '~/components/ProjectOverview.astro'
 
 const firmwareExample =
@@ -14,7 +15,7 @@ const hardwareGallery = [
     height: 800,
     title: 'ESP32-S3 controller',
     description:
-      'A Waveshare ESP32-S3-RS485-CAN Rev 2.2 has run the standalone TH diagnostic on the bench. Wi-Fi delivery of probe readings to the cloud remains unverified.',
+      'A Waveshare ESP32-S3-RS485-CAN Rev 2.2 has read both probes on one RS485 bus. Running on 12 V with USB unplugged, it sent its first samples to the cloud over Wi-Fi and received an acknowledgement.',
     detail: 'RS485 / CAN · Wi-Fi · DIN housing',
     alt: 'Waveshare reference photograph of the ESP32-S3-RS485-CAN controller in its DIN-rail housing',
     source: 'https://www.waveshare.com/product/esp32-s3-rs485-can.htm',
@@ -38,8 +39,8 @@ const hardwareGallery = [
     height: 500,
     title: 'Moisture + temperature + pH',
     description:
-      'The planned second probe adds experimental pH measurement. It has not been tested with the controller; separate addressing and calibration remain future checks.',
-    detail: 'Combined probe · Experimental pH',
+      'The second probe (THP) returned temperature, moisture and pH readings in separate trials in water and moist soil. With its own address, it then responded together with the TH probe on one RS485 bus.',
+    detail: 'Combined probe · pH',
     alt: 'Renke reference image of a multi-parameter soil probe with metal sensing pins',
     source: 'https://www.renkeer.com/product/soil-nutrient-sensor/',
     vendor: 'Renke',
@@ -62,7 +63,7 @@ const hardwareGallery = [
     height: 608,
     title: 'Outdoor DC power supply',
     description:
-      'The first TH bench checks used a separate nominal 12 V supply. The outdoor power arrangement, protection and enclosure still need installation checks.',
+      'The first TH bench checks used a separate nominal 12 V supply, and the ESP32-S3 has since run on 12 V with USB unplugged. The outdoor power arrangement, protection and enclosure still need installation checks.',
     detail: 'MEAN WELL OWA-60E · Reference model',
     alt: 'MEAN WELL OWA-60E reference photograph showing a sealed power adapter with fixed cables and a European mains plug',
     source: 'https://www.meanwellaustralia.com.au/products/owa-60e',
@@ -177,24 +178,18 @@ const hardwareGallery = [
   imageAlt="grgaGrow garden monitoring demo with illustrated root zones, soil moisture and temperature readings"
   imageWidth={1265}
   imageHeight={712}
-  title="grgaGrow — Smart garden technology — Gordan Grgić"
-  description="Explore the grgaGrow cloud app and the first ESP32 / RS485 probe bench tests. Soil history, weather and sun/shade are available; physical readings are not yet connected to Live."
+  title="grgaGrow — When does my lawn actually need water? — Gordan Grgić"
+  description="Two probes, one ESP32 and the first readings sent to the cloud. A soil-monitoring project for my 49 m² lawn."
 >
   <div class="lawn-notes">
     <header class="lawn-heading">
-      <a href="/projects/">← All project notes</a>
-      <p class="folio-label">HARDWARE + SOFTWARE + GARDEN / FIELD NOTES 02</p>
-      <h1>grgaGrow</h1>
-      <p class="project-state">
-        Cloud app online <span>First probe bench-tested</span>
+      <p class="eyebrow"><strong>grgaGrow</strong> / soil monitoring</p>
+      <h1>When does my lawn actually need water?</h1>
+      <p class="lede">I want to see how quickly the soil on my 49 m² lawn dries out in the sun and in the shade.</p>
+      <p class="body-copy">
+        On the workbench, two probes now share one controller. The first readings have reached the cloud over Wi-Fi.
       </p>
-      <p class="lead">A small lawn. A closer look beneath the surface.</p>
-      <p>
-        What started as an idea for watering my 49 m² lawn is becoming <strong>grgaGrow</strong> — a garden app that brings
-        soil history, weather, light and everyday care into one place. The cloud app is online, with public views and a private
-        owner workspace. An ESP32 controller and one wired probe have passed initial bench checks. Their readings are not
-        yet connected to the cloud app.
-      </p>
+      <ProbeReadingCards />
       <div class="project-actions">
         <a class="demo-link" href="/demos/my-garden/?mode=demo" target="_blank" rel="noopener noreferrer"
           >Explore the demo ↗</a
@@ -206,20 +201,29 @@ const hardwareGallery = [
           rel="noopener noreferrer">View Live garden ↗</a
         >
         <a href="/demos/my-garden/?mode=live">Owner sign-in →</a>
-        <a href="#lawn-hardware">Explore the hardware ↓</a>
+        <a href="#lawn-hardware">See the bench tests ↓</a>
+        <a href="/projects/">← All project notes</a>
       </div>
       <p class="note">
-        Public Live: shared garden context, weather and sun/shade; physical probe readings are not yet connected. Demo:
-        simulated readings. Both need no account. Owner sign-in opens your private workspace.
+        Demo: simulated readings. Public Live: the garden context, weather and sun/shade the owner shares; the bench
+        samples are tests, not a live feed from the lawn. Both open without an account. Owner sign-in opens your private
+        workspace.
       </p>
     </header>
+
+    <nav class="section-nav" aria-label="Sections">
+      <a href="#lawn-software">Garden app</a>
+      <a href="#lawn-hardware">Probe trials</a>
+      <a href="#lawn-reliability">Checking a reading</a>
+      <a href="#lawn-next">Next trial</a>
+    </nav>
 
     <ProjectOverview
       id="grgagrow"
       items={[
         {
           label: 'Today',
-          text: 'Cloud app online; one TH probe bench-tested. Calibration, continuous operation and delivery of physical readings to Live remain unverified.',
+          text: 'Cloud app online. On the bench, both probes responded on one RS485 bus and the first samples reached the cloud with an acknowledgement. Calibration and continuous operation on the lawn remain unverified.',
         },
         {
           label: 'My role',
@@ -231,7 +235,7 @@ const hardwareGallery = [
         },
         {
           label: 'Next step',
-          text: 'Verify periodic readings from one physical probe, then progress toward local setup and device-to-cloud delivery.',
+          text: 'A longer trial on the real lawn: compare both probes in the same moist soil, then follow how sunny and shaded areas dry.',
         },
       ]}
     />
@@ -248,7 +252,7 @@ const hardwareGallery = [
           alt="grgaGrow Demo showing two visual soil sensor cards with grass and root illustrations, simulated moisture and temperature readings, and a Visual or Compact switch"
           width="1265"
           height="712"
-          fetchpriority="high"
+          loading="lazy"
           decoding="async"
         />
       </a>
@@ -365,136 +369,116 @@ const hardwareGallery = [
       <p class="stack">React · TypeScript · Vite · Supabase / PostgreSQL · Open-Meteo · SunCalc</p>
     </section>
 
-    <section aria-labelledby="lawn-reliability">
-      <p class="folio-label">02 / THE ENGINEERING BEHIND THE SCREEN</p>
-      <h2 id="lawn-reliability">What if a reading never arrives?</h2>
-      <p>
-        A reassuring number is only useful if it can be trusted. The app checks freshness and time quality, preserves
-        gaps in the history, and withholds watering suggestions when readings are unreliable. A dry trend must remain
-        valid for an uninterrupted 30-minute window before the current logic suggests watering.
-      </p>
-      <div class="engineering-note">
-        <p class="small-label">DEVELOPMENT EXAMPLE / A LOST ACKNOWLEDGEMENT</p>
-        <h3>Send again. Keep one reading.</h3>
-        <p>
-          A measurement can reach the database even when its acknowledgement never reaches the device. The local queue
-          model and ingestion code are tested together: resend that measurement, keep a single database record, then
-          remove only the readings that have been acknowledged.
-        </p>
-        <p class="note">
-          The production ESP32 firmware foundation has native tests, simulated-probe checks and an ESP32 build verified
-          in CI. Real flash power-loss recovery and the complete physical delivery path remain unverified.
-        </p>
-      </div>
-      <div class="engineering-note firmware-example" aria-labelledby="firmware-example-title">
-        <p class="small-label">FIRMWARE / C++17</p>
-        <h3 id="firmware-example-title">A timeout stays a timeout.</h3>
-        <p>
-          This is an actual excerpt from the shared firmware module used by the bench diagnostic. A complete response
-          goes to validation; a timeout or transport fault returns an explicit error.
-        </p>
-        <p class="note">modbus_rtu.cpp · readRegisters</p>
-        <Code
-          code={firmwareExample}
-          lang="cpp"
-          themes={{ light: 'github-light', dark: 'github-dark' }}
-          tabindex="0"
-          aria-labelledby="firmware-example-title"
-          data-firmware-code="true"
-        />
-        <p class="note">
-          The separate decoder checks CRC, address, function and frame length before exposing registers. These checks do
-          not establish calibration or continuous operation.
-        </p>
-      </div>
-      <p>
-        The cloud workspace uses Supabase authentication and owner-scoped database access. A separate public projection
-        exposes only the selected garden data; exact coordinates, private diary entries, alerts and calibration notes
-        stay outside it. The owner can disable publication. Demo values never become real sensor records, and Live shows
-        waiting for data until physical readings arrive.
-      </p>
-      <p>
-        I define the requirements and expected behaviour, carry out bench checks and decide which results are supported
-        by the evidence.
-      </p>
-      <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
-      <p class="note">
-        The app and cloud services are online. The installed bench diagnostic is separate from the production firmware.
-        Calibration, continuous physical monitoring, device-to-cloud delivery and power-loss recovery remain unverified.
-        Watering thresholds remain preliminary; automatic irrigation is not active.
-      </p>
-    </section>
-
     <section aria-labelledby="lawn-hardware">
-      <p class="folio-label">03 / HARDWARE — FIRST BENCH RESULTS</p>
-      <h2 id="lawn-hardware">One probe. The first physical responses.</h2>
+      <p class="folio-label">02 / HARDWARE — FROM WATER TO THE CLOUD</p>
+      <h2 id="lawn-hardware">From a glass of water to the cloud.</h2>
       <p>
-        A standalone diagnostic is installed on the Waveshare ESP32-S3-RS485-CAN Rev 2.2. One temperature-and-moisture
-        probe returned valid Modbus responses on the bench. The intended garden installation uses two wired probes, but
-        the second probe and the full Wi-Fi-to-cloud path have not been verified.
+        The TH and THP probes first returned valid Modbus responses in separate trials with the Waveshare
+        ESP32-S3-RS485-CAN Rev 2.2. Each then received its own address, both responded together on one RS485 bus, and
+        the controller sent the first samples to the cloud over Wi-Fi.
       </p>
-      <dl class="hardware-progress" aria-label="Hardware progress as of 18 November 2026">
-        <div><dt>Bench result</dt><dd>One TH probe responding</dd></div>
-        <div><dt>Next milestone</dt><dd>Periodic physical readings</dd></div>
+      <dl class="hardware-progress" aria-label="Hardware progress as of 21 November 2026">
+        <div><dt>Bench result</dt><dd>TH and THP tested together</dd></div>
+        <div><dt>Next milestone</dt><dd>Longer trial on the lawn</dd></div>
         <div><dt>Field status</dt><dd>Not yet installed</dd></div>
       </dl>
       <h3 id="lawn-bench">First connections on the bench.</h3>
-      <div
-        class="software-gallery bench-gallery"
-        aria-label="Photographs from the first grgaGrow bench tests"
-        data-gallery-scope
-      >
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/bench-setup-front.webp"
-            alt="Edited photograph of the first grgaGrow bench setup with an ESP32 controller, separate supply and one TH probe in water"
-            width="1536"
-            height="1024"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="0"
-            data-title="First bench setup — one controller and one TH probe during a water test. Edited photograph."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the bench setup photograph"
-          />
-          <figcaption>FIRST BENCH SETUP / One ESP32 controller and one TH probe during a water test.</figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/controller-current.webp"
-            alt="Edited bench photograph showing the controller and a multimeter displaying 48.31 mA DC"
-            width="1448"
-            height="1086"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="1"
-            data-title="Controller current check — approximately 48.3 mA in this test, not the maximum system current. Edited photograph."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the current measurement photograph"
-          />
-          <figcaption>CURRENT CHECK / Approximately 48.3 mA in this test; not a maximum-current rating.</figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/controller-led.webp"
-            alt="Original close-up photograph of the controller LED with a naturally out-of-focus workbench behind it"
-            width="1600"
-            height="1200"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="2"
-            data-title="Controller LED — original focus from the first bench session."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the controller LED photograph"
-          />
-          <figcaption>CONTROLLER DETAIL / The original focus of the bench photograph is preserved.</figcaption>
-        </figure>
+      <div class="bench-story" aria-label="Photographs from the first grgaGrow bench tests" data-gallery-scope>
+        <div class="bench-grid">
+          <figure class="first-bench">
+            <img
+              src="/images/projects/smart-lawn/bench/bench-setup-front.webp"
+              alt="Edited photograph of the first grgaGrow bench setup with an ESP32 controller, separate supply and one TH probe in water"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="0"
+              data-title="First bench setup — one controller and one TH probe during a water test. Edited photograph."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the bench setup photograph"
+            />
+            <figcaption>First bench test with one TH probe in water.</figcaption>
+          </figure>
+          <ol class="milestones">
+            <li class="pot-trial">
+              <div>
+                <p class="milestone-date"><time datetime="2026-11-19">19 November 2026</time></p>
+                <h4>From water to soil</h4>
+                <p>The THP probe was tested on its own, first in water and then in moist potting soil.</p>
+              </div>
+              <div class="pot-illustration" aria-hidden="true">
+                <img
+                  src="/images/projects/smart-lawn/bench/thp-water-and-soil.webp"
+                  alt=""
+                  width="900"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </li>
+            <li>
+              <p class="milestone-date"><time datetime="2026-11-20">20 November</time></p>
+              <h4>Two probes on the same bus</h4>
+              <p>
+                Both probes responded while held in air during the joint bench test. Each has its own address on the
+                RS485 bus.
+              </p>
+            </li>
+            <li>
+              <p class="milestone-date"><time datetime="2026-11-21">21 November</time></p>
+              <h4>First readings reached the cloud</h4>
+              <p>
+                The ESP32-S3 runs on a 12 V supply with the USB cable unplugged. It sent readings over Wi-Fi and
+                received an acknowledgement.
+              </p>
+            </li>
+          </ol>
+        </div>
+        <div class="reading-path" role="group" aria-label="Path of a reading">
+          <span>TH + THP</span><i aria-hidden="true">→</i><span>RS485</span><i aria-hidden="true">→</i><span
+            >ESP32-S3</span
+          ><i aria-hidden="true">→</i><span>Wi-Fi</span><i aria-hidden="true">→</i><span>Cloud</span>
+        </div>
+        <div class="detail-photos">
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/bench/controller-current.webp"
+              alt="Edited bench photograph showing the controller and a multimeter displaying 48.31 mA DC"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="1"
+              data-title="Controller current check — approximately 48.3 mA in this test, not the maximum system current. Edited photograph."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the current measurement photograph"
+            />
+            <figcaption>The multimeter showed about 48.3 mA in this test.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/bench/controller-led.webp"
+              alt="Original close-up photograph of the controller LED with a naturally out-of-focus workbench behind it"
+              width="1600"
+              height="1200"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="2"
+              data-title="Controller LED — original focus from the first bench session."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the controller LED photograph"
+            />
+            <figcaption>A closer look at the controller during the first test.</figcaption>
+          </figure>
+        </div>
       </div>
       <BenchResults />
       <p class="note">
@@ -561,8 +545,8 @@ const hardwareGallery = [
           the seller manual; these checks do not establish calibration, accuracy or reliable long-term operation.
         </p>
         <p>
-          A local candidate for periodic readings has passed synthetic checks and an ESP32 build. The Mac display path
-          has also been tested with simulated hardware. Neither proves six actual periodic readings. Cable routing,
+          Both probes have since responded together on the bench, and the first samples reached the cloud with an
+          acknowledgement. That confirms the bench path, not periodic operation in the garden. Cable routing,
           protection, sealed joints and suitability for burial remain installation checks.
         </p>
       </div>
@@ -572,7 +556,7 @@ const hardwareGallery = [
       >
         <div class="probe-row">
           <span>Probe 01<br /><small>Moisture + temperature</small></span><span
-            >Probe 02<br /><small>Moisture + temperature + pH*</small></span
+            >Probe 02<br /><small>Moisture + temperature + pH</small></span
           >
         </div>
         <p class="flow-label">↓ RS485 / Modbus RTU · BITNER LP0170 cable</p>
@@ -582,11 +566,102 @@ const hardwareGallery = [
         <p class="flow-label">↓ Authenticated access</p>
         <div class="architecture-node app-node">grgaGrow / My Garden</div>
         <p class="note architecture-note">
-          Planned full data path · One TH probe bench-tested · Cloud delivery pending · *pH is experimental
+          Planned full data path · Probes tested together on the bench · First samples acknowledged in the cloud
         </p>
       </div>
       <p class="note">
-        Hardware snapshot: 18 November 2026 · First single-probe bench responses confirmed · Field installation pending.
+        Hardware snapshot: 21 November 2026 · TH and THP tested together on the bench · First samples acknowledged in
+        the cloud · Field installation pending.
+      </p>
+    </section>
+
+    <section aria-labelledby="lawn-reliability">
+      <p class="folio-label">03 / CHECKING A READING</p>
+      <h2 id="lawn-reliability">How do I know I can trust a reading?</h2>
+      <div class="trust-split">
+        <div>
+          <p>
+            The probes briefly returned zeros when first powered up. The firmware now waits 30 seconds before accepting
+            values. That keeps a startup zero from being mistaken for dry soil.
+          </p>
+          <p>
+            On my Mac I can see the state of both probes, the Wi-Fi link and the upload queue in one service tool. In a
+            separate test the board fetched a firmware update over Wi-Fi, verified it and restarted.
+          </p>
+        </div>
+        <figure class="service-board">
+          <img
+            src="/images/projects/smart-lawn/bench/service-board-mock.png"
+            alt="The grgaGrow service tool’s Board screen, with mock Wi-Fi, probe and upload status."
+            width="1196"
+            height="817"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-service"
+            data-index="0"
+            data-title="The service tool on the Mac, shown with mock data."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the service tool screenshot with mock data"
+          />
+          <figcaption>MOCK DATA / The service tool on the Mac, shown with mock data.</figcaption>
+        </figure>
+      </div>
+      <h3>What if a reading never arrives?</h3>
+      <p>
+        A reassuring number is only useful if it can be trusted. The app checks freshness and time quality, preserves
+        gaps in the history, and withholds watering suggestions when readings are unreliable. A dry trend must remain
+        valid for an uninterrupted 30-minute window before the current logic suggests watering.
+      </p>
+      <div class="engineering-note">
+        <p class="small-label">DEVELOPMENT EXAMPLE / A LOST ACKNOWLEDGEMENT</p>
+        <h3>Send again. Keep one reading.</h3>
+        <p>
+          A measurement can reach the database even when its acknowledgement never reaches the device. The local queue
+          model and ingestion code are tested together: resend that measurement, keep a single database record, then
+          remove only the readings that have been acknowledged.
+        </p>
+        <p class="note">
+          The production ESP32 firmware foundation has native tests, simulated-probe checks and an ESP32 build verified
+          in CI. The cloud has since acknowledged the first bench samples; real flash power-loss recovery and continuous
+          operation in the garden remain unverified.
+        </p>
+      </div>
+      <div class="engineering-note firmware-example" aria-labelledby="firmware-example-title">
+        <p class="small-label">FIRMWARE / C++17</p>
+        <h3 id="firmware-example-title">A timeout stays a timeout.</h3>
+        <p>
+          This is an actual excerpt from the shared firmware module used by the bench diagnostic. A complete response
+          goes to validation; a timeout or transport fault returns an explicit error.
+        </p>
+        <p class="note">modbus_rtu.cpp · readRegisters</p>
+        <Code
+          code={firmwareExample}
+          lang="cpp"
+          themes={{ light: 'github-light', dark: 'github-dark' }}
+          tabindex="0"
+          aria-labelledby="firmware-example-title"
+          data-firmware-code="true"
+        />
+        <p class="note">
+          The separate decoder checks CRC, address, function and frame length before exposing registers. These checks do
+          not establish calibration or continuous operation.
+        </p>
+      </div>
+      <p>
+        The cloud workspace uses Supabase authentication and owner-scoped database access. A separate public projection
+        exposes only the selected garden data; exact coordinates, private diary entries, alerts and calibration notes
+        stay outside it. The owner can disable publication. Demo values never become real sensor records, and Live shows
+        a waiting state when no current readings are available.
+      </p>
+      <p>
+        I define the requirements and expected behaviour, carry out bench checks and decide which results are supported
+        by the evidence.
+      </p>
+      <p class="stack">Supabase / PostgreSQL · Access rules · Idempotent ingestion · Local automated checks</p>
+      <p class="note">
+        The app and cloud services are online. Calibration, continuous physical monitoring in the garden and power-loss
+        recovery remain unverified. Watering thresholds remain preliminary; automatic irrigation is not active.
       </p>
     </section>
 
@@ -640,17 +715,17 @@ const hardwareGallery = [
           </p>
         </li>
         <li>
-          <strong>Periodic readings next</strong><p>
-            The first single-probe responses are confirmed. Next, verify periodic physical readings and the Mac display.
-            Local software and ESP32 build checks are complete for a candidate; the new periodic version has not been
-            physically accepted.
+          <strong>Bench path confirmed</strong><p>
+            TH and THP responded together on one RS485 bus, each at its own address. Running on 12 V with USB unplugged,
+            the ESP32-S3 sent its first samples over Wi-Fi and received an acknowledgement. A firmware update over Wi-Fi
+            was also confirmed.
           </p>
         </li>
         <li>
-          <strong>Connect and observe</strong><p>
-            Local module monitoring and phone-based Wi-Fi setup are being planned; they are not available features.
-            Later, verify device-to-cloud delivery, calibration and field operation before comparing both garden
-            locations and reviewing watering thresholds.
+          <strong>Longer lawn trial next</strong><p>
+            First I want to compare both probes in the same moist soil. Once installed on the lawn, they will help me
+            see how quickly the sunny patch dries compared with the shaded one. Calibration, continuous operation and
+            watering thresholds still need to be verified.
           </p>
         </li>
         <li>
@@ -674,8 +749,8 @@ const hardwareGallery = [
         </div>
       </div>
       <p class="note">
-        Project snapshot: 18 November 2026 · Initial TH bench responses confirmed · Physical readings not yet connected
-        to Live · Demo uses simulated data
+        Project snapshot: 21 November 2026 · TH and THP tested together on the bench · First samples acknowledged in the
+        cloud · Not yet installed on the lawn · Demo uses simulated data
       </p>
     </section>
   </div>
@@ -689,10 +764,6 @@ const hardwareGallery = [
   .lawn-notes {
     font-family: var(--body-font, 'IBM Plex Sans', sans-serif);
   }
-  .lawn-heading > a {
-    font: 12px var(--note-font);
-    color: inherit;
-  }
   .folio-label,
   .small-label {
     font: 10px/1.8 var(--note-font);
@@ -702,11 +773,16 @@ const hardwareGallery = [
   .folio-label {
     margin-top: 24px;
   }
+  .eyebrow {
+    margin: 18px 0 0;
+    font: 13px/1.6 var(--note-font);
+    color: #39776c;
+  }
   h1 {
-    font:
-      48px/1.2 'MyFont',
-      monospace;
-    margin: 24px 0;
+    font: 600 clamp(30px, 6.5vw, 44px)/1.15 var(--body-font);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 10px 0 18px;
   }
   h2 {
     font: 24px/1.4 var(--note-font);
@@ -721,22 +797,31 @@ const hardwareGallery = [
     font-size: 16px;
     line-height: 1.8;
   }
-  .lead {
-    font-size: 23px;
+  .lede {
+    font-size: 20px;
     line-height: 1.5;
-    margin-top: 24px;
+    margin: 0 0 8px;
   }
-  .project-state {
+  .body-copy {
+    margin: 0;
+    opacity: 0.85;
+  }
+  .section-nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-    font: 12px/1.6 var(--note-font);
-    color: #39776c;
+    gap: 0 24px;
+    margin: 28px 0 0;
+    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   }
-  .project-state span {
-    border: 1px solid currentColor;
-    padding: 5px 8px;
+  .section-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: 12px/1.5 var(--note-font);
+    text-decoration: none;
+  }
+  .section-nav a:hover {
+    text-decoration: underline;
   }
   .project-actions {
     display: flex;
@@ -794,16 +879,125 @@ const hardwareGallery = [
     margin: 0;
     min-width: 0;
   }
-  .bench-gallery > figure:first-child {
-    grid-column: 1 / -1;
-  }
-  .software-gallery img {
+  .software-gallery img,
+  .bench-story img[role='button'],
+  .service-board img {
     border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
     cursor: zoom-in;
   }
-  .software-gallery img:focus-visible {
+  .software-gallery img:focus-visible,
+  .bench-story img[role='button']:focus-visible,
+  .service-board img:focus-visible {
     outline: 2px solid #39776c;
     outline-offset: 3px;
+  }
+  .bench-story figure {
+    margin: 0;
+    min-width: 0;
+  }
+  .bench-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 28px;
+    align-items: center;
+    margin: 24px 0 0;
+  }
+  .milestones {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .milestones li {
+    position: relative;
+    padding: 0 0 16px 20px;
+    border-left: 2px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
+  .milestones li:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+  .milestones li::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: -5.5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #39776c;
+  }
+  .milestones p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .milestones .milestone-date {
+    font: 11px/1.6 var(--note-font);
+    opacity: 0.75;
+  }
+  .milestones h4 {
+    margin: 2px 0 4px;
+    font: 600 16px/1.4 var(--body-font);
+  }
+  .pot-trial {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .pot-illustration {
+    flex: none;
+    width: clamp(64px, 14vw, 96px);
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+  .pot-illustration img {
+    display: block;
+    width: 200%;
+    height: auto;
+    max-width: none;
+    transform: translateX(-50%);
+  }
+  :global(html.dark) .pot-illustration img {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  .reading-path {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin: 22px 0;
+    padding: 12px 16px;
+    border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    background: color-mix(in srgb, #39776c 4%, transparent);
+    font: 12px/1.6 var(--note-font);
+  }
+  .reading-path span {
+    white-space: nowrap;
+  }
+  .reading-path i {
+    font-style: normal;
+    color: #39776c;
+  }
+  .detail-photos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .detail-photos img {
+    aspect-ratio: 1.6;
+    object-fit: cover;
+  }
+  .trust-split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 28px;
+    align-items: center;
+    margin: 0 0 12px;
+  }
+  .service-board {
+    margin: 0;
+    min-width: 0;
   }
   figcaption {
     font: 10px/1.8 var(--note-font);
@@ -1022,8 +1216,12 @@ const hardwareGallery = [
     font-size: 13px;
     margin: 0;
   }
-  :global(html.dark) .project-state {
+  :global(html.dark) .eyebrow,
+  :global(html.dark) .reading-path i {
     color: #aed1c2;
+  }
+  :global(html.dark) .milestones li::before {
+    background: #aed1c2;
   }
   :global(html.dark) .roadmap li::marker {
     color: #aed1c2;
@@ -1044,19 +1242,25 @@ const hardwareGallery = [
     .hardware-photo figcaption {
       padding: 12px;
     }
-    h1 {
-      font-size: 38px;
-    }
     h2 {
       font-size: 21px;
     }
-    .lead {
-      font-size: 20px;
+    .lede {
+      font-size: 18px;
     }
     .feature-grid,
-    .software-gallery {
+    .software-gallery,
+    .bench-grid,
+    .trust-split {
       grid-template-columns: 1fr;
       gap: 20px;
+    }
+    .section-nav {
+      gap: 0 16px;
+    }
+    .reading-path {
+      gap: 6px 9px;
+      padding: 10px 12px;
     }
     .architecture {
       padding: 14px;
@@ -1069,6 +1273,29 @@ const hardwareGallery = [
     }
     .engineering-note {
       padding: 16px 18px;
+    }
+  }
+  @media (max-width: 440px) {
+    .eyebrow {
+      margin-top: 4px;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 25px;
+      margin: 4px 0 10px;
+    }
+    .lede {
+      font-size: 16px;
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+    .body-copy {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .detail-photos {
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
   }
 </style>

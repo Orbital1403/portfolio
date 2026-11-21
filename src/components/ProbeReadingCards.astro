@@ -1,0 +1,230 @@
+---
+// Two separate bench trials, shown side by side; the grass and roots are an illustration.
+const image = '/demos/my-garden/assets/root-zone-DyAdQVIP.png'
+const probes = [
+  {
+    name: 'TH probe',
+    trial: 'Soil after wetting',
+    date: '17 Nov 2026',
+    datetime: '2026-11-17',
+    title:
+      'TH probe — soil after wetting, 17 November 2026. Temperature 21.1 °C, moisture channel 21.4 %. The grass and roots are an illustration.',
+    alt: 'TH probe reading, 17 November 2026, beside an illustrated soil cross section with grass and roots',
+    readings: [
+      ['Temperature', '21.1 °C'],
+      ['Moisture channel', '21.4 %'],
+    ],
+  },
+  {
+    name: 'THP probe',
+    trial: 'First reading in a pot',
+    date: '19 Nov 2026',
+    datetime: '2026-11-19',
+    title:
+      'THP probe — first reading in a pot, 19 November 2026. Temperature 22.6 °C, moisture channel 19.4 %, pH 6.5. The grass and roots are an illustration.',
+    alt: 'THP probe reading, 19 November 2026, beside an illustrated soil cross section with grass and roots',
+    readings: [
+      ['Temperature', '22.6 °C'],
+      ['Moisture channel', '19.4 %'],
+      ['pH', '6.5'],
+    ],
+  },
+]
+---
+
+<section class="probe-readings" aria-labelledby="probe-pair-title">
+  <div class="pair-heading">
+    <h2 id="probe-pair-title">Readings from both probes</h2>
+    <p>Separate soil trials</p>
+  </div>
+  <div class="root-pair">
+    {
+      probes.map((probe, index) => (
+        <figure class="root-card" data-probe={probe.name.split(' ')[0]} data-gallery-scope>
+          <figcaption class="root-heading">
+            <strong>{probe.name}</strong>
+            <span class="trial-name">{probe.trial}</span>
+            <time datetime={probe.datetime}>{probe.date}</time>
+          </figcaption>
+          <div class="root-body">
+            <img
+              src={image}
+              width="1254"
+              height="1254"
+              alt={probe.alt}
+              fetchpriority="high"
+              decoding="async"
+              data-group="grgagrow-readings"
+              data-index={index}
+              data-title={probe.title}
+              tabindex="0"
+              role="button"
+              aria-label={`Enlarge ${probe.alt}`}
+            />
+            <dl class="root-readings">
+              {probe.readings.map(([label, value]) => (
+                <div>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .probe-readings {
+    --reading-border: color-mix(in srgb, currentColor 22%, transparent);
+    min-width: 0;
+    margin: 30px 0 8px;
+  }
+  .pair-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin-bottom: 12px;
+  }
+  .pair-heading h2 {
+    margin: 0;
+    font: 600 18px/1.35 var(--body-font);
+  }
+  .pair-heading p {
+    margin: 0;
+    font: 11px/1.5 var(--note-font);
+    color: var(--note-color);
+  }
+  .root-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(8px, 2vw, 16px);
+  }
+  .root-card {
+    min-width: 0;
+    margin: 0;
+    padding: clamp(8px, 2.4vw, 16px);
+    container-type: inline-size;
+    border: 1px solid var(--reading-border);
+    background: color-mix(in srgb, #39776c 5%, transparent);
+  }
+  .root-heading {
+    display: grid;
+    gap: 2px;
+    margin: 0 0 10px;
+    font: inherit;
+    opacity: 1;
+  }
+  .root-heading strong {
+    font: 600 clamp(15px, 4.2vw, 20px)/1.25 var(--body-font);
+  }
+  .trial-name {
+    font: 13px/1.4 var(--body-font);
+  }
+  .root-heading time {
+    font: 11px/1.5 var(--note-font);
+    color: var(--note-color);
+  }
+  .root-body {
+    display: grid;
+    align-items: start;
+    gap: 10px;
+  }
+  .root-body img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    background: #f6f5ee;
+    border: 1px solid var(--reading-border);
+    cursor: zoom-in;
+  }
+  .root-body img:focus-visible {
+    outline: 2px solid #39776c;
+    outline-offset: 3px;
+  }
+  .root-readings {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-width: 0;
+    margin: 0;
+  }
+  .root-readings > div + div {
+    border-top: 1px solid var(--reading-border);
+    padding-top: 6px;
+  }
+  dt {
+    font: 12px/1.3 var(--body-font);
+    color: var(--note-color);
+  }
+  dd {
+    margin: 2px 0 0;
+    font: 700 clamp(17px, 4.8vw, 24px)/1.1 var(--body-font);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: #2e6055;
+  }
+  :global(html.dark) dd {
+    color: #aed1c2;
+  }
+  @container (min-width: 290px) {
+    .root-body {
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.8fr);
+    }
+  }
+  @media (max-width: 440px) {
+    .probe-readings {
+      margin: 16px 0 4px;
+    }
+    .pair-heading {
+      gap: 0 10px;
+      margin-bottom: 8px;
+    }
+    .pair-heading h2 {
+      font-size: 15px;
+    }
+    .root-pair {
+      gap: 8px;
+    }
+    .root-card {
+      padding: 8px;
+    }
+    .root-heading {
+      gap: 0;
+      margin-bottom: 6px;
+    }
+    .root-heading strong {
+      font-size: 15px;
+    }
+    .trial-name {
+      font-size: 12px;
+      line-height: 1.3;
+    }
+    .root-heading time {
+      font-size: 10px;
+      line-height: 1.4;
+    }
+    .root-body {
+      gap: 6px;
+    }
+    dt {
+      font-size: 11px;
+    }
+    dd {
+      margin-top: 1px;
+      font-size: 17px;
+    }
+    .root-readings {
+      gap: 4px;
+    }
+    .root-readings > div + div {
+      padding-top: 4px;
+    }
+  }
+</style>
