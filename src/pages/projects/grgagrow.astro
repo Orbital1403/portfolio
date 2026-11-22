@@ -248,7 +248,7 @@ const hardwareGallery = [
 
 <LayoutDefault
   image="/images/projects/smart-lawn/grgagrow-visual-sensors.jpg"
-  imageAlt="grgaGrow garden monitoring demo with illustrated root zones, soil moisture and temperature readings"
+  imageAlt="grgaGrow garden monitoring interface with illustrated root zones, soil moisture and temperature readings"
   imageWidth={1265}
   imageHeight={712}
   title="grgaGrow — Smart garden technology — Gordan Grgić"
@@ -270,21 +270,18 @@ const hardwareGallery = [
         to the cloud. Next, the probes go into the lawn.
       </p>
       <div class="project-actions">
-        <a class="demo-link" href="/demos/my-garden/?mode=demo" target="_blank" rel="noopener noreferrer"
-          >Explore the demo ↗</a
-        >
         <a
           class="demo-link live-link"
           href="/demos/my-garden/?public=grgagrow"
           target="_blank"
-          rel="noopener noreferrer">View Live garden ↗</a
+          rel="noopener noreferrer">Follow live readings ↗</a
         >
         <a href="/demos/my-garden/?mode=live">Owner sign-in →</a>
         <a href="#lawn-hardware">Explore the hardware ↓</a>
       </div>
       <p class="note">
-        Public Live: shared garden context, weather and sun/shade; field readings follow the installation. Demo:
-        simulated readings. Both need no account. Owner sign-in opens your private workspace.
+        Public Live: readings from my garden as they arrive, with weather and sun/shade. No account needed. Owner
+        sign-in opens the private workspace.
       </p>
     </header>
 
@@ -310,8 +307,60 @@ const hardwareGallery = [
       ]}
     />
 
+    <section aria-labelledby="lawn-site">
+      <p class="folio-label">01 / MEASUREMENTS IN THE LAWN</p>
+      <h2 id="lawn-site">Measurements in the lawn.</h2>
+      <figure class="lawn-cover">
+        <img
+          src="/images/projects/smart-lawn/lawn.jpg"
+          alt="My 49 square metre lawn with a robotic mower, the future test site for the two soil probes"
+          width="1600"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+          data-group="cover"
+        />
+        <figcaption>
+          THE TEST SITE / My 49 m² lawn. The probes go in next; placement and cable routes must also suit the robotic
+          mower.
+        </figcaption>
+      </figure>
+      <p>
+        This is the part I enjoy: connecting the interface to something physical, making the measurements
+        understandable, and checking the whole path from a sensor in the ground to a decision on the screen.
+      </p>
+      <div class="live-soon">
+        <p class="small-label">LIVE READINGS / STARTING SOON</p>
+        <p>
+          The two probes are going into the lawn now. Once they are buried, their soil moisture and temperature appear
+          in public Live, so you can follow the readings from my garden as they arrive.
+        </p>
+        <a
+          class="demo-link live-link"
+          href="/demos/my-garden/?public=grgagrow"
+          target="_blank"
+          rel="noopener noreferrer">Follow the live readings ↗</a
+        >
+      </div>
+      <p>
+        The idea behind grgaGrow came from a simple observation: gardens are often watered too much or too little. Water
+        is precious, and climate change makes using it thoughtfully even more important. I wanted to explore how a
+        small, smart and affordable monitoring system could help people understand what their soil needs and avoid
+        unnecessary watering.
+      </p>
+      <p>
+        The system can also be extended with automatic irrigation. Adding a controlled valve and a control module could
+        let grgaGrow water the garden based on soil readings and weather information. This is a planned next stage,
+        following reliable monitoring and hardware testing.
+      </p>
+      <p>
+        I still water the lawn manually. Sun, shade and soil conditions can make nearby areas behave differently. I want
+        to compare how quickly they dry, how the soil temperature changes, and how long water takes to reach a probe.
+      </p>
+    </section>
+
     <section aria-labelledby="lawn-hardware">
-      <p class="folio-label">01 / FROM BENCH TO FIELD</p>
+      <p class="folio-label">02 / WORK ON THE BENCH</p>
       <h2 id="lawn-hardware">Two probes. One bus. Readings in the cloud.</h2>
       <p>
         The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
@@ -334,6 +383,65 @@ const hardwareGallery = [
           ))
         }
       </ol>
+      <h3 id="lawn-bench">First connections on the bench.</h3>
+      <div
+        class="software-gallery bench-gallery"
+        aria-label="Photographs from the first grgaGrow bench tests"
+        data-gallery-scope
+      >
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/bench/bench-setup-front.webp"
+            alt="Edited photograph of the first grgaGrow bench setup with an ESP32 controller, separate supply and one TH probe in water"
+            width="1536"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-bench"
+            data-index="0"
+            data-title="First bench setup — one controller and one TH probe during a water test. Edited photograph."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the bench setup photograph"
+          />
+          <figcaption>FIRST BENCH SETUP / One ESP32 controller and one TH probe during a water test.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/bench/controller-current.webp"
+            alt="Edited bench photograph showing the controller and a multimeter displaying 48.31 mA DC"
+            width="1448"
+            height="1086"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-bench"
+            data-index="1"
+            data-title="Controller current check — approximately 48.3 mA in this test, not the maximum system current. Edited photograph."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the current measurement photograph"
+          />
+          <figcaption>CURRENT CHECK / Approximately 48.3 mA in this test; not a maximum-current rating.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/bench/controller-led.webp"
+            alt="Original close-up photograph of the controller LED with a naturally out-of-focus workbench behind it"
+            width="1600"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-bench"
+            data-index="2"
+            data-title="Controller LED — original focus from the first bench session."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the controller LED photograph"
+          />
+          <figcaption>CONTROLLER DETAIL / The original focus of the bench photograph is preserved.</figcaption>
+        </figure>
+      </div>
+      <BenchResults />
       <div
         class="architecture"
         aria-label="Planned data path: two soil probes connect via RS485 and Modbus RTU to an ESP32 controller, then via Wi-Fi and HTTPS to ingestion, PostgreSQL and the authenticated My Garden app."
@@ -411,15 +519,21 @@ const hardwareGallery = [
         </p>
       </div>
 
-      <p class="note">
-        Hardware snapshot: 21 November 2026 · Two probes uploading from the bench · OTA updates working · Field
-        installation in progress.
-      </p>
-    </section>
-
-    <section aria-labelledby="lawn-probe-service">
-      <p class="folio-label">02 / AN INTERNAL TOOL</p>
-      <h2 id="lawn-probe-service">An internal tool for the probes.</h2>
+      <div class="engineering-note">
+        <p class="small-label">BEFORE THE FIRST FIELD READING</p>
+        <h3>A response is evidence. Accuracy needs more.</h3>
+        <p>
+          On 17 November, separate single-query tests returned valid responses with one probe in water, dry soil and the
+          same soil after wetting. The moisture register changed after wetting. Temperature and moisture units follow
+          the seller manual; these checks do not establish calibration, accuracy or reliable long-term operation.
+        </p>
+        <p>
+          On 21 November, the production firmware ran on the 12 V adapter with both probes reporting good readings in
+          air and uploads acknowledged by the cloud. Readings in air are not soil measurements. Cable routing,
+          protection, sealed joints and suitability for burial are checked during installation.
+        </p>
+      </div>
+      <h3 id="lawn-probe-service" class="block-title">An internal tool for the probes.</h3>
       <p>
         To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
         local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
@@ -458,18 +572,82 @@ const hardwareGallery = [
           />
         </details>
       </div>
+      <p class="note">
+        Hardware snapshot: 21 November 2026 · Two probes uploading from the bench · OTA updates working · Field
+        installation in progress.
+      </p>
+    </section>
+
+    <section aria-labelledby="lawn-equipment">
+      <p class="folio-label">03 / EQUIPMENT</p>
+      <h2 id="lawn-equipment">The equipment behind the readings.</h2>
+      <p class="note">
+        Reference photos below show component types and assembly accessories. Models, dimensions and pictured quantities
+        may differ from the ordered parts.
+      </p>
+      {
+        [hardwareGallery.slice(0, 5), hardwareGallery.slice(5)].map((items, group) => {
+          const gallery = (
+            <div class="hardware-gallery">
+              {items.map((item, index) => (
+                <figure class="hardware-photo">
+                  <img
+                    src={`/images/projects/smart-lawn/hardware/${item.image}`}
+                    width={item.width}
+                    height={item.height}
+                    alt={item.alt}
+                    loading="lazy"
+                    decoding="async"
+                    data-index={group === 0 ? index : index + 5}
+                    data-group="grgagrow-hardware"
+                    data-title={`${item.title} — ${item.detail}. Reference image of this component type.`}
+                    tabindex="0"
+                    role="button"
+                    aria-label={`Enlarge ${item.title}`}
+                  />
+                  <figcaption>
+                    <h3>{item.title}</h3>
+                    <p>{item.detail}</p>
+                    {'description' in item && <p class="hardware-description">{item.description}</p>}
+                    <a href={item.source} target="_blank" rel="noopener noreferrer">
+                      Photo: {item.vendor} ↗
+                    </a>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          )
+          return group === 0 ? (
+            gallery
+          ) : (
+            <details class="hardware-accessories">
+              <summary>Assembly accessories and specifications</summary>
+              <p class="note">
+                The assembly kit includes UK2.5B terminals, 120 Ω / 0.5 W termination resistors, five inline 1 A fuse
+                holders and 5.5 × 2.1 mm DC adapters. Fuse selection follows measured demand; termination depends on the
+                final cable route and the devices.
+              </p>
+              <p class="note">
+                The enclosure kit includes a 230 × 150 × 85 mm box, two 10 cm DIN rails, 2 m of 4 × 0.5 mm² wire and
+                five PG7 glands. Cable fit, strain relief and sealing still need checking.
+              </p>
+              {gallery}
+            </details>
+          )
+        })
+      }
     </section>
 
     <figure class="dashboard-figure">
       <a
-        href="/demos/my-garden/?mode=demo"
+        href="/demos/my-garden/?public=grgagrow"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Open the grgaGrow simulated demo in a new tab"
+        aria-label="Open grgaGrow public Live in a new tab"
       >
         <img
           src="/images/projects/smart-lawn/grgagrow-visual-sensors.jpg"
-          alt="grgaGrow Demo showing two visual soil sensor cards with grass and root illustrations, simulated moisture and temperature readings, and a Visual or Compact switch"
+          alt="grgaGrow interface showing two visual soil sensor cards with grass and root illustrations, simulated moisture and temperature readings, and a Visual or Compact switch"
           width="1265"
           height="712"
           loading="lazy"
@@ -477,23 +655,23 @@ const hardwareGallery = [
         />
       </a>
       <figcaption>
-        THE VISUAL INTERFACE / grgaGrow, 30 October 2026. Demo readings are simulated; grass and roots are illustrative.
+        THE VISUAL INTERFACE / grgaGrow, 30 October 2026. Values in this screenshot are simulated; grass and roots are
+        illustrative.
       </figcaption>
     </figure>
 
     <section aria-labelledby="lawn-software">
-      <p class="folio-label">03 / SOFTWARE YOU CAN EXPLORE</p>
-      <h2 id="lawn-software">One garden. Three ways to explore it.</h2>
+      <p class="folio-label">04 / THE APP</p>
+      <h2 id="lawn-software">One garden. Live and private.</h2>
       <p>
-        <strong>Demo</strong> follows the published garden setup with simulated soil readings and example activities.
-        <strong>Public Live</strong> shows the measurements and garden context the owner chooses to share. Both are read-only
-        and open without an account. The <strong>private owner workspace</strong> adds settings, longer history, the care
-        diary, alerts and sensor setup.
+        <strong>Public Live</strong> shows the measurements and garden context I choose to share. It is read-only and opens
+        without an account. The <strong>private owner workspace</strong> adds settings, longer history, the care diary, alerts
+        and sensor setup.
       </p>
       <p>
         Switch between <strong>Visual</strong> sensor cards with grass and roots and a <strong>Compact</strong> view of the
-        readings in both Demo and public Live. The illustration adds context; it does not measure root growth or indicate
-        soil conditions when readings are unavailable.
+        readings in public Live. The illustration adds context; it does not measure root growth or indicate soil conditions
+        when readings are unavailable.
       </p>
       <div class="feature-grid">
         <article>
@@ -525,8 +703,8 @@ const hardwareGallery = [
           <h3>A diary beside the graph.</h3>
           <p>
             Save garden zones and sensor positions, then log watering, observed rain and completed mowing alongside
-            moisture changes. Scheduled mowing stays separate until completion is recorded. Demo uses fictional events;
-            the owner’s diary stays private.
+            moisture changes. Scheduled mowing stays separate until completion is recorded. The owner’s diary stays
+            private.
           </p>
         </article>
         <article>
@@ -590,7 +768,7 @@ const hardwareGallery = [
     </section>
 
     <section aria-labelledby="lawn-reliability">
-      <p class="folio-label">04 / THE ENGINEERING BEHIND THE SCREEN</p>
+      <p class="folio-label">05 / THE ENGINEERING BEHIND THE SCREEN</p>
       <h2 id="lawn-reliability">What if a reading never arrives?</h2>
       <p>
         A reassuring number is only useful if it can be trusted. The app checks freshness and time quality, preserves
@@ -652,196 +830,14 @@ const hardwareGallery = [
       </p>
     </section>
 
-    <section aria-labelledby="lawn-evidence">
-      <p class="folio-label">05 / BENCH EVIDENCE & PARTS</p>
-      <h2 id="lawn-evidence">The bench, the parts and the evidence.</h2>
-      <p>
-        The first photographs, bench readings and every component behind the system, for readers who want the details.
-      </p>
-      <details class="evidence-block">
-        <summary>Bench photographs and first readings</summary>
-        <h3 id="lawn-bench">First connections on the bench.</h3>
-        <div
-          class="software-gallery bench-gallery"
-          aria-label="Photographs from the first grgaGrow bench tests"
-          data-gallery-scope
-        >
-          <figure>
-            <img
-              src="/images/projects/smart-lawn/bench/bench-setup-front.webp"
-              alt="Edited photograph of the first grgaGrow bench setup with an ESP32 controller, separate supply and one TH probe in water"
-              width="1536"
-              height="1024"
-              loading="lazy"
-              decoding="async"
-              data-group="grgagrow-bench"
-              data-index="0"
-              data-title="First bench setup — one controller and one TH probe during a water test. Edited photograph."
-              tabindex="0"
-              role="button"
-              aria-label="Enlarge the bench setup photograph"
-            />
-            <figcaption>FIRST BENCH SETUP / One ESP32 controller and one TH probe during a water test.</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="/images/projects/smart-lawn/bench/controller-current.webp"
-              alt="Edited bench photograph showing the controller and a multimeter displaying 48.31 mA DC"
-              width="1448"
-              height="1086"
-              loading="lazy"
-              decoding="async"
-              data-group="grgagrow-bench"
-              data-index="1"
-              data-title="Controller current check — approximately 48.3 mA in this test, not the maximum system current. Edited photograph."
-              tabindex="0"
-              role="button"
-              aria-label="Enlarge the current measurement photograph"
-            />
-            <figcaption>CURRENT CHECK / Approximately 48.3 mA in this test; not a maximum-current rating.</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="/images/projects/smart-lawn/bench/controller-led.webp"
-              alt="Original close-up photograph of the controller LED with a naturally out-of-focus workbench behind it"
-              width="1600"
-              height="1200"
-              loading="lazy"
-              decoding="async"
-              data-group="grgagrow-bench"
-              data-index="2"
-              data-title="Controller LED — original focus from the first bench session."
-              tabindex="0"
-              role="button"
-              aria-label="Enlarge the controller LED photograph"
-            />
-            <figcaption>CONTROLLER DETAIL / The original focus of the bench photograph is preserved.</figcaption>
-          </figure>
-        </div>
-        <BenchResults />
-        <div class="engineering-note">
-          <p class="small-label">BEFORE THE FIRST FIELD READING</p>
-          <h3>A response is evidence. Accuracy needs more.</h3>
-          <p>
-            On 17 November, separate single-query tests returned valid responses with one probe in water, dry soil and
-            the same soil after wetting. The moisture register changed after wetting. Temperature and moisture units
-            follow the seller manual; these checks do not establish calibration, accuracy or reliable long-term
-            operation.
-          </p>
-          <p>
-            On 21 November, the production firmware ran on the 12 V adapter with both probes reporting good readings in
-            air and uploads acknowledged by the cloud. Readings in air are not soil measurements. Cable routing,
-            protection, sealed joints and suitability for burial are checked during installation.
-          </p>
-        </div>
-      </details>
-      <details class="evidence-block">
-        <summary>Components and reference photos</summary>
-        <p class="note">
-          Reference photos below show component types and assembly accessories. Models, dimensions and pictured
-          quantities may differ from the ordered parts.
-        </p>
-        {
-          [hardwareGallery.slice(0, 5), hardwareGallery.slice(5)].map((items, group) => {
-            const gallery = (
-              <div class="hardware-gallery">
-                {items.map((item, index) => (
-                  <figure class="hardware-photo">
-                    <img
-                      src={`/images/projects/smart-lawn/hardware/${item.image}`}
-                      width={item.width}
-                      height={item.height}
-                      alt={item.alt}
-                      loading="lazy"
-                      decoding="async"
-                      data-index={group === 0 ? index : index + 5}
-                      data-group="grgagrow-hardware"
-                      data-title={`${item.title} — ${item.detail}. Reference image of this component type.`}
-                      tabindex="0"
-                      role="button"
-                      aria-label={`Enlarge ${item.title}`}
-                    />
-                    <figcaption>
-                      <h3>{item.title}</h3>
-                      <p>{item.detail}</p>
-                      {'description' in item && <p class="hardware-description">{item.description}</p>}
-                      <a href={item.source} target="_blank" rel="noopener noreferrer">
-                        Photo: {item.vendor} ↗
-                      </a>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            )
-            return group === 0 ? (
-              gallery
-            ) : (
-              <details class="hardware-accessories">
-                <summary>Assembly accessories and specifications</summary>
-                <p class="note">
-                  The assembly kit includes UK2.5B terminals, 120 Ω / 0.5 W termination resistors, five inline 1 A fuse
-                  holders and 5.5 × 2.1 mm DC adapters. Fuse selection follows measured demand; termination depends on
-                  the final cable route and the devices.
-                </p>
-                <p class="note">
-                  The enclosure kit includes a 230 × 150 × 85 mm box, two 10 cm DIN rails, 2 m of 4 × 0.5 mm² wire and
-                  five PG7 glands. Cable fit, strain relief and sealing still need checking.
-                </p>
-                {gallery}
-              </details>
-            )
-          })
-        }
-      </details>
-    </section>
-
-    <section aria-labelledby="lawn-site">
-      <p class="folio-label">06 / THE REAL GARDEN</p>
-      <h2 id="lawn-site">A practical question, close to home.</h2>
-      <p>
-        The idea behind grgaGrow came from a simple observation: gardens are often watered too much or too little. Water
-        is precious, and climate change makes using it thoughtfully even more important. I wanted to explore how a
-        small, smart and affordable monitoring system could help people understand what their soil needs and avoid
-        unnecessary watering.
-      </p>
-      <p>
-        The system can also be extended with automatic irrigation. Adding a controlled valve and a control module could
-        let grgaGrow water the garden based on soil readings and weather information. This is a planned next stage,
-        following reliable monitoring and hardware testing.
-      </p>
-      <p>
-        I still water the lawn manually. Sun, shade and soil conditions can make nearby areas behave differently. I want
-        to compare how quickly they dry, how the soil temperature changes, and how long water takes to reach a probe.
-      </p>
-      <figure class="lawn-cover">
-        <img
-          src="/images/projects/smart-lawn/lawn.jpg"
-          alt="My 49 square metre lawn with a robotic mower, the future test site for the two soil probes"
-          width="1600"
-          height="1200"
-          loading="lazy"
-          decoding="async"
-          data-group="cover"
-        />
-        <figcaption>
-          THE TEST SITE / My 49 m² lawn. The probes go in next; placement and cable routes must also suit the robotic
-          mower.
-        </figcaption>
-      </figure>
-      <p>
-        This is the part I enjoy: connecting the interface to something physical, making the measurements
-        understandable, and checking the whole path from a sensor in the ground to a decision on the screen.
-      </p>
-    </section>
-
     <section aria-labelledby="lawn-next">
-      <p class="folio-label">07 / CURRENT STATE & NEXT STEPS</p>
+      <p class="folio-label">06 / CURRENT STATE & NEXT STEPS</p>
       <h2 id="lawn-next">Measure first. Automate later.</h2>
       <ol class="roadmap">
         <li>
           <strong>Online now</strong><p>
-            Public Demo and Live views, a private cloud workspace, history, weekly reports, a garden diary, alerts,
-            weather and sun/shade. Software behaviour is covered by local automated checks.
+            A public Live view, a private cloud workspace, history, weekly reports, a garden diary, alerts, weather and
+            sun/shade. Software behaviour is covered by local automated checks.
           </p>
         </li>
         <li>
@@ -865,20 +861,17 @@ const hardwareGallery = [
       </ol>
       <div class="closing-demo">
         <div>
-          <h3>Take a look beneath the surface.</h3><p>View the public garden, or explore the simulated demo.</p>
+          <h3>Take a look beneath the surface.</h3><p>Follow the readings from my lawn as they arrive.</p>
         </div>
         <div class="project-actions">
-          <a class="demo-link" href="/demos/my-garden/?mode=demo" target="_blank" rel="noopener noreferrer"
-            >Try demo ↗</a
-          ><a class="demo-link" href="/demos/my-garden/?public=grgagrow" target="_blank" rel="noopener noreferrer"
+          <a class="demo-link" href="/demos/my-garden/?public=grgagrow" target="_blank" rel="noopener noreferrer"
             >View Live ↗</a
           >
           <a href="/demos/my-garden/?mode=live">Owner sign-in →</a>
         </div>
       </div>
       <p class="note">
-        Project snapshot: 21 November 2026 · Two probes uploading from the bench · Field installation in progress · Demo
-        uses simulated data
+        Project snapshot: 22 November 2026 · Two probes uploading from the bench · Field installation in progress
       </p>
     </section>
   </div>
@@ -1166,6 +1159,16 @@ const hardwareGallery = [
   }
   .block-title {
     margin-top: 40px;
+  }
+  .live-soon {
+    margin: 24px 0;
+    padding: 18px 22px;
+    border: 1px solid #39776c;
+    background: color-mix(in srgb, #39776c 6%, transparent);
+  }
+  .live-soon > p:not(.small-label) {
+    margin: 8px 0 16px;
+    font-size: 15px;
   }
   .code-toggle > summary {
     cursor: pointer;
