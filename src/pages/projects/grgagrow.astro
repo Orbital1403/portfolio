@@ -2,6 +2,7 @@
 import { Code } from 'astro:components'
 import BenchResults from '~/components/BenchResults.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import ProbeReadingCards from '~/components/ProbeReadingCards.astro'
 import ProjectOverview from '~/components/ProjectOverview.astro'
 
 const firmwareExample =
@@ -61,7 +62,8 @@ const firmwareFixes = [
 ]
 
 const milestones = [
-  ['17 Nov', 'First response', 'One TH probe answers over RS485 in water and soil.', 'done'],
+  ['17 Nov', 'First response', 'TH probe in wetted soil: 21.1 °C and 21.4 %.', 'done'],
+  ['19 Nov', 'From a glass of water to potting soil', 'THP probe in a pot: 22.6 °C, 19.4 % and pH 6.5.', 'done'],
   ['20 Nov', 'Two probes, one bus', 'TH moved to address 03; both probes read together.', 'done'],
   ['21 Nov', 'Firmware and cloud', 'Production firmware on 12 V, uploads acknowledged, OTA working.', 'done'],
   ['Next', 'Into the lawn', 'Bury both probes, check readings in soil, then calibrate.', 'next'],
@@ -113,7 +115,7 @@ const hardwareGallery = [
     title: 'Moisture + temperature + pH',
     description:
       'The THP probe answers at address 02 and adds experimental pH, valid about five minutes after power-up. Buffer-solution checks are next.',
-    detail: 'Combined probe · Experimental pH',
+    detail: 'Combined probe · pH',
     alt: 'Renke reference image of a multi-parameter soil probe with metal sensing pins',
     source: 'https://www.renkeer.com/product/soil-nutrient-sensor/',
     vendor: 'Renke',
@@ -251,24 +253,18 @@ const hardwareGallery = [
   imageAlt="grgaGrow garden monitoring interface with illustrated root zones, soil moisture and temperature readings"
   imageWidth={1265}
   imageHeight={712}
-  title="grgaGrow — Smart garden technology — Gordan Grgić"
-  description="Explore the grgaGrow cloud app and its ESP32 / RS485 hardware: two soil probes, custom firmware with OTA updates and an internal probe service tool, now on the way from the bench into the garden."
+  title="grgaGrow — When does my lawn actually need water? — Gordan Grgić"
+  description="Two probes, one ESP32 and the first readings sent to the cloud. A soil-monitoring project for my 49 m² lawn."
 >
   <div class="lawn-notes">
     <header class="lawn-heading">
-      <a href="/projects/">← All project notes</a>
-      <p class="folio-label">HARDWARE + SOFTWARE + GARDEN / FIELD NOTES 02</p>
-      <h1>grgaGrow</h1>
-      <p class="project-state">
-        Cloud app online <span>Two probes uploading from the bench</span>
+      <p class="eyebrow"><strong>grgaGrow</strong> / soil monitoring</p>
+      <h1>When does my lawn actually need water?</h1>
+      <p class="lede">I want to see how quickly the soil on my 49 m² lawn dries out in the sun and in the shade.</p>
+      <p class="body-copy">
+        On the workbench, two probes now share one controller. The first readings have reached the cloud over Wi-Fi.
       </p>
-      <p class="lead">A small lawn. A closer look beneath the surface.</p>
-      <p>
-        What started as an idea for watering my 49 m² lawn is becoming <strong>grgaGrow</strong> — a garden app that brings
-        soil history, weather, light and everyday care into one place. The cloud app is online, with public views and a private
-        owner workspace. An ESP32 controller with my own firmware reads two wired probes on the bench and uploads their readings
-        to the cloud. Next, the probes go into the lawn.
-      </p>
+      <ProbeReadingCards />
       <div class="project-actions">
         <a
           class="demo-link live-link"
@@ -276,14 +272,22 @@ const hardwareGallery = [
           target="_blank"
           rel="noopener noreferrer">Follow live readings ↗</a
         >
-        <a href="/demos/my-garden/?mode=live">Owner sign-in →</a>
-        <a href="#lawn-hardware">Explore the hardware ↓</a>
+        <a href="#lawn-hardware">See the bench tests ↓</a>
+        <a href="/projects/">← All project notes</a>
       </div>
       <p class="note">
-        Public Live: readings from my garden as they arrive, with weather and sun/shade. No account needed. Owner
-        sign-in opens the private workspace.
+        The readings so far come from bench tests. Measurements from the lawn follow once the probes are installed. Live
+        opens without an account.
       </p>
     </header>
+
+    <nav class="section-nav" aria-label="Sections">
+      <a href="#lawn-site">In the lawn</a>
+      <a href="#lawn-hardware">On the bench</a>
+      <a href="#lawn-equipment">Equipment</a>
+      <a href="#lawn-software">Garden app</a>
+      <a href="#lawn-next">Next steps</a>
+    </nav>
 
     <ProjectOverview
       id="grgagrow"
@@ -332,8 +336,8 @@ const hardwareGallery = [
       <div class="live-soon">
         <p class="small-label">LIVE READINGS / STARTING SOON</p>
         <p>
-          The two probes are going into the lawn now. Once they are buried, their soil moisture and temperature appear
-          in public Live, so you can follow the readings from my garden as they arrive.
+          The readings so far come from bench tests. The two probes are going into the lawn now; once they are buried,
+          their soil moisture and temperature appear in public Live as they arrive.
         </p>
         <a
           class="demo-link live-link"
@@ -383,6 +387,65 @@ const hardwareGallery = [
           ))
         }
       </ol>
+      <details class="evidence-block" id="lawn-probe-service">
+        <summary>Probe Service, my service tool on the Mac</summary>
+        <p>Over USB, my Mac shows both probes, the Wi-Fi link, the time and the upload queue on one screen.</p>
+        <figure class="service-board">
+          <img
+            src="/images/projects/smart-lawn/bench/service-board-mock.png"
+            alt="The grgaGrow service tool’s Board screen, with mock Wi-Fi, probe and upload status."
+            width="1196"
+            height="817"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-service"
+            data-index="0"
+            data-title="The service tool on the Mac, shown with simulated data."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the service tool screenshot with simulated data"
+          />
+          <figcaption>SIMULATED DATA / The service tool on the Mac, shown with simulated data.</figcaption>
+        </figure>
+        <p>
+          To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
+          local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
+          bootloader and talks to the probes through it. Nothing is written to flash; a power cycle returns the board to
+          its installed firmware.
+        </p>
+        <dl class="tool-tabs">
+          {
+            probeServiceTabs.map(([name, text]) => (
+              <div>
+                <>
+                  <dt>{name}</dt>
+                  <dd>{text}</dd>
+                </>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
+          <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
+          <h3 id="bridge-example-title">Reads are allowed. Writes are locked.</h3>
+          <p>
+            The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
+            register with a value from 1 to 247. Everything else is answered with DENY.
+          </p>
+          <p class="note">bridge-image/main/entry.cpp · allowed (excerpt)</p>
+          <details class="code-toggle">
+            <summary>Show the C++ excerpt</summary>
+            <Code
+              code={bridgeExample}
+              lang="cpp"
+              themes={{ light: 'github-light', dark: 'github-dark' }}
+              tabindex="0"
+              aria-labelledby="bridge-example-title"
+              data-firmware-code="true"
+            />
+          </details>
+        </div>
+      </details>
       <h3 id="lawn-bench">First connections on the bench.</h3>
       <div
         class="software-gallery bench-gallery"
@@ -441,7 +504,22 @@ const hardwareGallery = [
           <figcaption>CONTROLLER DETAIL / The original focus of the bench photograph is preserved.</figcaption>
         </figure>
       </div>
-      <BenchResults />
+      <BenchResults>
+        <details slot="code" class="code-toggle bench-code">
+          <summary>Show the C++ excerpt · modbus_rtu.cpp</summary>
+          <p class="note">
+            An actual excerpt from the shared firmware module. A complete response goes to validation; a timeout or
+            transport fault returns an explicit error.
+          </p>
+          <Code
+            code={firmwareExample}
+            lang="cpp"
+            themes={{ light: 'github-light', dark: 'github-dark' }}
+            tabindex="0"
+            data-firmware-code="true"
+          />
+        </details>
+      </BenchResults>
       <div
         class="architecture"
         aria-label="Planned data path: two soil probes connect via RS485 and Modbus RTU to an ESP32 controller, then via Wi-Fi and HTTPS to ingestion, PostgreSQL and the authenticated My Garden app."
@@ -532,45 +610,6 @@ const hardwareGallery = [
           air and uploads acknowledged by the cloud. Readings in air are not soil measurements. Cable routing,
           protection, sealed joints and suitability for burial are checked during installation.
         </p>
-      </div>
-      <h3 id="lawn-probe-service" class="block-title">An internal tool for the probes.</h3>
-      <p>
-        To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
-        local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
-        bootloader and talks to the probes through it. Nothing is written to flash; a power cycle returns the board to
-        its installed firmware.
-      </p>
-      <dl class="tool-tabs">
-        {
-          probeServiceTabs.map(([name, text]) => (
-            <div>
-              <>
-                <dt>{name}</dt>
-                <dd>{text}</dd>
-              </>
-            </div>
-          ))
-        }
-      </dl>
-      <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
-        <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
-        <h3 id="bridge-example-title">Reads are allowed. Writes are locked.</h3>
-        <p>
-          The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
-          register with a value from 1 to 247. Everything else is answered with DENY.
-        </p>
-        <p class="note">bridge-image/main/entry.cpp · allowed (excerpt)</p>
-        <details class="code-toggle">
-          <summary>Show the C++ excerpt</summary>
-          <Code
-            code={bridgeExample}
-            lang="cpp"
-            themes={{ light: 'github-light', dark: 'github-dark' }}
-            tabindex="0"
-            aria-labelledby="bridge-example-title"
-            data-firmware-code="true"
-          />
-        </details>
       </div>
       <p class="note">
         Hardware snapshot: 21 November 2026 · Two probes uploading from the bench · OTA updates working · Field
@@ -788,30 +827,6 @@ const hardwareGallery = [
           uploads were acknowledged and the queue emptied. Flash durability across a power loss remains unverified.
         </p>
       </div>
-      <div class="engineering-note firmware-example" aria-labelledby="firmware-example-title">
-        <p class="small-label">FIRMWARE / C++17</p>
-        <h3 id="firmware-example-title">A timeout stays a timeout.</h3>
-        <p>
-          This is an actual excerpt from the shared firmware module used by the bench diagnostic. A complete response
-          goes to validation; a timeout or transport fault returns an explicit error.
-        </p>
-        <p class="note">modbus_rtu.cpp · readRegisters</p>
-        <details class="code-toggle">
-          <summary>Show the C++ excerpt</summary>
-          <Code
-            code={firmwareExample}
-            lang="cpp"
-            themes={{ light: 'github-light', dark: 'github-dark' }}
-            tabindex="0"
-            aria-labelledby="firmware-example-title"
-            data-firmware-code="true"
-          />
-        </details>
-        <p class="note">
-          The separate decoder checks CRC, address, function and frame length before exposing registers. These checks do
-          not establish calibration or continuous operation.
-        </p>
-      </div>
       <p>
         The cloud workspace uses Supabase authentication and owner-scoped database access. A separate public projection
         exposes only the selected garden data; exact coordinates, private diary entries, alerts and calibration notes
@@ -867,7 +882,6 @@ const hardwareGallery = [
           <a class="demo-link" href="/demos/my-garden/?public=grgagrow" target="_blank" rel="noopener noreferrer"
             >View Live ↗</a
           >
-          <a href="/demos/my-garden/?mode=live">Owner sign-in →</a>
         </div>
       </div>
       <p class="note">
@@ -885,10 +899,6 @@ const hardwareGallery = [
   .lawn-notes {
     font-family: var(--body-font, 'IBM Plex Sans', sans-serif);
   }
-  .lawn-heading > a {
-    font: 12px var(--note-font);
-    color: inherit;
-  }
   .folio-label,
   .small-label {
     font: 10px/1.8 var(--note-font);
@@ -898,11 +908,16 @@ const hardwareGallery = [
   .folio-label {
     margin-top: 24px;
   }
+  .eyebrow {
+    margin: 18px 0 0;
+    font: 13px/1.6 var(--note-font);
+    color: #39776c;
+  }
   h1 {
-    font:
-      48px/1.2 'MyFont',
-      monospace;
-    margin: 24px 0;
+    font: 600 clamp(30px, 6.5vw, 44px)/1.15 var(--body-font);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 10px 0 18px;
   }
   h2 {
     font: 24px/1.4 var(--note-font);
@@ -917,22 +932,31 @@ const hardwareGallery = [
     font-size: 16px;
     line-height: 1.8;
   }
-  .lead {
-    font-size: 23px;
+  .lede {
+    font-size: 20px;
     line-height: 1.5;
-    margin-top: 24px;
+    margin: 0 0 8px;
   }
-  .project-state {
+  .body-copy {
+    margin: 0;
+    opacity: 0.85;
+  }
+  .section-nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-    font: 12px/1.6 var(--note-font);
-    color: #39776c;
+    gap: 0 24px;
+    margin: 28px 0 0;
+    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   }
-  .project-state span {
-    border: 1px solid currentColor;
-    padding: 5px 8px;
+  .section-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: 12px/1.5 var(--note-font);
+    text-decoration: none;
+  }
+  .section-nav a:hover {
+    text-decoration: underline;
   }
   .project-actions {
     display: flex;
@@ -990,16 +1014,125 @@ const hardwareGallery = [
     margin: 0;
     min-width: 0;
   }
-  .bench-gallery > figure:first-child {
-    grid-column: 1 / -1;
-  }
-  .software-gallery img {
+  .software-gallery img,
+  .bench-story img[role='button'],
+  .service-board img {
     border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
     cursor: zoom-in;
   }
-  .software-gallery img:focus-visible {
+  .software-gallery img:focus-visible,
+  .bench-story img[role='button']:focus-visible,
+  .service-board img:focus-visible {
     outline: 2px solid #39776c;
     outline-offset: 3px;
+  }
+  .bench-story figure {
+    margin: 0;
+    min-width: 0;
+  }
+  .bench-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 28px;
+    align-items: center;
+    margin: 24px 0 0;
+  }
+  .milestones {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .milestones li {
+    position: relative;
+    padding: 0 0 16px 20px;
+    border-left: 2px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
+  .milestones li:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+  .milestones li::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: -5.5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #39776c;
+  }
+  .milestones p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .milestones .milestone-date {
+    font: 11px/1.6 var(--note-font);
+    opacity: 0.75;
+  }
+  .milestones h4 {
+    margin: 2px 0 4px;
+    font: 600 16px/1.4 var(--body-font);
+  }
+  .pot-trial {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .pot-illustration {
+    flex: none;
+    width: clamp(64px, 14vw, 96px);
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+  .pot-illustration img {
+    display: block;
+    width: 200%;
+    height: auto;
+    max-width: none;
+    transform: translateX(-50%);
+  }
+  :global(html.dark) .pot-illustration img {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  .reading-path {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin: 22px 0;
+    padding: 12px 16px;
+    border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    background: color-mix(in srgb, #39776c 4%, transparent);
+    font: 12px/1.6 var(--note-font);
+  }
+  .reading-path span {
+    white-space: nowrap;
+  }
+  .reading-path i {
+    font-style: normal;
+    color: #39776c;
+  }
+  .detail-photos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .detail-photos img {
+    aspect-ratio: 1.6;
+    object-fit: cover;
+  }
+  .trust-split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 28px;
+    align-items: center;
+    margin: 0 0 12px;
+  }
+  .service-board {
+    margin: 0;
+    min-width: 0;
   }
   figcaption {
     font: 10px/1.8 var(--note-font);
@@ -1111,128 +1244,6 @@ const hardwareGallery = [
     text-align: center;
     margin-bottom: 0;
   }
-  .milestones {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    margin: 28px 0;
-    padding: 0;
-    list-style: none;
-    border-top: 2px solid #39776c;
-  }
-  .milestones li {
-    position: relative;
-    min-width: 0;
-    margin: 0;
-    padding: 18px 12px 0 0;
-  }
-  .milestones li::before {
-    content: '';
-    position: absolute;
-    top: -7px;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #39776c;
-  }
-  .milestones li.next::before {
-    background: var(--bg, #fff);
-    border: 2px solid #39776c;
-    box-sizing: border-box;
-  }
-  .milestones time {
-    display: block;
-    font: 10px/1.8 var(--note-font);
-    opacity: 0.7;
-    text-transform: uppercase;
-  }
-  .milestones strong {
-    display: block;
-    font: 700 14px/1.5 var(--note-font);
-  }
-  .milestones small {
-    display: block;
-    margin-top: 4px;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-  .block-title {
-    margin-top: 40px;
-  }
-  .live-soon {
-    margin: 24px 0;
-    padding: 18px 22px;
-    border: 1px solid #39776c;
-    background: color-mix(in srgb, #39776c 6%, transparent);
-  }
-  .live-soon > p:not(.small-label) {
-    margin: 8px 0 16px;
-    font-size: 15px;
-  }
-  .code-toggle > summary {
-    cursor: pointer;
-    margin: 8px 0;
-    font: 13px/1.7 var(--note-font);
-    color: #39776c;
-  }
-  .evidence-block {
-    margin: 20px 0;
-    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-    padding: 16px 0;
-  }
-  .evidence-block > summary {
-    cursor: pointer;
-    font: 700 15px/1.7 var(--note-font);
-  }
-  .evidence-block[open] > summary {
-    margin-bottom: 12px;
-  }
-  .fix-log {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    margin: 24px 0;
-    padding: 0;
-    list-style: none;
-  }
-  .fix-log li {
-    min-width: 0;
-    margin: 0;
-    padding: 16px 18px;
-    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-  }
-  .fix-log h4 {
-    margin: 0 0 10px;
-    font: 700 14px/1.5 var(--note-font);
-  }
-  .fix-log dl,
-  .tool-tabs {
-    margin: 0;
-  }
-  .fix-log dl div {
-    margin-top: 8px;
-  }
-  .fix-log dt,
-  .tool-tabs dt {
-    font: 10px/1.8 var(--note-font);
-    opacity: 0.7;
-    text-transform: uppercase;
-  }
-  .fix-log dd,
-  .tool-tabs dd {
-    margin: 2px 0 0;
-    font-size: 13px;
-    line-height: 1.7;
-  }
-  .tool-tabs {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px 20px;
-    margin: 20px 0;
-    padding: 18px 0;
-    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-  }
   .hardware-progress {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1340,11 +1351,221 @@ const hardwareGallery = [
     font-size: 13px;
     margin: 0;
   }
-  :global(html.dark) .project-state {
+  :global(html.dark) .eyebrow,
+  :global(html.dark) .reading-path i {
     color: #aed1c2;
+  }
+  :global(html.dark) .milestones li::before {
+    background: #aed1c2;
   }
   :global(html.dark) .roadmap li::marker {
     color: #aed1c2;
+  }
+  @media (max-width: 600px) {
+    .hardware-progress {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .hardware-gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 10px;
+    }
+    .hardware-photo img {
+      height: 150px;
+      padding: 8px;
+    }
+    .hardware-photo figcaption {
+      padding: 12px;
+    }
+    h2 {
+      font-size: 21px;
+    }
+    .lede {
+      font-size: 18px;
+    }
+    .feature-grid,
+    .software-gallery,
+    .bench-grid,
+    .trust-split {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .section-nav {
+      gap: 0 16px;
+    }
+    .reading-path {
+      gap: 6px 9px;
+      padding: 10px 12px;
+    }
+    .architecture {
+      padding: 14px;
+    }
+    .probe-row {
+      gap: 8px;
+    }
+    .probe-row span {
+      font-size: 11px;
+    }
+    .engineering-note {
+      padding: 16px 18px;
+    }
+  }
+  @media (max-width: 440px) {
+    .eyebrow {
+      margin-top: 4px;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 25px;
+      margin: 4px 0 10px;
+    }
+    .lede {
+      font-size: 16px;
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+    .body-copy {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .detail-photos {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+  .milestones {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    margin: 28px 0;
+    padding: 0;
+    list-style: none;
+    border-top: 2px solid #39776c;
+  }
+  .milestones li {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    padding: 18px 12px 0 0;
+  }
+  .milestones li::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #39776c;
+  }
+  .milestones li.next::before {
+    background: var(--bg, #fff);
+    border: 2px solid #39776c;
+    box-sizing: border-box;
+  }
+  .milestones time {
+    display: block;
+    font: 10px/1.8 var(--note-font);
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+  .milestones strong {
+    display: block;
+    font: 700 14px/1.5 var(--note-font);
+  }
+  .milestones small {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .block-title {
+    margin-top: 40px;
+  }
+  .live-soon {
+    margin: 24px 0;
+    padding: 18px 22px;
+    border: 1px solid #39776c;
+    background: color-mix(in srgb, #39776c 6%, transparent);
+  }
+  .live-soon > p:not(.small-label) {
+    margin: 8px 0 16px;
+    font-size: 15px;
+  }
+  .bench-code :global(pre),
+  .firmware-example :global(pre) {
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .bench-code :global(pre) {
+    padding: 16px;
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    font: 13px/1.7 var(--note-font);
+  }
+  .code-toggle > summary {
+    cursor: pointer;
+    margin: 8px 0;
+    font: 13px/1.7 var(--note-font);
+    color: #39776c;
+  }
+  .evidence-block {
+    margin: 20px 0;
+    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    padding: 16px 0;
+  }
+  .evidence-block > summary {
+    cursor: pointer;
+    font: 700 15px/1.7 var(--note-font);
+  }
+  .evidence-block[open] > summary {
+    margin-bottom: 12px;
+  }
+  .fix-log {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .fix-log li {
+    min-width: 0;
+    margin: 0;
+    padding: 16px 18px;
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
+  .fix-log h4 {
+    margin: 0 0 10px;
+    font: 700 14px/1.5 var(--note-font);
+  }
+  .fix-log dl,
+  .tool-tabs {
+    margin: 0;
+  }
+  .fix-log dl div {
+    margin-top: 8px;
+  }
+  .fix-log dt,
+  .tool-tabs dt {
+    font: 10px/1.8 var(--note-font);
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+  .fix-log dd,
+  .tool-tabs dd {
+    margin: 2px 0 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .tool-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 20px;
+    margin: 20px 0;
+    padding: 18px 0;
+    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   }
   @media (max-width: 600px) {
     .fix-log,
@@ -1363,47 +1584,6 @@ const hardwareGallery = [
     .milestones li::before {
       top: 4px;
       left: -25px;
-    }
-    .hardware-progress {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    .hardware-gallery {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px 10px;
-    }
-    .hardware-photo img {
-      height: 150px;
-      padding: 8px;
-    }
-    .hardware-photo figcaption {
-      padding: 12px;
-    }
-    h1 {
-      font-size: 38px;
-    }
-    h2 {
-      font-size: 21px;
-    }
-    .lead {
-      font-size: 20px;
-    }
-    .feature-grid,
-    .software-gallery {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .architecture {
-      padding: 14px;
-    }
-    .probe-row {
-      gap: 8px;
-    }
-    .probe-row span {
-      font-size: 11px;
-    }
-    .engineering-note {
-      padding: 16px 18px;
     }
   }
 </style>

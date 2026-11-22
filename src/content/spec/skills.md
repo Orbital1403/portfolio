@@ -57,7 +57,7 @@ I define requirements and expected behaviour, investigate problems, check instal
 
 ### <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261108#leaf"/></svg> grgaGrow — garden application
 
-I shape how readings, history and alerts are presented, and check missing or stale data. Bench checks with one ESP32 controller and one probe showed a response to wetting the soil. Calibration, continuous monitoring and delivery of physical readings to the cloud remain unverified.
+I shape how readings, history and alerts are presented, and check missing or stale data. On the bench, one ESP32 controller read both probes on one RS485 bus and sent the first samples to the cloud, which acknowledged them. Calibration and continuous outdoor monitoring on the lawn remain unverified.
 
 [Explore grgaGrow →](/projects/grgagrow/)
 
