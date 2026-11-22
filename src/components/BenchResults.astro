@@ -17,26 +17,33 @@ const steps = [
   <section aria-labelledby="bench-readings">
     <h4 id="bench-readings">THP bench readings</h4>
     <div class="reading-grid">
-      {readings.map(({ label, alt, values }, index) => (
-        <figure class="reading-card">
-          <div class:list={['probe-sketch', { 'soil-sketch': index === 1 }]}>
-            <img
-              src="/images/projects/smart-lawn/bench/thp-water-and-soil.webp"
-              width="900"
-              height="450"
-              alt={alt}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <figcaption>
-            <h5>{label}</h5>
-            <dl class="reading-values">
-              {values.map((value, n) => <div><dt>{quantityLabels[n]}</dt><dd>{value}</dd></div>)}
-            </dl>
-          </figcaption>
-        </figure>
-      ))}
+      {
+        readings.map(({ label, alt, values }, index) => (
+          <figure class="reading-card">
+            <div class:list={['probe-sketch', { 'soil-sketch': index === 1 }]}>
+              <img
+                src="/images/projects/smart-lawn/bench/thp-water-and-soil.webp"
+                width="900"
+                height="450"
+                alt={alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption>
+              <h5>{label}</h5>
+              <dl class="reading-values">
+                {values.map((value, n) => (
+                  <div>
+                    <dt>{quantityLabels[n]}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </figcaption>
+          </figure>
+        ))
+      }
     </div>
     <p class="bench-note">The THP probe was tested on its own, first in water and then in moist soil in a pot.</p>
   </section>
@@ -52,22 +59,41 @@ const steps = [
     </div>
     <div class="connection-notes">
       <p><strong>Bench power</strong><br />A separate 12 V adapter powers the THP probe.</p>
-      <p><strong>ESP32-S3 → Wi-Fi → cloud</strong><br />In a later test the controller ran on 12 V with USB unplugged. The cloud acknowledged its first bench samples; they are test data, not a live feed.</p>
+      <p>
+        <strong>ESP32-S3 → Wi-Fi → cloud</strong><br />In a later test the controller ran on 12 V with USB unplugged.
+        The cloud acknowledged its first bench samples; they are test data, not a live feed.
+      </p>
     </div>
   </section>
 
   <section aria-labelledby="bench-reading-flow">
     <h4 id="bench-reading-flow">From request to readout</h4>
     <ol class="reading-flow">
-      {steps.map(([title, description]) => (
-        <li><strong>{title}</strong><small>{description}</small></li>
-      ))}
+      {
+        steps.map(([title, description]) => (
+          <li>
+            <>
+              <strong>{title}</strong>
+              <small>{description}</small>
+            </>
+          </li>
+        ))
+      }
     </ol>
     <div class="reading-grid">
       <div class="flow-result">
         <h5>Example from soil</h5>
         <dl class="reading-values">
-          {soil.map((value, n) => <div><dt>{quantityLabels[n]}</dt><dd>{value}</dd></div>)}
+          {
+            soil.map((value, n) => (
+              <div>
+                <>
+                  <dt>{quantityLabels[n]}</dt>
+                  <dd>{value}</dd>
+                </>
+              </div>
+            ))
+          }
         </dl>
       </div>
       <div class="flow-result">
@@ -75,18 +101,25 @@ const steps = [
         <p>The firmware reports a timeout. That request produces no new reading.</p>
       </div>
     </div>
-    <p class="bench-note"><a href="#firmware-example-title">View the C++ excerpt · modbus_rtu.cpp ↓</a></p>
+    <slot name="code" />
   </section>
 
   <section aria-labelledby="bench-firmware">
     <h4 id="bench-firmware">Two firmware builds, one shared test</h4>
     <div class="firmware-merge">
-      <div class="bench-node"><strong>TH firmware</strong><small>Temperature and moisture<br />Probe response confirmed on the bench</small></div>
-      <div class="bench-node"><strong>THP firmware</strong><small>Temperature, moisture and pH<br />Readings in water and soil</small></div>
+      <div class="bench-node">
+        <strong>TH firmware</strong><small>Temperature and moisture<br />Probe response confirmed on the bench</small>
+      </div>
+      <div class="bench-node">
+        <strong>THP firmware</strong><small>Temperature, moisture and pH<br />Readings in water and soil</small>
+      </div>
       <div class="connection-label merge-arrow" aria-hidden="true">↘ &nbsp; ↙</div>
       <div class="bench-node">
         <strong>Joint diagnostic firmware</strong>
-        <small>Two probes on one RS485 bus, with separate readings for each.<br />Both probes responded in air during the joint bench test, each at its own address.</small>
+        <small
+          >Two probes on one RS485 bus, with separate readings for each.<br />Both probes responded in air during the
+          joint bench test, each at its own address.</small
+        >
       </div>
     </div>
   </section>
