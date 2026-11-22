@@ -1504,6 +1504,23 @@ const hardwareGallery = [
     border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
     font: 13px/1.7 var(--note-font);
   }
+  :global(html.dark) .bench-code :global(pre),
+  :global(html.dark) .bench-code :global(pre span) {
+    color: var(--shiki-dark) !important;
+  }
+  :global(html.dark) .bench-code :global(pre) {
+    background-color: var(--shiki-dark-bg) !important;
+  }
+  .code-toggle.bench-code > summary {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #39776c;
+    color: inherit;
+    font: 700 14px/1.6 var(--note-font);
+  }
+  .code-toggle.bench-code > summary:hover {
+    background: color-mix(in srgb, #39776c 10%, transparent);
+  }
   .code-toggle > summary {
     cursor: pointer;
     margin: 8px 0;
