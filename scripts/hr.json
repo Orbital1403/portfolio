@@ -1738,5 +1738,16 @@
   "Show the C++ excerpt · modbus_rtu.cpp": "Prikaži C++ isječak · modbus_rtu.cpp",
   "An actual excerpt from the shared firmware module. A complete response goes to validation; a timeout or transport fault returns an explicit error.": "Stvaran isječak iz zajedničkog firmware modula. Potpun odgovor ide na provjeru; istek vremena ili greška prijenosa vraćaju izričitu pogrešku.",
   "grgaGrow app screenshot with simulated readings for two soil sensors, 34.5 % and 27.3 % moisture, beside grass and root illustrations": "Snimka grgaGrow aplikacije sa simuliranim očitanjima dvaju senzora tla, 34,5 % i 27,3 % vlage, uz ilustracije trave i korijenja",
-  "App preview with simulated readings.": "Prikaz aplikacije sa simuliranim očitanjima."
+  "App preview with simulated readings.": "Prikaz aplikacije sa simuliranim očitanjima.",
+  "I’m based in Brussels. I work on systems testing, fault diagnosis and integration.": "Živim u Bruxellesu. Bavim se testiranjem sustava, dijagnostikom kvarova i integracijom.",
+  "Get in touch about testing, diagnostics or systems integration.": "Javi mi se za razgovor o testiranju, dijagnostici ili integraciji sustava.",
+  "Since 2018": "Od 2018.",
+  "Industrial automation": "Industrijska automatizacija",
+  "Testing & diagnostics": "Testiranje i dijagnostika",
+  "Systems testing, fault analysis, quality control, calibration": "Testiranje sustava, analiza kvarova, kontrola kvalitete, umjeravanje",
+  "Operating systems": "Operacijski sustavi",
+  "Software & databases": "Softver i baze podataka",
+  "Java, object-oriented programming, desktop and web applications, HTML5, CSS3, JavaScript, SQL and MySQL": "Java, objektno orijentirano programiranje, desktop i web aplikacije, HTML5, CSS3, JavaScript, SQL i MySQL",
+  "Siemens SCADA, Siemens PLC, Modbus RTU / RS485": "Siemens SCADA, Siemens PLC, Modbus RTU / RS485",
+  "Windows, macOS, Linux": "Windows, macOS, Linux"
 }
