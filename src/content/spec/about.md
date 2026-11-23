@@ -23,9 +23,9 @@ At **Altpro in Zagreb (November 2013 – December 2017)**, I worked in quality c
 
 ## A new chapter in Brussels
 
-Moving to Belgium meant starting again: discovering the city, the country and a different way of life. Through people I knew, practical repair work gradually became a large part of my working life.
+Moving to Belgium meant starting again: discovering the city, the country and a different way of life. I have done independent technical work in Brussels since 2018.
 
-I repaired household appliances, worked on installations, painted and fitted joinery, and helped renovate apartments. Much of it was new to me, so I learned through doing. That experience broadened my skills; I now want to bring them into a more focused technical role.
+I repaired household appliances, worked on installations, painted and fitted joinery, and helped renovate apartments. Much of it was new to me, so I learned through doing.
 
 ## Music brought the pieces together
 
@@ -35,9 +35,7 @@ That interest led to **[MILA\*](/projects/mila/)**, my personal audio streamer. 
 
 I lead the project from requirements to release: I decide what it should do, shape its behaviour, test every change on the real hardware and document what I find. It is still in development, and I am learning as it grows.
 
-## Where I want to go
-
-I am interested in work that combines practical technical knowledge with investigation and attention to detail: testing, diagnostics, technical support or integration, especially where hardware meets software.
+<h2 id="where-i-want-to-go">Continued learning</h2>
 
 After completing my Java studies, I enrolled in the **AI & Machine Learning programme at ITAcademy**, which I am currently attending. The programme covers Python, data processing, machine learning, deep learning and deploying AI/ML systems. Alongside these studies, MILA\* gives me a practical project through which to deepen my understanding of Python.
 
