@@ -114,7 +114,7 @@ const hardwareGallery = [
     height: 500,
     title: 'Moisture + temperature + pH',
     description:
-      'The THP probe answers at address 02 and adds experimental pH, valid about five minutes after power-up. Buffer-solution checks are next.',
+      'The THP probe responds at address 02. Its first pH value appears about five minutes after power-up. Buffer-solution checks are next.',
     detail: 'Combined probe · pH',
     alt: 'Renke reference image of a multi-parameter soil probe with metal sensing pins',
     source: 'https://www.renkeer.com/product/soil-nutrient-sensor/',
@@ -368,7 +368,7 @@ const hardwareGallery = [
       <h2 id="lawn-hardware">Two probes. One bus. Readings in the cloud.</h2>
       <p>
         The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
-        and a second probe with experimental pH over one RS485 bus, queues the samples and uploads them over Wi-Fi. The
+        and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over Wi-Fi. The
         bench version is complete; the probes are about to go into the lawn.
       </p>
       <dl class="hardware-progress" aria-label="Hardware progress as of 21 November 2026">
@@ -526,7 +526,7 @@ const hardwareGallery = [
       >
         <div class="probe-row">
           <span>Probe 01<br /><small>Moisture + temperature</small></span><span
-            >Probe 02<br /><small>Moisture + temperature + pH*</small></span
+            >Probe 02<br /><small>Moisture + temperature + pH</small></span
           >
         </div>
         <p class="flow-label">↓ RS485 / Modbus RTU · BITNER LP0170 cable</p>
@@ -535,9 +535,7 @@ const hardwareGallery = [
         <div class="architecture-node">Ingestion → PostgreSQL</div>
         <p class="flow-label">↓ Authenticated access</p>
         <div class="architecture-node app-node">grgaGrow / My Garden</div>
-        <p class="note architecture-note">
-          Full data path verified on the bench · Field installation in progress · *pH is experimental
-        </p>
+        <p class="note architecture-note">Full data path verified on the bench · Field installation in progress</p>
       </div>
       <h3 id="lawn-firmware-log" class="block-title">Seven problems between the bench and the cloud.</h3>
       <p>
@@ -830,8 +828,7 @@ const hardwareGallery = [
       <p>
         The cloud workspace uses Supabase authentication and owner-scoped database access. A separate public projection
         exposes only the selected garden data; exact coordinates, private diary entries, alerts and calibration notes
-        stay outside it. The owner can disable publication. Demo values never become real sensor records, and Live shows
-        waiting for data until physical readings arrive.
+        stay outside it. The owner can disable publication. Live shows a waiting message until readings arrive.
       </p>
       <p>
         I define the requirements and expected behaviour, carry out bench checks and decide which results are supported
@@ -876,7 +873,7 @@ const hardwareGallery = [
       </ol>
       <div class="closing-demo">
         <div>
-          <h3>Take a look beneath the surface.</h3><p>Follow the readings from my lawn as they arrive.</p>
+          <h3>Take a look beneath the surface.</h3><p>Follow the latest published readings from both probes.</p>
         </div>
         <div class="project-actions">
           <a class="demo-link" href="/demos/my-garden/?public=grgagrow" target="_blank" rel="noopener noreferrer"
