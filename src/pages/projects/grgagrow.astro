@@ -279,6 +279,27 @@ const hardwareGallery = [
         >
         <a href="/projects/">← All project notes</a>
       </div>
+      <ProjectOverview
+        id="grgagrow"
+        items={[
+          {
+            label: 'Today',
+            text: 'Cloud app online; firmware on the ESP32 reads two probes and uploads over Wi-Fi with OTA updates. Calibration and field operation are still to be verified.',
+          },
+          {
+            label: 'My role',
+            text: 'Defining the garden workflow and expected behaviour, carrying out bench checks and interpreting the results.',
+          },
+          {
+            label: 'Example',
+            text: 'Both probes shipped at the same address. Changing one kept failing. I traced the cause to the controller: it passed 8-byte read frames but dropped the 11-byte address write. After the fix, the new address held after a power cycle.',
+          },
+          {
+            label: 'Next step',
+            text: 'Bury both probes in the lawn, check readings in soil, then calibrate pH and moisture before reviewing watering thresholds.',
+          },
+        ]}
+      />
       <ProbeReadingCards />
     </header>
 
@@ -289,28 +310,6 @@ const hardwareGallery = [
       <a href="#lawn-software">Garden app</a>
       <a href="#lawn-next">Next steps</a>
     </nav>
-
-    <ProjectOverview
-      id="grgagrow"
-      items={[
-        {
-          label: 'Today',
-          text: 'Cloud app online; firmware on the ESP32 reads two probes and uploads over Wi-Fi with OTA updates. Calibration and field operation are still to be verified.',
-        },
-        {
-          label: 'My role',
-          text: 'Defining the garden workflow and expected behaviour, carrying out bench checks and interpreting the results.',
-        },
-        {
-          label: 'Example',
-          text: 'Both probes shipped at the same address. Changing one kept failing. I traced the cause to the controller: it passed 8-byte read frames but dropped the 11-byte address write. After the fix, the new address held after a power cycle.',
-        },
-        {
-          label: 'Next step',
-          text: 'Bury both probes in the lawn, check readings in soil, then calibrate pH and moisture before reviewing watering thresholds.',
-        },
-      ]}
-    />
 
     <section aria-labelledby="lawn-site">
       <p class="folio-label">01 / MEASUREMENTS IN THE LAWN</p>
