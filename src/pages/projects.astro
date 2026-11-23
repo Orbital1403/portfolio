@@ -110,6 +110,7 @@ const projects = [
                 decoding="async"
               />
             )}
+            {project.id === 'grgagrow' && <span class="photo-caption">App preview with simulated readings.</span>}
             {project.stamp && <span class="development-stamp">{project.stamp}</span>}
           </div>
           <div class="card-copy">
@@ -260,6 +261,18 @@ const projects = [
     height: auto;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+  }
+  .grgagrow-card .card-image {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .photo-caption {
+    display: block;
+    padding: 7px 14px;
+    border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    font: 11px/1.5 var(--note-font);
+    color: var(--note-color, inherit);
   }
   .grgagrow-card .card-image img {
     aspect-ratio: 1265 / 949;

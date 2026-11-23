@@ -76,6 +76,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
               loading="lazy"
               decoding="async"
             />
+            <span class="photo-caption">App preview with simulated readings.</span>
           </div>
           <div class="project-copy">
             <p class="project-stage"><i aria-hidden="true"></i>First cloud upload</p>
@@ -449,6 +450,13 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
     margin-top: 20px;
+  }
+  .photo-caption {
+    display: block;
+    padding: 7px 14px;
+    border-top: 1px solid var(--line);
+    font: 11px/1.5 var(--note-font);
+    color: var(--note-color, inherit);
   }
   .garden-photo img {
     aspect-ratio: 1265 / 949;

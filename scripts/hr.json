@@ -1737,5 +1737,6 @@
   "SIMULATED DATA / The service tool on the Mac, shown with simulated data.": "SIMULIRANI PODACI / Servisni alat na Macu, prikazan sa simuliranim podacima.",
   "Show the C++ excerpt · modbus_rtu.cpp": "Prikaži C++ isječak · modbus_rtu.cpp",
   "An actual excerpt from the shared firmware module. A complete response goes to validation; a timeout or transport fault returns an explicit error.": "Stvaran isječak iz zajedničkog firmware modula. Potpun odgovor ide na provjeru; istek vremena ili greška prijenosa vraćaju izričitu pogrešku.",
-  "grgaGrow app screenshot with simulated readings for two soil sensors, 34.5 % and 27.3 % moisture, beside grass and root illustrations": "Snimka grgaGrow aplikacije sa simuliranim očitanjima dvaju senzora tla, 34,5 % i 27,3 % vlage, uz ilustracije trave i korijenja"
+  "grgaGrow app screenshot with simulated readings for two soil sensors, 34.5 % and 27.3 % moisture, beside grass and root illustrations": "Snimka grgaGrow aplikacije sa simuliranim očitanjima dvaju senzora tla, 34,5 % i 27,3 % vlage, uz ilustracije trave i korijenja",
+  "App preview with simulated readings.": "Prikaz aplikacije sa simuliranim očitanjima."
 }
