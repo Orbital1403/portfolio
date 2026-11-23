@@ -137,28 +137,83 @@ const projects = [
 </LayoutDefault>
 
 <script>
-  // Keep previously shared project and section links working.
-  const trailingSlashPattern = /\/$/
+  // Before each project had its own page, these links pointed into the projects list.
+  const legacyTargets = new Map([
+    ['#mila', 'mila/'],
+    ['#grgagrow', 'grgagrow/'],
+    ['#smart-lawn', 'grgagrow/'],
+    ['#praonica', 'our-laundry/'],
+    ['#our-laundry', 'our-laundry/'],
+    ['#02--this-portfolio', 'portfolio/#portfolio-project'],
+    ['#03--coursework--continued-learning', 'portfolio/#coursework--continued-learning'],
+  ])
+  const sections = new Map([
+    [
+      'mila',
+      [
+        'from-frustration-to-a-project',
+        'one-interface-for-everyday-listening',
+        'guide',
+        'a-library-i-can-explore',
+        'radio-without-the-clutter',
+        'streaming-and-audio-control',
+        'streaming',
+        'mobile',
+        'download',
+        'settings-that-belong-with-the-player',
+        'my-role-and-how-i-work',
+        'development-example-keeping-favourites-consistent',
+        'development-example-commands-that-only-looked-successful',
+        'development-example-a-lost-connection-without-false-alarms',
+        'testing-and-releases',
+        'hardware--foundation',
+        'current-state',
+      ],
+    ],
+    ['portfolio', ['portfolio-project', 'coursework--continued-learning']],
+    [
+      'grgagrow',
+      [
+        'lawn-site',
+        'lawn-hardware',
+        'lawn-probe-service',
+        'lawn-bench',
+        'bench-readings',
+        'bench-wiring',
+        'bench-reading-flow',
+        'bench-firmware',
+        'lawn-firmware-log',
+        'lawn-equipment',
+        'lawn-software',
+        'lawn-reliability',
+        'lawn-next',
+      ],
+    ],
+    ['our-laundry', ['system-plan', 'signal-guide']],
+  ])
+  for (const [project, ids] of sections) {
+    for (const id of ids) {
+      legacyTargets.set(`#${id}`, `${project}/#${id}`)
+    }
+  }
+
+  const trailingSlash = /\/$/
   function openLegacyProject() {
-    const base = import.meta.env.BASE_URL.replace(trailingSlashPattern, '')
-    if (window.location.pathname.replace(trailingSlashPattern, '') !== `${base}/projects`) {
-      return
-    }
+    const path = window.location.pathname.replace(trailingSlash, '')
     const hash = window.location.hash
-    if (!hash || hash === '#main') {
+    if (!path.endsWith('/projects') || !hash || document.getElementById(hash.slice(1))) {
       return
     }
-    const legacyProjects = {
-      '#portfolio-project': 'portfolio',
-      '#grgagrow': 'grgagrow',
-      '#praonica': 'our-laundry',
-      '#our-laundry': 'our-laundry',
+    const target = legacyTargets.get(hash)
+    if (target) {
+      const url = new URL(`${path}/${target}`, window.location.origin)
+      url.search = window.location.search
+      window.location.replace(url.href)
     }
-    const project = legacyProjects[hash as keyof typeof legacyProjects] ?? 'mila'
-    window.location.replace(`${base}/projects/${project}/${hash}`)
   }
   openLegacyProject()
   document.addEventListener('astro:page-load', openLegacyProject)
+  window.addEventListener('hashchange', openLegacyProject)
 </script>
 
 <style>

@@ -7,12 +7,17 @@ const endpoint = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(configured) ?
 
 <LayoutDefault
   title="Contact — Gordan Grgić"
-  description="Get in touch with Gordan Grgić in Brussels about a role in quality, testing or technical support, a project, or MILA*."
+  description="Contact Gordan Grgić in Brussels about testing, technical support, hardware and software integration, or one of his technical projects."
 >
   <section class="contact-page">
     <p class="folio-label">PERSONAL FIELD NOTES / CONTACT</p>
     <h1>Let's talk.</h1>
-    <p class="contact-lead">Have a role in mind, a project to discuss or a question about MILA*? Leave me a message.</p>
+    <p class="contact-lead">
+      Have a role in mind or a question about one of my technical projects? Use the form below or
+      <a href="https://www.linkedin.com/in/gordan-grgic-0ba40a354/" target="_blank" rel="noopener noreferrer"
+        >message me on LinkedIn</a
+      >.
+    </p>
     <form id="contactForm" method="POST" action={endpoint || undefined} data-endpoint={endpoint} novalidate>
       <div class="form-heading"><Icon name="mail" /><span>A direct conversation.</span></div>
       <div class="field-pair">
@@ -43,7 +48,9 @@ const endpoint = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(configured) ?
           name="topic"
           ><option value="General enquiry">Choose a topic</option><option>Work opportunity</option><option
             >Project or collaboration</option
-          ><option>MILA* audio streamer</option><option>Something else</option></select
+          ><option>MILA* audio streamer</option><option>grgaGrow</option><option>Our laundry</option><option
+            >Something else</option
+          ></select
         >
       </div>
       <div class="field">
@@ -73,18 +80,9 @@ const endpoint = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(configured) ?
         >
       </div>
       <p id="contactStatus" role="status" aria-live="polite"></p>
-      {
-        !endpoint && (
-          <p class="availability-note">
-            Messaging will be available soon. In the meantime,{' '}
-            <a href="https://www.linkedin.com/in/gordan-grgic-0ba40a354/" target="_blank" rel="noopener noreferrer">
-              find me on LinkedIn ↗
-            </a>
-            .
-          </p>
-        )
-      }
+      {!endpoint && <p class="availability-note">The contact form is currently unavailable.</p>}
     </form>
+    <p><a href="/skills/#applying-these-skills-in-personal-projects">See how I test my projects</a></p>
     <div class="contact-location"><span>ZAGREB → BRUSSELS</span><span>Computers · Electronics · Music</span></div>
   </section>
 </LayoutDefault>

@@ -14,13 +14,13 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
       <div class="hero-copy">
         <p class="eyebrow hero-label">GORDAN GRGIĆ / ZAGREB → BRUSSELS</p>
         <h1 id="home-title">Curiosity.<br />A practical mind.</h1>
-        <p class="hero-location">
-          My background is in industrial electronics, quality control and fault analysis. Today, I bring that experience
-          to personal projects that connect hardware and software.
-        </p>
         <p class="hero-lead">
-          Based in Brussels, I’m looking for a role in testing, technical support or integration — work where I can
-          investigate problems, verify solutions and see how they perform in everyday use.
+          I’m based in Brussels and looking for a role in testing, technical support or hardware and software
+          integration.
+        </p>
+        <p class="hero-evidence">
+          At Siemens I analysed returned pressure and temperature transmitters. At Altpro I calibrated railway safety
+          equipment.
         </p>
         <div class="hero-actions">
           <a class="primary-action not-underline-hover" href="#selected-work">Explore my work <Icon name="arrow" /></a>
@@ -31,7 +31,6 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
         <div class="portrait-frame"><ProfilePortrait hero /></div>
         <figcaption>From Zagreb. Based in Brussels.</figcaption>
       </figure>
-      <p class="hero-focus">TESTING · DIAGNOSTICS · TECHNICAL SUPPORT · INTEGRATION</p>
     </section>
 
     <section id="selected-work" class="home-section" aria-labelledby="work-title">
@@ -253,11 +252,11 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
       monospace;
     letter-spacing: -1px;
   }
-  .hero-location {
+  .hero-evidence {
     font-size: 16px;
     line-height: 1.75;
     color: var(--note-color);
-    margin-bottom: 14px;
+    margin-top: 14px;
   }
   .hero-lead {
     font-size: 17px;
@@ -321,15 +320,6 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     font: 10px/1.8 var(--note-font);
     color: var(--note-color);
     text-align: center;
-  }
-  .hero-focus {
-    grid-column: 1 / -1;
-    margin-top: 34px;
-    padding: 16px 0;
-    border-block: 1px solid var(--line);
-    font: 11px/1.9 var(--note-font);
-    letter-spacing: 0.7px;
-    color: var(--note-color);
   }
   .home-section {
     margin-top: 64px;
@@ -637,20 +627,16 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
       margin: 25px 0 20px;
       font-size: clamp(39px, 8vw, 52px);
     }
-    .hero-location,
+    .hero-evidence,
     .hero-lead,
     .hero-actions {
       grid-column: 1 / -1;
     }
-    .hero-location {
-      margin-bottom: 12px;
+    .hero-evidence {
+      margin-top: 12px;
     }
     .hero-lead {
       font-size: 16px;
-    }
-    .hero-focus {
-      margin-top: 28px;
-      font-size: 10px;
     }
     .main-project {
       grid-template-columns: minmax(0, 1fr);

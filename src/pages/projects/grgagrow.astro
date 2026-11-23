@@ -14,7 +14,14 @@ const scanExample =
 const bridgeExample =
   'const char* allowed(const gg::modbus::Frame& f) {\n  const auto* b = f.bytes.data();\n  if (f.size < 8) return "short";\n  const uint16_t c = crc(b, f.size - 2);\n  if (b[f.size - 2] != (c & 0xff) || b[f.size - 1] != (c >> 8)) return "crc";\n  if (b[0] < 1 || b[0] > 247) return "unit";\n  const uint16_t reg = (b[2] << 8) | b[3];\n  switch (b[1]) {\n    case 3:\n    case 4:\n      return f.size == 8 ? nullptr : "length";\n    case 0x10: {\n      const uint16_t count = (b[4] << 8) | b[5];\n      if (f.size != 11 || reg != AddressRegister || count != 1 || b[6] != 2) return "write-locked";\n      const uint16_t value = (b[7] << 8) | b[8];\n      return (value >= 1 && value <= 247) ? nullptr : "value";\n    }\n    default:\n      return "function";\n  }\n}'
 
-const firmwareFixes = [
+const powerUpFix = {
+  title: 'Zeros after power-up',
+  problem: 'Right after power-up both probes answered with 0 °C and 0 % moisture.',
+  cause: 'A valid Modbus reply is not yet a settled measurement.',
+  fix: 'For the first 30 seconds the firmware marks answers as not settled and withholds the values.',
+}
+
+const otherFirmwareFixes = [
   {
     title: 'An address write that never left the board',
     problem: 'Both probes shipped at Modbus address 02. Every attempt to move the TH probe ended as "outcome unknown".',
@@ -35,12 +42,6 @@ const firmwareFixes = [
     fix: 'A 2.4 GHz network, NTP time and the first acknowledged uploads to Supabase.',
   },
   {
-    title: 'Zeros after power-up',
-    problem: 'Right after power-up both probes answered with 0 °C and 0 % moisture.',
-    cause: 'A valid Modbus reply is not yet a settled measurement.',
-    fix: 'For the first 30 seconds the firmware marks answers as not settled and withholds the values.',
-  },
-  {
     title: 'pH that needs time',
     problem: 'The pH register returned values before the probe could measure.',
     cause:
@@ -59,6 +60,11 @@ const firmwareFixes = [
     cause: 'The original partition table had no room for a second image.',
     fix: 'An OTA layout with two 3 MB slots and a rollback bootloader. The board fetched a release from Supabase, verified it and restarted on it.',
   },
+]
+
+const fixGroups = [
+  { heading: powerUpFix.title, cases: [powerUpFix], expanded: true },
+  { heading: 'Six more problems from the bench', cases: otherFirmwareFixes, expanded: false },
 ]
 
 const milestones = [
@@ -264,7 +270,6 @@ const hardwareGallery = [
       <p class="body-copy">
         On the workbench, two probes now share one controller. The first readings have reached the cloud over Wi-Fi.
       </p>
-      <ProbeReadingCards />
       <div class="project-actions">
         <a
           class="demo-link live-link"
@@ -272,13 +277,9 @@ const hardwareGallery = [
           target="_blank"
           rel="noopener noreferrer">Follow live readings ↗</a
         >
-        <a href="#lawn-hardware">See the bench tests ↓</a>
         <a href="/projects/">← All project notes</a>
       </div>
-      <p class="note">
-        The readings so far come from bench tests. Measurements from the lawn follow once the probes are installed. Live
-        opens without an account.
-      </p>
+      <ProbeReadingCards />
     </header>
 
     <nav class="section-nav" aria-label="Sections">
@@ -288,6 +289,57 @@ const hardwareGallery = [
       <a href="#lawn-software">Garden app</a>
       <a href="#lawn-next">Next steps</a>
     </nav>
+
+    <section aria-labelledby="lawn-site">
+      <p class="folio-label">01 / MEASUREMENTS IN THE LAWN</p>
+      <h2 id="lawn-site">Measurements in the lawn.</h2>
+      <figure class="lawn-cover">
+        <img
+          src="/images/projects/smart-lawn/lawn.jpg"
+          alt="My 49 square metre lawn with a robotic mower, the future test site for the two soil probes"
+          width="1600"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+          data-group="cover"
+        />
+        <figcaption>
+          THE TEST SITE / My 49 m² lawn. The probes and their cables will need to stay clear of the robotic mower.
+        </figcaption>
+      </figure>
+      <div class="field-status">
+        <p class="small-label">FROM BENCH TO LAWN</p>
+        <p>
+          I tested both probes together on the workbench. Public Live is open without an account. The first lawn
+          readings will follow installation.
+        </p>
+        <a
+          class="demo-link live-link"
+          href="/demos/my-garden/?public=grgagrow"
+          target="_blank"
+          rel="noopener noreferrer">Follow the live readings ↗</a
+        >
+      </div>
+      <p>
+        This is the part I enjoy: connecting the interface to something physical, making the measurements
+        understandable, and checking the whole path from a sensor in the ground to a decision on the screen.
+      </p>
+      <p>
+        The idea behind grgaGrow came from a simple observation: gardens are often watered too much or too little. Water
+        is precious, and climate change makes using it thoughtfully even more important. I wanted to explore how a
+        small, smart and affordable monitoring system could help people understand what their soil needs and avoid
+        unnecessary watering.
+      </p>
+      <p>
+        The system can also be extended with automatic irrigation. Adding a controlled valve and a control module could
+        let grgaGrow water the garden based on soil readings and weather information. This is a planned next stage,
+        following reliable monitoring and hardware testing.
+      </p>
+      <p>
+        I still water the lawn manually. Sun, shade and soil conditions can make nearby areas behave differently. I want
+        to compare how quickly they dry, how the soil temperature changes, and how long water takes to reach a probe.
+      </p>
+    </section>
 
     <ProjectOverview
       id="grgagrow"
@@ -311,70 +363,17 @@ const hardwareGallery = [
       ]}
     />
 
-    <section aria-labelledby="lawn-site">
-      <p class="folio-label">01 / MEASUREMENTS IN THE LAWN</p>
-      <h2 id="lawn-site">Measurements in the lawn.</h2>
-      <figure class="lawn-cover">
-        <img
-          src="/images/projects/smart-lawn/lawn.jpg"
-          alt="My 49 square metre lawn with a robotic mower, the future test site for the two soil probes"
-          width="1600"
-          height="1200"
-          loading="lazy"
-          decoding="async"
-          data-group="cover"
-        />
-        <figcaption>
-          THE TEST SITE / My 49 m² lawn. The probes go in next; placement and cable routes must also suit the robotic
-          mower.
-        </figcaption>
-      </figure>
-      <p>
-        This is the part I enjoy: connecting the interface to something physical, making the measurements
-        understandable, and checking the whole path from a sensor in the ground to a decision on the screen.
-      </p>
-      <div class="live-soon">
-        <p class="small-label">LIVE READINGS / STARTING SOON</p>
-        <p>
-          The readings so far come from bench tests. The two probes are going into the lawn now; once they are buried,
-          their soil moisture and temperature appear in public Live as they arrive.
-        </p>
-        <a
-          class="demo-link live-link"
-          href="/demos/my-garden/?public=grgagrow"
-          target="_blank"
-          rel="noopener noreferrer">Follow the live readings ↗</a
-        >
-      </div>
-      <p>
-        The idea behind grgaGrow came from a simple observation: gardens are often watered too much or too little. Water
-        is precious, and climate change makes using it thoughtfully even more important. I wanted to explore how a
-        small, smart and affordable monitoring system could help people understand what their soil needs and avoid
-        unnecessary watering.
-      </p>
-      <p>
-        The system can also be extended with automatic irrigation. Adding a controlled valve and a control module could
-        let grgaGrow water the garden based on soil readings and weather information. This is a planned next stage,
-        following reliable monitoring and hardware testing.
-      </p>
-      <p>
-        I still water the lawn manually. Sun, shade and soil conditions can make nearby areas behave differently. I want
-        to compare how quickly they dry, how the soil temperature changes, and how long water takes to reach a probe.
-      </p>
-    </section>
-
     <section aria-labelledby="lawn-hardware">
       <p class="folio-label">02 / WORK ON THE BENCH</p>
       <h2 id="lawn-hardware">Two probes. One bus. Readings in the cloud.</h2>
       <p>
         The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
-        and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over Wi-Fi. The
-        bench version is complete; the probes are about to go into the lawn.
+        and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over Wi-Fi.
       </p>
       <dl class="hardware-progress" aria-label="Hardware progress as of 21 November 2026">
         <div><dt>Bench result</dt><dd>Two probes uploading</dd></div>
-        <div><dt>Next milestone</dt><dd>Readings from the soil</dd></div>
-        <div><dt>Field status</dt><dd>Installation in progress</dd></div>
+        <div><dt>Next milestone</dt><dd>First readings from the lawn</dd></div>
+        <div><dt>Project phase</dt><dd>Bench tests complete</dd></div>
       </dl>
       <ol class="milestones" aria-label="Milestones from bench to field">
         {
@@ -427,7 +426,7 @@ const hardwareGallery = [
         </dl>
         <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
           <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
-          <h3 id="bridge-example-title">Reads are allowed. Writes are locked.</h3>
+          <h3 id="bridge-example-title">Register reads and probe address changes.</h3>
           <p>
             The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
             register with a value from 1 to 247. Everything else is answered with DENY.
@@ -535,42 +534,37 @@ const hardwareGallery = [
         <div class="architecture-node">Ingestion → PostgreSQL</div>
         <p class="flow-label">↓ Authenticated access</p>
         <div class="architecture-node app-node">grgaGrow / My Garden</div>
-        <p class="note architecture-note">Full data path verified on the bench · Field installation in progress</p>
+        <p class="note architecture-note">Full data path verified on the bench</p>
       </div>
       <h3 id="lawn-firmware-log" class="block-title">Seven problems between the bench and the cloud.</h3>
-      <p>
-        Most of the work happened between a probe that answers and a reading that can be trusted. Each card is a real
-        problem from the bench, what caused it and what changed.
-      </p>
-      <ol class="fix-log">
-        {
-          firmwareFixes.map((item) => (
-            <li>
-              <h4>{item.title}</h4>
-              <dl>
-                <div>
-                  <>
-                    <dt>Problem</dt>
-                    <dd>{item.problem}</dd>
-                  </>
-                </div>
-                <div>
-                  <>
-                    <dt>Cause</dt>
-                    <dd>{item.cause}</dd>
-                  </>
-                </div>
-                <div>
-                  <>
-                    <dt>Fix</dt>
-                    <dd>{item.fix}</dd>
-                  </>
-                </div>
-              </dl>
-            </li>
-          ))
-        }
-      </ol>
+      {
+        fixGroups.map(({ heading, cases, expanded }) => (
+          <details class="evidence-block" open={expanded}>
+            <summary>{heading}</summary>
+            <ol class="fix-log">
+              {cases.map((item) => (
+                <li>
+                  {!expanded && <h4>{item.title}</h4>}
+                  <dl>
+                    <div>
+                      <dt>Problem</dt>
+                      <dd>{item.problem}</dd>
+                    </div>
+                    <div>
+                      <dt>Cause</dt>
+                      <dd>{item.cause}</dd>
+                    </div>
+                    <div>
+                      <dt>Fix</dt>
+                      <dd>{item.fix}</dd>
+                    </div>
+                  </dl>
+                </li>
+              ))}
+            </ol>
+          </details>
+        ))
+      }
       <div class="engineering-note firmware-example" aria-labelledby="scan-example-title">
         <p class="small-label">FIRMWARE / C++17</p>
         <h3 id="scan-example-title">Find the probe instead of losing the reading.</h3>
@@ -610,8 +604,8 @@ const hardwareGallery = [
         </p>
       </div>
       <p class="note">
-        Hardware snapshot: 21 November 2026 · Two probes uploading from the bench · OTA updates working · Field
-        installation in progress.
+        Bench test on 21 November 2026 · Readings from both probes reached the cloud and the over-the-air update
+        succeeded.
       </p>
     </section>
 
@@ -731,8 +725,8 @@ const hardwareGallery = [
           <span class="small-label">SUN PATH & BUILDING SHADE</span>
           <h3>Follow the light.</h3>
           <p>
-            A compact sun path and daylight playback move together with the garden model. Explore sun direction,
-            elevation and estimated building shade. Trees, clouds and surrounding obstacles are not fully represented.
+            When I share the sun view and an approximate location, Live shows the sun’s direction, elevation, sunrise
+            and sunset. I can also share a building model so visitors can explore its estimated shade through the day.
           </p>
         </article>
         <article>
@@ -881,9 +875,7 @@ const hardwareGallery = [
           >
         </div>
       </div>
-      <p class="note">
-        Project snapshot: 22 November 2026 · Two probes uploading from the bench · Field installation in progress
-      </p>
+      <p class="note">Hardware status on 22 November 2026 · Both probes tested together on the bench</p>
     </section>
   </div>
   <nav class="project-navigation" aria-label="Other projects">
@@ -1479,13 +1471,13 @@ const hardwareGallery = [
   .block-title {
     margin-top: 40px;
   }
-  .live-soon {
+  .field-status {
     margin: 24px 0;
     padding: 18px 22px;
     border: 1px solid #39776c;
     background: color-mix(in srgb, #39776c 6%, transparent);
   }
-  .live-soon > p:not(.small-label) {
+  .field-status > p:not(.small-label) {
     margin: 8px 0 16px;
     font-size: 15px;
   }
@@ -1549,6 +1541,9 @@ const hardwareGallery = [
     margin: 0;
     padding: 16px 18px;
     border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
+  .fix-log li:only-child {
+    grid-column: 1 / -1;
   }
   .fix-log h4 {
     margin: 0 0 10px;
