@@ -106,14 +106,15 @@
     choice = selected
     try { localStorage.setItem(storageKey, JSON.stringify({ choice, at: Date.now() })) }
     catch { /* Honour the choice for this page even when storage is blocked. */ }
-    const inlineBanner = banner && getComputedStyle(banner).position === 'static'
     if (banner) {
       banner.hidden = true
     }
-    if (inlineBanner && !openedFromSettings) {
-      banner.closest('main')?.focus({ preventScroll: true })
-    } else {
+    // A first choice keeps the visitor where they were reading; only a choice made after
+    // opening Cookie settings from the footer returns focus to that footer button.
+    if (openedFromSettings) {
       document.querySelector<HTMLButtonElement>('[data-analytics-settings]')?.focus()
+    } else {
+      banner?.closest('main')?.focus({ preventScroll: true })
     }
     openedFromSettings = false
     if (choice === 'granted') {
