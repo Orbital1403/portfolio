@@ -4,7 +4,7 @@ export const userConfig: Partial<UserConfig> = {
   // Identity and primary domain.
   site: {
     title: 'Gordan Grgić',
-    subtitle: 'Problem Solver',
+    subtitle: 'Systems testing & integration',
     author: 'Gordan Grgić',
     description:
       'Portfolio of Gordan Grgić: practical technical experience, computers and electronics, and MILA*, a personal audio streamer in development. Based in Brussels.',
