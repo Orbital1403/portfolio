@@ -5,7 +5,13 @@ description: Practical skills in quality control, hardware, Linux and testing; c
 
 My experience brings together industrial electronics, quality control, fault analysis and practical technical work. Today, I build on that foundation through projects that connect hardware and software, alongside continued education.
 
-<h2 id="testing--fault-analysis"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#check"/></svg> Testing & fault analysis</h2>
+<h2 id="industrial-automation"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> Industrial automation</h2>
+
+Siemens SCADA, Siemens PLC, Modbus RTU / RS485
+
+<h2 id="testing--fault-analysis"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#check"/></svg> Testing & diagnostics</h2>
+
+Systems testing, fault analysis, quality control, calibration
 
 At Siemens, I analysed returned devices and documented findings that contributed to improvements within the department. At Altpro, I worked in quality control, measurement and calibration for railway safety systems, in close cooperation with development.
 
@@ -17,7 +23,15 @@ At Siemens, I analysed returned devices and documented findings that contributed
 
 - <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#check"/></svg> Checking solutions and the possible effects of a change
 
-<h2 id="programming--databases"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#code"/></svg> Programming & databases</h2>
+<h2 id="hardware--systems"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> Operating systems</h2>
+
+Windows, macOS, Linux
+
+- <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> Raspberry Pi, system services and USB audio
+
+<h2 id="programming--databases"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#code"/></svg> Software & databases</h2>
+
+Java, object-oriented programming, desktop and web applications, HTML5, CSS3, JavaScript, SQL and MySQL
 
 I have over a year of hands-on experience with Java and MySQL. I completed Java Developer studies and continue to develop my knowledge through personal projects.
 
@@ -32,20 +46,6 @@ I have over a year of hands-on experience with Java and MySQL. I completed Java 
 - <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#web"/></svg> HTML, CSS & JavaScript — page structure, styling and interactions
 
 - <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#code"/></svg> Python — developing my knowledge through personal projects and current studies
-
-<h2 id="hardware--systems"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> Hardware & systems</h2>
-
-From assembling computers to repairing appliances, I enjoy understanding how the parts of a system work together and locating the source of a problem.
-
-- <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> PC assembly and hardware diagnostics
-
-- <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> Industrial electronics, measurement and calibration
-
-- <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#code"/></svg> Daily use of Linux, macOS and Windows
-
-- <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#chip"/></svg> Raspberry Pi, system services and USB audio
-
-- <svg class="skill-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#hobbies"/></svg> Practical experience with appliance repairs and installations
 
 <h2 id="applying-these-skills-in-personal-projects"><svg class="technical-icon skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/icons.svg?v=skills-20261101#projects"/></svg> Applying these skills in personal projects</h2>
 
