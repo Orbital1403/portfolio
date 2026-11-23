@@ -290,6 +290,28 @@ const hardwareGallery = [
       <a href="#lawn-next">Next steps</a>
     </nav>
 
+    <ProjectOverview
+      id="grgagrow"
+      items={[
+        {
+          label: 'Today',
+          text: 'Cloud app online; firmware on the ESP32 reads two probes and uploads over Wi-Fi with OTA updates. Calibration and field operation are still to be verified.',
+        },
+        {
+          label: 'My role',
+          text: 'Defining the garden workflow and expected behaviour, carrying out bench checks and interpreting the results.',
+        },
+        {
+          label: 'Example',
+          text: 'Both probes shipped at the same address. Changing one kept failing. I traced the cause to the controller: it passed 8-byte read frames but dropped the 11-byte address write. After the fix, the new address held after a power cycle.',
+        },
+        {
+          label: 'Next step',
+          text: 'Bury both probes in the lawn, check readings in soil, then calibrate pH and moisture before reviewing watering thresholds.',
+        },
+      ]}
+    />
+
     <section aria-labelledby="lawn-site">
       <p class="folio-label">01 / MEASUREMENTS IN THE LAWN</p>
       <h2 id="lawn-site">Measurements in the lawn.</h2>
@@ -343,28 +365,6 @@ const hardwareGallery = [
         to compare how quickly they dry, how the soil temperature changes, and how long water takes to reach a probe.
       </p>
     </section>
-
-    <ProjectOverview
-      id="grgagrow"
-      items={[
-        {
-          label: 'Today',
-          text: 'Cloud app online; firmware on the ESP32 reads two probes and uploads over Wi-Fi with OTA updates. Calibration and field operation are still to be verified.',
-        },
-        {
-          label: 'My role',
-          text: 'Defining the garden workflow and expected behaviour, carrying out bench checks and interpreting the results.',
-        },
-        {
-          label: 'Example',
-          text: 'Both probes shipped at the same address. Moving one kept failing until I found that the board never sent the 11-byte write frame.',
-        },
-        {
-          label: 'Next step',
-          text: 'Bury both probes in the lawn, check readings in soil, then calibrate pH and moisture before reviewing watering thresholds.',
-        },
-      ]}
-    />
 
     <section aria-labelledby="lawn-hardware">
       <p class="folio-label">02 / WORK ON THE BENCH</p>
@@ -712,8 +712,7 @@ const hardwareGallery = [
           <span class="small-label">HISTORY & WEEKLY REPORTS</span>
           <h3>A week beneath the surface.</h3>
           <p>
-            Follow seven days of moisture history and a report of hourly averages, temperature and missing intervals.
-            The private workspace adds up to 30 days of history, metric and sensor filters, and CSV export.
+            Follow seven days of shared history as moisture and temperature curves with hourly bars, plus a report of hourly averages and missing intervals. The private workspace adds up to 30 days of history, metric and sensor filters, and CSV export.
           </p>
         </article>
         <article>
@@ -728,8 +727,7 @@ const hardwareGallery = [
           <span class="small-label">SUN PATH & BUILDING SHADE</span>
           <h3>Follow the light.</h3>
           <p>
-            When I share the sun view and an approximate location, Live shows the sun’s direction, elevation, sunrise
-            and sunset. I can also share a building model so visitors can explore its estimated shade through the day.
+            When I share the sun view and an approximate location, Live shows the sun’s direction, elevation, sunrise and sunset. A shared building model adds the building and an animation of its estimated shade through the day. Probe markers appear for publicly selected probes with a saved position when I turn on Show sensor positions.
           </p>
         </article>
         <article>
