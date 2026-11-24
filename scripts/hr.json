@@ -1919,5 +1919,9 @@
   "Open enclosure seen from above: MEAN WELL 12 V supply on the left, controller on a DIN rail with lever connectors and inline fuses on the right": "Otvoreno kućište odozgo: MEAN WELL napajanje od 12 V lijevo, kontroler na DIN šini sa spojnicama s polugom i linijskim osiguračima desno",
   "The 12 V supply and the controller on a DIN rail in the enclosure.": "Napajanje od 12 V i kontroler na DIN šini u kućištu.",
   "Enlarge: controller and supply": "Povećaj: kontroler i napajanje",
-  "CONTROLLER AND SUPPLY / The 12 V supply and the controller on a DIN rail in the enclosure.": "KONTROLER I NAPAJANJE / Napajanje od 12 V i kontroler na DIN šini u kućištu."
+  "CONTROLLER AND SUPPLY / The 12 V supply and the controller on a DIN rail in the enclosure.": "KONTROLER I NAPAJANJE / Napajanje od 12 V i kontroler na DIN šini u kućištu.",
+  "Public grgaGrow Live card for sensor 1 with a fresh reading: 34.9 % soil moisture and 3.2 °C soil temperature, beside a grass and root illustration": "Kartica senzora 1 u javnom grgaGrow Liveu sa svježim očitanjem: 34,9 % vlage i 3,2 °C u tlu, uz ilustraciju trave i korijenja",
+  "Two probes in my 49 m² lawn send soil moisture and temperature to the cloud over Wi-Fi. The readings are public on a live page.": "Dvije sonde u mom travnjaku od 49 m² šalju vlagu i temperaturu tla u oblak preko Wi-Fija. Očitanja su javna na stranici uživo.",
+  "Public Live: a real reading from my lawn.": "Javni Live: stvarno očitanje iz mog travnjaka.",
+  "In the lawn · Live readings": "U travnjaku · Očitanja uživo"
 }
