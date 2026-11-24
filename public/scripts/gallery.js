@@ -18,6 +18,7 @@
   const caption = overlay.querySelector('.gallery-caption')
   const counter = overlay.querySelector('.gg-gallery-count')
   const thumbnails = overlay.querySelector('.gg-gallery-thumbnails')
+  const footer = overlay.querySelector('.gg-gallery-footer')
   let items = []
   let index = 0
   let origin = null
@@ -51,9 +52,9 @@
     })
     reset()
   }
-  function buildThumbnails() {
+  function buildThumbnails(photos) {
     thumbnails.replaceChildren()
-    items.forEach((item, n) => {
+    photos.forEach((item, n) => {
       const button = document.createElement('button')
       button.type = 'button'
       button.className = 'gg-gallery-thumb'
@@ -98,7 +99,10 @@
     locked.forEach(([el]) => (el.inert = true))
     overlay.classList.add('open')
     overlay.setAttribute('aria-hidden', 'false')
-    buildThumbnails()
+    const hideFilmstrip = scope?.hasAttribute('data-gallery-no-filmstrip') ?? false
+    overlay.classList.toggle('gg-lightbox-standalone', hideFilmstrip)
+    footer.hidden = counter.hidden = hideFilmstrip
+    buildThumbnails(hideFilmstrip ? [] : items)
     show(index)
     closeButton.focus()
   }

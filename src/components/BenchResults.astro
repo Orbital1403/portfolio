@@ -2,8 +2,18 @@
 const quantityLabels = ['Temperature', 'Moisture channel', 'pH']
 const soil = ['22.6 °C', '19.4 %', '6.5']
 const readings = [
-  { label: 'In water', alt: 'Illustration of a probe in a glass of water', values: ['21.5 °C', '100.0 %', '4.5'] },
-  { label: 'First reading in a pot', alt: 'Illustration of a probe in potting soil', values: soil },
+  {
+    label: 'In water',
+    image: '/images/projects/smart-lawn/bench/thp-in-water.webp',
+    alt: 'Illustration of a probe in a glass of water',
+    values: ['21.5 °C', '100.0 %', '4.5'],
+  },
+  {
+    label: 'First reading in a pot',
+    image: '/images/projects/smart-lawn/bench/thp-in-pot.webp',
+    alt: 'Illustration of a probe in potting soil',
+    values: soil,
+  },
 ]
 const steps = [
   ['Terminal request', 'The computer asks the ESP32 for a reading.'],
@@ -18,18 +28,9 @@ const steps = [
     <h4 id="bench-readings">THP bench readings</h4>
     <div class="reading-grid">
       {
-        readings.map(({ label, alt, values }, index) => (
+        readings.map(({ label, image, alt, values }) => (
           <figure class="reading-card">
-            <div class:list={['probe-sketch', { 'soil-sketch': index === 1 }]}>
-              <img
-                src="/images/projects/smart-lawn/bench/thp-water-and-soil.webp"
-                width="900"
-                height="450"
-                alt={alt}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+            <img class="probe-sketch" src={image} width="330" height="330" alt={alt} loading="lazy" decoding="async" />
             <figcaption>
               <h5>{label}</h5>
               <dl class="reading-values">
@@ -164,21 +165,12 @@ const steps = [
     text-align: center;
   }
   .probe-sketch {
-    width: min(100%, 168px);
-    aspect-ratio: 1;
-    margin: 0 auto 8px;
-    overflow: hidden;
-  }
-  .probe-sketch img {
     display: block;
-    width: 200%;
-    max-width: none;
+    width: min(100%, 168px);
     height: auto;
+    margin: 0 auto 8px;
   }
-  .soil-sketch img {
-    transform: translateX(-50%);
-  }
-  :global(html.dark) .probe-sketch img {
+  :global(html.dark) .probe-sketch {
     filter: invert(1) hue-rotate(180deg);
   }
   figcaption {

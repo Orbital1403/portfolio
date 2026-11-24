@@ -614,7 +614,7 @@ html.dark :is(.hobby-photo img, .hobby-cover img):focus-visible {
 .gg-photo-window {
   position: absolute;
   top: 100px;
-  bottom: 154px;
+  bottom: var(--gallery-photo-bottom, 154px);
   left: 86px;
   right: 86px;
   display: flex;
@@ -622,6 +622,9 @@ html.dark :is(.hobby-photo img, .hobby-cover img):focus-visible {
   justify-content: center;
   overflow: hidden;
   z-index: 1;
+}
+.gg-lightbox-standalone {
+  --gallery-photo-bottom: max(24px, env(safe-area-inset-bottom));
 }
 .gg-photo-window .gg-lb-img {
   max-height: 100%;
@@ -731,7 +734,7 @@ html.dark :is(.hobby-photo img, .hobby-cover img):focus-visible {
   }
   .gg-photo-window {
     top: 96px;
-    bottom: 156px;
+    bottom: var(--gallery-photo-bottom, 156px);
     left: 12px;
     right: 12px;
   }

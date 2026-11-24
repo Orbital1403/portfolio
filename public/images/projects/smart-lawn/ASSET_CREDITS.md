@@ -67,8 +67,16 @@ Source pages and original image URLs are recorded under `hardware-photo-refresh`
 
 ## Own build and garden photographs — 24 November 2026
 
-Photographs in `build/` and the `hardware/own-*.webp` files were supplied by Gordan Grgić and show his own parts, the assembled enclosure and the installation in his garden. The workbench and part photographs are edited photographs; the four garden photographs (`build/garden-*.webp`) are from installation day, 24 November 2026. All were resized and re-encoded for the web.
+Photographs in `build/` and the `hardware/own-*.webp` files were supplied by Gordan Grgić and show his own parts, the assembled enclosure and the installation in his garden. The workbench and part photographs are edited photographs; the two enclosure photographs were made on installation day, 24 November 2026. The trench and backfill views are edited images, including an illustrative view of the covered probe. All were prepared for web use.
 
-`build/installation-overview.webp` (English) and `build/installation-overview-hr.webp` (Croatian, shown on /hr/) are illustrations supplied by Gordan Grgić and corrected to match the real build: the enclosure inset is a photograph of the assembled enclosure, EC was removed from the English version (the THP probe reads moisture, temperature and pH), and the fuses are labelled with their real rating (2 × T100 mA). They are not wiring schematics.
+The installation gallery uses `build/installation-modules-en.webp` (English) and `build/installation-modules-hr.webp` (Croatian), supplied earlier by Gordan Grgić. They show illustrative modules and an example layout. The actual enclosure appears in the photographs above the illustration. The English reference depicts EC as well, whereas this installation tracks soil moisture, temperature and pH.
 
 Reference photographs that remain in the equipment gallery are marked "(reference)" beside their source link.
+
+## Owner and Probe Service screenshots — 24 November 2026
+
+`grgagrow-owner-overview.jpg` shows both sensor cards from the authenticated Owner Overview. Measurement times are marked unverified, and the crop omits the private location header. `bench/service-board-ph.jpg` shows the full Mac Probe Service interface, with its sidebar, Wi-Fi status and the latest reports from both probes at capture time. The local IP address is masked.
+
+`grgagrow-public-live.jpg` records the published Live sensor cards, photographed by screen capture on 24 November 2026. The two cards show fresh public readings for soil moisture, temperature and pH where available. The root-zone images are illustrations.
+
+`hardware/heat-shrink-tubing-reference.webp` is a reference photograph of an assortment of heat-shrink tubing. [Shrink tubing.jpg](https://commons.wikimedia.org/wiki/File:Shrink_tubing.jpg) by Nuno Nogueira, [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/). Resized and converted to WebP under the same license.
