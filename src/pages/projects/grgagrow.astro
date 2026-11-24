@@ -72,7 +72,13 @@ const milestones = [
   ['19 Nov', 'From a glass of water to potting soil', 'THP probe in a pot: 22.6 °C, 19.4 % and pH 6.5.', 'done'],
   ['20 Nov', 'Two probes, one bus', 'TH moved to address 03; both probes read together.', 'done'],
   ['21 Nov', 'Firmware and cloud', 'Production firmware on 12 V, uploads acknowledged, OTA working.', 'done'],
-  ['Next', 'Into the lawn', 'Bury both probes, check readings in soil, then calibrate.', 'next'],
+  ['24 Nov', 'Into the lawn', 'Both probes buried in the lawn; the enclosure sits on gravel by the wall.', 'done'],
+  [
+    'Next',
+    'Calibration in soil',
+    'Check pH and moisture against reference measurements, then review watering thresholds.',
+    'next',
+  ],
 ]
 
 const probeServiceTabs = [
@@ -91,64 +97,59 @@ const probeServiceTabs = [
 
 const hardwareGallery = [
   {
-    image: 'esp32-s3-rs485-can.jpg',
-    width: 800,
-    height: 800,
+    image: 'own-controller.webp',
+    width: 900,
+    height: 675,
     title: 'ESP32-S3 controller',
     description:
       'A Waveshare ESP32-S3-RS485-CAN Rev 2.2 runs the grgaGrow firmware on 12 V: it polls both probes, keeps a local queue and uploads over Wi-Fi with OTA updates.',
     detail: 'RS485 / CAN · Wi-Fi · DIN housing',
-    alt: 'Waveshare reference photograph of the ESP32-S3-RS485-CAN controller in its DIN-rail housing',
-    source: 'https://www.waveshare.com/product/esp32-s3-rs485-can.htm',
-    vendor: 'Waveshare',
+    alt: 'My Waveshare ESP32-S3-RS485-CAN controller in its DIN-rail housing',
+    own: true,
   },
   {
-    image: 'soil-th-reference.jpg',
-    width: 400,
-    height: 400,
+    image: 'own-probe-th.webp',
+    width: 900,
+    height: 675,
     title: 'Moisture + temperature',
     description:
       'The TH probe answers at Modbus address 03 on the shared RS485 bus. It responded in water, dry soil and wet soil; its readings are not calibrated.',
     detail: 'RS485 soil probe',
-    alt: 'Renke reference image of a soil temperature and moisture probe',
-    source: 'https://www.renkeer.com/product/soil-moisture-sensor/',
-    vendor: 'Renke',
+    alt: 'My TH soil probe with two metal pins and its cable',
+    own: true,
   },
   {
-    image: 'soil-ph-th-reference.jpg',
-    width: 500,
-    height: 500,
+    image: 'own-probe-thp.webp',
+    width: 900,
+    height: 675,
     title: 'Moisture + temperature + pH',
     description:
       'The THP probe responds at address 02. Its first pH value appears about five minutes after power-up. Buffer-solution checks are next.',
     detail: 'Combined probe · pH',
-    alt: 'Renke reference image of a multi-parameter soil probe with metal sensing pins',
-    source: 'https://www.renkeer.com/product/soil-nutrient-sensor/',
-    vendor: 'Renke',
+    alt: 'My THP soil probe with five metal pins and its cable',
+    own: true,
   },
   {
-    image: 'field-cable-reference.jpg',
-    width: 1024,
-    height: 171,
+    image: 'own-garden-cable.webp',
+    width: 900,
+    height: 675,
     title: 'Garden cable',
     description:
       'BITNER BiTsensor LP0170 has two shielded twisted pairs, 0.34 mm² conductors and a 6.5 mm outer diameter. One pair is planned for data and the other for sensor power.',
     detail: 'BITNER BiTsensor · Shielded twisted pairs',
-    alt: 'BITNER BiTsensor cable family reference photograph showing blue and green jackets, shielding and two conductor pairs',
-    source: 'https://onninen.pl/en/product/BITNER-bitsensor-data-cable-pe-pvc-blue-2x2x22awg-drum-LP0170,429024',
-    vendor: 'Onninen / BITNER',
+    alt: 'Coil of blue shielded garden cable used between the enclosure and the probes',
+    own: true,
   },
   {
-    image: 'mean-well-owa-60e-reference.jpg',
-    width: 608,
-    height: 608,
+    image: 'own-power-supply.webp',
+    width: 675,
+    height: 900,
     title: 'Outdoor DC power supply',
     description:
-      'The controller and both probes now run from one 12 V adapter without USB. Outdoor protection and the enclosure are installation checks.',
-    detail: 'MEAN WELL OWA-60E · Reference model',
-    alt: 'MEAN WELL OWA-60E reference photograph showing a sealed power adapter with fixed cables and a European mains plug',
-    source: 'https://www.meanwellaustralia.com.au/products/owa-60e',
-    vendor: 'MEAN WELL Australia',
+      'The controller and both probes run from one 12 V supply without USB. It sits inside the enclosure beside the controller.',
+    detail: 'MEAN WELL OWA-60E-12 · In the enclosure',
+    alt: 'My MEAN WELL 12 V power supply with its mains cable',
+    own: true,
   },
   {
     image: 'terminal-blocks-reference.webp',
@@ -161,45 +162,40 @@ const hardwareGallery = [
     vendor: 'AOSI',
   },
   {
-    image: 'termination-resistor-reference.jpg',
-    width: 500,
-    height: 500,
+    image: 'own-termination-resistors.webp',
+    width: 675,
+    height: 900,
     title: 'RS485 termination',
     detail: 'Metal-film resistor · Bus-end termination',
-    alt: 'Close-up reference photograph of a blue axial metal-film resistor with coloured bands and wire leads',
-    source: 'https://srkelectronics.in/product/120-ohm-0-5w-metal-film-resistor-120-ohm-1-2w-mfr-resistor-pack-of-100/',
-    vendor: 'SRK Electronics',
+    alt: 'Strip of axial resistors for RS485 termination in their bag',
+    own: true,
   },
   {
-    image: 'enclosure-opaque-reference.jpg',
-    width: 1000,
-    height: 1000,
+    image: 'own-enclosure-closed.webp',
+    width: 675,
+    height: 900,
     title: 'Project enclosure',
-    detail: 'Opaque-lid electronics housing',
-    alt: 'Reference photograph of a closed light-grey electronics enclosure with an opaque screw-fastened lid and mounting tabs',
-    source: 'https://vxb.com/products/heavy-duty-abs-plastic-junction-box-for-indoor-out',
-    vendor: 'VXB',
+    detail: 'Opaque-lid electronics housing · 230 × 150 × 85 mm',
+    alt: 'My closed light-grey project enclosure standing upright',
+    own: true,
   },
   {
-    image: 'gel-joint-box-reference.jpg',
-    width: 730,
-    height: 730,
+    image: 'own-joint-box.webp',
+    width: 900,
+    height: 675,
     title: 'Cable-joint protection',
-    detail: 'Gel-filled joint housing · Reference model',
-    alt: 'JINH reference photograph of an open green gel joint box with a lever connector and black leads',
-    source:
-      'https://www.cnjinh.com/waterproofs-connector/waterproof-gel-box/ip68-gel-box-for-quick-connectors-of-3p-and.html',
-    vendor: 'JINH',
+    detail: 'Joint box · two-component potting gel',
+    alt: 'Open cable joint box with lever connectors and cable glands on both sides',
+    own: true,
   },
   {
-    image: 'din-rails-reference.jpg',
-    width: 800,
-    height: 800,
+    image: 'own-din-rails.webp',
+    width: 675,
+    height: 900,
     title: 'DIN mounting rail',
     detail: 'Slotted rail for mounting modules',
-    alt: 'Reference photograph of a short slotted DIN mounting rail',
-    source: 'https://solardiy.co.uk/fuses-breakers/47-35mm-din-rail-for-mcb-100mm.html',
-    vendor: 'Solar DIY',
+    alt: 'Two short slotted DIN rails',
+    own: true,
   },
   {
     image: 'internal-cable-reference.png',
@@ -212,14 +208,13 @@ const hardwareGallery = [
     vendor: 'LEDsales',
   },
   {
-    image: 'inline-fuse-holder-reference.jpg',
-    width: 500,
-    height: 500,
+    image: 'own-inline-fuses.webp',
+    width: 675,
+    height: 900,
     title: 'Inline fuse holders',
     detail: '5 × 20 mm glass-fuse holder',
-    alt: 'Reference photograph of an open 5 × 20 mm inline glass-fuse holder with red wire and a glass fuse',
-    source: 'https://srkelectronics.in/product/5x20mm-fuse-holder-inline-screw-type-with-wire/',
-    vendor: 'SRK Electronics',
+    alt: 'Inline fuse holders with red leads in their bag',
+    own: true,
   },
   {
     image: 'dc-connectors-reference.webp',
@@ -232,14 +227,13 @@ const hardwareGallery = [
     vendor: 'Adafruit',
   },
   {
-    image: 'cable-glands-reference.jpg',
-    width: 1560,
-    height: 1040,
+    image: 'own-cable-glands.webp',
+    width: 675,
+    height: 900,
     title: 'Cable entries',
     detail: 'PG7 gland with a sealing ring',
-    alt: 'DFRobot reference photograph of a light-coloured PG7 cable gland with a sealing ring',
-    source: 'https://www.dfrobot.com/product-2159.html',
-    vendor: 'DFRobot',
+    alt: 'PG7 cable glands, one bag and two loose glands',
+    own: true,
   },
   {
     image: 'crimper-ferrules-reference.webp',
@@ -268,7 +262,8 @@ const hardwareGallery = [
       <h1>When does my lawn actually need water?</h1>
       <p class="lede">I want to see how quickly the soil on my 49 m² lawn dries out in the sun and in the shade.</p>
       <p class="body-copy">
-        On the workbench, two probes now share one controller. The first readings have reached the cloud over Wi-Fi.
+        Since 24 November both probes are in the lawn. They share one controller, which sends their readings to the
+        cloud over Wi-Fi.
       </p>
       <div class="project-actions">
         <a
@@ -284,7 +279,7 @@ const hardwareGallery = [
         items={[
           {
             label: 'Today',
-            text: 'Cloud app online; firmware on the ESP32 reads two probes and uploads over Wi-Fi with OTA updates. Calibration and field operation are still to be verified.',
+            text: 'Both probes are buried in the lawn. Firmware on the ESP32 reads them and uploads over Wi-Fi with OTA updates. Calibration and long-term field operation are still to be verified.',
           },
           {
             label: 'My role',
@@ -296,7 +291,7 @@ const hardwareGallery = [
           },
           {
             label: 'Next step',
-            text: 'Bury both probes in the lawn, check readings in soil, then calibrate pH and moisture before reviewing watering thresholds.',
+            text: 'Watch the readings in soil, then calibrate pH and moisture before reviewing watering thresholds.',
           },
         ]}
       />
@@ -305,6 +300,7 @@ const hardwareGallery = [
 
     <nav class="section-nav" aria-label="Sections">
       <a href="#lawn-site">In the lawn</a>
+      <a href="#lawn-install">Installation</a>
       <a href="#lawn-hardware">On the bench</a>
       <a href="#lawn-equipment">Equipment</a>
       <a href="#lawn-software">Garden app</a>
@@ -320,7 +316,7 @@ const hardwareGallery = [
           srcset="/images/projects/smart-lawn/lawn-800.jpg 800w, /images/projects/smart-lawn/lawn.jpg 1600w"
           sizes="(max-width: 840px) 100vw, 800px"
           data-src="/images/projects/smart-lawn/lawn.jpg"
-          alt="My 49 square metre lawn with a robotic mower, the future test site for the two soil probes"
+          alt="My 49 square metre lawn with a robotic mower, the test site where both soil probes are now buried"
           width="1600"
           height="1200"
           loading="lazy"
@@ -328,14 +324,14 @@ const hardwareGallery = [
           data-group="cover"
         />
         <figcaption>
-          THE TEST SITE / My 49 m² lawn. The probes and their cables will need to stay clear of the robotic mower.
+          THE TEST SITE / My 49 m² lawn. The probes and their cables stay clear of the robotic mower.
         </figcaption>
       </figure>
       <div class="field-status">
         <p class="small-label">FROM BENCH TO LAWN</p>
         <p>
-          I tested both probes together on the workbench. Public Live is open without an account. The first lawn
-          readings will follow installation.
+          On 24 November both probes went into the lawn, and the first readings from soil arrived the same morning.
+          Public Live is open without an account.
         </p>
         <a
           class="demo-link live-link"
@@ -344,6 +340,95 @@ const hardwareGallery = [
           rel="noopener noreferrer">Follow the live readings ↗</a
         >
       </div>
+      <h3 id="lawn-install">Into the lawn.</h3>
+      <div
+        class="software-gallery garden-gallery"
+        aria-label="Photographs of the grgaGrow installation in the garden"
+        data-gallery-scope
+      >
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/garden-enclosure-open.webp"
+            alt="Open grgaGrow enclosure on gravel by a garden wall, with the 12 V supply, the controller on a DIN rail, lever connectors and two blue probe cables"
+            width="742"
+            height="816"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-garden"
+            data-index="0"
+            data-title="On gravel by the wall: 12 V supply, controller and connectors. Photograph, 24 November 2026."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: enclosure"
+          />
+          <figcaption>ENCLOSURE / On gravel by the wall: 12 V supply, controller and connectors.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/garden-enclosure-closed.webp"
+            alt="Closed grgaGrow enclosure on gravel with two blue cables leading to the lawn"
+            width="742"
+            height="816"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-garden"
+            data-index="1"
+            data-title="The lid on, two cables out to the probes. Photograph, 24 November 2026."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: closed"
+          />
+          <figcaption>CLOSED / The lid on, two cables out to the probes.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/garden-probe-in-trench.webp"
+            alt="Soil probe lying flat in a shallow trench cut into the lawn, with its cable leading away"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-garden"
+            data-index="2"
+            data-title="Laid flat in a shallow trench before backfilling. Photograph, 24 November 2026."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: probe"
+          />
+          <figcaption>PROBE / Laid flat in a shallow trench before backfilling.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/garden-trench-filled.webp"
+            alt="Patch of freshly backfilled soil in the lawn where a probe is buried"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-garden"
+            data-index="3"
+            data-title="The patch after backfilling; the grass will grow back. Photograph, 24 November 2026."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: backfilled"
+          />
+          <figcaption>BACKFILLED / The patch after backfilling; the grass will grow back.</figcaption>
+        </figure>
+      </div>
+      <figure class="dashboard-figure installation-overview">
+        <img
+          src="/images/projects/smart-lawn/build/installation-overview.webp"
+          alt="Illustrated overview of the installation: the enclosure with controller and 12 V supply, two RS485 probes in the soil, installation steps and the wiring of power and the RS485 bus"
+          width="1536"
+          height="1024"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>
+          INSTALLATION OVERVIEW / An illustration, not a wiring schematic. The enclosure inset is a photograph of the
+          real build.
+        </figcaption>
+      </figure>
       <p>
         This is the part I enjoy: connecting the interface to something physical, making the measurements
         understandable, and checking the whole path from a sensor in the ground to a decision on the screen.
@@ -615,8 +700,8 @@ const hardwareGallery = [
       <p class="folio-label">03 / EQUIPMENT</p>
       <h2 id="lawn-equipment">The equipment behind the readings.</h2>
       <p class="note">
-        Reference photos below show component types and assembly accessories. Models, dimensions and pictured quantities
-        may differ from the ordered parts.
+        Most photos below show my own parts. The few marked as reference images show the component type only; models,
+        dimensions and pictured quantities may differ from the parts I used.
       </p>
       {
         [hardwareGallery.slice(0, 5), hardwareGallery.slice(5)].map((items, group) => {
@@ -633,7 +718,7 @@ const hardwareGallery = [
                     decoding="async"
                     data-index={group === 0 ? index : index + 5}
                     data-group="grgagrow-hardware"
-                    data-title={`${item.title} — ${item.detail}. Reference image of this component type.`}
+                    data-title={`${item.title} — ${item.detail}. ${'own' in item ? 'My own part, edited photograph.' : 'Reference image of this component type.'}`}
                     tabindex="0"
                     role="button"
                     aria-label={`Enlarge ${item.title}`}
@@ -642,9 +727,13 @@ const hardwareGallery = [
                     <h3>{item.title}</h3>
                     <p>{item.detail}</p>
                     {'description' in item && <p class="hardware-description">{item.description}</p>}
-                    <a href={item.source} target="_blank" rel="noopener noreferrer">
-                      Photo: {item.vendor} ↗
-                    </a>
+                    {'own' in item ? (
+                      <p class="photo-credit">Photo: my own part</p>
+                    ) : (
+                      <a href={item.source} target="_blank" rel="noopener noreferrer">
+                        Photo: {item.vendor} ↗ (reference)
+                      </a>
+                    )}
                   </figcaption>
                 </figure>
               ))}
@@ -669,6 +758,77 @@ const hardwareGallery = [
           )
         })
       }
+      <h3 id="lawn-assembly">Assembling the enclosure.</h3>
+      <div class="software-gallery" aria-label="Photographs from assembling the grgaGrow enclosure" data-gallery-scope>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/bench-top.webp"
+            alt="Workbench seen from above with a laptop, multimeter, pliers, the controller and both probes connected"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-assembly"
+            data-index="0"
+            data-title="Everything connected and checked before it went into the box. Edited photograph."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: bench"
+          />
+          <figcaption>BENCH / Everything connected and checked before it went into the box.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/enclosure-wired.webp"
+            alt="Wired enclosure seen from above: controller on a DIN rail, lever connectors, inline fuses and the 12 V supply"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-assembly"
+            data-index="1"
+            data-title="Controller, fuses, connectors and supply in one enclosure. Edited photograph."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: wired"
+          />
+          <figcaption>WIRED / Controller, fuses, connectors and supply in one enclosure.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/joint-box-macro.webp"
+            alt="Close-up of an open cable joint box with orange lever connectors and a cable gland on each side"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-assembly"
+            data-index="2"
+            data-title="Probe leads meet the garden cable inside joint boxes. Edited photograph."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: joints"
+          />
+          <figcaption>JOINTS / Probe leads meet the garden cable inside joint boxes.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/potting-gel.webp"
+            alt="Two bottles of two-component transparent potting gel"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-assembly"
+            data-index="3"
+            data-title="Two-component gel for the joint boxes. Edited photograph."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: gel"
+          />
+          <figcaption>GEL / Two-component gel for the joint boxes.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <figure class="dashboard-figure">
@@ -711,7 +871,9 @@ const hardwareGallery = [
           <span class="small-label">HISTORY & WEEKLY REPORTS</span>
           <h3>A week beneath the surface.</h3>
           <p>
-            Follow seven days of shared history as moisture and temperature curves with hourly bars, plus a report of hourly averages and missing intervals. The private workspace adds up to 30 days of history, metric and sensor filters, and CSV export.
+            Follow seven days of shared history as moisture and temperature curves with hourly bars, plus a report of
+            hourly averages and missing intervals. The private workspace adds up to 30 days of history, metric and
+            sensor filters, and CSV export.
           </p>
         </article>
         <article>
@@ -726,7 +888,10 @@ const hardwareGallery = [
           <span class="small-label">SUN PATH & BUILDING SHADE</span>
           <h3>Follow the light.</h3>
           <p>
-            When I share the sun view and an approximate location, Live shows the sun’s direction, elevation, sunrise and sunset. A shared building model adds the building and an animation of its estimated shade through the day. Probe markers appear for publicly selected probes with a saved position when I turn on Show sensor positions.
+            When I share the sun view and an approximate location, Live shows the sun’s direction, elevation, sunrise
+            and sunset. A shared building model adds the building and an animation of its estimated shade through the
+            day. Probe markers appear for publicly selected probes with a saved position when I turn on Show sensor
+            positions.
           </p>
         </article>
         <article>
@@ -854,8 +1019,8 @@ const hardwareGallery = [
         </li>
         <li>
           <strong>Connect and observe</strong><p>
-            Bury both probes, check readings in soil and calibrate pH and moisture. Then compare both garden locations
-            and review watering thresholds.
+            Both probes are in the lawn since 24 November. Next: check readings in soil and calibrate pH and moisture.
+            Then compare both garden locations and review watering thresholds.
           </p>
         </li>
         <li>
@@ -1303,6 +1468,9 @@ const hardwareGallery = [
   }
   .hardware-photo a {
     display: inline-block;
+    margin-top: 10px;
+  }
+  .hardware-photo .photo-credit {
     margin-top: 10px;
   }
   .roadmap {

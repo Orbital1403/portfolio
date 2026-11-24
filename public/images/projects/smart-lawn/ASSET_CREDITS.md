@@ -64,3 +64,11 @@ Clean product photographs replace the supplied shop screenshots. The published a
 - The existing DFRobot PG7 photograph is retained because it is already a clean, high-resolution product image.
 
 Source pages and original image URLs are recorded under `hardware-photo-refresh` in `sources.json`. These are component-type references, not photographs of the delivered or assembled system. The supplied screenshots show different enclosure and fuse variants from the earlier confirmed bill of materials; the confirmed inventory is unchanged. Third-party image rights remain with their owners and are excluded from this repository's MIT licence.
+
+## Own build and garden photographs — 24 November 2026
+
+Photographs in `build/` and the `hardware/own-*.webp` files were supplied by Gordan Grgić and show his own parts, the assembled enclosure and the installation in his garden. The workbench and part photographs are edited photographs; the four garden photographs (`build/garden-*.webp`) are from installation day, 24 November 2026. All were resized and re-encoded for the web.
+
+`build/installation-overview.webp` is an illustration supplied by Gordan Grgić and corrected to match the real build: the enclosure inset is a photograph of the assembled enclosure, EC was removed (the THP probe reads moisture, temperature and pH), and fuse ratings were removed. It is not a wiring schematic.
+
+Reference photographs that remain in the equipment gallery are marked "(reference)" beside their source link.
