@@ -417,7 +417,17 @@ const hardwareGallery = [
       </div>
       <figure class="dashboard-figure installation-overview">
         <img
+          class="overview-en"
           src="/images/projects/smart-lawn/build/installation-overview.webp"
+          alt="Illustrated overview of the installation: the enclosure with controller and 12 V supply, two RS485 probes in the soil, installation steps and the wiring of power and the RS485 bus"
+          width="1536"
+          height="1024"
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          class="overview-hr"
+          src="/images/projects/smart-lawn/build/installation-overview-hr.webp"
           alt="Illustrated overview of the installation: the enclosure with controller and 12 V supply, two RS485 probes in the soil, installation steps and the wiring of power and the RS485 bus"
           width="1536"
           height="1024"
@@ -1638,6 +1648,13 @@ const hardwareGallery = [
   }
   .block-title {
     margin-top: 40px;
+  }
+  .installation-overview .overview-hr,
+  :global(html[lang='hr']) .installation-overview .overview-en {
+    display: none;
+  }
+  :global(html[lang='hr']) .installation-overview .overview-hr {
+    display: block;
   }
   .field-status {
     margin: 24px 0;

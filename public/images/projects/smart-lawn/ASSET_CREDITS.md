@@ -69,6 +69,6 @@ Source pages and original image URLs are recorded under `hardware-photo-refresh`
 
 Photographs in `build/` and the `hardware/own-*.webp` files were supplied by Gordan Grgić and show his own parts, the assembled enclosure and the installation in his garden. The workbench and part photographs are edited photographs; the four garden photographs (`build/garden-*.webp`) are from installation day, 24 November 2026. All were resized and re-encoded for the web.
 
-`build/installation-overview.webp` is an illustration supplied by Gordan Grgić and corrected to match the real build: the enclosure inset is a photograph of the assembled enclosure, EC was removed (the THP probe reads moisture, temperature and pH), and fuse ratings were removed. It is not a wiring schematic.
+`build/installation-overview.webp` (English) and `build/installation-overview-hr.webp` (Croatian, shown on /hr/) are illustrations supplied by Gordan Grgić and corrected to match the real build: the enclosure inset is a photograph of the assembled enclosure, EC was removed from the English version (the THP probe reads moisture, temperature and pH), and fuse ratings were removed. They are not wiring schematics.
 
 Reference photographs that remain in the equipment gallery are marked "(reference)" beside their source link.
