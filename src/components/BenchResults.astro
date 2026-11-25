@@ -1,6 +1,8 @@
 ---
 import Icon from '~/components/Icon.astro'
 import DisclosureSummary from '~/components/DisclosureSummary.astro'
+import growIcons from '~/assets/grgagrow-icons.svg?url&no-inline'
+import { growProbes } from '~/data/grgagrow-probes'
 
 const quantityLabels = ['Temperature', 'Moisture channel', 'pH']
 const soil = ['22.6 °C', '19.4 %', '6.5']
@@ -22,22 +24,22 @@ const steps = [
   {
     title: 'Terminal request',
     description: 'The computer asks the ESP32 for a reading.',
-    icon: 'M12 19H3V5h14v4M6 9l2 2-2 2m4 0h2m2 1h8m-3-3 3 3-3 3',
+    icon: 'request',
   },
   {
     title: 'Probe response',
     description: 'The ESP32 sends a Modbus request over RS485 and waits for the THP probe to respond.',
-    icon: 'M13 3h8v8h-8zm2 8v9m4-9v9M3 11h7m-4-3-3 3 3 3',
+    icon: 'probe-thp',
   },
   {
     title: 'Message checks',
     description: 'The firmware checks the address, function, length and checksum (CRC).',
-    icon: 'M13 20H4V4h11l4 4v3m-4-7v5h4M7 10h4m-4 4h4m2 2 3 3 5-6',
+    icon: 'validate',
   },
   {
     title: 'Readout',
     description: 'Values from a valid response appear in the terminal.',
-    icon: 'M2.5 5h19v13h-19zM6 14l4-5m-4 0h.1m3.9 5h.1m3-4.5h.1m4.9 0h-1.5A1.5 1.5 0 0 0 15 11v1a1.5 1.5 0 0 0 1.5 1.5H18',
+    icon: 'readout',
   },
 ]
 ---
@@ -47,32 +49,23 @@ const steps = [
     <h4 id="bench-firmware">From probes to app</h4>
     <figure class="data-path-diagram">
       <ul class="data-probes" role="list">
-        <li class="data-node">
-          <svg class="data-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <path d="M12 3v3M5 6h14v7H5zM9 13v8m6-8v8" />
-          </svg>
-          <div>
-            <strong>TH · Probe 01</strong>
-            <small>Moisture + temperature</small>
-          </div>
-        </li>
-        <li class="data-node">
-          <svg class="data-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <path d="M12 3v3M4 6h16v7H4zM6 13v8m3-8v8m3-8v8m3-8v8m3-8v8" />
-          </svg>
-          <div>
-            <strong>THP · Probe 02</strong>
-            <small>Moisture + temperature + pH</small>
-          </div>
-        </li>
+        {
+          growProbes.map((probe) => (
+            <li class="data-node">
+              <Icon sprite={growIcons} name={probe.icon} class={`data-icon grow-probe ${probe.icon}`} />
+              <div>
+                <strong>{probe.label}</strong>
+                <small>{probe.channels}</small>
+              </div>
+            </li>
+          ))
+        }
       </ul>
       <div class="data-bus"><span>RS485 / Modbus RTU</span></div>
       <ol class="data-stages" role="list">
         <li class="data-controller">
           <div class="data-node">
-            <Icon name="chip" class="data-icon" />
+            <Icon sprite={growIcons} name="firmware" class="data-icon" />
             <strong>ESP32-S3 controller</strong>
           </div>
         </li>
@@ -97,7 +90,7 @@ const steps = [
       <figcaption class="bench-note">Full data path verified on the bench</figcaption>
     </figure>
     <details class="data-details">
-      <DisclosureSummary icon="clipboard">Bench test details</DisclosureSummary>
+      <DisclosureSummary icon="bench-meter">Bench test details</DisclosureSummary>
       <dl>
         <div>
           <dt>TH firmware</dt>
@@ -119,9 +112,12 @@ const steps = [
     </details>
   </section>
   <details class="data-details">
-    <DisclosureSummary icon="cable">Bench wiring and sample readings</DisclosureSummary>
+    <DisclosureSummary icon="connector">Bench wiring and sample readings</DisclosureSummary>
     <section aria-labelledby="bench-readings">
-      <h4 id="bench-readings">THP bench readings</h4>
+      <h4 id="bench-readings" class="probe-heading">
+        <Icon sprite={growIcons} name="probe-thp" class="grow-probe probe-thp" />
+        THP bench readings
+      </h4>
       <div class="reading-grid">
         {
           readings.map(({ label, image, alt, values }) => (
@@ -171,10 +167,7 @@ const steps = [
             <li>
               <div class="reading-flow-mark" aria-hidden="true">
                 <span>{String(index + 1).padStart(2, '0')}</span>
-                <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                  <path d={icon} />
-                </svg>
+                <Icon sprite={growIcons} name={icon} class={icon === 'probe-thp' ? 'grow-probe probe-thp' : ''} />
               </div>
               <strong>{title}</strong>
               <small>{description}</small>
@@ -278,7 +271,14 @@ const steps = [
   dd {
     margin: 0;
     font: 15px/1.35 var(--note-font);
+  }
+  .reading-values dd {
     white-space: nowrap;
+  }
+  .probe-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .bench-note {
     margin: 10px 0 0;
@@ -341,14 +341,11 @@ const steps = [
     margin-bottom: 4px;
     font: 12px/1.5 var(--note-font);
   }
-  .reading-flow-mark .technical-icon {
+  .reading-flow-mark :global(.technical-icon) {
     width: 22px;
     height: 22px;
     flex: none;
-    color: #39776c;
-  }
-  :global(html.dark) .reading-flow-mark .technical-icon {
-    color: #80b9ad;
+    color: var(--grow-accent);
   }
   .flow-result p {
     margin: 0;
@@ -473,22 +470,22 @@ const steps = [
     margin-top: 10px;
     border-block: 1px solid var(--bench-border);
   }
-  .data-details dl {
+  .data-details > dl {
     display: grid;
     gap: 8px;
     margin: 0 0 12px;
   }
-  .data-details dl > div {
+  .data-details > dl > div {
     display: grid;
     grid-template-columns: minmax(125px, 1fr) minmax(0, 3fr);
     gap: 8px;
   }
-  .data-details dt,
-  .data-details dd {
+  .data-details > dl dt,
+  .data-details > dl dd {
     margin: 0;
     font: 13px/1.5 var(--body-font, sans-serif);
   }
-  .data-details dt {
+  .data-details > dl dt {
     font-weight: 600;
   }
   @container (min-width: 610px) {
