@@ -558,6 +558,12 @@ const hardwareGallery = [
             separate power branches for the probes and the controller.
           </figcaption>
         </figure>
+        <h4 class="probe-depth-title">Why 12 cm?</h4>
+        <p class="probe-depth-explanation">
+          I chose 12 cm because it falls within the recommended range for placing moisture sensors in the root zone of
+          cool-season turfgrass. Both probes sit at the same depth so I can see when rain reaches them and compare how
+          quickly the sunny and shaded areas dry out.
+        </p>
         <figure id="probe-depth" class="dashboard-figure installation-overview" data-gallery-scope data-gallery-no-filmstrip>
           <img
             src="/images/projects/smart-lawn/build/probe-depth-en.png"
@@ -569,13 +575,12 @@ const hardwareGallery = [
             loading="lazy"
             decoding="async"
             data-index="0"
-            data-title="Why both probes are installed at 12 cm."
+            data-title="Why 12 cm? Both probes are in the root zone, so I can compare how fast the soil dries in sun and shade."
             tabindex="0"
             role="button"
             aria-label="Enlarge the probe depth diagram"
           />
           <figcaption>
-            I installed both probes at 12 cm to compare two areas at the same depth and see when moisture reaches that depth after rain.
             <a href="https://www.irrigation.org/IA/FileUploads/IA/Certification/SmartTechnologies_Final.pdf#page=18" target="_blank" rel="noopener noreferrer">Irrigation Association installation guidance (chapter 6) ↗</a>
           </figcaption>
         </figure>
@@ -1752,6 +1757,14 @@ const hardwareGallery = [
   .owner-capture img:focus-visible {
     outline: 2px solid #39776c;
     outline-offset: 3px;
+  }
+  .probe-depth-title {
+    margin: 24px 0 8px;
+    font: 600 18px/1.35 var(--body-font, sans-serif);
+  }
+  .probe-depth-explanation {
+    max-width: 65ch;
+    margin: 0 0 16px;
   }
   .installation-overview img {
     cursor: zoom-in;

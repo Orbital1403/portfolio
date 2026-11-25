@@ -51,11 +51,12 @@ const steps = [
       <ul class="data-probes" role="list">
         {
           growProbes.map((probe) => (
-            <li class="data-node">
-              <Icon sprite={growIcons} name={probe.icon} class={`data-icon grow-probe ${probe.icon}`} />
-              <div>
-                <strong>{probe.label}</strong>
-                <small>{probe.channels}</small>
+            <li class:list={['data-probe', { 'data-probe-thp': probe.icon === 'probe-thp' }]}>
+              <strong>{probe.icon === 'probe-thp' ? 'THP' : 'TH'}</strong>
+              <div class="data-metrics">
+                <span><Icon name="droplet" class="metric-icon" /><span>Moisture</span></span>
+                <span><Icon sprite={growIcons} name="temperature" class="metric-icon" /><span>Temperature</span></span>
+                {probe.icon === 'probe-thp' && <span class="data-ph">pH</span>}
               </div>
             </li>
           ))
@@ -63,31 +64,31 @@ const steps = [
       </ul>
       <div class="data-bus"><span>RS485 / Modbus RTU</span></div>
       <ol class="data-stages" role="list">
-        <li class="data-controller">
+        <li>
           <div class="data-node">
             <Icon sprite={growIcons} name="firmware" class="data-icon" />
             <strong>ESP32-S3 controller</strong>
           </div>
         </li>
         <li>
-          <div class="data-hop data-hop-wifi"><span>Wi-Fi / HTTPS</span></div>
+          <span class="data-hop">Wi-Fi / HTTPS</span>
           <div class="data-node">
             <Icon name="database" class="data-icon" />
             <div>
               <strong>PostgreSQL</strong>
-              <small>Data ingestion</small>
+              <small>Supabase · Reading storage</small>
             </div>
           </div>
         </li>
         <li>
-          <div class="data-hop data-hop-auth"><span>Authenticated access</span></div>
+          <span class="data-hop">Authenticated access</span>
           <div class="data-node data-app">
             <Icon name="web" class="data-icon" />
             <strong>grgaGrow / My Garden</strong>
           </div>
         </li>
       </ol>
-      <figcaption class="bench-note">Full data path verified on the bench</figcaption>
+      <figcaption class="bench-note">On the bench, the ESP32 read both probes and the cloud acknowledged the uploads.</figcaption>
     </figure>
     <details class="data-details">
       <DisclosureSummary icon="bench-meter">Bench test details</DisclosureSummary>
@@ -352,18 +353,14 @@ const steps = [
     font-size: 14px;
   }
   .data-path {
-    --data-line: #39776c;
-    --data-stage-gap: 114px;
-    --data-cloud-gap: 44px;
-  }
-  :global(html.dark) .data-path {
-    --data-line: #80b9ad;
+    --data-line: var(--grow-accent, #39776c);
   }
   .data-path-diagram {
     container-type: inline-size;
     margin: 0;
+    padding: 16px;
     border: 1px solid var(--bench-border);
-    padding: 16px 12px;
+    border-radius: 10px;
     background: var(--bench-tint);
   }
   .data-probes,
@@ -377,42 +374,54 @@ const steps = [
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
+  .data-probe,
   .data-node {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     min-width: 0;
-    min-height: 100%;
-    padding: 11px 8px;
+    padding: 10px 12px;
     border: 1px solid var(--bench-border);
+    border-radius: 7px;
     font: 14px/1.35 var(--body-font, sans-serif);
     overflow-wrap: anywhere;
   }
-  .data-node strong,
-  .data-node small {
-    display: block;
+  .data-probe {
+    position: relative;
+    border-block-start: 2px solid var(--grow-th, var(--data-line));
   }
-  .data-node :global(.data-icon) {
-    display: block;
-    width: 22px;
-    height: 22px;
+  .data-probe-thp {
+    border-block-start-color: var(--grow-thp, var(--data-line));
+  }
+  .data-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+  .data-metrics > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .data-metrics :global(.metric-icon) {
+    width: 15px;
+    height: 15px;
     flex: none;
     color: var(--data-line);
   }
-  .data-app {
-    border-color: var(--data-line);
+  .data-ph {
+    padding-inline: 5px;
+    border: 1px solid var(--bench-border);
+    border-radius: 4px;
+    color: var(--grow-thp, var(--data-line));
   }
-  .data-probes .data-node {
-    position: relative;
-  }
-  .data-probes .data-node::after,
+  .data-probe::after,
   .data-bus::before,
   .data-bus::after {
-    content: "";
     position: absolute;
+    content: "";
     border-color: var(--data-line);
   }
-  .data-probes .data-node::after {
+  .data-probe::after {
     top: 100%;
     left: 50%;
     height: 8px;
@@ -420,7 +429,7 @@ const steps = [
   }
   .data-bus {
     position: relative;
-    padding: 16px 0 14px;
+    padding: 14px 0 11px;
     text-align: center;
     font: 12px/1.5 var(--note-font);
   }
@@ -433,38 +442,46 @@ const steps = [
   .data-bus::after {
     bottom: 0;
     left: 50%;
-    height: 9px;
+    height: 8px;
     border-left: 1px solid var(--data-line);
   }
-  .data-stages > li {
-    min-width: 0;
+  .data-node {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .data-node :global(.data-icon) {
+    width: 22px;
+    height: 22px;
+    flex: none;
+    color: var(--data-line);
+  }
+  .data-node small {
+    display: block;
+    margin-top: 3px;
+    font-size: 12px;
+  }
+  .data-app {
+    border-color: var(--data-line);
   }
   .data-hop {
-    padding: 4px 0 6px;
+    display: block;
+    padding: 5px 0;
     text-align: center;
-    font: 12px/1.5 var(--note-font);
+    font: 11px/1.4 var(--note-font);
   }
   .data-hop::after {
-    content: "";
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     margin-left: 6px;
     border-right: 1px solid var(--data-line);
     border-bottom: 1px solid var(--data-line);
     transform: rotate(45deg) translateY(-2px);
-  }
-  .data-stages .data-node {
-    min-height: auto;
-  }
-  .data-controller .data-node {
-    width: min(100%, 264px);
-    margin-inline: auto;
-    justify-content: center;
+    content: "";
   }
   .data-path-diagram figcaption {
     color: var(--data-line);
-    text-align: center;
   }
   .data-details {
     margin-top: 10px;
@@ -488,61 +505,41 @@ const steps = [
   .data-details > dl dt {
     font-weight: 600;
   }
-  @container (min-width: 610px) {
-    .data-node {
-      padding-block: 16px;
-    }
-    .data-probes .data-node {
-      justify-content: center;
-    }
-    .data-bus {
-      padding: 18px 0 30px;
+  @container (min-width: 590px) {
+    .data-bus::after {
+      left: calc((100% - 44px) / 6);
+      width: calc((100% + 22px) / 3);
+      border-top: 1px solid var(--data-line);
+      border-right: 1px solid var(--data-line);
     }
     .data-stages {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: var(--data-stage-gap);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
     }
-    .data-controller {
-      grid-column: 1 / -1;
-    }
-    .data-stages > li:not(.data-controller) {
+    .data-stages > li {
+      display: flex;
+      flex-direction: column;
       position: relative;
-      padding-top: var(--data-cloud-gap);
+      min-width: 0;
     }
-    .data-stages .data-node {
-      min-height: 100%;
-      justify-content: center;
+    .data-stages > li:first-child {
+      padding-top: 25px;
     }
-    .data-hop-wifi {
-      position: absolute;
-      inset: 0 0 auto;
-      height: var(--data-cloud-gap);
-      padding: 14px 0 0;
-    }
-    .data-hop-wifi::before {
-      content: "";
+    .data-stages > li:first-child::before {
       position: absolute;
       top: 0;
       left: 50%;
-      right: calc(-0.5 * var(--data-stage-gap));
-      height: 9px;
-      border-right: 1px solid var(--data-line);
-      border-bottom: 1px solid var(--data-line);
+      height: 25px;
+      border-left: 1px solid var(--data-line);
+      content: "";
     }
-    .data-hop-auth {
-      display: grid;
-      justify-items: center;
+    .data-stages .data-node {
+      flex: 1;
+    }
+    .data-hop::after {
       position: absolute;
-      top: calc(50% + 0.5 * var(--data-cloud-gap));
-      left: calc(-1 * var(--data-stage-gap));
-      width: var(--data-stage-gap);
-      padding: 0 4px;
-      transform: translateY(-50%);
-      font-size: 11px;
-    }
-    .data-hop-auth::after {
-      width: 6px;
-      height: 6px;
+      top: calc(50% + 11px);
+      left: -16px;
       margin: 0;
       transform: rotate(-45deg);
     }

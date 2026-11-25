@@ -1944,7 +1944,7 @@
   "Enlarge the soil moisture guide": "Povećaj vodič za vlagu tla",
   "These ranges are provisional for this garden. Soil type and probe calibration affect how to interpret a reading.": "Rasponi za ovaj vrt još su orijentacijski. Tumačenje očitanja ovisi o vrsti tla i kalibraciji sondi.",
   "Both probes at 12 cm, within the recommended range of approximately 10.2 to 15.2 cm for cool-season turfgrass.": "Obje sonde na 12 cm, unutar preporučenog raspona od približno 10,2 do 15,2 cm za trave hladnije sezone.",
-  "Why both probes are installed at 12 cm.": "Zašto su obje sonde postavljene na 12 cm.",
+  "Why 12 cm? Both probes are in the root zone, so I can compare how fast the soil dries in sun and shade.": "Zašto 12 cm? Obje su sonde u zoni korijena pa mogu usporediti koliko se brzo tlo suši na suncu i u sjeni.",
   "Enlarge the probe depth diagram": "Povećaj prikaz dubine sondi",
   "I installed both probes at 12 cm to compare two areas at the same depth and see when moisture reaches that depth after rain.": "Obje sam sonde postavio na 12 cm kako bih usporedio dva dijela travnjaka na istoj dubini i pratio kada vlaga nakon kiše stigne do sondi.",
   "Irrigation Association installation guidance (chapter 6) ↗": "Smjernice za ugradnju, Irrigation Association (6. poglavlje) ↗",
@@ -1984,5 +1984,12 @@
   "Enlarge Test power supply": "Povećaj: Testno napajanje",
   "Enclosure power supply — ORNO · 12 V DC · 0.5 A.": "Ugradbeno napajanje — ORNO · 12 V DC · 0,5 A.",
   "Test power supply — MEAN WELL OWA-60E-12 · 12 V DC. My own part.": "Testno napajanje — MEAN WELL OWA-60E-12 · 12 V DC. Moj vlastiti dio.",
-  "Stylized photograph.": "Stilizirana fotografija."
+  "Stylized photograph.": "Stilizirana fotografija.",
+  "TH": "TH",
+  "THP": "THP",
+  "Why 12 cm?": "Zašto 12 cm?",
+  "I chose 12 cm because it falls within the recommended range for placing moisture sensors in the root zone of cool-season turfgrass. Both probes sit at the same depth so I can see when rain reaches them and compare how quickly the sunny and shaded areas dry out.": "Odabrao sam 12 cm jer je ta dubina unutar preporučenog raspona za postavljanje senzora vlage u zoni korijena trava hladnije klime. Obje su sonde na istoj dubini pa mogu pratiti kada vlaga nakon kiše do njih stigne i usporediti koliko se brzo suše osunčani i zasjenjeni dio travnjaka.",
+  "Moisture": "Vlaga",
+  "Supabase · Reading storage": "Supabase · Pohrana očitanja",
+  "On the bench, the ESP32 read both probes and the cloud acknowledged the uploads.": "Na stolu je ESP32 očitao obje sonde, a oblak je potvrdio primitak podataka."
 }
