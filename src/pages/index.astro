@@ -36,7 +36,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
         <h2 id="work-title">Built around real problems.</h2>
         <p>Music, a garden and a shared laundry room. Three practical reasons to connect hardware and software.</p>
       </header>
-      <a class="home-project main-project not-underline-hover" href="/projects/mila/">
+      <article class="home-project main-project">
         <div class="project-photo mila-photo">
           <img
             src="/images/projects/gstreamer/mila-now-playing-20261018.jpg"
@@ -50,7 +50,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
         </div>
         <div class="project-copy">
           <p class="project-stage"><i aria-hidden="true"></i>Working prototype</p>
-          <h3 id="home-mila-title">MILA*</h3>
+          <h3 id="home-mila-title"><a class="card-primary not-underline-hover" href="/projects/mila/">MILA*</a></h3>
           <p class="project-description">
             A personal audio streamer for local hi-res music, radio and streaming. Used for everyday listening, refined
             through testing on the real device.
@@ -59,31 +59,41 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
             What if the player runs a command, but the response never arrives? MILA shows an uncertain outcome and
             avoids automatically repeating an action that could undo what just happened.
           </p>
-          <span class="project-link">How I check player behaviour <Icon name="arrow" /></span>
+          <a
+            class="project-link card-secondary"
+            href="/projects/mila/#development-example-commands-that-only-looked-successful"
+            >How I check player behaviour <Icon name="arrow" /></a
+          >
         </div>
-      </a>
+      </article>
       <div class="supporting-projects">
-        <a id="grgagrow" class="home-project not-underline-hover" href="/projects/grgagrow/">
+        <article id="grgagrow" class="home-project">
           <div class="project-photo garden-photo">
             <img
               src="/images/projects/smart-lawn/grgagrow-live-card.jpg"
               width="1076"
               height="807"
-              alt="Public grgaGrow Live card for sensor 1 with a fresh reading: 34.9 % soil moisture and 3.2 °C soil temperature, beside a grass and root illustration"
+              alt="Screenshot of the public grgaGrow dashboard showing soil moisture and temperature for sensor 1"
               loading="lazy"
               decoding="async"
             />
-            <span class="photo-caption">Public Live: a real reading from my lawn.</span>
+            <span class="photo-caption">Screenshot of the public dashboard</span>
           </div>
           <div class="project-copy">
             <p class="project-stage"><i aria-hidden="true"></i>In the lawn · Live readings</p>
             <h3 id="home-grow-title">grgaGrow</h3>
             <p class="project-description">
-              Two probes in my 49 m² lawn send soil moisture and temperature to the cloud over Wi-Fi. The readings are public on a live page.
+              Two probes in my 49 m² lawn send soil moisture and temperature to the cloud over Wi-Fi. The readings are
+              public on a live page.
             </p>
-            <span class="project-link">Explore grgaGrow <Icon name="arrow" /></span>
+            <a class="project-link card-primary not-underline-hover" href="/projects/grgagrow/"
+              >Explore grgaGrow <Icon name="arrow" /></a
+            >
+            <a class="project-link card-secondary" href="/demos/my-garden/?public=grgagrow"
+              >View current readings <Icon name="arrow" /></a
+            >
           </div>
-        </a>
+        </article>
         <a class="home-project not-underline-hover" href="/projects/our-laundry/">
           <div class="project-photo laundry-photo">
             <img
@@ -140,7 +150,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           </div>
         </li>
         <li>
-          <div class="career-meta"><p>Since 2018</p><span>Brussels</span></div>
+          <div class="career-meta"><p>Since 2022</p><span>Brussels</span></div>
           <div class="career-copy">
             <h3>Independent technical work</h3><p class="career-role">Hands-on Technical Work</p>
             <p>
@@ -344,6 +354,25 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     color: var(--ink) !important;
     text-decoration: none;
     background: color-mix(in srgb, var(--accent) 2%, transparent);
+  }
+  article.home-project {
+    position: relative;
+    isolation: isolate;
+  }
+  .card-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  h3 .card-primary {
+    color: inherit;
+  }
+  .card-secondary {
+    position: relative;
+    z-index: 1;
+  }
+  .project-link + .project-link {
+    margin-top: 10px;
   }
   .home-project:hover {
     background: color-mix(in srgb, var(--accent) 5%, transparent);
