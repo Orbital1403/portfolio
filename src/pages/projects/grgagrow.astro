@@ -149,7 +149,7 @@ const hardwareGallery = [
     detail: 'ORNO · 12 V DC · 0.5 A',
     alt: 'ORNO 12 V DC power supply with its input and output leads',
     own: true,
-    stylized: true,
+    omitPhotoCredit: true,
   },
   {
     image: 'own-power-supply.webp',
@@ -829,7 +829,7 @@ const hardwareGallery = [
                       decoding="async"
                       data-index={index + group * mainHardwareCount}
                       data-group="grgagrow-hardware"
-                      data-title={`${item.title} — ${item.detail}. ${'stylized' in item ? 'Stylized photograph.' : 'own' in item ? 'My own part.' : 'Reference image of this component type.'}`}
+                      data-title={`${item.title} — ${item.detail}.${'omitPhotoCredit' in item ? '' : 'own' in item ? ' My own part.' : ' Reference image of this component type.'}`}
                       tabindex="0"
                       role="button"
                       aria-label={`Enlarge ${item.title}`}
@@ -839,7 +839,7 @@ const hardwareGallery = [
                       <p>{item.detail}</p>
                       {'description' in item && <p class="hardware-description">{item.description}</p>}
                       {'own' in item ? (
-                        <p class="photo-credit">{'stylized' in item ? 'Photo: stylized' : 'Photo: my own part'}</p>
+                        !('omitPhotoCredit' in item) && <p class="photo-credit">Photo: my own part</p>
                       ) : (
                         <a href={item.source} target="_blank" rel="noopener noreferrer">
                           Photo: {item.vendor} ↗ (reference)
