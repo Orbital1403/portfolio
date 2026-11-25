@@ -292,7 +292,8 @@ const hardwareGallery = [
           },
           {
             label: 'Example',
-            text: 'Both probes shipped at the same address. Changing one kept failing. I traced the cause to the controller: it passed 8-byte read frames but dropped the 11-byte address write. After the fix, the new address held after a power cycle.',
+            text: 'I could read each probe separately, but changing the address of the TH probe kept failing.',
+            link: { href: '#lawn-probe-service', label: 'How I found the cause' },
           },
           {
             label: 'Next step',
@@ -500,68 +501,77 @@ const hardwareGallery = [
         </ol>
         <p class="next-field-step"><strong>Next step</strong> <span>Calibrate the pH and soil moisture readings.</span></p>
       </section>
-      <details class="evidence-block" id="lawn-probe-service">
-        <summary>Probe Service, my service tool on the Mac</summary>
-        <p>On the Mac, Probe Service shows both probes, connection status, clock and upload queue on one screen.</p>
-        <figure class="service-board" data-gallery-scope data-gallery-no-filmstrip>
-          <img
-            src="/images/projects/smart-lawn/bench/service-board-ph.jpg"
-            alt="Full grgaGrow app window on the Mac with Board status, readings from both probes and pH on THP 02"
-            width="1280"
-            height="720"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-service"
-            data-index="0"
-            data-title="Full grgaGrow Board on the Mac, 24 November 2026. Both probes were reporting over Wi-Fi."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the Probe Service Board screenshot"
-          />
-          <figcaption>
-            PROBE SERVICE / Full grgaGrow app window on the Mac, 24 November 2026. Both probes were reporting over
-            Wi-Fi.
-          </figcaption>
-        </figure>
-        <p>
-          To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
-          local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
-          bootloader and talks to the probes through it. Nothing is written to flash; a power cycle returns the board to
-          its installed firmware.
-        </p>
-        <dl class="tool-tabs">
-          {
-            probeServiceTabs.map(([name, text]) => (
-              <div>
-                <>
-                  <dt>{name}</dt>
-                  <dd>{text}</dd>
-                </>
-              </div>
-            ))
-          }
-        </dl>
-        <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
-          <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
-          <h3 id="bridge-example-title">Register reads and probe address changes.</h3>
-          <p>
-            The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
-            register with a value from 1 to 247. Everything else is answered with DENY.
-          </p>
-          <p class="note">bridge-image/main/entry.cpp · allowed (excerpt)</p>
-          <details class="code-toggle">
-            <summary>Show the C++ excerpt</summary>
-            <Code
-              code={bridgeExample}
-              lang="cpp"
-              themes={{ light: 'github-light', dark: 'github-dark' }}
+      <section id="lawn-probe-service" aria-labelledby="service-story-title">
+        <h3 id="service-story-title">Why the TH probe kept its old address</h3>
+        <div class="bench-grid">
+          <div>
+            <p>Both probes arrived at Modbus address 02. On the bench I could read each one separately. To use them together, I needed to give the TH probe its own address.</p>
+            <p>I traced the fault to the controller. It passed the 8-byte read requests but dropped the 11-byte address write before it reached the probe.</p>
+            <p>After the fix, I changed the TH address to 03 and cycled the power. TH still answered at 03 and THP at 02. I could now read both on the same bus.</p>
+          </div>
+          <figure class="service-board" data-gallery-scope data-gallery-no-filmstrip>
+            <img
+              src="/images/projects/smart-lawn/bench/service-board-ph.jpg"
+              alt="Full grgaGrow app window on the Mac with Board status, readings from both probes and pH on THP 02"
+              width="1280"
+              height="720"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-service"
+              data-index="0"
+              data-title="Full grgaGrow Board on the Mac, 24 November 2026. Both probes were reporting over Wi-Fi."
               tabindex="0"
-              aria-labelledby="bridge-example-title"
-              data-firmware-code="true"
+              role="button"
+              aria-label="Enlarge the Probe Service Board screenshot"
             />
-          </details>
+            <figcaption>
+              PROBE SERVICE / Full grgaGrow app window on the Mac, 24 November 2026. Both probes were reporting over
+              Wi-Fi.
+            </figcaption>
+          </figure>
         </div>
-      </details>
+        <details class="evidence-block">
+          <summary>Probe Service technical details</summary>
+          <p>
+            To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
+            local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
+            bootloader and talks to the probes through it. Nothing is written to flash; a power cycle returns the board to
+            its installed firmware.
+          </p>
+          <dl class="tool-tabs">
+            {
+              probeServiceTabs.map(([name, text]) => (
+                <div>
+                  <>
+                    <dt>{name}</dt>
+                    <dd>{text}</dd>
+                  </>
+                </div>
+              ))
+            }
+          </dl>
+          <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
+            <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
+            <h3 id="bridge-example-title">Register reads and probe address changes.</h3>
+            <p>
+              The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
+              register with a value from 1 to 247. Everything else is answered with DENY.
+            </p>
+            <p class="note">bridge-image/main/entry.cpp · allowed (excerpt)</p>
+            <details class="code-toggle">
+              <summary>Show the C++ excerpt</summary>
+              <Code
+                code={bridgeExample}
+                lang="cpp"
+                themes={{ light: 'github-light', dark: 'github-dark' }}
+                tabindex="0"
+                aria-labelledby="bridge-example-title"
+                data-firmware-code="true"
+              />
+            </details>
+          </div>
+        </details>
+      </section>
       <h3 id="lawn-bench">First connections on the bench.</h3>
       <div
         class="software-gallery bench-gallery"

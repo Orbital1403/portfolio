@@ -1,7 +1,7 @@
 ---
 interface Props {
   id: string
-  items: { label: string; text: string }[]
+  items: { label: string; text: string; link?: { href: string; label: string } }[]
 }
 
 const { id, items } = Astro.props
@@ -10,10 +10,10 @@ const { id, items } = Astro.props
 <section class="project-overview" aria-labelledby={`${id}-overview-title`}>
   <h2 id={`${id}-overview-title`}>At a glance</h2>
   <dl>
-    {items.map(({ label, text }) => (
+    {items.map(({ label, text, link }) => (
       <div>
         <dt>{label}</dt>
-        <dd>{text}</dd>
+        <dd>{text}{link && <> <a href={link.href}>{link.label}</a></>}</dd>
       </div>
     ))}
   </dl>
