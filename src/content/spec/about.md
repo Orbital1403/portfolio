@@ -23,7 +23,7 @@ At **Altpro in Zagreb (November 2013 – December 2017)**, I worked in quality c
 
 ## A new chapter in Brussels
 
-Moving to Belgium meant starting again: discovering the city, the country and a different way of life. I have done independent technical work in Brussels since 2018.
+Moving to Belgium meant starting again: discovering the city, the country and a different way of life. I have done independent technical work in Brussels since 2022.
 
 I repaired household appliances, worked on installations, painted and fitted joinery, and helped renovate apartments. Much of it was new to me, so I learned through doing.
 
