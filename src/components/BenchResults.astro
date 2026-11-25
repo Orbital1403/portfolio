@@ -16,10 +16,26 @@ const readings = [
   },
 ]
 const steps = [
-  ['Terminal request', 'The computer asks the ESP32 for a reading.'],
-  ['Probe response', 'The ESP32 sends a Modbus request over RS485 and waits for the THP probe to respond.'],
-  ['Message checks', 'The firmware checks the address, function, length and checksum (CRC).'],
-  ['Readout', 'Values from a valid response appear in the terminal.'],
+  {
+    title: 'Terminal request',
+    description: 'The computer asks the ESP32 for a reading.',
+    icon: 'M12 19H3V5h14v4M6 9l2 2-2 2m4 0h2m2 1h8m-3-3 3 3-3 3',
+  },
+  {
+    title: 'Probe response',
+    description: 'The ESP32 sends a Modbus request over RS485 and waits for the THP probe to respond.',
+    icon: 'M13 3h8v8h-8zm2 8v9m4-9v9M3 11h7m-4-3-3 3 3 3',
+  },
+  {
+    title: 'Message checks',
+    description: 'The firmware checks the address, function, length and checksum (CRC).',
+    icon: 'M13 20H4V4h11l4 4v3m-4-7v5h4M7 10h4m-4 4h4m2 2 3 3 5-6',
+  },
+  {
+    title: 'Readout',
+    description: 'Values from a valid response appear in the terminal.',
+    icon: 'M2.5 5h19v13h-19zM6 14l4-5m-4 0h.1m3.9 5h.1m3-4.5h.1m4.9 0h-1.5A1.5 1.5 0 0 0 15 11v1a1.5 1.5 0 0 0 1.5 1.5H18',
+  },
 ]
 ---
 
@@ -69,14 +85,19 @@ const steps = [
 
   <section aria-labelledby="bench-reading-flow">
     <h4 id="bench-reading-flow">From request to readout</h4>
-    <ol class="reading-flow">
+    <ol class="reading-flow" role="list">
       {
-        steps.map(([title, description]) => (
+        steps.map(({ title, description, icon }, index) => (
           <li>
-            <>
-              <strong>{title}</strong>
-              <small>{description}</small>
-            </>
+            <div class="reading-flow-mark" aria-hidden="true">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <svg class="technical-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <path d={icon} />
+              </svg>
+            </div>
+            <strong>{title}</strong>
+            <small>{description}</small>
           </li>
         ))
       }
@@ -248,17 +269,27 @@ const steps = [
     padding: 0;
     margin: 0 0 12px;
     list-style: none;
-    counter-reset: reading-step;
   }
   .reading-flow li {
-    counter-increment: reading-step;
     padding: 8px;
     border-top: 2px solid #39776c;
     background: var(--bench-tint);
   }
-  .reading-flow li::before {
-    content: counter(reading-step, decimal-leading-zero);
+  .reading-flow-mark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
     font: 12px/1.5 var(--note-font);
+  }
+  .reading-flow-mark .technical-icon {
+    width: 22px;
+    height: 22px;
+    flex: none;
+    color: #39776c;
+  }
+  :global(html.dark) .reading-flow-mark .technical-icon {
+    color: #80b9ad;
   }
   .flow-result p {
     margin: 0;
