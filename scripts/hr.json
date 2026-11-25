@@ -1938,5 +1938,14 @@
   "Both probes arrived at Modbus address 02. On the bench I could read each one separately. To use them together, I needed to give the TH probe its own address.": "Obje su sonde stigle s Modbus adresom 02. Na stolu sam svaku mogao očitati zasebno. Da bih ih spojio na istu sabirnicu, sondi TH trebalo je dodijeliti drugu adresu.",
   "I traced the fault to the controller. It passed the 8-byte read requests but dropped the 11-byte address write before it reached the probe.": "Uzrok sam pronašao u kontroleru. Propuštao je zahtjeve za čitanje od 8 bajtova, ali je odbacivao naredbu za upis adrese od 11 bajtova prije nego što bi stigla do sonde.",
   "After the fix, I changed the TH address to 03 and cycled the power. TH still answered at 03 and THP at 02. I could now read both on the same bus.": "Nakon ispravka promijenio sam adresu sonde TH na 03 pa isključio i ponovno uključio napajanje. TH se i dalje javljala na adresi 03, a THP na 02. Sada sam obje mogao očitati na istoj sabirnici.",
-  "Probe Service technical details": "Tehnički detalji alata Probe Service"
+  "Probe Service technical details": "Tehnički detalji alata Probe Service",
+  "Soil moisture guide: 0–10% very dry, 10–20% dry, 20–25% moderately moist, 25–35% moist, 35–45% very moist and 45–60% very high.": "Vodič za vlagu tla: 0–10 % vrlo suho, 10–20 % suho, 20–25 % umjereno vlažno, 25–35 % vlažno, 35–45 % vrlo vlažno i 45–60 % vrlo visoko očitanje.",
+  "Indicative soil moisture ranges for grgaGrow.": "Orijentacijski rasponi vlage tla za grgaGrow.",
+  "Enlarge the soil moisture guide": "Povećaj vodič za vlagu tla",
+  "These ranges are provisional for this garden. Soil type and probe calibration affect how to interpret a reading.": "Rasponi za ovaj vrt još su orijentacijski. Tumačenje očitanja ovisi o vrsti tla i kalibraciji sondi.",
+  "Both probes at 12 cm, within the recommended range of approximately 10.2 to 15.2 cm for cool-season turfgrass.": "Obje sonde na 12 cm, unutar preporučenog raspona od približno 10,2 do 15,2 cm za trave hladnije sezone.",
+  "Why both probes are installed at 12 cm.": "Zašto su obje sonde postavljene na 12 cm.",
+  "Enlarge the probe depth diagram": "Povećaj prikaz dubine sondi",
+  "I installed both probes at 12 cm to compare two areas at the same depth and see when moisture reaches that depth after rain.": "Obje sam sonde postavio na 12 cm kako bih usporedio dva dijela travnjaka na istoj dubini i pratio kada vlaga nakon kiše stigne do sondi.",
+  "Irrigation Association installation guidance (chapter 6) ↗": "Smjernice za ugradnju, Irrigation Association (6. poglavlje) ↗"
 }
