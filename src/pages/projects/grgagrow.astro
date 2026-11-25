@@ -1,6 +1,7 @@
 ---
 import { Code } from 'astro:components'
 import BenchResults from '~/components/BenchResults.astro'
+import Icon from '~/components/Icon.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import ProbeReadingCards from '~/components/ProbeReadingCards.astro'
 import ProjectOverview from '~/components/ProjectOverview.astro'
@@ -68,13 +69,14 @@ const fixGroups = [
 ]
 
 const milestones = [
-  ['17–19 Nov', 'First readings on the bench', 'I tested the TH and THP probes separately in soil.'],
+  ['chip', '17–19 November', 'First readings', 'I tested the TH and THP probes separately in soil on the workbench.'],
   [
-    '20–21 Nov',
-    'Two probes, one RS485 bus',
-    'Both probes reported on one bus. The cloud acknowledged the uploads, and the over-the-air update succeeded.',
+    'web',
+    '20–21 November',
+    'Two probes on one bus',
+    'Both probes sent readings over RS485. The cloud acknowledged the uploads, and the wireless update succeeded.',
   ],
-  ['24 Nov', 'Into the lawn', 'I installed both probes and received the first readings from the lawn.'],
+  ['leaf', '24 November', 'Probes in the lawn', 'I installed both probes and received the first readings from the lawn.'],
 ]
 
 const probeServiceTabs = [
@@ -482,21 +484,22 @@ const hardwareGallery = [
         The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
         and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over Wi-Fi.
       </p>
-      <dl class="hardware-progress" aria-label="Hardware progress as of 24 November 2026">
-        <div><dt>Current status</dt><dd>In the lawn</dd></div>
-        <div><dt>Next step</dt><dd>Calibrate pH and moisture</dd></div>
-      </dl>
-      <ol class="milestones" aria-label="Milestones from bench to field">
-        {
-          milestones.map(([date, title, text]) => (
-            <li>
-              <time>{date}</time>
-              <strong>{title}</strong>
-              <small>{text}</small>
-            </li>
-          ))
-        }
-      </ol>
+      <section class="field-timeline" aria-labelledby="field-timeline-title">
+        <h3 id="field-timeline-title">From the workbench to the lawn</h3>
+        <ol class="milestones" role="list">
+          {
+            milestones.map(([icon, date, title, text]) => (
+              <li>
+                <span class="milestone-marker"><Icon name={icon} /></span>
+                <span class="milestone-date">{date}</span>
+                <h4>{title}</h4>
+                <p>{text}</p>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="next-field-step"><strong>Next step</strong> <span>Calibrate the pH and soil moisture readings.</span></p>
+      </section>
       <details class="evidence-block" id="lawn-probe-service">
         <summary>Probe Service, my service tool on the Mac</summary>
         <p>On the Mac, Probe Service shows both probes, connection status, clock and upload queue on one screen.</p>
@@ -1281,43 +1284,6 @@ const hardwareGallery = [
     align-items: center;
     margin: 24px 0 0;
   }
-  .milestones {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .milestones li {
-    position: relative;
-    padding: 0 0 16px 20px;
-    border-left: 2px solid color-mix(in srgb, currentColor 20%, transparent);
-  }
-  .milestones li:last-child {
-    padding-bottom: 0;
-    border-left-color: transparent;
-  }
-  .milestones li::before {
-    content: '';
-    position: absolute;
-    top: 7px;
-    left: -5.5px;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #39776c;
-  }
-  .milestones p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .milestones .milestone-date {
-    font: 11px/1.6 var(--note-font);
-    opacity: 0.75;
-  }
-  .milestones h4 {
-    margin: 2px 0 4px;
-    font: 600 16px/1.4 var(--body-font);
-  }
   .pot-trial {
     display: flex;
     align-items: center;
@@ -1488,22 +1454,6 @@ const hardwareGallery = [
     text-align: center;
     margin-bottom: 0;
   }
-  .hardware-progress {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    margin: 24px 0;
-    padding: 18px 0;
-    border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-  }
-  .hardware-progress dt {
-    font: 10px/1.8 var(--note-font);
-    opacity: 0.7;
-  }
-  .hardware-progress dd {
-    margin: 6px 0 0;
-    font: 13px/1.6 var(--note-font);
-  }
   .hardware-accessories {
     margin: 24px 0;
     border-block: 1px solid var(--line);
@@ -1602,17 +1552,14 @@ const hardwareGallery = [
   :global(html.dark) .reading-path i {
     color: #aed1c2;
   }
-  :global(html.dark) .milestones li::before {
-    background: #aed1c2;
+  :global(html.dark) .field-timeline {
+    --field-accent: #aed1c2;
+    --marker-ink: #1d302a;
   }
   :global(html.dark) .roadmap li::marker {
     color: #aed1c2;
   }
   @media (max-width: 600px) {
-    .hardware-progress {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
     .hardware-gallery {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px 10px;
@@ -1680,46 +1627,67 @@ const hardwareGallery = [
       gap: 16px;
     }
   }
+  .field-timeline {
+    container-type: inline-size;
+    --field-accent: #386c59;
+    --marker-ink: #fff;
+    --track: color-mix(in srgb, currentColor 36%, transparent);
+    margin: 26px 0;
+  }
+  .field-timeline h3 { margin: 0 0 18px; }
   .milestones {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
-    margin: 28px 0;
     padding: 0;
-    list-style: none;
-    border-top: 2px solid #39776c;
-  }
-  .milestones li {
-    position: relative;
-    min-width: 0;
     margin: 0;
-    padding: 18px 12px 0 0;
+    list-style: none;
   }
-  .milestones li::before {
+  .milestones li { position: relative; min-width: 0; padding: 0 16px 0 0; }
+  .milestones li:not(:last-child)::before {
     content: '';
     position: absolute;
-    top: -7px;
-    left: 0;
-    width: 12px;
-    height: 12px;
+    inset: 16px 0 auto 32px;
+    border-top: 1px solid var(--track);
+  }
+  .milestone-marker {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--track);
     border-radius: 50%;
-    background: #39776c;
   }
-  .milestones time {
-    display: block;
-    font: 10px/1.8 var(--note-font);
-    opacity: 0.7;
-    text-transform: uppercase;
+  .milestone-marker :global(svg) { width: 17px; height: 17px; }
+  .milestones li:last-child .milestone-marker {
+    color: var(--marker-ink);
+    background: var(--field-accent);
+    border-color: var(--field-accent);
   }
-  .milestones strong {
-    display: block;
-    font: 700 14px/1.5 var(--note-font);
+  .milestone-date { display: block; margin: 10px 0 4px; font: 12px/1.5 var(--note-font); }
+  .milestones h4 { margin: 0 0 6px; font: 600 17px/1.3 var(--body-font); }
+  .milestones p { margin: 0; font: 14px/1.6 var(--body-font); }
+  .next-field-step {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 20px 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed var(--track);
   }
-  .milestones small {
-    display: block;
-    margin-top: 4px;
-    font-size: 13px;
-    line-height: 1.6;
+  .next-field-step strong { font: 600 12px/1.5 var(--note-font); }
+  @container (max-width: 540px) {
+    .milestones { grid-template-columns: 1fr; }
+    .milestones li { padding: 0 0 20px 46px; }
+    .milestones li:last-child { padding-bottom: 0; }
+    .milestone-marker { position: absolute; inset: 0 auto auto 0; }
+    .milestones li:not(:last-child)::before {
+      inset: 32px auto 0 16px;
+      border-top: 0;
+      border-left: 1px solid var(--track);
+    }
+    .milestone-date { margin-top: 0; }
   }
   .block-title {
     margin-top: 40px;
@@ -1861,19 +1829,6 @@ const hardwareGallery = [
     .fix-log,
     .tool-tabs {
       grid-template-columns: 1fr;
-    }
-    .milestones {
-      grid-template-columns: 1fr;
-      border-top: 0;
-      border-left: 2px solid #39776c;
-      padding-left: 18px;
-    }
-    .milestones li {
-      padding: 0 0 16px;
-    }
-    .milestones li::before {
-      top: 4px;
-      left: -25px;
     }
   }
 </style>

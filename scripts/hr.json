@@ -1924,5 +1924,15 @@
   "Two probes in my 49 m² lawn send soil moisture and temperature to the cloud over Wi-Fi. The readings are public on a live page.": "Dvije sonde u mom travnjaku od 49 m² šalju vlagu i temperaturu tla u oblak preko Wi-Fija. Očitanja su javna na stranici uživo.",
   "Screenshot of the public dashboard": "Snimka javnog prikaza",
   "View current readings": "Trenutačna očitanja",
-  "In the lawn · Live readings": "U travnjaku · Očitanja uživo"
+  "In the lawn · Live readings": "U travnjaku · Očitanja uživo",
+  "From the workbench to the lawn": "Od radnog stola do travnjaka",
+  "17–19 November": "17.–19. studenoga",
+  "20–21 November": "20.–21. studenoga",
+  "24 November": "24. studenoga",
+  "First readings": "Prva očitanja",
+  "I tested the TH and THP probes separately in soil on the workbench.": "Na radnom stolu zasebno sam ispitao sonde TH i THP u zemlji.",
+  "Two probes on one bus": "Dvije sonde na istoj sabirnici",
+  "Both probes sent readings over RS485. The cloud acknowledged the uploads, and the wireless update succeeded.": "Obje su sonde slale očitanja preko RS485. Oblak je potvrdio primitak, a bežično ažuriranje je uspjelo.",
+  "Probes in the lawn": "Sonde u travnjaku",
+  "Calibrate the pH and soil moisture readings.": "Umjeriti pH i vlažnost tla."
 }
