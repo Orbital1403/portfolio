@@ -858,8 +858,11 @@ const hardwareGallery = [
             return group === 0 ? (
               gallery
             ) : (
-              <details class="hardware-accessories">
-                <DisclosureSummary icon="fittings">Assembly accessories and specifications</DisclosureSummary>
+              <section class="hardware-accessories" aria-labelledby="lawn-accessories">
+                <h4 id="lawn-accessories" class="hardware-accessories-title">
+                  <Icon sprite={growIcons} name="fittings" />
+                  <span>Assembly accessories and specifications</span>
+                </h4>
                 <p class="note">
                   The assembly kit includes UK2.5B terminals, 120 Ω / 0.5 W termination resistors, five inline fuse
                   holders and 5.5 × 2.1 mm DC adapters. The installation uses two T100 mA fuses.
@@ -869,7 +872,7 @@ const hardwareGallery = [
                   five PG7 glands. Cable fit, strain relief and sealing still need checking.
                 </p>
                 {gallery}
-              </details>
+              </section>
             )
           })
         }
@@ -1469,6 +1472,20 @@ const hardwareGallery = [
     margin: 24px 0;
     border-block: 1px solid var(--line);
     padding: 18px 0;
+  }
+  .hardware-accessories-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 12px;
+    font: 600 14px/1.5 var(--note-font);
+  }
+  .hardware-accessories-title :global(svg) {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.7;
+    color: var(--grow-accent);
   }
   .hardware-photo .hardware-description {
     font: 13px/1.8 var(--body-font, sans-serif);
