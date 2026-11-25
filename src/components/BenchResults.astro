@@ -155,14 +155,14 @@ const steps = [
       </ul>
       <div class="data-bus"><span>RS485 / Modbus RTU</span></div>
       <ol class="data-stages" role="list">
-        <li>
+        <li class="data-controller">
           <div class="data-node">
             <Icon name="chip" class="data-icon" />
             <strong>ESP32-S3 controller</strong>
           </div>
         </li>
         <li>
-          <div class="data-hop"><span>Wi-Fi / HTTPS</span></div>
+          <div class="data-hop data-hop-wifi"><span>Wi-Fi / HTTPS</span></div>
           <div class="data-node">
             <Icon name="database" class="data-icon" />
             <div>
@@ -172,7 +172,7 @@ const steps = [
           </div>
         </li>
         <li>
-          <div class="data-hop"><span>Authenticated access</span></div>
+          <div class="data-hop data-hop-auth"><span>Authenticated access</span></div>
           <div class="data-node data-app">
             <Icon name="web" class="data-icon" />
             <strong>grgaGrow / My Garden</strong>
@@ -354,6 +354,7 @@ const steps = [
   .data-path {
     --data-line: #39776c;
     --data-stage-gap: 114px;
+    --data-cloud-gap: 44px;
   }
   :global(html.dark) .data-path {
     --data-line: #80b9ad;
@@ -362,7 +363,7 @@ const steps = [
     container-type: inline-size;
     margin: 0;
     border: 1px solid var(--bench-border);
-    padding: 12px;
+    padding: 16px 12px;
     background: var(--bench-tint);
   }
   .data-probes,
@@ -382,7 +383,7 @@ const steps = [
     gap: 8px;
     min-width: 0;
     min-height: 100%;
-    padding: 8px;
+    padding: 11px 8px;
     border: 1px solid var(--bench-border);
     font: 14px/1.35 var(--body-font, sans-serif);
     overflow-wrap: anywhere;
@@ -419,7 +420,7 @@ const steps = [
   }
   .data-bus {
     position: relative;
-    padding: 12px 0;
+    padding: 16px 0 14px;
     text-align: center;
     font: 12px/1.5 var(--note-font);
   }
@@ -456,6 +457,11 @@ const steps = [
   .data-stages .data-node {
     min-height: auto;
   }
+  .data-controller .data-node {
+    width: min(100%, 264px);
+    margin-inline: auto;
+    justify-content: center;
+  }
   .data-path-diagram figcaption {
     color: var(--data-line);
     text-align: center;
@@ -488,49 +494,58 @@ const steps = [
     font-weight: 600;
   }
   @container (min-width: 610px) {
+    .data-node {
+      padding-block: 16px;
+    }
     .data-probes .data-node {
       justify-content: center;
     }
     .data-bus {
-      padding-bottom: 24px;
-    }
-    .data-bus::after {
-      left: calc((100% - 2 * var(--data-stage-gap)) / 6);
-      right: 50%;
-      height: 10px;
-      border-top: 1px solid var(--data-line);
-    }
-    .data-bus span::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
-      height: 11px;
-      border-left: 1px solid var(--data-line);
+      padding: 18px 0 30px;
     }
     .data-stages {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--data-stage-gap);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--data-stage-gap);
     }
-    .data-stages > li {
+    .data-controller {
+      grid-column: 1 / -1;
+    }
+    .data-stages > li:not(.data-controller) {
       position: relative;
+      padding-top: var(--data-cloud-gap);
     }
     .data-stages .data-node {
       min-height: 100%;
       justify-content: center;
     }
-    .data-hop {
+    .data-hop-wifi {
+      position: absolute;
+      inset: 0 0 auto;
+      height: var(--data-cloud-gap);
+      padding: 14px 0 0;
+    }
+    .data-hop-wifi::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      right: calc(-0.5 * var(--data-stage-gap));
+      height: 9px;
+      border-right: 1px solid var(--data-line);
+      border-bottom: 1px solid var(--data-line);
+    }
+    .data-hop-auth {
       display: grid;
       justify-items: center;
       position: absolute;
-      top: 50%;
+      top: calc(50% + 0.5 * var(--data-cloud-gap));
       left: calc(-1 * var(--data-stage-gap));
       width: var(--data-stage-gap);
       padding: 0 4px;
       transform: translateY(-50%);
       font-size: 11px;
     }
-    .data-hop::after {
+    .data-hop-auth::after {
       width: 6px;
       height: 6px;
       margin: 0;
