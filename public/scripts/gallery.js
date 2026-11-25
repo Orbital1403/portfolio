@@ -34,12 +34,38 @@
     image.style.transform = ''
     image.style.cursor = 'zoom-in'
   }
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+  const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter() : null
+  function showCaption(item) {
+    const title = item.dataset.title || item.alt
+    if (reduceMotion.matches || !title) {
+      caption.textContent = title
+      return
+    }
+    const spoken = document.createElement('span')
+    spoken.className = 'gg-caption-spoken'
+    spoken.textContent = title
+    const visual = document.createElement('span')
+    visual.setAttribute('aria-hidden', 'true')
+    const letters = segmenter
+      ? Array.from(segmenter.segment(title), part => part.segment)
+      : Array.from(title)
+    const step = Math.min(12, 300 / letters.length)
+    letters.forEach((letter, n) => {
+      const character = document.createElement('span')
+      character.className = 'gg-caption-letter'
+      character.style.setProperty('--caption-delay', `${Math.round(n * step)}ms`)
+      character.textContent = letter
+      visual.append(character)
+    })
+    caption.replaceChildren(spoken, visual)
+  }
   function show(i) {
     index = (i + items.length) % items.length
     const item = items[index]
     image.src = item.dataset.src || item.currentSrc || item.src
     image.alt = item.alt
-    caption.textContent = item.dataset.title || item.alt
+    showCaption(item)
     counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`
     previous.hidden = next.hidden = items.length < 2
     ;[...thumbnails.children].forEach((button, n) => {
