@@ -1,4 +1,6 @@
 ---
+import { iconSpriteUrl } from '~/utils/icons'
+
 interface Props {
   name: string
   class?: string
@@ -15,5 +17,5 @@ const { name, class: className = '' } = Astro.props
   stroke-linecap="round"
   stroke-linejoin="round"
   aria-hidden="true"
-  focusable="false"><use href={`/icons.svg#${name}`}></use></svg
+  focusable="false"><use href={`${iconSpriteUrl}#${name}`}></use></svg
 >
