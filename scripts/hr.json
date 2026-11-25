@@ -1973,5 +1973,17 @@
   "I traced the failed address change to the controller. After the fix, I powered it off and on to verify that the probe still answered at its new address.": "Utvrdio sam da kontroler odbacuje naredbu za promjenu adrese. Nakon ispravka i ponovnog uključivanja provjerio sam odgovara li sonda na novoj adresi.",
   "A playback command with no reply": "Naredba za reprodukciju bez odgovora",
   "I check what happens when a reply is lost. MILA reports an uncertain outcome and avoids repeating a command that may already have run.": "Provjeravam što se dogodi kad odgovor izostane. MILA prikazuje neizvjestan ishod i izbjegava ponavljanje naredbe koja je možda već izvršena.",
-  "Read the case": "Pogledaj primjer"
+  "Read the case": "Pogledaj primjer",
+  "Enclosure power supply": "Ugradbeno napajanje",
+  "Test power supply": "Testno napajanje",
+  "ORNO · 12 V DC · 0.5 A": "ORNO · 12 V DC · 0,5 A",
+  "MEAN WELL OWA-60E-12 · 12 V DC": "MEAN WELL OWA-60E-12 · 12 V DC",
+  "The 12 V power supply used during bench testing.": "Napajanje od 12 V korišteno tijekom stolnog ispitivanja.",
+  "ORNO 12 V DC power supply with its input and output leads": "ORNO napajanje od 12 V DC s ulaznim i izlaznim vodičima",
+  "Enlarge Enclosure power supply": "Povećaj: Ugradbeno napajanje",
+  "Enlarge Test power supply": "Povećaj: Testno napajanje",
+  "Enclosure power supply — ORNO · 12 V DC · 0.5 A. Stylized photograph.": "Ugradbeno napajanje — ORNO · 12 V DC · 0,5 A. Stilizirana fotografija.",
+  "Test power supply — MEAN WELL OWA-60E-12 · 12 V DC. My own part.": "Testno napajanje — MEAN WELL OWA-60E-12 · 12 V DC. Moj vlastiti dio.",
+  "Stylized photograph.": "Stilizirana fotografija.",
+  "Photo: stylized": "Fotografija: stilizirana"
 }
