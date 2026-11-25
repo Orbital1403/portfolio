@@ -1153,6 +1153,7 @@ const hardwareGallery = [
 
 <style>
   .lawn-notes {
+    --project-disclosure-gap: 16px;
     --grow-accent: #39776c;
     --grow-th: #25634d;
     --grow-thp: #aa4608;
@@ -1408,6 +1409,9 @@ const hardwareGallery = [
     margin: 48px 0;
     border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
     padding-top: 4px;
+  }
+  section[aria-labelledby='lawn-hardware'] {
+    margin-block-end: var(--project-disclosure-gap);
   }
   .note {
     font-size: 12px;
@@ -1763,7 +1767,7 @@ const hardwareGallery = [
     margin-bottom: 12px;
   }
   .project-disclosure {
-    margin-block: 16px;
+    margin-block: var(--project-disclosure-gap);
     padding-block: 11px;
   }
   .fix-log {
