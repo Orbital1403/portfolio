@@ -1670,7 +1670,6 @@
   "Bench readings from both probes are uploaded and acknowledged.": "Očitanja obiju sondi sa stola šalju se i potvrđuju.",
   "grgaGrow firmware": "grgaGrow firmware",
   "Running on the bench with both probes and cloud uploads.": "Radi na stolu s obje sonde i slanjem u oblak.",
-  "Both probes shipped at the same address. Changing one kept failing. I traced the cause to the controller: it passed 8-byte read frames but dropped the 11-byte address write. After the fix, the new address held after a power cycle.": "Obje sonde stigle su s istom adresom. Promjena adrese jedne sonde stalno nije uspijevala. Uzrok sam pronašao u kontroleru: propuštao je okvire čitanja od 8 bajtova, a odbacivao upis adrese od 11 bajtova. Nakon ispravka nova je adresa potvrđena i nakon ponovnog napajanja.",
   "01 / FROM BENCH TO FIELD": "01 / OD STOLA DO TERENA",
   "Milestones from bench to field": "Prekretnice od stola do terena",
   "17 Nov": "17. 11.",
@@ -1729,7 +1728,6 @@
   "19 Nov": "19. 11.",
   "From a glass of water to potting soil": "Iz čaše u zemlju",
   "THP probe in a pot: 22.6 °C, 19.4 % and pH 6.5.": "THP sonda u tegli: 22,6 °C, 19,4 % i pH 6,5.",
-  "Probe Service, my service tool on the Mac": "Probe Service, moj servisni alat na Macu",
   "Over USB, my Mac shows both probes, the Wi-Fi link, the time and the upload queue on one screen.": "Preko USB-a na Macu na jednom ekranu vidim obje sonde, Wi-Fi vezu, vrijeme i red slanja.",
   "The service tool on the Mac, shown with simulated data.": "Servisni alat na Macu, prikazan sa simuliranim podacima.",
   "Enlarge the service tool screenshot with simulated data": "Povećaj snimku servisnog alata sa simuliranim podacima",
@@ -1874,7 +1872,6 @@
   "Owner Overview, 24 November 2026. Measurement times were marked as unverified.": "Vlasnički pregled, 24. studenoga 2026. Vrijeme mjerenja bilo je označeno kao nepotvrđeno.",
   "Enlarge the Owner Overview screenshot": "Povećaj snimku vlasničkog pregleda",
   "OWNER OVERVIEW / 24 November 2026. Measurement times were marked as unverified.": "VLASNIČKI PREGLED / 24. studenoga 2026. Vrijeme mjerenja bilo je označeno kao nepotvrđeno.",
-  "On the Mac, Probe Service shows both probes, connection status, clock and upload queue on one screen.": "Na Macu Probe Service na jednom zaslonu prikazuje obje sonde, status veze, sat i red čekanja za slanje.",
   "Probe Service Board on the Mac showing TH 03 and THP 02 offline, with last known readings": "Zaslon Board u Probe Serviceu na Macu prikazuje TH 03 i THP 02 bez veze, sa zadnjim poznatim očitanjima",
   "Probe Service on the Mac, 24 November 2026. The controller was offline, so the display showed its last known readings.": "Probe Service na Macu, 24. studenoga 2026. Kontroler nije bio povezan pa su prikazana zadnja poznata očitanja.",
   "Enlarge the Probe Service Board screenshot": "Povećaj snimku zaslona Board u Probe Serviceu",
@@ -1934,5 +1931,12 @@
   "Two probes on one bus": "Dvije sonde na istoj sabirnici",
   "Both probes sent readings over RS485. The cloud acknowledged the uploads, and the wireless update succeeded.": "Obje su sonde slale očitanja preko RS485. Oblak je potvrdio primitak, a bežično ažuriranje je uspjelo.",
   "Probes in the lawn": "Sonde u travnjaku",
-  "Calibrate the pH and soil moisture readings.": "Umjeriti pH i vlažnost tla."
+  "Calibrate the pH and soil moisture readings.": "Umjeriti pH i vlažnost tla.",
+  "I could read each probe separately, but changing the address of the TH probe kept failing.": "Svaku sam sondu mogao očitati zasebno, ali sondi TH nisam uspijevao promijeniti adresu.",
+  "How I found the cause": "Kako sam pronašao uzrok",
+  "Why the TH probe kept its old address": "Zašto je sonda TH zadržavala staru adresu?",
+  "Both probes arrived at Modbus address 02. On the bench I could read each one separately. To use them together, I needed to give the TH probe its own address.": "Obje su sonde stigle s Modbus adresom 02. Na stolu sam svaku mogao očitati zasebno. Da bih ih spojio na istu sabirnicu, sondi TH trebalo je dodijeliti drugu adresu.",
+  "I traced the fault to the controller. It passed the 8-byte read requests but dropped the 11-byte address write before it reached the probe.": "Uzrok sam pronašao u kontroleru. Propuštao je zahtjeve za čitanje od 8 bajtova, ali je odbacivao naredbu za upis adrese od 11 bajtova prije nego što bi stigla do sonde.",
+  "After the fix, I changed the TH address to 03 and cycled the power. TH still answered at 03 and THP at 02. I could now read both on the same bus.": "Nakon ispravka promijenio sam adresu sonde TH na 03 pa isključio i ponovno uključio napajanje. TH se i dalje javljala na adresi 03, a THP na 02. Sada sam obje mogao očitati na istoj sabirnici.",
+  "Probe Service technical details": "Tehnički detalji alata Probe Service"
 }
