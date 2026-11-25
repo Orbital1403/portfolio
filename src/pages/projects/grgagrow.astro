@@ -757,23 +757,6 @@ const hardwareGallery = [
           />
         </details>
       </BenchResults>
-      <div
-        class="architecture"
-        aria-label="Planned data path: two soil probes connect via RS485 and Modbus RTU to an ESP32 controller, then via Wi-Fi and HTTPS to ingestion, PostgreSQL and the authenticated My Garden app."
-      >
-        <div class="probe-row">
-          <span>Probe 01<br /><small>Moisture + temperature</small></span><span
-            >Probe 02<br /><small>Moisture + temperature + pH</small></span
-          >
-        </div>
-        <p class="flow-label">↓ RS485 / Modbus RTU · BITNER LP0170 cable</p>
-        <div class="architecture-node">ESP32-S3 controller</div>
-        <p class="flow-label">↓ Wi-Fi / HTTPS</p>
-        <div class="architecture-node">Ingestion → PostgreSQL</div>
-        <p class="flow-label">↓ Authenticated access</p>
-        <div class="architecture-node app-node">grgaGrow / My Garden</div>
-        <p class="note architecture-note">Full data path verified on the bench</p>
-      </div>
       <h3 id="lawn-firmware-log" class="block-title">Seven problems between the bench and the cloud.</h3>
       {
         fixGroups.map(({ heading, cases, expanded }) => (
@@ -1462,47 +1445,6 @@ const hardwareGallery = [
   .engineering-note > p:last-child {
     margin-bottom: 0;
   }
-  .architecture {
-    padding: 24px;
-    margin: 28px 0;
-    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-    background: color-mix(in srgb, #39776c 3%, transparent);
-  }
-  .probe-row {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    text-align: center;
-  }
-  .probe-row span,
-  .architecture-node {
-    display: block;
-    border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-    padding: 12px 8px;
-    font: 12px/1.8 var(--note-font);
-  }
-  .probe-row small {
-    font-size: 10px;
-    opacity: 0.75;
-  }
-  .architecture-node {
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
-  }
-  .app-node {
-    border-color: #39776c;
-    font-weight: 700;
-  }
-  .flow-label {
-    text-align: center;
-    font: 11px/1.8 var(--note-font);
-    margin: 10px 0;
-  }
-  .architecture-note {
-    text-align: center;
-    margin-bottom: 0;
-  }
   .hardware-accessories {
     margin: 24px 0;
     border-block: 1px solid var(--line);
@@ -1639,15 +1581,6 @@ const hardwareGallery = [
     .reading-path {
       gap: 6px 9px;
       padding: 10px 12px;
-    }
-    .architecture {
-      padding: 14px;
-    }
-    .probe-row {
-      gap: 8px;
-    }
-    .probe-row span {
-      font-size: 11px;
     }
     .engineering-note {
       padding: 16px 18px;

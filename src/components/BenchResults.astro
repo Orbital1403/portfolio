@@ -1,4 +1,6 @@
 ---
+import Icon from '~/components/Icon.astro'
+
 const quantityLabels = ['Temperature', 'Moisture channel', 'pH']
 const soil = ['22.6 °C', '19.4 %', '6.5']
 const readings = [
@@ -126,24 +128,80 @@ const steps = [
     <slot name="code" />
   </section>
 
-  <section aria-labelledby="bench-firmware">
-    <h4 id="bench-firmware">Two firmware builds, one shared test</h4>
-    <div class="firmware-merge">
-      <div class="bench-node">
-        <strong>TH firmware</strong><small>Temperature and moisture<br />Probe response confirmed on the bench</small>
-      </div>
-      <div class="bench-node">
-        <strong>THP firmware</strong><small>Temperature, moisture and pH<br />Readings in water and soil</small>
-      </div>
-      <div class="connection-label merge-arrow" aria-hidden="true">↘ &nbsp; ↙</div>
-      <div class="bench-node">
-        <strong>Joint diagnostic firmware</strong>
-        <small
-          >Two probes on one RS485 bus, with separate readings for each.<br />Both probes responded in air during the
-          joint bench test, each at its own address.</small
-        >
-      </div>
-    </div>
+  <section class="data-path" aria-labelledby="bench-firmware">
+    <h4 id="bench-firmware">From probes to app</h4>
+    <figure class="data-path-diagram">
+      <ul class="data-probes" role="list">
+        <li class="data-node">
+          <svg class="data-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M12 3v3M5 6h14v7H5zM9 13v8m6-8v8" />
+          </svg>
+          <div>
+            <strong>TH · Probe 01</strong>
+            <small>Moisture + temperature</small>
+          </div>
+        </li>
+        <li class="data-node">
+          <svg class="data-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M12 3v3M4 6h16v7H4zM6 13v8m3-8v8m3-8v8m3-8v8m3-8v8" />
+          </svg>
+          <div>
+            <strong>THP · Probe 02</strong>
+            <small>Moisture + temperature + pH</small>
+          </div>
+        </li>
+      </ul>
+      <div class="data-bus"><span>RS485 / Modbus RTU</span></div>
+      <ol class="data-stages" role="list">
+        <li>
+          <div class="data-node">
+            <Icon name="chip" class="data-icon" />
+            <strong>ESP32-S3 controller</strong>
+          </div>
+        </li>
+        <li>
+          <div class="data-hop"><span>Wi-Fi / HTTPS</span></div>
+          <div class="data-node">
+            <Icon name="database" class="data-icon" />
+            <div>
+              <strong>PostgreSQL</strong>
+              <small>Data ingestion</small>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="data-hop"><span>Authenticated access</span></div>
+          <div class="data-node data-app">
+            <Icon name="web" class="data-icon" />
+            <strong>grgaGrow / My Garden</strong>
+          </div>
+        </li>
+      </ol>
+      <figcaption class="bench-note">Full data path verified on the bench</figcaption>
+    </figure>
+    <details class="data-details">
+      <summary>Bench test details</summary>
+      <dl>
+        <div>
+          <dt>TH firmware</dt>
+          <dd>Probe response confirmed on the bench</dd>
+        </div>
+        <div>
+          <dt>THP firmware</dt>
+          <dd>Readings in water and soil</dd>
+        </div>
+        <div>
+          <dt>Joint diagnostic firmware</dt>
+          <dd>Both probes responded in air on the same RS485 bus. The TH probe used address 03 and the THP probe used address 02, with separate readings for each.</dd>
+        </div>
+        <div>
+          <dt>RS485 cable</dt>
+          <dd>BITNER LP0170</dd>
+        </div>
+      </dl>
+    </details>
   </section>
 </div>
 
@@ -166,8 +224,7 @@ const steps = [
     font: 600 16px/1.35 var(--body-font);
   }
   .reading-grid,
-  .connection-notes,
-  .firmware-merge {
+  .connection-notes {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
@@ -238,8 +295,7 @@ const steps = [
     justify-items: center;
     font: 11px/1.3 var(--note-font);
   }
-  .connection-label span,
-  .merge-arrow {
+  .connection-label span {
     font-size: 20px;
   }
   .bench-node strong,
@@ -295,9 +351,191 @@ const steps = [
     margin: 0;
     font-size: 14px;
   }
-  .merge-arrow,
-  .firmware-merge > :last-child {
-    grid-column: 1 / -1;
+  .data-path {
+    --data-line: #39776c;
+    --data-stage-gap: 114px;
+  }
+  :global(html.dark) .data-path {
+    --data-line: #80b9ad;
+  }
+  .data-path-diagram {
+    container-type: inline-size;
+    margin: 0;
+    border: 1px solid var(--bench-border);
+    padding: 12px;
+    background: var(--bench-tint);
+  }
+  .data-probes,
+  .data-stages {
+    display: grid;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .data-probes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .data-node {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 100%;
+    padding: 8px;
+    border: 1px solid var(--bench-border);
+    font: 14px/1.35 var(--body-font, sans-serif);
+    overflow-wrap: anywhere;
+  }
+  .data-node strong,
+  .data-node small {
+    display: block;
+  }
+  .data-node :global(.data-icon) {
+    display: block;
+    width: 22px;
+    height: 22px;
+    flex: none;
+    color: var(--data-line);
+  }
+  .data-app {
+    border-color: var(--data-line);
+  }
+  .data-probes .data-node {
+    position: relative;
+  }
+  .data-probes .data-node::after,
+  .data-bus::before,
+  .data-bus::after {
+    content: "";
+    position: absolute;
+    border-color: var(--data-line);
+  }
+  .data-probes .data-node::after {
+    top: 100%;
+    left: 50%;
+    height: 8px;
+    border-left: 1px solid var(--data-line);
+  }
+  .data-bus {
+    position: relative;
+    padding: 12px 0;
+    text-align: center;
+    font: 12px/1.5 var(--note-font);
+  }
+  .data-bus::before {
+    top: 8px;
+    left: calc(25% - 3px);
+    right: calc(25% - 3px);
+    border-top: 1px solid var(--data-line);
+  }
+  .data-bus::after {
+    bottom: 0;
+    left: 50%;
+    height: 9px;
+    border-left: 1px solid var(--data-line);
+  }
+  .data-stages > li {
+    min-width: 0;
+  }
+  .data-hop {
+    padding: 4px 0 6px;
+    text-align: center;
+    font: 12px/1.5 var(--note-font);
+  }
+  .data-hop::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 6px;
+    border-right: 1px solid var(--data-line);
+    border-bottom: 1px solid var(--data-line);
+    transform: rotate(45deg) translateY(-2px);
+  }
+  .data-stages .data-node {
+    min-height: auto;
+  }
+  .data-path-diagram figcaption {
+    color: var(--data-line);
+    text-align: center;
+  }
+  .data-details {
+    margin-top: 10px;
+    border-block: 1px solid var(--bench-border);
+  }
+  .data-details summary {
+    padding: 8px 0;
+    cursor: pointer;
+    font: 13px/1.5 var(--note-font);
+  }
+  .data-details dl {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 12px;
+  }
+  .data-details dl > div {
+    display: grid;
+    grid-template-columns: minmax(125px, 1fr) minmax(0, 3fr);
+    gap: 8px;
+  }
+  .data-details dt,
+  .data-details dd {
+    margin: 0;
+    font: 13px/1.5 var(--body-font, sans-serif);
+  }
+  .data-details dt {
+    font-weight: 600;
+  }
+  @container (min-width: 610px) {
+    .data-probes .data-node {
+      justify-content: center;
+    }
+    .data-bus {
+      padding-bottom: 24px;
+    }
+    .data-bus::after {
+      left: calc((100% - 2 * var(--data-stage-gap)) / 6);
+      right: 50%;
+      height: 10px;
+      border-top: 1px solid var(--data-line);
+    }
+    .data-bus span::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      height: 11px;
+      border-left: 1px solid var(--data-line);
+    }
+    .data-stages {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--data-stage-gap);
+    }
+    .data-stages > li {
+      position: relative;
+    }
+    .data-stages .data-node {
+      min-height: 100%;
+      justify-content: center;
+    }
+    .data-hop {
+      display: grid;
+      justify-items: center;
+      position: absolute;
+      top: 50%;
+      left: calc(-1 * var(--data-stage-gap));
+      width: var(--data-stage-gap);
+      padding: 0 4px;
+      transform: translateY(-50%);
+      font-size: 11px;
+    }
+    .data-hop::after {
+      width: 6px;
+      height: 6px;
+      margin: 0;
+      transform: rotate(-45deg);
+    }
   }
   @media (max-width: 600px) {
     .probe-sketch {
