@@ -25,7 +25,7 @@ const projects = [
     category: 'Soil monitoring and electronics',
     href: '/projects/grgagrow/',
     image: '/images/projects/smart-lawn/grgagrow-live-card.jpg',
-    alt: 'Public grgaGrow Live card for sensor 1 with a fresh reading: 34.9 % soil moisture and 3.2 °C soil temperature, beside a grass and root illustration',
+    alt: 'Screenshot of the public grgaGrow dashboard showing soil moisture and temperature for sensor 1',
     description:
       'Two probes in my 49 m² lawn send soil moisture and temperature to the cloud over Wi-Fi. The readings are public on a live page.',
     tags: ['RS485', 'ESP32-S3', 'Wi-Fi'],
@@ -75,13 +75,11 @@ const projects = [
   <div class="project-cards">
     {
       projects.map((project) => (
-        <a
+        <article
           class:list={[
             'project-card',
             { 'laundry-card': project.id === 'our-laundry', 'grgagrow-card': project.id === 'grgagrow' },
           ]}
-          href={project.href}
-          aria-labelledby={`${project.id}-title`}
         >
           <div class="card-image">
             {project.id === 'portfolio-project' ? (
@@ -110,7 +108,7 @@ const projects = [
                 decoding="async"
               />
             )}
-            {project.id === 'grgagrow' && <span class="photo-caption">Public Live: a real reading from my lawn.</span>}
+            {project.id === 'grgagrow' && <span class="photo-caption">Screenshot of the public dashboard</span>}
             {project.stamp && <span class="development-stamp">{project.stamp}</span>}
           </div>
           <div class="card-copy">
@@ -127,11 +125,20 @@ const projects = [
                 <li>{tag}</li>
               ))}
             </ul>
-            <span class="card-action">
-              Explore the project <Icon name="arrow" />
-            </span>
+            <a
+              class="card-action card-primary not-underline-hover"
+              href={project.href}
+              aria-labelledby={`${project.id}-title ${project.id}-action`}
+            >
+              <span id={`${project.id}-action`}>Explore the project</span> <Icon name="arrow" />
+            </a>
+            {project.id === 'grgagrow' && (
+              <a class="card-action card-secondary" href="/demos/my-garden/?public=grgagrow">
+                View current readings <Icon name="arrow" />
+              </a>
+            )}
           </div>
-        </a>
+        </article>
       ))
     }
   </div>
@@ -229,6 +236,8 @@ const projects = [
     margin-bottom: 48px;
   }
   .project-card {
+    position: relative;
+    isolation: isolate;
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
     color: inherit;
@@ -244,7 +253,19 @@ const projects = [
     background: color-mix(in srgb, #39776c 5%, transparent);
     border-color: #39776c;
   }
-  .project-card:focus-visible {
+  .card-primary {
+    color: inherit;
+  }
+  .card-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .card-secondary {
+    position: relative;
+    z-index: 1;
+  }
+  .project-card:has(.card-primary:focus-visible) {
     outline: 2px solid #39776c;
     outline-offset: 5px;
   }
