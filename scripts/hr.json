@@ -1951,6 +1951,8 @@
   "From probes to app": "Od sondi do aplikacije",
   "TH · Probe 01": "TH · Sonda 01",
   "THP · Probe 02": "THP · Sonda 02",
+  "Modbus address 03": "Modbus adresa 03",
+  "Modbus address 02": "Modbus adresa 02",
   "RS485 / Modbus RTU": "RS485 / Modbus RTU",
   "Wi-Fi / HTTPS": "Wi-Fi / HTTPS",
   "PostgreSQL": "PostgreSQL",

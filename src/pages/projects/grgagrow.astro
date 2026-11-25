@@ -3,6 +3,8 @@ import { Code } from 'astro:components'
 import BenchResults from '~/components/BenchResults.astro'
 import DisclosureSummary from '~/components/DisclosureSummary.astro'
 import Icon from '~/components/Icon.astro'
+import growIcons from '~/assets/grgagrow-icons.svg?url&no-inline'
+import { growProbes } from '~/data/grgagrow-probes'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import ProbeReadingCards from '~/components/ProbeReadingCards.astro'
 
@@ -65,7 +67,7 @@ const otherFirmwareFixes = [
 
 const fixGroups = [
   { heading: powerUpFix.title, icon: 'power', cases: [powerUpFix], expanded: true },
-  { heading: 'Six more problems from the bench', icon: 'check', cases: otherFirmwareFixes, expanded: false },
+  { heading: 'Six more problems from the bench', icon: 'diagnostics', cases: otherFirmwareFixes, expanded: false },
 ]
 
 const milestones = [
@@ -288,9 +290,9 @@ const hardwareGallery = [
       </div>
       <figure id="lawn-site" class="lawn-cover" data-gallery-scope data-gallery-no-filmstrip>
         <img
-          src="/images/projects/smart-lawn/build/lawn-probe-map-en.webp"
-          data-hr-src="/images/projects/smart-lawn/build/lawn-probe-map-hr.webp"
-          data-src="/images/projects/smart-lawn/build/lawn-probe-map-en.webp"
+          src="/images/grgagrow/probe-map-en.webp"
+          data-hr-src="/images/grgagrow/probe-map-hr.webp"
+          data-src="/images/grgagrow/probe-map-en.webp"
           alt="My lawn with the approximate positions of soil probes TH 03 and THP 02, and both cable routes"
           width="1600"
           height="1200"
@@ -300,8 +302,21 @@ const hardwareGallery = [
         <figcaption>PROBE LOCATIONS / Approximate positions and cable routes on my 49 m² lawn.</figcaption>
       </figure>
       <details class="evidence-block project-disclosure">
-        <DisclosureSummary icon="droplet">Readings and soil moisture guide</DisclosureSummary>
+        <DisclosureSummary icon="moisture">Readings and soil moisture guide</DisclosureSummary>
         <figure class="owner-capture" data-gallery-scope data-gallery-no-filmstrip>
+          <ul class="probe-key" role="list">
+            {
+              growProbes.map((probe) => (
+                <li>
+                  <Icon sprite={growIcons} name={probe.icon} class={`grow-probe ${probe.icon}`} />
+                  <span>
+                    <strong>{probe.label}</strong>
+                    <small>Modbus address {probe.address}</small>
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
           <img
             src="/images/projects/smart-lawn/grgagrow-owner-overview.jpg"
             alt="Both soil sensor cards from grgaGrow Owner Overview, with measurement times marked as unverified"
@@ -375,7 +390,7 @@ const hardwareGallery = [
         </figure>
       </div>
       <details class="evidence-block">
-        <DisclosureSummary icon="hobbies">Probe Service technical details</DisclosureSummary>
+        <DisclosureSummary icon="service">Probe Service technical details</DisclosureSummary>
         <p>
           To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
           local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
@@ -474,7 +489,7 @@ const hardwareGallery = [
         </figure>
       </div>
       <details class="evidence-block project-disclosure">
-        <DisclosureSummary icon="ruler">Installation photos and probe depth</DisclosureSummary>
+        <DisclosureSummary icon="depth">Installation photos and probe depth</DisclosureSummary>
         <div class="software-gallery garden-gallery" aria-label="grgaGrow garden installation gallery" data-gallery-scope>
           <figure>
             <img
@@ -556,7 +571,7 @@ const hardwareGallery = [
         </figure>
       </details>
       <details class="evidence-block project-disclosure">
-        <DisclosureSummary icon="chip">Bench photos and firmware notes</DisclosureSummary>
+        <DisclosureSummary icon="firmware">Bench photos and firmware notes</DisclosureSummary>
         <p>
           The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
           and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over Wi-Fi.
@@ -782,7 +797,7 @@ const hardwareGallery = [
     </section>
 
     <details id="lawn-equipment" class="evidence-block project-disclosure">
-      <DisclosureSummary icon="projects">Equipment, software and documentation</DisclosureSummary>
+      <DisclosureSummary icon="equipment">Equipment, software and documentation</DisclosureSummary>
       <section class="preparation-module" aria-labelledby="lawn-parts">
         <h3 id="lawn-parts">The equipment behind the readings.</h3>
         <p class="note">
@@ -834,7 +849,7 @@ const hardwareGallery = [
               gallery
             ) : (
               <details class="hardware-accessories">
-                <DisclosureSummary icon="hobbies">Assembly accessories and specifications</DisclosureSummary>
+                <DisclosureSummary icon="fittings">Assembly accessories and specifications</DisclosureSummary>
                 <p class="note">
                   The assembly kit includes UK2.5B terminals, 120 Ω / 0.5 W termination resistors, five inline fuse
                   holders and 5.5 × 2.1 mm DC adapters. The installation uses two T100 mA fuses.
@@ -1125,7 +1140,46 @@ const hardwareGallery = [
 
 <style>
   .lawn-notes {
+    --grow-accent: #39776c;
+    --grow-th: #25634d;
+    --grow-thp: #aa4608;
     font-family: var(--body-font, 'IBM Plex Sans', sans-serif);
+  }
+  :global(html.dark) .lawn-notes {
+    --grow-accent: #80b9ad;
+    --grow-th: #a7d5bc;
+    --grow-thp: #f4b286;
+  }
+  .lawn-notes :global(.grow-probe) {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    stroke-width: 1.75;
+  }
+  .lawn-notes :global(.grow-probe.probe-th) {
+    color: var(--grow-th);
+  }
+  .lawn-notes :global(.grow-probe.probe-thp) {
+    color: var(--grow-thp);
+  }
+  .probe-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    padding: 0;
+    margin: 0 0 12px;
+    list-style: none;
+  }
+  .probe-key li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 13px/1.4 var(--body-font);
+  }
+  .probe-key small {
+    display: block;
+    font: 11px/1.4 var(--note-font);
+    color: var(--note-color);
   }
   .small-label {
     font: 10px/1.8 var(--note-font);

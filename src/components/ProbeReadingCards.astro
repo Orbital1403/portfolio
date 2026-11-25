@@ -1,4 +1,7 @@
 ---
+import Icon from '~/components/Icon.astro'
+import growIcons from '~/assets/grgagrow-icons.svg?url&no-inline'
+
 // Two separate bench trials, shown side by side; the grass and roots are an illustration.
 const image = '/demos/my-garden/assets/root-zone-DTWWQ_4S.webp'
 // Smaller copies for the cards; the gallery still opens the full illustration.
@@ -6,6 +9,7 @@ const imageSrcset = '/images/projects/smart-lawn/root-zone-480.webp 480w, /image
 const probes = [
   {
     name: 'TH probe',
+    icon: 'probe-th',
     trial: 'Soil after wetting',
     date: '17 Nov 2026',
     datetime: '2026-11-17',
@@ -19,6 +23,7 @@ const probes = [
   },
   {
     name: 'THP probe',
+    icon: 'probe-thp',
     trial: 'First reading in a pot',
     date: '19 Nov 2026',
     datetime: '2026-11-19',
@@ -44,7 +49,10 @@ const probes = [
       probes.map((probe, index) => (
         <figure class="root-card" data-probe={probe.name.split(' ')[0]} data-gallery-scope>
           <figcaption class="root-heading">
-            <strong>{probe.name}</strong>
+            <strong>
+              <Icon sprite={growIcons} name={probe.icon} class={`grow-probe ${probe.icon}`} />
+              {probe.name}
+            </strong>
             <span class="trial-name">{probe.trial}</span>
             <time datetime={probe.datetime}>{probe.date}</time>
           </figcaption>
@@ -125,6 +133,9 @@ const probes = [
     opacity: 1;
   }
   .root-heading strong {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font: 600 clamp(15px, 4.2vw, 20px)/1.25 var(--body-font);
   }
   .trial-name {
@@ -173,10 +184,10 @@ const probes = [
     font: 700 clamp(17px, 4.8vw, 24px)/1.1 var(--body-font);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-    color: #2e6055;
+    color: var(--grow-th);
   }
-  :global(html.dark) dd {
-    color: #aed1c2;
+  .root-card[data-probe='THP'] dd {
+    color: var(--grow-thp);
   }
   @container (min-width: 290px) {
     .root-body {
