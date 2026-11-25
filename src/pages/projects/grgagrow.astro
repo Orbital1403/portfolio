@@ -311,7 +311,7 @@ const hardwareGallery = [
         />
         <figcaption>PROBE LOCATIONS / Approximate positions and cable routes on my 49 m² lawn.</figcaption>
       </figure>
-      <details class="evidence-block project-disclosure">
+      <details class="evidence-block project-disclosure moisture-disclosure">
         <DisclosureSummary icon="moisture">Readings and soil moisture guide</DisclosureSummary>
         <figure class="owner-capture" data-gallery-scope data-gallery-no-filmstrip>
           <ul class="probe-key" role="list">
@@ -498,7 +498,7 @@ const hardwareGallery = [
           <figcaption>PROBE / Before backfilling the trench.</figcaption>
         </figure>
       </div>
-      <details class="evidence-block project-disclosure">
+      <details class="evidence-block project-disclosure depth-disclosure">
         <DisclosureSummary icon="depth">Installation photos and probe depth</DisclosureSummary>
         <div class="software-gallery garden-gallery" aria-label="grgaGrow garden installation gallery" data-gallery-scope>
           <figure>
@@ -580,7 +580,7 @@ const hardwareGallery = [
           </figcaption>
         </figure>
       </details>
-      <details class="evidence-block project-disclosure">
+      <details class="evidence-block project-disclosure firmware-disclosure">
         <DisclosureSummary icon="firmware">Bench photos and firmware notes</DisclosureSummary>
         <p>
           The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
@@ -806,7 +806,7 @@ const hardwareGallery = [
       </details>
     </section>
 
-    <details id="lawn-equipment" class="evidence-block project-disclosure">
+    <details id="lawn-equipment" class="evidence-block project-disclosure equipment-disclosure">
       <DisclosureSummary icon="equipment">Equipment, software and documentation</DisclosureSummary>
       <section class="preparation-module" aria-labelledby="lawn-parts">
         <h3 id="lawn-parts">The equipment behind the readings.</h3>
@@ -1150,6 +1150,31 @@ const hardwareGallery = [
     <a href="/projects/our-laundry/">03 / Our laundry →</a>
   </nav>
 </LayoutDefault>
+
+<script>
+  let iconObserver: IntersectionObserver | undefined
+
+  document.addEventListener('astro:before-swap', () => iconObserver?.disconnect())
+  document.addEventListener('astro:page-load', () => {
+    if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return
+
+    const icons = document.querySelectorAll(
+      '.lawn-notes :is(.milestone-marker, .data-node, .reading-flow-mark, .probe-heading, .root-heading, .hardware-accessories-title) svg.technical-icon',
+    )
+    if (icons.length === 0) return
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue
+        entry.target.classList.add('project-icon-visible')
+        observer.unobserve(entry.target)
+      }
+    }, { threshold: 0.5 })
+
+    icons.forEach((icon) => observer.observe(icon))
+    iconObserver = observer
+  })
+</script>
 
 <style>
   .lawn-notes {
@@ -1762,6 +1787,52 @@ const hardwareGallery = [
     margin: 20px 0;
     border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
     padding: 16px 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lawn-notes :global(:where(details[open]) > .disclosure-summary .disclosure-icon),
+    .lawn-notes :global(.project-icon-visible) {
+      animation: project-icon-lift 350ms ease-out;
+    }
+    .depth-disclosure[open] > :global(.disclosure-summary .disclosure-icon) {
+      animation: probe-depth-motion 350ms ease-out;
+    }
+    .firmware-disclosure[open] > :global(.disclosure-summary .disclosure-icon) {
+      animation: firmware-pulse 350ms ease-out;
+    }
+    .equipment-disclosure[open] > :global(.disclosure-summary .disclosure-icon) {
+      animation: equipment-tilt 350ms ease-out;
+    }
+    .moisture-disclosure[open] .probe-key :global(.grow-probe) {
+      animation: moisture-probe-bounce 350ms ease-out;
+    }
+    .moisture-disclosure[open] .probe-key li + li :global(.grow-probe) {
+      animation-delay: 65ms;
+    }
+    @keyframes moisture-probe-bounce {
+      43% {
+        transform: translateY(-5px);
+      }
+      76% {
+        transform: translateY(1px);
+      }
+    }
+    @keyframes project-icon-lift {
+      42% {
+        transform: translateY(-2px) scale(1.12);
+      }
+    }
+    @keyframes probe-depth-motion {
+      42% {
+        transform: translateY(4px);
+      }
+    }
+    @keyframes firmware-pulse {
+      40% { filter: drop-shadow(0 0 3px currentColor); }
+    }
+    @keyframes equipment-tilt {
+      35% { transform: rotate(-12deg); }
+      70% { transform: rotate(5deg); }
+    }
   }
   .evidence-block[open] > :global(.disclosure-summary) {
     margin-bottom: 12px;
