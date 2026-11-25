@@ -1947,5 +1947,17 @@
   "Why both probes are installed at 12 cm.": "Zašto su obje sonde postavljene na 12 cm.",
   "Enlarge the probe depth diagram": "Povećaj prikaz dubine sondi",
   "I installed both probes at 12 cm to compare two areas at the same depth and see when moisture reaches that depth after rain.": "Obje sam sonde postavio na 12 cm kako bih usporedio dva dijela travnjaka na istoj dubini i pratio kada vlaga nakon kiše stigne do sondi.",
-  "Irrigation Association installation guidance (chapter 6) ↗": "Smjernice za ugradnju, Irrigation Association (6. poglavlje) ↗"
+  "Irrigation Association installation guidance (chapter 6) ↗": "Smjernice za ugradnju, Irrigation Association (6. poglavlje) ↗",
+  "From probes to app": "Od sondi do aplikacije",
+  "TH · Probe 01": "TH · Sonda 01",
+  "THP · Probe 02": "THP · Sonda 02",
+  "RS485 / Modbus RTU": "RS485 / Modbus RTU",
+  "Wi-Fi / HTTPS": "Wi-Fi / HTTPS",
+  "PostgreSQL": "PostgreSQL",
+  "Data ingestion": "Prihvat podataka",
+  "Authenticated access": "Autentificirani pristup",
+  "Bench test details": "Detalji stolnog testa",
+  "Both probes responded in air on the same RS485 bus. The TH probe used address 03 and the THP probe used address 02, with separate readings for each.": "Obje sonde odgovorile su na zraku na istoj RS485 sabirnici. TH je bio na adresi 03, a THP na adresi 02. Očitanja su bilježena zasebno za svaku sondu.",
+  "RS485 cable": "RS485 kabel",
+  "BITNER LP0170": "BITNER LP0170"
 }
