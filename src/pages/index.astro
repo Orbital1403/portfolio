@@ -20,7 +20,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           equipment.
         </p>
         <div class="hero-actions">
-          <a class="primary-action not-underline-hover" href="#selected-work">Explore my work <Icon name="arrow" /></a>
+          <a class="primary-action not-underline-hover" href="#testing-examples">Explore my work <Icon name="arrow" /></a>
           <a class="quiet-link" href="/contact/">Get in touch <Icon name="arrow" /></a>
         </div>
       </div>
@@ -28,6 +28,40 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
         <div class="portrait-frame"><ProfilePortrait hero /></div>
         <figcaption>From Zagreb. Based in Brussels.</figcaption>
       </figure>
+    </section>
+
+    <section id="testing-examples" class="home-section testing-section" aria-labelledby="testing-title">
+      <header class="section-header">
+        <h2 id="testing-title">How I test</h2>
+      </header>
+      <div class="testing-grid">
+        <a
+          class="testing-card not-underline-hover"
+          href="/projects/grgagrow/#lawn-probe-service"
+          aria-labelledby="testing-grgagrow-title"
+        >
+          <p class="testing-project"><Icon name="chip" /> grgaGrow</p>
+          <h3 id="testing-grgagrow-title">Why the TH probe kept its old address</h3>
+          <p>
+            I traced the failed address change to the controller. After the fix, I powered it off and on to verify that
+            the probe still answered at its new address.
+          </p>
+          <span class="project-link">Read the case <Icon name="arrow" /></span>
+        </a>
+        <a
+          class="testing-card not-underline-hover"
+          href="/projects/mila/#development-example-commands-that-only-looked-successful"
+          aria-labelledby="testing-mila-title"
+        >
+          <p class="testing-project"><Icon name="code" /> MILA*</p>
+          <h3 id="testing-mila-title">A playback command with no reply</h3>
+          <p>
+            I check what happens when a reply is lost. MILA reports an uncertain outcome and avoids repeating a
+            command that may already have run.
+          </p>
+          <span class="project-link">Read the case <Icon name="arrow" /></span>
+        </a>
+      </div>
     </section>
 
     <section id="selected-work" class="home-section" aria-labelledby="work-title">
@@ -55,15 +89,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
             A personal audio streamer for local hi-res music, radio and streaming. Used for everyday listening, refined
             through testing on the real device.
           </p>
-          <p class="project-description">
-            What if the player runs a command, but the response never arrives? MILA shows an uncertain outcome and
-            avoids automatically repeating an action that could undo what just happened.
-          </p>
-          <a
-            class="project-link card-secondary"
-            href="/projects/mila/#development-example-commands-that-only-looked-successful"
-            >How I check player behaviour <Icon name="arrow" /></a
-          >
+          <span class="project-link">Explore MILA* <Icon name="arrow" /></span>
         </div>
       </article>
       <div class="supporting-projects">
@@ -344,6 +370,56 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     font-size: 16px;
     line-height: 1.8;
     color: var(--note-color);
+  }
+  .testing-section {
+    margin-top: 44px;
+  }
+  .testing-section .section-header {
+    margin-bottom: 16px;
+  }
+  .testing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .testing-card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 9px;
+    padding: 18px !important;
+    border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--accent) 3%, transparent);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .testing-card:hover,
+  .testing-card:focus-visible {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+  }
+  .testing-card h3,
+  .testing-card p {
+    margin: 0;
+  }
+  .testing-card h3 {
+    font: 600 19px/1.35 var(--body-font);
+  }
+  .testing-card p {
+    color: var(--note-color);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .testing-card .testing-project {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font: 12px/1.5 var(--note-font);
+  }
+  .testing-card .project-link {
+    margin-top: auto;
+    padding-top: 4px;
   }
   .home-project {
     display: flex;
@@ -680,6 +756,10 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     }
     .supporting-projects {
       grid-template-columns: minmax(0, 1fr);
+    }
+    .testing-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
     }
     .career-timeline li {
       grid-template-columns: minmax(0, 1fr);

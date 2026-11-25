@@ -64,8 +64,8 @@ const otherFirmwareFixes = [
 ]
 
 const fixGroups = [
-  { heading: powerUpFix.title, cases: [powerUpFix], expanded: true },
-  { heading: 'Six more problems from the bench', cases: otherFirmwareFixes, expanded: false },
+  { heading: powerUpFix.title, icon: 'power', cases: [powerUpFix], expanded: true },
+  { heading: 'Six more problems from the bench', icon: 'check', cases: otherFirmwareFixes, expanded: false },
 ]
 
 const milestones = [
@@ -403,7 +403,7 @@ const hardwareGallery = [
           </p>
           <p class="note">bridge-image/main/entry.cpp · allowed (excerpt)</p>
           <details class="code-toggle">
-            <summary>Show the C++ excerpt</summary>
+            <DisclosureSummary icon="code">Show the C++ excerpt</DisclosureSummary>
             <Code
               code={bridgeExample}
               lang="cpp"
@@ -421,7 +421,7 @@ const hardwareGallery = [
       <h2 id="lawn-hardware">How the system works</h2>
       <BenchResults>
         <details slot="code" class="code-toggle bench-code">
-          <summary>Show the C++ excerpt · modbus_rtu.cpp</summary>
+          <DisclosureSummary icon="code">Show the C++ excerpt · modbus_rtu.cpp</DisclosureSummary>
           <p class="note">
             An actual excerpt from the shared firmware module. A complete response goes to validation; a timeout or
             transport fault returns an explicit error.
@@ -704,14 +704,14 @@ const hardwareGallery = [
           </figure>
         </div>
         <details class="evidence-block">
-          <summary>Earlier bench readings</summary>
+          <DisclosureSummary icon="history">Earlier bench readings</DisclosureSummary>
           <ProbeReadingCards />
         </details>
         <h3 id="lawn-firmware-log" class="block-title">Seven problems between the bench and the cloud.</h3>
         {
-          fixGroups.map(({ heading, cases, expanded }) => (
+          fixGroups.map(({ heading, icon, cases, expanded }) => (
             <details class="evidence-block" open={expanded}>
-              <summary>{heading}</summary>
+              <DisclosureSummary icon={icon}>{heading}</DisclosureSummary>
               <ol class="fix-log">
                 {cases.map((item) => (
                   <li>
@@ -745,7 +745,7 @@ const hardwareGallery = [
           </p>
           <p class="note">soil_probes.cpp · SoilProbes::scan</p>
           <details class="code-toggle">
-            <summary>Show the C++ excerpt</summary>
+            <DisclosureSummary icon="code">Show the C++ excerpt</DisclosureSummary>
             <Code
               code={scanExample}
               lang="cpp"
@@ -834,7 +834,7 @@ const hardwareGallery = [
               gallery
             ) : (
               <details class="hardware-accessories">
-                <summary>Assembly accessories and specifications</summary>
+                <DisclosureSummary icon="hobbies">Assembly accessories and specifications</DisclosureSummary>
                 <p class="note">
                   The assembly kit includes UK2.5B terminals, 120 Ω / 0.5 W termination resistors, five inline fuse
                   holders and 5.5 × 2.1 mm DC adapters. The installation uses two T100 mA fuses.
@@ -1406,10 +1406,6 @@ const hardwareGallery = [
     border-block: 1px solid var(--line);
     padding: 18px 0;
   }
-  .hardware-accessories summary {
-    cursor: pointer;
-    font: 14px/1.7 var(--note-font);
-  }
   .hardware-photo .hardware-description {
     font: 13px/1.8 var(--body-font, sans-serif);
     margin-top: 12px;
@@ -1673,32 +1669,16 @@ const hardwareGallery = [
   :global(html.dark) .bench-code :global(pre) {
     background-color: var(--shiki-dark-bg) !important;
   }
-  .code-toggle.bench-code > summary {
-    display: inline-block;
-    padding: 8px 14px;
-    border: 1px solid #39776c;
-    color: inherit;
-    font: 700 14px/1.6 var(--note-font);
-  }
-  .code-toggle.bench-code > summary:hover {
-    background: color-mix(in srgb, #39776c 10%, transparent);
-  }
-  .code-toggle > summary {
-    cursor: pointer;
+  .code-toggle > :global(.disclosure-summary) {
     margin: 8px 0;
-    font: 13px/1.7 var(--note-font);
-    color: #39776c;
+    color: var(--accent);
   }
   .evidence-block {
     margin: 20px 0;
     border-block: 1px solid color-mix(in srgb, currentColor 20%, transparent);
     padding: 16px 0;
   }
-  .evidence-block > summary {
-    cursor: pointer;
-    font: 700 15px/1.7 var(--note-font);
-  }
-  .evidence-block[open] > summary {
+  .evidence-block[open] > :global(.disclosure-summary) {
     margin-bottom: 12px;
   }
   .project-disclosure {
