@@ -1,10 +1,10 @@
 ---
 import { Code } from 'astro:components'
 import BenchResults from '~/components/BenchResults.astro'
+import DisclosureSummary from '~/components/DisclosureSummary.astro'
 import Icon from '~/components/Icon.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import ProbeReadingCards from '~/components/ProbeReadingCards.astro'
-import ProjectOverview from '~/components/ProjectOverview.astro'
 
 const firmwareExample =
   'Response readRegisters(const Request& request, Exchange& exchange, uint32_t budget_ms) {\n  Frame outgoing, incoming;\n  if (!encodeRequest(request, outgoing) || budget_ms == 0) return error(Status::InvalidRequest);\n  switch (exchange.transact(outgoing, budget_ms, incoming)) {\n    case Io::Complete:\n      return decodeResponse(request, incoming);\n    case Io::Timeout:\n      return error(Status::Timeout);\n    case Io::Fault:\n      return error(Status::TransportFault);\n  }\n  return error(Status::TransportFault);\n}'
@@ -276,39 +276,38 @@ const hardwareGallery = [
         Since 24 November both probes are in the lawn. They share one controller, which sends their readings to the
         cloud over Wi-Fi.
       </p>
-      <div class="project-actions">
+      <div id="lawn-live" class="project-actions">
+        <a
+          class="demo-link live-link"
+          href="/demos/my-garden/?public=grgagrow"
+          target="_blank"
+          rel="noopener noreferrer">Follow live readings ↗</a
+        >
+        <a href="#lawn-probe-service">How I found the cause</a>
         <a href="/projects/">← All project notes</a>
       </div>
-      <ProjectOverview
-        id="grgagrow"
-        items={[
-          {
-            label: 'Today',
-            text: 'Both probes are buried in the lawn. Firmware on the ESP32 reads them and uploads over Wi-Fi with OTA updates. Calibration and long-term field operation are still to be verified.',
-          },
-          {
-            label: 'My role',
-            text: 'Defining the garden workflow and expected behaviour, carrying out bench checks and interpreting the results.',
-          },
-          {
-            label: 'Example',
-            text: 'I could read each probe separately, but changing the address of the TH probe kept failing.',
-            link: { href: '#lawn-probe-service', label: 'How I found the cause' },
-          },
-          {
-            label: 'Next step',
-            text: 'Watch the readings in soil, then calibrate pH and moisture before reviewing watering thresholds.',
-          },
-        ]}
-      />
-      <section class="field-status live-measurements" aria-labelledby="lawn-live">
-        <h2 id="lawn-live">Live readings from the lawn</h2>
+      <figure id="lawn-site" class="lawn-cover" data-gallery-scope data-gallery-no-filmstrip>
+        <img
+          src="/images/projects/smart-lawn/build/lawn-probe-map-en.webp"
+          data-hr-src="/images/projects/smart-lawn/build/lawn-probe-map-hr.webp"
+          data-src="/images/projects/smart-lawn/build/lawn-probe-map-en.webp"
+          alt="My lawn with the approximate positions of soil probes TH 03 and THP 02, and both cable routes"
+          width="1600"
+          height="1200"
+          decoding="async"
+          data-group="cover"
+        />
+        <figcaption>PROBE LOCATIONS / Approximate positions and cable routes on my 49 m² lawn.</figcaption>
+      </figure>
+      <details class="evidence-block project-disclosure">
+        <DisclosureSummary icon="droplet">Readings and soil moisture guide</DisclosureSummary>
         <figure class="owner-capture" data-gallery-scope data-gallery-no-filmstrip>
           <img
             src="/images/projects/smart-lawn/grgagrow-owner-overview.jpg"
             alt="Both soil sensor cards from grgaGrow Owner Overview, with measurement times marked as unverified"
             width="1004"
             height="616"
+            loading="lazy"
             decoding="async"
             data-group="grgagrow-owner"
             data-index="0"
@@ -319,12 +318,6 @@ const hardwareGallery = [
           />
           <figcaption>OWNER OVERVIEW / 24 November 2026. Measurement times were marked as unverified.</figcaption>
         </figure>
-        <a
-          class="demo-link live-link"
-          href="/demos/my-garden/?public=grgagrow"
-          target="_blank"
-          rel="noopener noreferrer">Follow live readings ↗</a
-        >
         <figure id="moisture-ranges" class="owner-capture" data-gallery-scope data-gallery-no-filmstrip>
           <img
             src="/images/projects/smart-lawn/build/soil-moisture-legend-en.png"
@@ -343,47 +336,108 @@ const hardwareGallery = [
           />
           <figcaption>These ranges are provisional for this garden. Soil type and probe calibration affect how to interpret a reading.</figcaption>
         </figure>
-      </section>
+      </details>
     </header>
 
     <nav class="section-nav" aria-label="Sections">
       <a href="#lawn-site">In the lawn</a>
-      <a href="#lawn-hardware">On the bench</a>
-      <a href="#lawn-equipment">Equipment, software and documentation</a>
+      <a href="#lawn-probe-service">Probe diagnosis</a>
+      <a href="#lawn-hardware">How the system works</a>
     </nav>
 
-    <section aria-labelledby="lawn-site" data-gallery-scope>
-      <p class="folio-label">01 / MEASUREMENTS IN THE LAWN</p>
-      <h2 id="lawn-site">Measurements in the lawn.</h2>
-      <figure class="lawn-cover">
-        <img
-          src="/images/projects/smart-lawn/build/lawn-probe-map-en.webp"
-          data-hr-src="/images/projects/smart-lawn/build/lawn-probe-map-hr.webp"
-          data-src="/images/projects/smart-lawn/build/lawn-probe-map-en.webp"
-          alt="My lawn with the approximate positions of soil probes TH 03 and THP 02, and both cable routes"
-          width="1600"
-          height="1200"
-          loading="lazy"
-          decoding="async"
-          data-group="cover"
-        />
-        <figcaption>PROBE LOCATIONS / Approximate positions and cable routes on my 49 m² lawn.</figcaption>
-      </figure>
-      <div class="field-status">
-        <p class="small-label">FROM BENCH TO LAWN</p>
-        <p>
-          On 24 November both probes went into the lawn, and the first readings from soil arrived the same morning.
-          Public Live is open without an account.
-        </p>
-        <a
-          class="demo-link live-link"
-          href="/demos/my-garden/?public=grgagrow"
-          target="_blank"
-          rel="noopener noreferrer">Follow the live readings ↗</a
-        >
+    <section id="lawn-probe-service" aria-labelledby="service-story-title">
+      <h2 id="service-story-title">Why the TH probe kept its old address</h2>
+      <div class="bench-grid">
+        <div>
+          <p>Both probes arrived at Modbus address 02. On the bench I could read each one separately. To use them together, I needed to give the TH probe its own address.</p>
+          <p>I traced the fault to the controller. It passed the 8-byte read requests but dropped the 11-byte address write before it reached the probe.</p>
+          <p>After the fix, I changed the TH address to 03 and cycled the power. TH still answered at 03 and THP at 02. I could now read both on the same bus.</p>
+        </div>
+        <figure class="service-board" data-gallery-scope data-gallery-no-filmstrip>
+          <img
+            src="/images/projects/smart-lawn/bench/service-board-ph.jpg"
+            alt="Full grgaGrow app window on the Mac with Board status, readings from both probes and pH on THP 02"
+            width="1280"
+            height="720"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-service"
+            data-index="0"
+            data-title="Full grgaGrow Board on the Mac, 24 November 2026. Both probes were reporting over Wi-Fi."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the Probe Service Board screenshot"
+          />
+          <figcaption>
+            PROBE SERVICE / Full grgaGrow app window on the Mac, 24 November 2026. Both probes were reporting over
+            Wi-Fi.
+          </figcaption>
+        </figure>
       </div>
+      <details class="evidence-block">
+        <DisclosureSummary icon="hobbies">Probe Service technical details</DisclosureSummary>
+        <p>
+          To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
+          local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
+          bootloader and talks to the probes through it. Nothing is written to flash; a power cycle returns the board to
+          its installed firmware.
+        </p>
+        <dl class="tool-tabs">
+          {
+            probeServiceTabs.map(([name, text]) => (
+              <div>
+                <>
+                  <dt>{name}</dt>
+                  <dd>{text}</dd>
+                </>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
+          <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
+          <h3 id="bridge-example-title">Register reads and probe address changes.</h3>
+          <p>
+            The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
+            register with a value from 1 to 247. Everything else is answered with DENY.
+          </p>
+          <p class="note">bridge-image/main/entry.cpp · allowed (excerpt)</p>
+          <details class="code-toggle">
+            <summary>Show the C++ excerpt</summary>
+            <Code
+              code={bridgeExample}
+              lang="cpp"
+              themes={{ light: 'github-light', dark: 'github-dark' }}
+              tabindex="0"
+              aria-labelledby="bridge-example-title"
+              data-firmware-code="true"
+            />
+          </details>
+        </div>
+      </details>
+    </section>
+
+    <section aria-labelledby="lawn-hardware">
+      <h2 id="lawn-hardware">How the system works</h2>
+      <BenchResults>
+        <details slot="code" class="code-toggle bench-code">
+          <summary>Show the C++ excerpt · modbus_rtu.cpp</summary>
+          <p class="note">
+            An actual excerpt from the shared firmware module. A complete response goes to validation; a timeout or
+            transport fault returns an explicit error.
+          </p>
+          <Code
+            code={firmwareExample}
+            lang="cpp"
+            themes={{ light: 'github-light', dark: 'github-dark' }}
+            tabindex="0"
+            data-firmware-code="true"
+          />
+        </details>
+      </BenchResults>
       <h3 id="lawn-install">Into the lawn.</h3>
-      <div class="software-gallery garden-gallery" aria-label="grgaGrow garden installation gallery">
+      <p>Both probes sit at 12 cm so I can compare the sunny and shaded parts of the lawn at the same depth.</p>
+      <div class="software-gallery garden-gallery installation-preview" aria-label="grgaGrow garden installation gallery" data-gallery-scope>
         <figure>
           <img
             src="/images/projects/smart-lawn/build/garden-enclosure-open.webp"
@@ -403,23 +457,6 @@ const hardwareGallery = [
         </figure>
         <figure>
           <img
-            src="/images/projects/smart-lawn/build/garden-enclosure-closed.webp"
-            alt="Closed grgaGrow enclosure on gravel with two blue cables leading to the lawn"
-            width="742"
-            height="816"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-garden"
-            data-index="1"
-            data-title="The lid on, two cables out to the probes. Photograph, 24 November 2026."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge: closed"
-          />
-          <figcaption>CLOSED / The lid on, two cables out to the probes.</figcaption>
-        </figure>
-        <figure>
-          <img
             src="/images/projects/smart-lawn/build/garden-probe-in-trench.webp"
             alt="The probe lying flat in a shallow trench, with its cable leading away"
             width="1200"
@@ -435,404 +472,317 @@ const hardwareGallery = [
           />
           <figcaption>PROBE / Before backfilling the trench.</figcaption>
         </figure>
-        <figure>
+      </div>
+      <details class="evidence-block project-disclosure">
+        <DisclosureSummary icon="ruler">Installation photos and probe depth</DisclosureSummary>
+        <div class="software-gallery garden-gallery" aria-label="grgaGrow garden installation gallery" data-gallery-scope>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/build/garden-enclosure-closed.webp"
+              alt="Closed grgaGrow enclosure on gravel with two blue cables leading to the lawn"
+              width="742"
+              height="816"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-garden"
+              data-index="1"
+              data-title="The lid on, two cables out to the probes. Photograph, 24 November 2026."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge: closed"
+            />
+            <figcaption>CLOSED / The lid on, two cables out to the probes.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/build/garden-trench-filled.webp"
+              alt="Soil covering the probe after backfilling"
+              width="1200"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-garden"
+              data-index="3"
+              data-title="The covered probe after backfilling."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge: backfilled"
+            />
+            <figcaption>BACKFILLED / After covering the probe with soil.</figcaption>
+          </figure>
+        </div>
+        <figure class="dashboard-figure installation-overview" data-gallery-scope data-gallery-no-filmstrip>
           <img
-            src="/images/projects/smart-lawn/build/garden-trench-filled.webp"
-            alt="Soil covering the probe after backfilling"
-            width="1200"
-            height="900"
+            src="/images/projects/smart-lawn/build/installation-modules-en.webp"
+            data-hr-src="/images/projects/smart-lawn/build/installation-modules-hr.webp"
+            data-src="/images/projects/smart-lawn/build/installation-modules-en.webp"
+            alt="Reference illustration of an ESP32 module, a 12 V adapter, two fuses and two soil probes"
+            width="1536"
+            height="1024"
             loading="lazy"
             decoding="async"
             data-group="grgagrow-garden"
-            data-index="3"
-            data-title="The covered probe after backfilling."
+            data-index="4"
+            data-title="Reference illustration of the modules and probe installation."
             tabindex="0"
             role="button"
-            aria-label="Enlarge: backfilled"
+            aria-label="Enlarge the reference illustration"
           />
-          <figcaption>BACKFILLED / After covering the probe with soil.</figcaption>
+          <figcaption>
+            REFERENCE ILLUSTRATION / My probes measure soil moisture, temperature and pH. Two T100 mA fuses protect
+            separate power branches for the probes and the controller.
+          </figcaption>
         </figure>
-      </div>
-      <figure class="dashboard-figure installation-overview">
-        <img
-          src="/images/projects/smart-lawn/build/installation-modules-en.webp"
-          data-hr-src="/images/projects/smart-lawn/build/installation-modules-hr.webp"
-          data-src="/images/projects/smart-lawn/build/installation-modules-en.webp"
-          alt="Reference illustration of an ESP32 module, a 12 V adapter, two fuses and two soil probes"
-          width="1536"
-          height="1024"
-          loading="lazy"
-          decoding="async"
-          data-group="grgagrow-garden"
-          data-index="4"
-          data-title="Reference illustration of the modules and probe installation."
-          tabindex="0"
-          role="button"
-          aria-label="Enlarge the reference illustration"
-        />
-        <figcaption>
-          REFERENCE ILLUSTRATION / My probes measure soil moisture, temperature and pH. Two T100 mA fuses protect
-          separate power branches for the probes and the controller.
-        </figcaption>
-      </figure>
-      <figure id="probe-depth" class="dashboard-figure installation-overview" data-gallery-scope data-gallery-no-filmstrip>
-        <img
-          src="/images/projects/smart-lawn/build/probe-depth-en.png"
-          data-hr-src="/images/projects/smart-lawn/build/probe-depth-hr.png"
-          data-src="/images/projects/smart-lawn/build/probe-depth-en.png"
-          alt="Both probes at 12 cm, within the recommended range of approximately 10.2 to 15.2 cm for cool-season turfgrass."
-          width="1320"
-          height="774"
-          loading="lazy"
-          decoding="async"
-          data-index="0"
-          data-title="Why both probes are installed at 12 cm."
-          tabindex="0"
-          role="button"
-          aria-label="Enlarge the probe depth diagram"
-        />
-        <figcaption>
-          I installed both probes at 12 cm to compare two areas at the same depth and see when moisture reaches that depth after rain.
-          <a href="https://www.irrigation.org/IA/FileUploads/IA/Certification/SmartTechnologies_Final.pdf#page=18" target="_blank" rel="noopener noreferrer">Irrigation Association installation guidance (chapter 6) ↗</a>
-        </figcaption>
-      </figure>
-      <p>
-        This is the part I enjoy: connecting the interface to something physical, making the measurements
-        understandable, and checking the whole path from a sensor in the ground to a decision on the screen.
-      </p>
-      <p>
-        The idea behind grgaGrow came from a simple observation: gardens are often watered too much or too little. Water
-        is precious, and climate change makes using it thoughtfully even more important. I wanted to explore how a
-        small, smart and affordable monitoring system could help people understand what their soil needs and avoid
-        unnecessary watering.
-      </p>
-      <p>
-        The system can also be extended with automatic irrigation. Adding a controlled valve and a control module could
-        let grgaGrow water the garden based on soil readings and weather information. This is a planned next stage,
-        following reliable monitoring and hardware testing.
-      </p>
-      <p>
-        I still water the lawn manually. Sun, shade and soil conditions can make nearby areas behave differently. I want
-        to compare how quickly they dry, how the soil temperature changes, and how long water takes to reach a probe.
-      </p>
-    </section>
-
-    <section aria-labelledby="lawn-hardware">
-      <p class="folio-label">02 / WORK ON THE BENCH</p>
-      <h2 id="lawn-hardware">Two probes. One bus. Readings in the cloud.</h2>
-      <p>
-        The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
-        and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over Wi-Fi.
-      </p>
-      <section class="field-timeline" aria-labelledby="field-timeline-title">
-        <h3 id="field-timeline-title">From the workbench to the lawn</h3>
-        <ol class="milestones" role="list">
-          {
-            milestones.map(([icon, date, title, text]) => (
-              <li>
-                <span class="milestone-marker"><Icon name={icon} /></span>
-                <span class="milestone-date">{date}</span>
-                <h4>{title}</h4>
-                <p>{text}</p>
-              </li>
-            ))
-          }
-        </ol>
-        <p class="next-field-step"><strong>Next step</strong> <span>Calibrate the pH and soil moisture readings.</span></p>
-      </section>
-      <section id="lawn-probe-service" aria-labelledby="service-story-title">
-        <h3 id="service-story-title">Why the TH probe kept its old address</h3>
-        <div class="bench-grid">
-          <div>
-            <p>Both probes arrived at Modbus address 02. On the bench I could read each one separately. To use them together, I needed to give the TH probe its own address.</p>
-            <p>I traced the fault to the controller. It passed the 8-byte read requests but dropped the 11-byte address write before it reached the probe.</p>
-            <p>After the fix, I changed the TH address to 03 and cycled the power. TH still answered at 03 and THP at 02. I could now read both on the same bus.</p>
-          </div>
-          <figure class="service-board" data-gallery-scope data-gallery-no-filmstrip>
+        <figure id="probe-depth" class="dashboard-figure installation-overview" data-gallery-scope data-gallery-no-filmstrip>
+          <img
+            src="/images/projects/smart-lawn/build/probe-depth-en.png"
+            data-hr-src="/images/projects/smart-lawn/build/probe-depth-hr.png"
+            data-src="/images/projects/smart-lawn/build/probe-depth-en.png"
+            alt="Both probes at 12 cm, within the recommended range of approximately 10.2 to 15.2 cm for cool-season turfgrass."
+            width="1320"
+            height="774"
+            loading="lazy"
+            decoding="async"
+            data-index="0"
+            data-title="Why both probes are installed at 12 cm."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge the probe depth diagram"
+          />
+          <figcaption>
+            I installed both probes at 12 cm to compare two areas at the same depth and see when moisture reaches that depth after rain.
+            <a href="https://www.irrigation.org/IA/FileUploads/IA/Certification/SmartTechnologies_Final.pdf#page=18" target="_blank" rel="noopener noreferrer">Irrigation Association installation guidance (chapter 6) ↗</a>
+          </figcaption>
+        </figure>
+      </details>
+      <details class="evidence-block project-disclosure">
+        <DisclosureSummary icon="chip">Bench photos and firmware notes</DisclosureSummary>
+        <p>
+          The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
+          and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over Wi-Fi.
+        </p>
+        <section class="field-timeline" aria-labelledby="field-timeline-title">
+          <h3 id="field-timeline-title">From the workbench to the lawn</h3>
+          <ol class="milestones" role="list">
+            {
+              milestones.map(([icon, date, title, text]) => (
+                <li>
+                  <span class="milestone-marker"><Icon name={icon} /></span>
+                  <span class="milestone-date">{date}</span>
+                  <h4>{title}</h4>
+                  <p>{text}</p>
+                </li>
+              ))
+            }
+          </ol>
+          <p class="next-field-step"><strong>Next step</strong> <span>Calibrate the pH and soil moisture readings.</span></p>
+        </section>
+        <h3 id="lawn-bench">First connections on the bench.</h3>
+        <div
+          class="software-gallery bench-gallery"
+          aria-label="Photographs from the first grgaGrow bench tests"
+          data-gallery-scope
+        >
+          <figure>
             <img
-              src="/images/projects/smart-lawn/bench/service-board-ph.jpg"
-              alt="Full grgaGrow app window on the Mac with Board status, readings from both probes and pH on THP 02"
-              width="1280"
-              height="720"
+              src="/images/projects/smart-lawn/bench/bench-setup-amber.webp"
+              alt="The first grgaGrow bench setup with an ESP32 controller, separate supply and one TH probe in water"
+              width="1448"
+              height="1086"
               loading="lazy"
               decoding="async"
-              data-group="grgagrow-service"
+              data-group="grgagrow-bench"
               data-index="0"
-              data-title="Full grgaGrow Board on the Mac, 24 November 2026. Both probes were reporting over Wi-Fi."
+              data-title="First bench setup — one controller and one TH probe during a water test."
               tabindex="0"
               role="button"
-              aria-label="Enlarge the Probe Service Board screenshot"
+              aria-label="Enlarge the bench setup photograph"
             />
-            <figcaption>
-              PROBE SERVICE / Full grgaGrow app window on the Mac, 24 November 2026. Both probes were reporting over
-              Wi-Fi.
-            </figcaption>
+            <figcaption>FIRST BENCH SETUP / One ESP32 controller and one TH probe during a water test.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/bench/controller-current-amber.webp"
+              alt="Controller and multimeter during the bench current check"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="1"
+              data-title="Controller current check. Recorded reading: 48.31 mA DC."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the current measurement photograph"
+            />
+            <figcaption>CURRENT CHECK / 48.31 mA DC during this bench test.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/bench/controller-led-amber.webp"
+              alt="Close-up of the controller LED against a blurred workbench"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="2"
+              data-title="Controller LED during the first bench test."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the controller LED photograph"
+            />
+            <figcaption>CONTROLLER DETAIL / The controller’s LED during the first bench test.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/bench/joint-box-levers.webp"
+              alt="Close-up of a cable joint box with two pairs of orange lever connectors"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="3"
+              data-title="Lever connectors inside a cable joint box."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the joint box photograph"
+            />
+            <figcaption>JOINT BOX / Lever connectors inside a cable joint box.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/bench/enclosure-wiring-detail.webp"
+              alt="Inside the enclosure: lever connector strip, two inline fuse holders and a DIN rail"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="4"
+              data-title="Lever connectors and two inline fuses inside the enclosure."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the wiring detail photograph"
+            />
+            <figcaption>WIRING DETAIL / Lever connectors and two inline fuses inside the enclosure.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/bench/diagnostic-board.webp"
+              alt="Small diagnostic board with screw terminals and three status LEDs, one lit red, powered over USB"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="5"
+              data-title="Diagnostic board with three status LEDs, powered over USB."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the diagnostic board photograph"
+            />
+            <figcaption>DIAGNOSTIC BOARD / Three status LEDs, powered over USB.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/projects/smart-lawn/bench/wire-preparation.webp"
+              alt="Blue four-core cable stripped back, each conductor fitted with a crimped ferrule"
+              width="1086"
+              height="1448"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="6"
+              data-title="Four conductors stripped and fitted with ferrules before connecting."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the wire preparation photograph"
+            />
+            <figcaption>WIRE PREPARATION / Four conductors fitted with ferrules before connecting.</figcaption>
           </figure>
         </div>
         <details class="evidence-block">
-          <summary>Probe Service technical details</summary>
-          <p>
-            To work on the probes without risking the installed firmware, I built <strong>Probe Service</strong>: a small
-            local web app on the Mac, packaged as a Dock app. It loads a bridge image into the ESP32's RAM through the ROM
-            bootloader and talks to the probes through it. Nothing is written to flash; a power cycle returns the board to
-            its installed firmware.
-          </p>
-          <dl class="tool-tabs">
-            {
-              probeServiceTabs.map(([name, text]) => (
-                <div>
-                  <>
-                    <dt>{name}</dt>
-                    <dd>{text}</dd>
-                  </>
-                </div>
-              ))
-            }
-          </dl>
-          <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
-            <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
-            <h3 id="bridge-example-title">Register reads and probe address changes.</h3>
-            <p>
-              The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
-              register with a value from 1 to 247. Everything else is answered with DENY.
-            </p>
-            <p class="note">bridge-image/main/entry.cpp · allowed (excerpt)</p>
-            <details class="code-toggle">
-              <summary>Show the C++ excerpt</summary>
-              <Code
-                code={bridgeExample}
-                lang="cpp"
-                themes={{ light: 'github-light', dark: 'github-dark' }}
-                tabindex="0"
-                aria-labelledby="bridge-example-title"
-                data-firmware-code="true"
-              />
+          <summary>Earlier bench readings</summary>
+          <ProbeReadingCards />
+        </details>
+        <h3 id="lawn-firmware-log" class="block-title">Seven problems between the bench and the cloud.</h3>
+        {
+          fixGroups.map(({ heading, cases, expanded }) => (
+            <details class="evidence-block" open={expanded}>
+              <summary>{heading}</summary>
+              <ol class="fix-log">
+                {cases.map((item) => (
+                  <li>
+                    {!expanded && <h4>{item.title}</h4>}
+                    <dl>
+                      <div>
+                        <dt>Problem</dt>
+                        <dd>{item.problem}</dd>
+                      </div>
+                      <div>
+                        <dt>Cause</dt>
+                        <dd>{item.cause}</dd>
+                      </div>
+                      <div>
+                        <dt>Fix</dt>
+                        <dd>{item.fix}</dd>
+                      </div>
+                    </dl>
+                  </li>
+                ))}
+              </ol>
             </details>
-          </div>
-        </details>
-      </section>
-      <h3 id="lawn-bench">First connections on the bench.</h3>
-      <div
-        class="software-gallery bench-gallery"
-        aria-label="Photographs from the first grgaGrow bench tests"
-        data-gallery-scope
-      >
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/bench-setup-amber.webp"
-            alt="The first grgaGrow bench setup with an ESP32 controller, separate supply and one TH probe in water"
-            width="1448"
-            height="1086"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="0"
-            data-title="First bench setup — one controller and one TH probe during a water test."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the bench setup photograph"
-          />
-          <figcaption>FIRST BENCH SETUP / One ESP32 controller and one TH probe during a water test.</figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/controller-current-amber.webp"
-            alt="Controller and multimeter during the bench current check"
-            width="1448"
-            height="1086"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="1"
-            data-title="Controller current check. Recorded reading: 48.31 mA DC."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the current measurement photograph"
-          />
-          <figcaption>CURRENT CHECK / 48.31 mA DC during this bench test.</figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/controller-led-amber.webp"
-            alt="Close-up of the controller LED against a blurred workbench"
-            width="1448"
-            height="1086"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="2"
-            data-title="Controller LED during the first bench test."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the controller LED photograph"
-          />
-          <figcaption>CONTROLLER DETAIL / The controller’s LED during the first bench test.</figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/joint-box-levers.webp"
-            alt="Close-up of a cable joint box with two pairs of orange lever connectors"
-            width="1448"
-            height="1086"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="3"
-            data-title="Lever connectors inside a cable joint box."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the joint box photograph"
-          />
-          <figcaption>JOINT BOX / Lever connectors inside a cable joint box.</figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/enclosure-wiring-detail.webp"
-            alt="Inside the enclosure: lever connector strip, two inline fuse holders and a DIN rail"
-            width="1448"
-            height="1086"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="4"
-            data-title="Lever connectors and two inline fuses inside the enclosure."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the wiring detail photograph"
-          />
-          <figcaption>WIRING DETAIL / Lever connectors and two inline fuses inside the enclosure.</figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/diagnostic-board.webp"
-            alt="Small diagnostic board with screw terminals and three status LEDs, one lit red, powered over USB"
-            width="1448"
-            height="1086"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="5"
-            data-title="Diagnostic board with three status LEDs, powered over USB."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the diagnostic board photograph"
-          />
-          <figcaption>DIAGNOSTIC BOARD / Three status LEDs, powered over USB.</figcaption>
-        </figure>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/bench/wire-preparation.webp"
-            alt="Blue four-core cable stripped back, each conductor fitted with a crimped ferrule"
-            width="1086"
-            height="1448"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-bench"
-            data-index="6"
-            data-title="Four conductors stripped and fitted with ferrules before connecting."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the wire preparation photograph"
-          />
-          <figcaption>WIRE PREPARATION / Four conductors fitted with ferrules before connecting.</figcaption>
-        </figure>
-      </div>
-      <details class="evidence-block">
-        <summary>Earlier bench readings</summary>
-        <ProbeReadingCards />
-      </details>
-      <BenchResults>
-        <details slot="code" class="code-toggle bench-code">
-          <summary>Show the C++ excerpt · modbus_rtu.cpp</summary>
-          <p class="note">
-            An actual excerpt from the shared firmware module. A complete response goes to validation; a timeout or
-            transport fault returns an explicit error.
+          ))
+        }
+        <div class="engineering-note firmware-example" aria-labelledby="scan-example-title">
+          <p class="small-label">FIRMWARE / C++17</p>
+          <h3 id="scan-example-title">Find the probe instead of losing the reading.</h3>
+          <p>
+            When a probe stops answering, the driver asks once more, then sweeps the bus read-only. A unit that answers
+            the temperature/moisture registers and a valid pH register is the THP probe; one without pH is the TH probe.
           </p>
-          <Code
-            code={firmwareExample}
-            lang="cpp"
-            themes={{ light: 'github-light', dark: 'github-dark' }}
-            tabindex="0"
-            data-firmware-code="true"
-          />
-        </details>
-      </BenchResults>
-      <h3 id="lawn-firmware-log" class="block-title">Seven problems between the bench and the cloud.</h3>
-      {
-        fixGroups.map(({ heading, cases, expanded }) => (
-          <details class="evidence-block" open={expanded}>
-            <summary>{heading}</summary>
-            <ol class="fix-log">
-              {cases.map((item) => (
-                <li>
-                  {!expanded && <h4>{item.title}</h4>}
-                  <dl>
-                    <div>
-                      <dt>Problem</dt>
-                      <dd>{item.problem}</dd>
-                    </div>
-                    <div>
-                      <dt>Cause</dt>
-                      <dd>{item.cause}</dd>
-                    </div>
-                    <div>
-                      <dt>Fix</dt>
-                      <dd>{item.fix}</dd>
-                    </div>
-                  </dl>
-                </li>
-              ))}
-            </ol>
+          <p class="note">soil_probes.cpp · SoilProbes::scan</p>
+          <details class="code-toggle">
+            <summary>Show the C++ excerpt</summary>
+            <Code
+              code={scanExample}
+              lang="cpp"
+              themes={{ light: 'github-light', dark: 'github-dark' }}
+              tabindex="0"
+              aria-labelledby="scan-example-title"
+              data-firmware-code="true"
+            />
           </details>
-        ))
-      }
-      <div class="engineering-note firmware-example" aria-labelledby="scan-example-title">
-        <p class="small-label">FIRMWARE / C++17</p>
-        <h3 id="scan-example-title">Find the probe instead of losing the reading.</h3>
-        <p>
-          When a probe stops answering, the driver asks once more, then sweeps the bus read-only. A unit that answers
-          the temperature/moisture registers and a valid pH register is the THP probe; one without pH is the TH probe.
-        </p>
-        <p class="note">soil_probes.cpp · SoilProbes::scan</p>
-        <details class="code-toggle">
-          <summary>Show the C++ excerpt</summary>
-          <Code
-            code={scanExample}
-            lang="cpp"
-            themes={{ light: 'github-light', dark: 'github-dark' }}
-            tabindex="0"
-            aria-labelledby="scan-example-title"
-            data-firmware-code="true"
-          />
-        </details>
-        <p class="note">
-          A new address is used only if it does not belong to the other probe, and it is saved for the next start.
-        </p>
-      </div>
+          <p class="note">
+            A new address is used only if it does not belong to the other probe, and it is saved for the next start.
+          </p>
+        </div>
 
-      <div class="engineering-note">
-        <p class="small-label">BEFORE THE FIRST FIELD READING</p>
-        <h3>A response is evidence. Accuracy needs more.</h3>
-        <p>
-          On 17 November, separate single-query tests returned valid responses with one probe in water, dry soil and the
-          same soil after wetting. The moisture register changed after wetting. Temperature and moisture units follow
-          the seller manual; these checks do not establish calibration, accuracy or reliable long-term operation.
+        <div class="engineering-note">
+          <p class="small-label">BEFORE THE FIRST FIELD READING</p>
+          <h3>A response is evidence. Accuracy needs more.</h3>
+          <p>
+            On 17 November, separate single-query tests returned valid responses with one probe in water, dry soil and the
+            same soil after wetting. The moisture register changed after wetting. Temperature and moisture units follow
+            the seller manual; these checks do not establish calibration, accuracy or reliable long-term operation.
+          </p>
+          <p>
+            On 21 November, the production firmware ran on the 12 V adapter with both probes reporting good readings in
+            air and uploads acknowledged by the cloud. Readings in air are not soil measurements. Cable routing,
+            protection, sealed joints and suitability for burial are checked during installation.
+          </p>
+        </div>
+        <p class="note">
+          Bench test on 21 November 2026 · Readings from both probes reached the cloud and the over-the-air update
+          succeeded.
         </p>
-        <p>
-          On 21 November, the production firmware ran on the 12 V adapter with both probes reporting good readings in
-          air and uploads acknowledged by the cloud. Readings in air are not soil measurements. Cable routing,
-          protection, sealed joints and suitability for burial are checked during installation.
-        </p>
-      </div>
-      <p class="note">
-        Bench test on 21 November 2026 · Readings from both probes reached the cloud and the over-the-air update
-        succeeded.
-      </p>
+      </details>
     </section>
 
-    <section aria-labelledby="lawn-equipment">
-      <p class="folio-label">03 / PREPARATION</p>
-      <h2 id="lawn-equipment">Equipment, software and documentation</h2>
+    <details id="lawn-equipment" class="evidence-block project-disclosure">
+      <DisclosureSummary icon="projects">Equipment, software and documentation</DisclosureSummary>
       <section class="preparation-module" aria-labelledby="lawn-parts">
         <h3 id="lawn-parts">The equipment behind the readings.</h3>
         <p class="note">
@@ -1165,7 +1115,7 @@ const hardwareGallery = [
         </div>
         <p class="note">Hardware status on 24 November 2026 · Both probes installed and reporting from the lawn</p>
       </section>
-    </section>
+    </details>
   </div>
   <nav class="project-navigation" aria-label="Other projects">
     <a href="/projects/mila/">← 01 / MILA*</a>
@@ -1177,14 +1127,10 @@ const hardwareGallery = [
   .lawn-notes {
     font-family: var(--body-font, 'IBM Plex Sans', sans-serif);
   }
-  .folio-label,
   .small-label {
     font: 10px/1.8 var(--note-font);
     letter-spacing: 1.3px;
     opacity: 0.7;
-  }
-  .folio-label {
-    margin-top: 24px;
   }
   .eyebrow {
     margin: 18px 0 0;
@@ -1291,6 +1237,16 @@ const hardwareGallery = [
   .software-gallery figure {
     margin: 0;
     min-width: 0;
+  }
+  .installation-preview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-block: 20px 16px;
+  }
+  .installation-preview img {
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: color-mix(in srgb, currentColor 4%, transparent);
   }
   .software-gallery img,
   .bench-story img[role='button'],
@@ -1680,10 +1636,6 @@ const hardwareGallery = [
   .preparation-module > h3 {
     font: 600 20px/1.4 var(--note-font);
   }
-  .live-measurements h2 {
-    margin: 0;
-    font-size: 20px;
-  }
   .owner-capture {
     margin: 14px 0 16px;
   }
@@ -1701,16 +1653,6 @@ const hardwareGallery = [
   .installation-overview img:focus-visible {
     outline: 2px solid #39776c;
     outline-offset: 3px;
-  }
-  .field-status {
-    margin: 24px 0;
-    padding: 18px 22px;
-    border: 1px solid #39776c;
-    background: color-mix(in srgb, #39776c 6%, transparent);
-  }
-  .field-status > p:not(.small-label) {
-    margin: 8px 0 16px;
-    font-size: 15px;
   }
   .bench-code :global(pre),
   .firmware-example :global(pre) {
@@ -1758,6 +1700,10 @@ const hardwareGallery = [
   }
   .evidence-block[open] > summary {
     margin-bottom: 12px;
+  }
+  .project-disclosure {
+    margin-block: 16px;
+    padding-block: 11px;
   }
   .fix-log {
     display: grid;

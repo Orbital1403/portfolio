@@ -1959,5 +1959,12 @@
   "Bench test details": "Detalji stolnog testa",
   "Both probes responded in air on the same RS485 bus. The TH probe used address 03 and the THP probe used address 02, with separate readings for each.": "Obje sonde odgovorile su na zraku na istoj RS485 sabirnici. TH je bio na adresi 03, a THP na adresi 02. Očitanja su bilježena zasebno za svaku sondu.",
   "RS485 cable": "RS485 kabel",
-  "BITNER LP0170": "BITNER LP0170"
+  "BITNER LP0170": "BITNER LP0170",
+  "Readings and soil moisture guide": "Očitanja i vodič za vlagu tla",
+  "Probe diagnosis": "Dijagnostika sonde",
+  "How the system works": "Kako sustav radi",
+  "Both probes sit at 12 cm so I can compare the sunny and shaded parts of the lawn at the same depth.": "Obje sonde su na dubini od 12 cm kako bih usporedio očitanja na suncu i u sjeni na istoj dubini.",
+  "Installation photos and probe depth": "Fotografije ugradnje i dubina sondi",
+  "Bench photos and firmware notes": "Stolne fotografije i bilješke o firmwareu",
+  "Bench wiring and sample readings": "Stolni spoj i primjeri očitanja"
 }

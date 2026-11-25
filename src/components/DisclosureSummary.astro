@@ -1,0 +1,50 @@
+---
+import Icon from '~/components/Icon.astro'
+
+interface Props {
+  icon: string
+}
+const { icon } = Astro.props
+---
+
+<summary class="disclosure-summary">
+  <Icon name={icon} class="disclosure-icon" />
+  <span><slot /></span>
+  <Icon name="right" class="disclosure-caret" />
+</summary>
+
+<style>
+  .disclosure-summary {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) 16px;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding-block: 8px;
+    list-style: none;
+    cursor: pointer;
+    font: 600 14px/1.5 var(--note-font);
+  }
+  .disclosure-summary::-webkit-details-marker {
+    display: none;
+  }
+  .disclosure-summary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .disclosure-summary :global(.disclosure-icon) {
+    width: 20px;
+    height: 20px;
+    color: #39776c;
+  }
+  :global(html.dark) .disclosure-summary :global(.disclosure-icon) {
+    color: #80b9ad;
+  }
+  .disclosure-summary :global(.disclosure-caret) {
+    width: 16px;
+    height: 16px;
+  }
+  :global(details[open]) > .disclosure-summary :global(.disclosure-caret) {
+    transform: rotate(90deg);
+  }
+</style>
