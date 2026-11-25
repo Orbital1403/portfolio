@@ -80,3 +80,5 @@ Reference photographs that remain in the equipment gallery are marked "(referenc
 `grgagrow-public-live.jpg` records the published Live sensor cards, photographed by screen capture on 24 November 2026. The two cards show fresh public readings for soil moisture, temperature and pH where available. The root-zone images are illustrations.
 
 `hardware/heat-shrink-tubing-reference.webp` is a reference photograph of an assortment of heat-shrink tubing. [Shrink tubing.jpg](https://commons.wikimedia.org/wiki/File:Shrink_tubing.jpg) by Nuno Nogueira, [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/). Resized and converted to WebP under the same license.
+
+`hardware/orno-enclosure-power-supply.jpg` is a stylized edit of Gordan Grgić’s original ORNO photo. The equipment specifications are taken from the original label.
