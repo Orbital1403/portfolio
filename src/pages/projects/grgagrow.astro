@@ -95,6 +95,7 @@ const probeServiceTabs = [
   ['Frame log', 'Every transmitted and received frame, also saved to a log file.'],
 ]
 
+const mainHardwareCount = 6
 const hardwareGallery = [
   {
     image: 'own-controller.webp',
@@ -141,13 +142,22 @@ const hardwareGallery = [
     own: true,
   },
   {
+    image: 'orno-enclosure-power-supply.jpg',
+    width: 1448,
+    height: 1086,
+    title: 'Enclosure power supply',
+    detail: 'ORNO · 12 V DC · 0.5 A',
+    alt: 'ORNO 12 V DC power supply with its input and output leads',
+    own: true,
+    stylized: true,
+  },
+  {
     image: 'own-power-supply.webp',
     width: 675,
     height: 900,
-    title: 'Outdoor DC power supply',
-    description:
-      'The controller and both probes run from one 12 V supply without USB. It sits inside the enclosure beside the controller.',
-    detail: 'MEAN WELL OWA-60E-12 · In the enclosure',
+    title: 'Test power supply',
+    description: 'The 12 V power supply used during bench testing.',
+    detail: 'MEAN WELL OWA-60E-12 · 12 V DC',
     alt: 'My MEAN WELL 12 V power supply with its mains cable',
     own: true,
   },
@@ -805,7 +815,7 @@ const hardwareGallery = [
           dimensions and pictured quantities may differ from the parts I used.
         </p>
         {
-          [hardwareGallery.slice(0, 5), hardwareGallery.slice(5)].map((items, group) => {
+          [hardwareGallery.slice(0, mainHardwareCount), hardwareGallery.slice(mainHardwareCount)].map((items, group) => {
             const gallery = (
               <div class="hardware-gallery" data-gallery-scope>
                 {items.map((item, index) => (
@@ -817,9 +827,9 @@ const hardwareGallery = [
                       alt={item.alt}
                       loading="lazy"
                       decoding="async"
-                      data-index={group === 0 ? index : index + 5}
+                      data-index={index + group * mainHardwareCount}
                       data-group="grgagrow-hardware"
-                      data-title={`${item.title} — ${item.detail}. ${'own' in item ? 'My own part.' : 'Reference image of this component type.'}`}
+                      data-title={`${item.title} — ${item.detail}. ${'stylized' in item ? 'Stylized photograph.' : 'own' in item ? 'My own part.' : 'Reference image of this component type.'}`}
                       tabindex="0"
                       role="button"
                       aria-label={`Enlarge ${item.title}`}
@@ -829,7 +839,7 @@ const hardwareGallery = [
                       <p>{item.detail}</p>
                       {'description' in item && <p class="hardware-description">{item.description}</p>}
                       {'own' in item ? (
-                        <p class="photo-credit">Photo: my own part</p>
+                        <p class="photo-credit">{'stylized' in item ? 'Photo: stylized' : 'Photo: my own part'}</p>
                       ) : (
                         <a href={item.source} target="_blank" rel="noopener noreferrer">
                           Photo: {item.vendor} ↗ (reference)
