@@ -2,6 +2,7 @@
 import { Code } from 'astro:components'
 import BenchResults from '~/components/BenchResults.astro'
 import DisclosureSummary from '~/components/DisclosureSummary.astro'
+import HobbyVideo from '~/components/HobbyVideo.astro'
 import Icon from '~/components/Icon.astro'
 import growIcons from '~/assets/grgagrow-icons.svg?url&no-inline'
 import { growProbes, thLiveGreen, thpLiveBlue } from '~/data/grgagrow-probes'
@@ -299,6 +300,21 @@ const hardwareGallery = [
         <a href="#lawn-probe-service">How I found the cause</a>
         <a href="/projects/">← All project notes</a>
       </div>
+      <figure id="film" class="garden-film">
+        <HobbyVideo
+          src="/videos/grgagrow-film-en.mp4"
+          hrSrc="/videos/grgagrow-film-hr.mp4"
+          poster="/images/projects/smart-lawn/grgagrow-film-window.webp"
+          label="Animated grgaGrow film with English on-screen text"
+          portrait={false}
+        />
+        <figcaption>
+          <span>My garden and a dream of smart watering · 3:30</span>
+          <a href="/hr/projects/grgagrow/#film" data-hr-href="/projects/grgagrow/#film" data-astro-reload
+            >Watch in Croatian</a
+          >
+        </figcaption>
+      </figure>
       <figure id="lawn-site" class="lawn-cover" data-gallery-scope data-gallery-no-filmstrip>
         <img
           src="/images/grgagrow/probe-map-en.webp?v=2"
@@ -1263,6 +1279,26 @@ const hardwareGallery = [
   .body-copy {
     margin: 0;
     opacity: 0.85;
+  }
+  .garden-film {
+    scroll-margin-top: 6rem;
+  }
+  .garden-film :global(.mila-video-stage:not([data-started]):not(:fullscreen)) {
+    padding-bottom: 0;
+  }
+  .garden-film figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 16px;
+    font-size: 13px;
+    opacity: 1;
+  }
+  .garden-film figcaption a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
   }
   .section-nav {
     display: flex;
