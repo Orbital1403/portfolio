@@ -17,6 +17,7 @@ const metaNames = new Set(['description', 'og:title', 'og:description', 'og:imag
 const firmwareBlockPattern = /^<pre\b/i
 const tokenPattern = /<pre\s[^>]*data-firmware-code="true"[^>]*>[\s\S]*?<\/pre\s*>|<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>|<!--[\s\S]*?-->|<(?:[^"'<>]|"[^"]*"|'[^']*')*>|[^<]+/gi
 const sourceTagPattern = /^<source\b/i
+const anchorTagPattern = /^<a\b/i
 const imageTagPattern = /^<img\b/i
 const localizedMediaPattern = /\bdata-hr-src=["']([^"']+)/
 const attributePattern = /([\w:-]+)(\s*=\s*)("[^"]*"|'[^']*')/g
@@ -124,7 +125,8 @@ export async function localizeBuild(directory) {
           if (translatableAttributes.has(name) || (meta && name === 'content' && metaNames.has(metaId))) translated = translate(value, missing)
           if (name === 'href') translated = hrLink(value)
           const localizedImage = imageTagPattern.test(token) && (name === 'src' || name === 'data-src')
-          if (localizedImage || (name === 'src' && sourceTagPattern.test(token))) {
+          const mediaLink = name === 'href' && anchorTagPattern.test(token)
+          if (localizedImage || mediaLink || (name === 'src' && sourceTagPattern.test(token))) {
             const localizedSource = token.match(localizedMediaPattern)?.[1]
             if (localizedSource)
               translated = localizedSource
