@@ -48,6 +48,18 @@ const steps = [
   <section class="data-path" aria-labelledby="bench-firmware">
     <h4 id="bench-firmware">From probes to app</h4>
     <figure class="data-path-diagram">
+      <svg class="data-wires" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="data-wire-gaps">
+            <path clip-rule="evenodd" />
+          </clipPath>
+        </defs>
+        <g clip-path="url(#data-wire-gaps)">
+          <path class="data-wire-track" />
+          <path class="data-wire-signal" pathLength="100" />
+          <path class="data-wire-signal" pathLength="100" />
+        </g>
+      </svg>
       <ul class="data-probes" role="list">
         {
           growProbes.map((probe) => (
@@ -70,8 +82,8 @@ const steps = [
             <strong>ESP32-S3 controller</strong>
           </div>
         </li>
-        <li class="storage-stage">
-          <span class="data-hop">Wi-Fi / HTTPS</span>
+        <li>
+          <span class="data-hop"><span>Wi-Fi / HTTPS</span></span>
           <div class="data-node">
             <Icon name="database" class="data-icon" />
             <div>
@@ -80,7 +92,7 @@ const steps = [
             </div>
           </div>
         </li>
-        <li class="app-stage">
+        <li>
           <span class="data-hop"><span>Authenticated access</span></span>
           <div class="data-node data-app">
             <Icon name="web" class="data-icon" />
@@ -201,6 +213,55 @@ const steps = [
     </section>
   </details>
 </div>
+
+<script>
+  let wireObserver: ResizeObserver | undefined
+
+  document.addEventListener('astro:before-swap', () => wireObserver?.disconnect())
+  document.addEventListener('astro:page-load', () => {
+    wireObserver?.disconnect()
+    const diagram = document.querySelector<HTMLElement>('.data-path-diagram')
+    if (!diagram) return
+
+    const wires = diagram.querySelector<SVGSVGElement>('.data-wires')!
+    const probes = Array.from(diagram.querySelectorAll('.data-probe'))
+    const nodes = Array.from(diagram.querySelectorAll('.data-node'))
+    const track = wires.querySelector('.data-wire-track')!
+    const pulses = wires.querySelectorAll('.data-wire-signal')
+    const clip = wires.querySelector('clipPath path')!
+
+    function draw() {
+      const { x, y, width, height } = wires.getBoundingClientRect()
+      if (width === 0 || height === 0) return
+
+      const cards = nodes.map(node => node.getBoundingClientRect())
+      const last = cards[cards.length - 1]
+      const center = last.left + last.width / 2 - x
+      const end = last.top - y
+      const join = probes[0].getBoundingClientRect().bottom - y + 12
+      const branches = probes.map(probe => {
+        const box = probe.getBoundingClientRect()
+        const start = box.left + box.width / 2 - x
+        return `M${start},${box.bottom - y} V${join} H${center}`
+      })
+      const trunk = `V${end}`
+      track.setAttribute('d', branches.join(' ') + trunk)
+      pulses.forEach((pulse, index) => pulse.setAttribute('d', branches[index] + trunk))
+
+      // Keep the signal on one timeline while the cards cover the wire.
+      const gaps = cards.slice(0, -1).map(card =>
+        `M${card.left - x},${card.top - y} h${card.width} v${card.height} h${-card.width} Z`,
+      )
+      clip.setAttribute('d', `M0,0 H${width} V${height} H0 Z ${gaps.join(' ')}`)
+    }
+
+    diagram.classList.add('data-wires-ready')
+    draw()
+    wireObserver = new ResizeObserver(draw)
+    wireObserver.observe(diagram)
+    probes.concat(nodes).forEach(card => wireObserver?.observe(card))
+  })
+</script>
 
 <style>
   .bench-results {
@@ -356,7 +417,7 @@ const steps = [
     --data-line: var(--grow-accent, #39776c);
   }
   .data-path-diagram {
-    container-type: inline-size;
+    position: relative;
     margin: 0;
     box-sizing: border-box;
     width: 100%;
@@ -365,6 +426,56 @@ const steps = [
     border: 1px solid var(--bench-border);
     border-radius: 10px;
     background: var(--bench-tint);
+  }
+  .data-wires {
+    display: none;
+  }
+  .data-wires-ready .data-wires {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    fill: none;
+  }
+  .data-wire-track {
+    stroke: var(--data-line);
+    stroke-opacity: .65;
+  }
+  .data-wire-signal {
+    display: none;
+    stroke: #52d5a0;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 6 94;
+    filter: drop-shadow(0 0 3px #52d5a0);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .data-wire-signal {
+      display: inline;
+      animation: data-signal-flow 3.4s linear infinite;
+    }
+    @keyframes data-signal-flow {
+      from { stroke-dashoffset: 6; }
+      to { stroke-dashoffset: -100; }
+    }
+  }
+  .data-wires-ready .data-probe::after,
+  .data-wires-ready .data-bus::before,
+  .data-wires-ready .data-bus::after,
+  .data-wires-ready .data-hop::after {
+    display: none;
+  }
+  .data-wires-ready :is(.data-bus, .data-hop) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    text-align: left;
+  }
+  .data-wires-ready :is(.data-bus, .data-hop) > span {
+    grid-column: 2;
+    padding-inline-start: 10px;
   }
   .data-probes,
   .data-stages {
@@ -451,6 +562,8 @@ const steps = [
     border-left: 1px solid var(--data-line);
   }
   .data-stages {
+    width: min(100%, 22rem);
+    margin-inline: auto;
     text-align: center;
   }
   .data-node {
@@ -462,8 +575,6 @@ const steps = [
     box-sizing: border-box;
   }
   .controller-stage .data-node {
-    width: min(100%, 22rem);
-    margin-inline: auto;
     border-color: var(--data-line);
     background: var(--bench-tint);
   }
@@ -527,69 +638,6 @@ const steps = [
     .data-path-diagram {
       width: calc(100% + 2.5rem);
       margin-inline-start: -2.5rem;
-    }
-  }
-  @container (min-width: 550px) {
-    .data-stages {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    .controller-stage {
-      grid-column: 1 / -1;
-      position: relative;
-      padding-bottom: 14px;
-    }
-    .controller-stage::after {
-      position: absolute;
-      bottom: 0;
-      left: calc(100% / 6);
-      right: 50%;
-      height: 14px;
-      border-bottom: 1px solid var(--data-line);
-      border-right: 1px solid var(--data-line);
-      content: "";
-    }
-    .storage-stage .data-hop::before {
-      width: 1px;
-      height: 7px;
-      margin-top: -7px;
-      background: var(--data-line);
-      content: "";
-    }
-    .app-stage {
-      grid-column: span 2;
-      align-self: end;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-    }
-    .app-stage .data-hop {
-      position: relative;
-      flex-direction: row;
-      justify-content: center;
-      gap: 6px;
-    }
-    .app-stage .data-hop::before,
-    .app-stage .data-hop::after {
-      content: "";
-      flex: 1;
-      border-top: 1px solid var(--data-line);
-    }
-    .app-stage .data-hop::after {
-      height: 0;
-      border-bottom: 0;
-      border-right: 0;
-      transform: none;
-    }
-    .app-stage .data-hop > span::after {
-      position: absolute;
-      top: 50%;
-      right: 2px;
-      width: 6px;
-      height: 6px;
-      border-top: 1px solid var(--data-line);
-      border-right: 1px solid var(--data-line);
-      transform: translateY(-50%) rotate(45deg);
-      content: "";
     }
   }
   @media (max-width: 600px) {
