@@ -4,7 +4,7 @@ import BenchResults from '~/components/BenchResults.astro'
 import DisclosureSummary from '~/components/DisclosureSummary.astro'
 import Icon from '~/components/Icon.astro'
 import growIcons from '~/assets/grgagrow-icons.svg?url&no-inline'
-import { growProbes } from '~/data/grgagrow-probes'
+import { growProbes, thLiveGreen, thpLiveBlue } from '~/data/grgagrow-probes'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import ProbeReadingCards from '~/components/ProbeReadingCards.astro'
 
@@ -279,7 +279,7 @@ const hardwareGallery = [
   title="grgaGrow — When does my lawn actually need water? — Gordan Grgić"
   description="Two probes in my 49 m² lawn send soil moisture and temperature to the cloud over Wi-Fi. The readings are public on a live page."
 >
-  <div class="lawn-notes">
+  <div class="lawn-notes" style={{ '--grow-th-light': thLiveGreen, '--grow-thp': thpLiveBlue }}>
     <header class="lawn-heading">
       <p class="eyebrow"><strong>grgaGrow</strong> / soil monitoring</p>
       <h1>When does my lawn actually need water?</h1>
@@ -1185,14 +1185,14 @@ const hardwareGallery = [
   .lawn-notes {
     --project-disclosure-gap: 16px;
     --grow-accent: #39776c;
-    --grow-th: #25634d;
-    --grow-thp: #aa4608;
+    --grow-th: var(--grow-th-light);
+    --grow-thp-text: #345d99;
     font-family: var(--body-font, 'IBM Plex Sans', sans-serif);
   }
   :global(html.dark) .lawn-notes {
     --grow-accent: #80b9ad;
     --grow-th: #a7d5bc;
-    --grow-thp: #f4b286;
+    --grow-thp-text: var(--grow-thp);
   }
   .lawn-notes :global(.grow-probe) {
     width: 24px;
