@@ -293,16 +293,17 @@ const hardwareGallery = [
           class="demo-link live-link"
           href="/demos/my-garden/?public=grgagrow"
           target="_blank"
-          rel="noopener noreferrer">Follow live readings ↗</a
-        >
+          rel="noopener noreferrer"
+          aria-label="Live soil readings (opens in a new tab)"
+        ><span class="live-dot" aria-hidden="true"></span>Live</a>
         <a href="#lawn-probe-service">How I found the cause</a>
         <a href="/projects/">← All project notes</a>
       </div>
       <figure id="lawn-site" class="lawn-cover" data-gallery-scope data-gallery-no-filmstrip>
         <img
-          src="/images/grgagrow/probe-map-en.webp"
-          data-hr-src="/images/grgagrow/probe-map-hr.webp"
-          data-src="/images/grgagrow/probe-map-en.webp"
+          src="/images/grgagrow/probe-map-en.webp?v=2"
+          data-hr-src="/images/grgagrow/probe-map-hr.webp?v=2"
+          data-src="/images/grgagrow/probe-map-en.webp?v=2"
           alt="My lawn with the approximate positions of soil probes TH 03 and THP 02, and both cable routes"
           width="1600"
           height="1200"
@@ -1304,6 +1305,38 @@ const hardwareGallery = [
   a.demo-link:hover {
     background: #234a42;
     color: #fff;
+  }
+  a.live-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font: 600 14px/1.4 var(--note-font);
+  }
+  .live-dot {
+    width: 9px;
+    height: 9px;
+    flex: none;
+    border-radius: 50%;
+    background: #a6efb0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .live-dot {
+      animation: live-ember 1.7s ease-in-out infinite;
+    }
+    @keyframes live-ember {
+      0%, 100% {
+        box-shadow: 0 0 0 1px rgb(166 239 176 / 30%);
+        transform: scale(.85);
+      }
+      50% {
+        box-shadow: 0 0 10px 4px rgb(166 239 176 / 65%);
+        transform: scale(1.2);
+      }
+    }
   }
   a:focus-visible {
     outline: 2px solid #39776c;

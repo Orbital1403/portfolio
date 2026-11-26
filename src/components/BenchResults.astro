@@ -64,13 +64,13 @@ const steps = [
       </ul>
       <div class="data-bus"><span>RS485 / Modbus RTU</span></div>
       <ol class="data-stages" role="list">
-        <li>
+        <li class="controller-stage">
           <div class="data-node">
             <Icon sprite={growIcons} name="firmware" class="data-icon" />
             <strong>ESP32-S3 controller</strong>
           </div>
         </li>
-        <li>
+        <li class="storage-stage">
           <span class="data-hop">Wi-Fi / HTTPS</span>
           <div class="data-node">
             <Icon name="database" class="data-icon" />
@@ -80,8 +80,8 @@ const steps = [
             </div>
           </div>
         </li>
-        <li>
-          <span class="data-hop">Authenticated access</span>
+        <li class="app-stage">
+          <span class="data-hop"><span>Authenticated access</span></span>
           <div class="data-node data-app">
             <Icon name="web" class="data-icon" />
             <strong>grgaGrow / My Garden</strong>
@@ -358,7 +358,10 @@ const steps = [
   .data-path-diagram {
     container-type: inline-size;
     margin: 0;
-    padding: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    padding: clamp(16px, 3vw, 32px);
     border: 1px solid var(--bench-border);
     border-radius: 10px;
     background: var(--bench-tint);
@@ -385,7 +388,8 @@ const steps = [
   }
   .data-probe {
     position: relative;
-    border-block-start: 2px solid var(--grow-th, var(--data-line));
+    text-align: center;
+    border-block-start: 3px solid var(--grow-th, var(--data-line));
   }
   .data-probe-thp {
     border-block-start-color: var(--grow-thp, var(--data-line));
@@ -393,6 +397,7 @@ const steps = [
   .data-metrics {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 5px 10px;
     margin-top: 5px;
     font-size: 12px;
@@ -445,14 +450,26 @@ const steps = [
     height: 8px;
     border-left: 1px solid var(--data-line);
   }
+  .data-stages {
+    text-align: center;
+  }
   .data-node {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    min-height: 64px;
+    box-sizing: border-box;
+  }
+  .controller-stage .data-node {
+    width: min(100%, 22rem);
+    margin-inline: auto;
+    border-color: var(--data-line);
+    background: var(--bench-tint);
   }
   .data-node :global(.data-icon) {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     flex: none;
     color: var(--data-line);
   }
@@ -465,16 +482,17 @@ const steps = [
     border-color: var(--data-line);
   }
   .data-hop {
-    display: block;
-    padding: 5px 0;
-    text-align: center;
-    font: 11px/1.4 var(--note-font);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 2px;
+    font: 12px/1.4 var(--note-font);
   }
   .data-hop::after {
     display: inline-block;
     width: 5px;
     height: 5px;
-    margin-left: 6px;
     border-right: 1px solid var(--data-line);
     border-bottom: 1px solid var(--data-line);
     transform: rotate(45deg) translateY(-2px);
@@ -505,43 +523,73 @@ const steps = [
   .data-details > dl dt {
     font-weight: 600;
   }
-  @container (min-width: 590px) {
-    .data-bus::after {
-      left: calc((100% - 44px) / 6);
-      width: calc((100% + 22px) / 3);
-      border-top: 1px solid var(--data-line);
-      border-right: 1px solid var(--data-line);
+  @media (min-width: 1024px) {
+    .data-path-diagram {
+      width: calc(100% + 2.5rem);
+      margin-inline-start: -2.5rem;
     }
+  }
+  @container (min-width: 550px) {
     .data-stages {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
     }
-    .data-stages > li {
-      display: flex;
-      flex-direction: column;
+    .controller-stage {
+      grid-column: 1 / -1;
       position: relative;
-      min-width: 0;
+      padding-bottom: 14px;
     }
-    .data-stages > li:first-child {
-      padding-top: 25px;
-    }
-    .data-stages > li:first-child::before {
+    .controller-stage::after {
       position: absolute;
-      top: 0;
-      left: 50%;
-      height: 25px;
-      border-left: 1px solid var(--data-line);
+      bottom: 0;
+      left: calc(100% / 6);
+      right: 50%;
+      height: 14px;
+      border-bottom: 1px solid var(--data-line);
+      border-right: 1px solid var(--data-line);
       content: "";
     }
-    .data-stages .data-node {
-      flex: 1;
+    .storage-stage .data-hop::before {
+      width: 1px;
+      height: 7px;
+      margin-top: -7px;
+      background: var(--data-line);
+      content: "";
     }
-    .data-hop::after {
+    .app-stage {
+      grid-column: span 2;
+      align-self: end;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    .app-stage .data-hop {
+      position: relative;
+      flex-direction: row;
+      justify-content: center;
+      gap: 6px;
+    }
+    .app-stage .data-hop::before,
+    .app-stage .data-hop::after {
+      content: "";
+      flex: 1;
+      border-top: 1px solid var(--data-line);
+    }
+    .app-stage .data-hop::after {
+      height: 0;
+      border-bottom: 0;
+      border-right: 0;
+      transform: none;
+    }
+    .app-stage .data-hop > span::after {
       position: absolute;
-      top: calc(50% + 11px);
-      left: -16px;
-      margin: 0;
-      transform: rotate(-45deg);
+      top: 50%;
+      right: 2px;
+      width: 6px;
+      height: 6px;
+      border-top: 1px solid var(--data-line);
+      border-right: 1px solid var(--data-line);
+      transform: translateY(-50%) rotate(45deg);
+      content: "";
     }
   }
   @media (max-width: 600px) {

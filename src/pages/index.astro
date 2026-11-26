@@ -40,7 +40,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           href="/projects/grgagrow/#lawn-probe-service"
           aria-labelledby="testing-grgagrow-title"
         >
-          <p class="testing-project"><Icon name="chip" /> grgaGrow</p>
+          <p class="testing-project"><img src="/demos/my-garden/icon-192.png" width="24" height="24" alt="" /> grgaGrow</p>
           <h3 id="testing-grgagrow-title">Why the TH probe kept its old address</h3>
           <p>
             I traced the failed address change to the controller. After the fix, I powered it off and on to verify that
@@ -53,7 +53,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           href="/projects/mila/#development-example-commands-that-only-looked-successful"
           aria-labelledby="testing-mila-title"
         >
-          <p class="testing-project"><Icon name="code" /> MILA*</p>
+          <p class="testing-project"><img src="/images/projects/gstreamer/mila-app-icon.svg" width="24" height="24" alt="" /> MILA*</p>
           <h3 id="testing-mila-title">A playback command with no reply</h3>
           <p>
             I check what happens when a reply is lost. MILA reports an uncertain outcome and avoids repeating a
@@ -416,6 +416,10 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     gap: 8px;
     color: var(--accent);
     font: 12px/1.5 var(--note-font);
+  }
+  .testing-project img {
+    flex: none;
+    border-radius: 6px;
   }
   .testing-card .project-link {
     margin-top: auto;
