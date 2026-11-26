@@ -16,6 +16,8 @@
   const next = overlay.querySelector('.gg-lb-next')
   const closeButton = overlay.querySelector('.gg-lb-close')
   const caption = overlay.querySelector('.gallery-caption')
+  const label = overlay.querySelector('.gg-gallery-label')
+  const defaultLabel = label.textContent
   const counter = overlay.querySelector('.gg-gallery-count')
   const thumbnails = overlay.querySelector('.gg-gallery-thumbnails')
   const footer = overlay.querySelector('.gg-gallery-footer')
@@ -65,6 +67,7 @@
     const item = items[index]
     image.src = item.dataset.src || item.currentSrc || item.src
     image.alt = item.alt
+    label.textContent = item.dataset.galleryLabel || defaultLabel
     showCaption(item)
     counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`
     previous.hidden = next.hidden = items.length < 2

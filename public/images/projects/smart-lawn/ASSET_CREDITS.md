@@ -69,7 +69,7 @@ Source pages and original image URLs are recorded under `hardware-photo-refresh`
 
 Photographs in `build/` and the `hardware/own-*.webp` files were supplied by Gordan Grgić and show his own parts, the assembled enclosure and the installation in his garden. The workbench and part photographs are edited photographs; the two enclosure photographs were made on installation day, 24 November 2026. The trench and backfill views are edited images, including an illustrative view of the covered probe. All were prepared for web use.
 
-The installation gallery uses `build/installation-modules-en.webp` (English) and `build/installation-modules-hr.webp` (Croatian), supplied earlier by Gordan Grgić. They show illustrative modules and an example layout. The actual enclosure appears in the photographs above the illustration. The English reference depicts EC as well, whereas this installation tracks soil moisture, temperature and pH.
+The English and Croatian infographics (`build/installation-modules-en.webp` and `build/installation-modules-hr.webp`) adapt the cutaway and four installation images from Gordan Grgić’s original module illustration and use the grgaGrow app icon. The cutaway depicts the SHT31-D breakout inside the enclosure and a side-mounted M12 × 1.5 breather vent. The edited cutaway, portfolio typography, component labels and installation steps are composed at build time. The adjacent photographs show the actual enclosure.
 
 Reference photographs that remain in the equipment gallery are marked "(reference)" beside their source link.
 
