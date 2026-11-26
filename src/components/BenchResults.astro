@@ -225,9 +225,9 @@ const steps = [
 
     const wires = diagram.querySelector<SVGSVGElement>('.data-wires')!
     const probes = Array.from(diagram.querySelectorAll('.data-probe'))
-    const nodes = Array.from(diagram.querySelectorAll('.data-node'))
+    const nodes = Array.from(diagram.querySelectorAll<HTMLElement>('.data-node'))
     const track = wires.querySelector('.data-wire-track')!
-    const pulses = wires.querySelectorAll('.data-wire-signal')
+    const pulses = wires.querySelectorAll<SVGPathElement>('.data-wire-signal')
     const clip = wires.querySelector('clipPath path')!
 
     function draw() {
@@ -247,6 +247,14 @@ const steps = [
       const trunk = `V${end}`
       track.setAttribute('d', branches.join(' ') + trunk)
       pulses.forEach((pulse, index) => pulse.setAttribute('d', branches[index] + trunk))
+
+      // Match the leading edge of the animated dash to each card's entry point.
+      const length = pulses[0].getTotalLength()
+      const branchLength = length - (end - join)
+      nodes.forEach((node, index) => {
+        const distance = branchLength + cards[index].top - y - join
+        node.style.setProperty('--signal-arrival', String(distance / length * 0.85))
+      })
 
       // Keep the signal on one timeline while the cards cover the wire.
       const gaps = cards.slice(0, -1).map(card =>
@@ -415,6 +423,8 @@ const steps = [
   }
   .data-path {
     --data-line: var(--grow-accent, #39776c);
+    --signal-color: #52d5a0;
+    --signal-cycle: 4s;
   }
   .data-path-diagram {
     position: relative;
@@ -445,20 +455,36 @@ const steps = [
   }
   .data-wire-signal {
     display: none;
-    stroke: #52d5a0;
+    stroke: var(--signal-color);
     stroke-width: 3;
     stroke-linecap: round;
-    stroke-dasharray: 6 94;
-    filter: drop-shadow(0 0 3px #52d5a0);
+    stroke-dasharray: 6 100;
+    filter: drop-shadow(0 0 3px var(--signal-color));
   }
   @media (prefers-reduced-motion: no-preference) {
     .data-wire-signal {
       display: inline;
-      animation: data-signal-flow 3.4s linear infinite;
+      animation: data-signal-flow var(--signal-cycle) linear infinite;
+    }
+    .data-wires-ready .data-node {
+      animation: data-stage-glow var(--signal-cycle) ease-out infinite;
+      animation-delay: calc(var(--signal-cycle) * var(--signal-arrival, 0));
     }
     @keyframes data-signal-flow {
-      from { stroke-dashoffset: 6; }
-      to { stroke-dashoffset: -100; }
+      from { stroke-dashoffset: 6; opacity: 1; }
+      85% { stroke-dashoffset: -100; opacity: 1; }
+      86%, to { stroke-dashoffset: -100; opacity: 0; }
+    }
+    @keyframes data-stage-glow {
+      0% {
+        box-shadow:
+          0 0 0 1px var(--signal-color),
+          0 0 14px color-mix(in srgb, var(--signal-color) 65%, transparent),
+          inset 0 0 20px color-mix(in srgb, var(--signal-color) 25%, transparent);
+      }
+      15%, to {
+        box-shadow: 0 0 0 1px transparent, 0 0 14px transparent, inset 0 0 20px transparent;
+      }
     }
   }
   .data-wires-ready .data-probe::after,
