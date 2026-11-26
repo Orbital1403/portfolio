@@ -19,7 +19,6 @@ const tokenPattern = /<pre\s[^>]*data-firmware-code="true"[^>]*>[\s\S]*?<\/pre\s
 const sourceTagPattern = /^<source\b/i
 const imageTagPattern = /^<img\b/i
 const localizedMediaPattern = /\bdata-hr-src=["']([^"']+)/
-const localizedHrefPattern = /\bdata-hr-href=["']([^"']+)/
 const attributePattern = /([\w:-]+)(\s*=\s*)("[^"]*"|'[^']*')/g
 
 function translate(value, missing) {
@@ -123,7 +122,7 @@ export async function localizeBuild(directory) {
           const value = quoted.slice(1, -1)
           let translated = value
           if (translatableAttributes.has(name) || (meta && name === 'content' && metaNames.has(metaId))) translated = translate(value, missing)
-          if (name === 'href') translated = token.match(localizedHrefPattern)?.[1] ?? hrLink(value)
+          if (name === 'href') translated = hrLink(value)
           const localizedImage = imageTagPattern.test(token) && (name === 'src' || name === 'data-src')
           if (localizedImage || (name === 'src' && sourceTagPattern.test(token))) {
             const localizedSource = token.match(localizedMediaPattern)?.[1]

@@ -1993,8 +1993,5 @@
   "I chose 12 cm because it falls within the recommended range for placing moisture sensors in the root zone of cool-season turfgrass. Both probes sit at the same depth so I can see when rain reaches them and compare how quickly the sunny and shaded areas dry out.": "Odabrao sam 12 cm jer je ta dubina unutar preporučenog raspona za postavljanje senzora vlage u zoni korijena trava hladnije klime. Obje su sonde na istoj dubini pa mogu pratiti kada vlaga nakon kiše do njih stigne i usporediti koliko se brzo suše osunčani i zasjenjeni dio travnjaka.",
   "Moisture": "Vlaga",
   "Supabase · Reading storage": "Supabase · Pohrana očitanja",
-  "Animated grgaGrow film with English on-screen text": "Animirani film grgaGrow s hrvatskim tekstom na ekranu",
-  "My garden and a dream of smart watering · 3:30": "Moj vrt i san o pametnom zalijevanju · 3:30",
-  "Watch in Croatian": "Pogledaj na engleskom",
   "On the bench, the ESP32 read both probes and the cloud acknowledged the uploads.": "Na stolu je ESP32 očitao obje sonde, a oblak je potvrdio primitak podataka."
 }

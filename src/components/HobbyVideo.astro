@@ -2,13 +2,12 @@
 import '~/styles/video-player.css'
 interface Props {
   src: string
-  hrSrc?: string
   poster: string
   label: string
   portrait?: boolean
   preload?: 'none' | 'metadata'
 }
-const { src, hrSrc, poster, label, portrait = true, preload = 'none' } = Astro.props
+const { src, poster, label, portrait = true, preload = 'none' } = Astro.props
 ---
 
 <div class:list={['hobby-video', { portrait }]}>
@@ -21,8 +20,8 @@ const { src, hrSrc, poster, label, portrait = true, preload = 'none' } = Astro.p
         ><strong>Play video</strong>
       </button>
       <video tabindex="0" controls playsinline preload={preload} poster={poster} aria-label={label}>
-        <source src={src} data-hr-src={hrSrc} type="video/mp4" />
-        <a href={src} data-hr-href={hrSrc}>{label}</a>
+        <source src={src} type="video/mp4" />
+        <a href={src}>{label}</a>
       </video>
     </div>
     <div class="mila-video-controls" role="group" aria-label="Video controls" hidden>
