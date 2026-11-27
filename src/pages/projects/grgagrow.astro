@@ -96,7 +96,13 @@ const probeServiceTabs = [
   ['Frame log', 'Every transmitted and received frame, also saved to a log file.'],
 ]
 
-const mainHardwareCount = 6
+const enclosureCaptions = [
+  'One cable comes in from the sunny patch, the other from the shade. Both pass through the cable glands to the terminals. On the DIN rail, the ORNO supply delivers 12 V. Two T100 mA fuses protect the probes and the controller on separate branches.',
+  'The small black vent in the side wall lets the pressure equalize as the air inside warms and cools.',
+  'The ESP32-S3 reads both soil probes over RS485. Look just to its left for the green LED on the SHT31 board. That little sensor measures the temperature and relative humidity of the air inside the box.',
+]
+
+const mainHardwareCount = 8
 const hardwareGallery = [
   {
     image: 'own-controller.webp',
@@ -107,6 +113,26 @@ const hardwareGallery = [
       'A Waveshare ESP32-S3-RS485-CAN Rev 2.2 runs the grgaGrow firmware on 12 V: it polls both probes, keeps a local queue and uploads over Wi-Fi with OTA updates.',
     detail: 'RS485 / CAN · Wi-Fi · DIN housing',
     alt: 'My Waveshare ESP32-S3-RS485-CAN controller in its DIN-rail housing',
+    own: true,
+  },
+  {
+    image: 'sht31-orange.webp',
+    width: 1448,
+    height: 1086,
+    title: 'SHT31 enclosure sensor',
+    description: 'Measures the temperature and relative humidity of the air inside the enclosure.',
+    detail: 'I²C',
+    alt: 'SHT31 sensor and cable on the workbench in amber tones',
+    own: true,
+  },
+  {
+    image: 'enclosure-vent-orange.webp',
+    width: 1448,
+    height: 1086,
+    title: 'Pressure-equalization vent',
+    description: 'This threaded vent fits through the enclosure wall and is secured with a sealing ring and nut.',
+    detail: 'Enclosure fitting',
+    alt: 'Threaded vents with sealing rings and retaining nuts on the workbench',
     own: true,
   },
   {
@@ -476,25 +502,27 @@ const hardwareGallery = [
         </details>
       </BenchResults>
       <h3 id="lawn-install">Into the lawn.</h3>
+      <figure class="dashboard-figure enclosure-triptych" data-gallery-scope data-gallery-no-filmstrip>
+        <img
+          src="/images/projects/smart-lawn/build/enclosure-triptych-art.webp"
+          alt="Three views of the enclosure: the 12 V supply and wiring, the black vent in the side wall, and the small SHT31 board beside the ESP32-S3."
+          width="2149"
+          height="732"
+          loading="lazy"
+          decoding="async"
+          data-group="grgagrow-enclosure"
+          data-index="0"
+          data-title={enclosureCaptions.join(' ')}
+          tabindex="0"
+          role="button"
+          aria-label="Enlarge the three enclosure photographs"
+        />
+        <figcaption class="enclosure-captions">
+          {enclosureCaptions.map((caption) => <span>{caption}</span>)}
+        </figcaption>
+      </figure>
       <p>Both probes sit at 12 cm so I can compare the sunny and shaded parts of the lawn at the same depth.</p>
       <div class="software-gallery garden-gallery installation-preview" aria-label="grgaGrow garden installation gallery" data-gallery-scope>
-        <figure>
-          <img
-            src="/images/projects/smart-lawn/build/garden-enclosure-open.webp"
-            alt="Open grgaGrow enclosure on gravel by a garden wall, with the 12 V supply, the controller on a DIN rail, lever connectors and two blue probe cables"
-            width="742"
-            height="816"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-garden"
-            data-index="0"
-            data-title="On gravel by the wall: 12 V supply, controller and connectors. Photograph, 24 November 2026."
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge: enclosure"
-          />
-          <figcaption>ENCLOSURE / On gravel by the wall: 12 V supply, controller and connectors.</figcaption>
-        </figure>
         <figure>
           <img
             src="/images/projects/smart-lawn/build/garden-probe-in-trench.webp"
@@ -511,6 +539,23 @@ const hardwareGallery = [
             aria-label="Enlarge: probe"
           />
           <figcaption>PROBE / Before backfilling the trench.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/projects/smart-lawn/build/garden-trench-filled.webp"
+            alt="Soil covering the probe after backfilling"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            data-group="grgagrow-garden"
+            data-index="3"
+            data-title="The covered probe after backfilling."
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge: backfilled"
+          />
+          <figcaption>BACKFILLED / After covering the probe with soil.</figcaption>
         </figure>
       </div>
       <details class="evidence-block project-disclosure depth-disclosure">
@@ -532,23 +577,6 @@ const hardwareGallery = [
               aria-label="Enlarge: closed"
             />
             <figcaption>CLOSED / The lid on, two cables out to the probes.</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="/images/projects/smart-lawn/build/garden-trench-filled.webp"
-              alt="Soil covering the probe after backfilling"
-              width="1200"
-              height="900"
-              loading="lazy"
-              decoding="async"
-              data-group="grgagrow-garden"
-              data-index="3"
-              data-title="The covered probe after backfilling."
-              tabindex="0"
-              role="button"
-              aria-label="Enlarge: backfilled"
-            />
-            <figcaption>BACKFILLED / After covering the probe with soil.</figcaption>
           </figure>
         </div>
         <figure id="power-branches" class="dashboard-figure installation-overview" data-gallery-scope data-gallery-no-filmstrip>
@@ -746,6 +774,25 @@ const hardwareGallery = [
               aria-label="Enlarge the wire preparation photograph"
             />
             <figcaption>WIRE PREPARATION / Four conductors fitted with ferrules before connecting.</figcaption>
+          </figure>
+          <figure id="bench-sht31">
+            <img
+              src="/images/projects/smart-lawn/hardware/sht31-orange.webp"
+              alt="SHT31 sensor and cable on the workbench in amber tones"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+              data-group="grgagrow-bench"
+              data-index="7"
+              data-title="SHT31 on the bench. The sensor and its four-wire cable before I fitted them inside the enclosure."
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge the SHT31 module photograph"
+            />
+            <figcaption>
+              SHT31 on the bench. The sensor and its four-wire cable before I fitted them inside the enclosure.
+            </figcaption>
           </figure>
         </div>
         <details class="evidence-block">
@@ -1387,6 +1434,22 @@ const hardwareGallery = [
     margin: 0;
     min-width: 0;
   }
+  .enclosure-triptych {
+    margin-block: 18px 24px;
+  }
+  .enclosure-triptych .enclosure-captions {
+    display: grid;
+    grid-template-columns: minmax(0, 39fr) minmax(0, 22fr) minmax(0, 38fr);
+    gap: 0 1.2rem;
+    font: 13px/1.65 var(--body-font, sans-serif);
+    opacity: 0.9;
+  }
+  @media (max-width: 700px) {
+    .enclosure-triptych .enclosure-captions {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
   .installation-preview {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
@@ -1595,6 +1658,9 @@ const hardwareGallery = [
     background: #fff;
     cursor: zoom-in;
     border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  }
+  :global(img:is([src$='/hardware/sht31-orange.webp'], [src$='/hardware/enclosure-vent-orange.webp'])) {
+    filter: saturate(0.76) hue-rotate(3deg) contrast(0.96) brightness(1.02);
   }
   .hardware-photo img:focus-visible {
     outline: 2px solid #39776c;
