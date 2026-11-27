@@ -244,9 +244,15 @@ html.dark .mila-video-return {
   bottom: calc(8px + env(safe-area-inset-bottom));
 }
 .mila-video-stage:has(:focus-visible) .mila-video-controls,
+.mila-video-stage[data-replay-ready='true'] .mila-video-controls,
 .mila-video-stage[data-controls-visible='true'] .mila-video-controls {
   opacity: 1;
   pointer-events: auto;
+}
+.mila-video-stage[data-replay-ready='true'] .mila-video-toggle {
+  width: auto;
+  font-size: inherit;
+  white-space: nowrap;
 }
 @media (hover: hover) {
   .mila-video-stage:hover .mila-video-controls {
@@ -259,6 +265,9 @@ html.dark .mila-video-return {
     gap: 5px;
     padding: 4px 6px;
     font-size: 11px;
+  }
+  .mila-video-stage[data-replay-ready='true'] .mila-video-remaining {
+    display: none;
   }
 }
 @media (max-width: 360px) {

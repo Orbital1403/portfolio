@@ -89,6 +89,7 @@ export function initMilaVideo() {
     const toggle = stage.querySelector<HTMLButtonElement>('.mila-video-toggle')
     const playIcon = toggle?.querySelector<HTMLElement>('.mila-control-play')
     const pauseIcon = toggle?.querySelector<HTMLElement>('.mila-control-pause')
+    const replayLabel = toggle?.querySelector<HTMLElement>('.mila-control-replay')
     const speed = stage.querySelector<HTMLSelectElement>('.mila-video-speed')
     const mute = stage.querySelector<HTMLButtonElement>('.mila-video-mute')
     const formatTime = (time: number) => Number.isFinite(time) ? `${Math.floor(time / 60)}:${String(Math.floor(time % 60)).padStart(2, '0')}` : '--:--'
@@ -116,10 +117,18 @@ export function initMilaVideo() {
           soundOff.hidden = !video.muted
       }
       stage.dataset.paused = String(video.paused)
+      const replayReady = Boolean(replayLabel && video.ended)
+      if (replayLabel) {
+        replayLabel.hidden = !replayReady
+        if (replayReady)
+          stage.dataset.replayReady = 'true'
+        else
+          delete stage.dataset.replayReady
+      }
       if (toggle)
-        toggle.setAttribute('aria-label', toggle.querySelector(video.paused ? '.mila-label-play' : '.mila-label-pause')?.textContent || '')
+        toggle.setAttribute('aria-label', (replayReady ? replayLabel : toggle.querySelector(video.paused ? '.mila-label-play' : '.mila-label-pause'))?.textContent || '')
       if (playIcon)
-        playIcon.hidden = !video.paused
+        playIcon.hidden = !video.paused || replayReady
       if (pauseIcon)
         pauseIcon.hidden = video.paused
       if (speed)
@@ -315,7 +324,7 @@ export function initMilaVideo() {
       update()
     })
     video.addEventListener('ended', () => {
-      play.hidden = false
+      play.hidden = stage.dataset.replayBelow === 'true'
       update()
     })
     for (const event of ['timeupdate', 'loadedmetadata', 'durationchange', 'pause', 'ratechange', 'volumechange'])
