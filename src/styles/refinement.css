@@ -948,3 +948,73 @@ html.dark main .prose .case-steps dt {
     }
   }
 }
+
+/* Let the grgaGrow caption size its own row before fitting the photo. */
+body:has(#lawn-hardware) .gg-lightbox {
+  .gg-lb-stage {
+    display: grid;
+    grid-template: "heading heading heading" fit-content(42%)
+      "previous photo next" minmax(0, 1fr)
+      "footer footer footer" auto / 44px minmax(0, 1fr) 44px;
+    place-items: stretch;
+    gap: 8px;
+    padding: max(18px, env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      max(12px, env(safe-area-inset-bottom))
+      max(12px, env(safe-area-inset-left));
+  }
+  .gg-gallery-heading,
+  .gg-photo-window,
+  .gg-gallery-footer,
+  .gg-lb-prev,
+  .gg-lb-next {
+    position: relative;
+    inset: auto;
+    min-width: 0;
+  }
+  .gg-gallery-heading {
+    grid-area: heading;
+    min-height: 0;
+    align-items: flex-start;
+    margin-right: 56px;
+    overflow: auto;
+    overflow-wrap: anywhere;
+    overscroll-behavior: contain;
+    pointer-events: auto;
+  }
+  .gg-gallery-heading > div {
+    min-width: 0;
+  }
+  .gg-photo-window {
+    grid-area: photo;
+    min-height: 0;
+  }
+  .gg-gallery-footer {
+    grid-area: footer;
+  }
+  .gg-lb-prev,
+  .gg-lb-next {
+    place-self: center;
+    transform: none;
+  }
+  .gg-lb-prev {
+    grid-area: previous;
+  }
+  .gg-lb-next {
+    grid-area: next;
+  }
+  [hidden] {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  body:has(#lawn-hardware) .gg-lightbox {
+    .gg-lb-stage {
+      grid-template: "heading heading heading" fit-content(42%)
+        "photo photo photo" minmax(0, 1fr)
+        "previous . next" auto
+        "footer footer footer" auto / 44px minmax(0, 1fr) 44px;
+    }
+  }
+}
