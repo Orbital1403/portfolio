@@ -510,7 +510,7 @@ const hardwareGallery = [
           </figcaption>
         </figure>
         <div class="software-gallery garden-gallery installation-preview" aria-label="grgaGrow garden installation gallery">
-          <figure>
+          <figure class="closed-enclosure">
             <img
               src="/images/projects/smart-lawn/build/garden-enclosure-closed.webp"
               alt="Closed grgaGrow enclosure on gravel with two blue cables leading to the lawn"
@@ -1458,6 +1458,15 @@ const hardwareGallery = [
     aspect-ratio: 4 / 3;
     object-fit: contain;
     background: color-mix(in srgb, currentColor 4%, transparent);
+  }
+  .installation-preview .closed-enclosure {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 19rem);
+    text-align: center;
+  }
+  .closed-enclosure img {
+    aspect-ratio: auto;
   }
   .software-gallery img,
   .bench-story img[role='button'],
