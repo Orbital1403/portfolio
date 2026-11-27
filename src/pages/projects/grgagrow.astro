@@ -113,7 +113,6 @@ const hardwareGallery = [
       'A Waveshare ESP32-S3-RS485-CAN Rev 2.2 runs the grgaGrow firmware on 12 V: it polls both probes, keeps a local queue and uploads over Wi-Fi with OTA updates.',
     detail: 'RS485 / CAN · Wi-Fi · DIN housing',
     alt: 'My Waveshare ESP32-S3-RS485-CAN controller in its DIN-rail housing',
-    own: true,
   },
   {
     image: 'sht31-orange.webp',
@@ -123,7 +122,6 @@ const hardwareGallery = [
     description: 'Measures the temperature and relative humidity of the air inside the enclosure.',
     detail: 'I²C',
     alt: 'SHT31 sensor and cable on the workbench in amber tones',
-    own: true,
   },
   {
     image: 'enclosure-vent-orange.webp',
@@ -133,7 +131,6 @@ const hardwareGallery = [
     description: 'This threaded vent fits through the enclosure wall and is secured with a sealing ring and nut.',
     detail: 'Enclosure fitting',
     alt: 'Threaded vents with sealing rings and retaining nuts on the workbench',
-    own: true,
   },
   {
     image: 'own-probe-th.webp',
@@ -144,7 +141,6 @@ const hardwareGallery = [
       'The TH probe answers at Modbus address 03 on the shared RS485 bus. It responded in water, dry soil and wet soil; its readings are not calibrated.',
     detail: 'RS485 soil probe',
     alt: 'My TH soil probe with two metal pins and its cable',
-    own: true,
   },
   {
     image: 'own-probe-thp.webp',
@@ -155,7 +151,6 @@ const hardwareGallery = [
       'The THP probe responds at address 02. Its first pH value appears about five minutes after power-up. Buffer-solution checks are next.',
     detail: 'Combined probe · pH',
     alt: 'My THP soil probe with five metal pins and its cable',
-    own: true,
   },
   {
     image: 'own-garden-cable.webp',
@@ -166,7 +161,6 @@ const hardwareGallery = [
       'BITNER BiTsensor LP0170 has two shielded twisted pairs, 0.34 mm² conductors and a 6.5 mm outer diameter. One pair is planned for data and the other for sensor power.',
     detail: 'BITNER BiTsensor · Shielded twisted pairs',
     alt: 'Coil of blue shielded garden cable used between the enclosure and the probes',
-    own: true,
   },
   {
     image: 'orno-enclosure-power-supply.jpg',
@@ -175,8 +169,6 @@ const hardwareGallery = [
     title: 'Enclosure power supply',
     detail: 'ORNO · 12 V DC · 0.5 A',
     alt: 'ORNO 12 V DC power supply with its input and output leads',
-    own: true,
-    omitPhotoCredit: true,
   },
   {
     image: 'own-power-supply.webp',
@@ -186,7 +178,6 @@ const hardwareGallery = [
     description: 'The 12 V power supply used during bench testing.',
     detail: 'MEAN WELL OWA-60E-12 · 12 V DC',
     alt: 'My MEAN WELL 12 V power supply with its mains cable',
-    own: true,
   },
   {
     image: 'terminal-blocks-reference.webp',
@@ -205,7 +196,6 @@ const hardwareGallery = [
     title: 'RS485 termination',
     detail: 'Metal-film resistor · Bus-end termination',
     alt: 'Strip of axial resistors for RS485 termination in their bag',
-    own: true,
   },
   {
     image: 'own-enclosure-closed.webp',
@@ -214,7 +204,6 @@ const hardwareGallery = [
     title: 'Project enclosure',
     detail: 'Opaque-lid electronics housing · 230 × 150 × 85 mm',
     alt: 'My closed light-grey project enclosure standing upright',
-    own: true,
   },
   {
     image: 'own-joint-box.webp',
@@ -223,7 +212,6 @@ const hardwareGallery = [
     title: 'Cable-joint protection',
     detail: 'Joint box · two-component potting gel',
     alt: 'Open cable joint box with lever connectors and cable glands on both sides',
-    own: true,
   },
   {
     image: 'own-din-rails.webp',
@@ -232,7 +220,6 @@ const hardwareGallery = [
     title: 'DIN mounting rail',
     detail: 'Slotted rail for mounting modules',
     alt: 'Two short slotted DIN rails',
-    own: true,
   },
   {
     image: 'internal-cable-reference.png',
@@ -253,7 +240,6 @@ const hardwareGallery = [
       'The enclosure has two T100 mA slow-blow fuses, one on the sensor branch and one on the controller module branch.',
     detail: '5 × 20 mm glass-fuse holder',
     alt: 'Inline fuse holders with red leads in their bag',
-    own: true,
   },
   {
     image: 'dc-connectors-reference.webp',
@@ -272,7 +258,6 @@ const hardwareGallery = [
     title: 'Cable entries',
     detail: 'PG7 gland with a sealing ring',
     alt: 'PG7 cable glands, one bag and two loose glands',
-    own: true,
   },
   {
     image: 'crimper-ferrules-reference.webp',
@@ -929,7 +914,7 @@ const hardwareGallery = [
                       decoding="async"
                       data-index={index + group * mainHardwareCount}
                       data-group="grgagrow-hardware"
-                      data-title={`${item.title} — ${item.detail}.${'omitPhotoCredit' in item ? '' : 'own' in item ? ' My own part.' : ' Reference image of this component type.'}`}
+                      data-title={`${item.title} — ${item.detail}.${'source' in item ? ' Reference image of this component type.' : ''}`}
                       tabindex="0"
                       role="button"
                       aria-label={`Enlarge ${item.title}`}
@@ -938,9 +923,7 @@ const hardwareGallery = [
                       <h4>{item.title}</h4>
                       <p>{item.detail}</p>
                       {'description' in item && <p class="hardware-description">{item.description}</p>}
-                      {'own' in item ? (
-                        !('omitPhotoCredit' in item) && <p class="photo-credit">Photo: my own part</p>
-                      ) : (
+                      {'source' in item && (
                         <a href={item.source} target="_blank" rel="noopener noreferrer">
                           Photo: {item.vendor} ↗ (reference)
                         </a>
@@ -1716,9 +1699,6 @@ const hardwareGallery = [
   }
   .hardware-photo a {
     display: inline-block;
-    margin-top: 10px;
-  }
-  .hardware-photo .photo-credit {
     margin-top: 10px;
   }
   .roadmap {
