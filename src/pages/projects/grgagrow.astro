@@ -548,6 +548,21 @@ const hardwareGallery = [
               </figcaption>
             </figure>
           </div>
+          <section id="enclosure-film" class="enclosure-film" aria-labelledby="enclosure-film-title">
+            <h4 id="enclosure-film-title">Inside the enclosure</h4>
+            <p>Rain, snow and sunshine outside. Condensation and example SHT31 readings inside.</p>
+            <HobbyVideo
+              src="/videos/grgagrow/enclosure-weather-en.mp4"
+              hrSrc="/videos/grgagrow/enclosure-weather-hr.mp4"
+              poster="/images/projects/smart-lawn/build/enclosure-film-poster.jpg"
+              label="31-second animation of weather, condensation and enclosure readings"
+              portrait={false}
+            />
+            <a
+              href="/demos/my-garden/?public=grgagrow"
+              data-hr-src="/demos/my-garden/?public=grgagrow&amp;lang=hr"
+            >See actual readings in Live</a>
+          </section>
           <figure>
             <img
               src="/images/projects/smart-lawn/build/garden-probe-in-trench.webp"
@@ -1467,6 +1482,24 @@ const hardwareGallery = [
   }
   .enclosure-pair img {
     aspect-ratio: 1;
+  }
+  .enclosure-film {
+    grid-column: 1 / -1;
+    min-width: 0;
+    margin-block: 16px;
+  }
+  .enclosure-film h4 {
+    margin: 0 0 8px;
+  }
+  .enclosure-film p {
+    margin: 0 0 12px;
+  }
+  .enclosure-film > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 4px;
+    text-underline-offset: 0.18em;
   }
   .software-gallery img,
   .bench-story img[role='button'],
