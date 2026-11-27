@@ -510,23 +510,44 @@ const hardwareGallery = [
           </figcaption>
         </figure>
         <div class="software-gallery garden-gallery installation-preview" aria-label="grgaGrow garden installation gallery">
-          <figure class="closed-enclosure">
-            <img
-              src="/images/projects/smart-lawn/build/garden-enclosure-closed.webp"
-              alt="Closed grgaGrow enclosure on gravel with two blue cables leading to the lawn"
-              width="742"
-              height="816"
-              loading="lazy"
-              decoding="async"
-              data-group="grgagrow-garden"
-              data-index="1"
-              data-title="The lid on, two cables out to the probes. Photograph, 24 November 2026."
-              tabindex="0"
-              role="button"
-              aria-label="Enlarge: closed"
-            />
-            <figcaption>CLOSED / The lid on, two cables out to the probes.</figcaption>
-          </figure>
+          <div class="enclosure-pair">
+            <figure>
+              <img
+                src="/images/projects/smart-lawn/build/garden-enclosure-closed.webp"
+                alt="Closed grgaGrow enclosure on gravel with two blue cables leading to the lawn"
+                width="742"
+                height="816"
+                loading="lazy"
+                decoding="async"
+                data-group="grgagrow-garden"
+                data-index="1"
+                data-title="The lid on, two cables out to the probes. Photograph, 24 November 2026."
+                tabindex="0"
+                role="button"
+                aria-label="Enlarge: closed"
+              />
+              <figcaption>CLOSED / The lid on, two cables out to the probes.</figcaption>
+            </figure>
+            <figure id="power-branches">
+              <img
+                src="/images/projects/smart-lawn/build/enclosure-open-adapted.webp"
+                alt="Open grgaGrow enclosure with the ORNO power supply, ESP32-S3 controller, SHT31-D sensor and cable glands."
+                width="838"
+                height="718"
+                loading="lazy"
+                decoding="async"
+                data-group="grgagrow-garden"
+                data-index="2"
+                data-title="Inside the installed grgaGrow enclosure"
+                tabindex="0"
+                role="button"
+                aria-label="Enlarge the open enclosure photograph"
+              />
+              <figcaption>
+                INSTALLATION / Inside the installed grgaGrow enclosure.
+              </figcaption>
+            </figure>
+          </div>
           <figure>
             <img
               src="/images/projects/smart-lawn/build/garden-probe-in-trench.webp"
@@ -536,7 +557,7 @@ const hardwareGallery = [
               loading="lazy"
               decoding="async"
               data-group="grgagrow-garden"
-              data-index="2"
+              data-index="3"
               data-title="The probe laid flat in a shallow trench before backfilling."
               tabindex="0"
               role="button"
@@ -553,7 +574,7 @@ const hardwareGallery = [
               loading="lazy"
               decoding="async"
               data-group="grgagrow-garden"
-              data-index="3"
+              data-index="4"
               data-title="The covered probe after backfilling."
               tabindex="0"
               role="button"
@@ -573,29 +594,10 @@ const hardwareGallery = [
             decoding="async"
             loading="lazy"
             data-group="grgagrow-garden"
-            data-index="4"
+            data-index="5"
             data-title="My lawn with the approximate positions of soil probes TH 03 and THP 02, and both cable routes"
           />
           <figcaption>PROBE LOCATIONS / Approximate positions and cable routes on my 49 m² lawn.</figcaption>
-        </figure>
-        <figure id="power-branches" class="dashboard-figure installation-overview">
-          <img
-            src="/images/projects/smart-lawn/build/enclosure-open-adapted.webp"
-            alt="Open grgaGrow enclosure with the ORNO power supply, ESP32-S3 controller, SHT31-D sensor and cable glands."
-            width="838"
-            height="718"
-            loading="lazy"
-            decoding="async"
-            data-group="grgagrow-garden"
-            data-index="5"
-            data-title="Inside the installed grgaGrow enclosure"
-            tabindex="0"
-            role="button"
-            aria-label="Enlarge the open enclosure photograph"
-          />
-          <figcaption>
-            INSTALLATION / Inside the installed grgaGrow enclosure.
-          </figcaption>
         </figure>
         <h4 class="probe-depth-title">Why 12 cm?</h4>
         <p class="probe-depth-explanation">
@@ -1456,14 +1458,15 @@ const hardwareGallery = [
     object-fit: contain;
     background: color-mix(in srgb, currentColor 4%, transparent);
   }
-  .installation-preview .closed-enclosure {
+  .enclosure-pair {
+    display: grid;
     grid-column: 1 / -1;
-    justify-self: center;
-    width: min(100%, 19rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
     text-align: center;
   }
-  .closed-enclosure img {
-    aspect-ratio: auto;
+  .enclosure-pair img {
+    aspect-ratio: 1;
   }
   .software-gallery img,
   .bench-story img[role='button'],
