@@ -67,6 +67,11 @@ export function initMilaVideo() {
     const returnButton = stage.querySelector<HTMLButtonElement>('.mila-video-return')
     if (!video || !play || !returnButton)
       return
+    const pauseWhenHidden = stage.dataset.pauseWhenHidden === 'true'
+    const nativeVideo = video as HTMLVideoElement & {
+      webkitEnterFullscreen?: () => void
+      webkitDisplayingFullscreen?: boolean
+    }
     stage.dataset.ready = 'true'
     play.hidden = false
     let visible = true
@@ -150,6 +155,11 @@ export function initMilaVideo() {
       })
     }
     const update = () => {
+      const playingFullscreen = document.fullscreenElement === stage
+        || document.fullscreenElement === video
+        || nativeVideo.webkitDisplayingFullscreen === true
+      if (pauseWhenHidden && !video.paused && (document.hidden || (!visible && !playingFullscreen)))
+        video.pause()
       returnButton.hidden = !shouldShowVideoReturn({
         paused: video.paused,
         ended: video.ended,
@@ -281,10 +291,6 @@ export function initMilaVideo() {
       if (event.detail > 1)
         return
       window.clearTimeout(clickTimer)
-      const nativeVideo = video as HTMLVideoElement & {
-        webkitEnterFullscreen?: () => void
-        webkitDisplayingFullscreen?: boolean
-      }
       if (!document.fullscreenElement && !nativeVideo.webkitDisplayingFullscreen
         && (typeof stage.requestFullscreen === 'function' || typeof nativeVideo.webkitEnterFullscreen === 'function')) {
         // Request directly from this gesture: delayed callbacks lose activation.
@@ -340,6 +346,8 @@ export function initMilaVideo() {
     })
     document.addEventListener('visibilitychange', update)
     document.addEventListener('fullscreenchange', update)
+    if (pauseWhenHidden)
+      video.addEventListener('webkitendfullscreen', update)
     const cleanup = () => {
       window.clearTimeout(controlsTimer)
       window.clearTimeout(clickTimer)

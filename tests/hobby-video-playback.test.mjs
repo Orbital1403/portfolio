@@ -20,6 +20,83 @@ test('starting another player stops earlier audio without pausing the new player
   assert.equal(first.pauses, 1)
 })
 
+test('only opted-in players pause offscreen or in a hidden tab and keep their playback position', (t) => {
+  const element = (properties = {}) => Object.assign(new EventTarget(), properties)
+  const makePlayer = pauseWhenHidden => {
+    const video = element({
+      currentTime: 12,
+      duration: 31,
+      paused: true,
+      pause() { this.paused = true },
+    })
+    const returnButton = element()
+    const stage = element({
+      dataset: pauseWhenHidden ? { pauseWhenHidden: 'true' } : {},
+      querySelector: selector => ({
+        video,
+        '.mila-video-play': element(),
+        '.mila-video-return': returnButton,
+      })[selector],
+    })
+    return { video, stage, returnButton }
+  }
+  const garden = makePlayer(true)
+  const other = makePlayer(false)
+  const observers = new Map()
+  const document = element({
+    hidden: false,
+    fullscreenElement: null,
+    querySelectorAll: selector => selector === '.mila-video-stage'
+      ? [garden.stage, other.stage]
+      : [garden.video, other.video],
+  })
+  const window = element({ setTimeout: () => 1, clearTimeout() {} })
+  const IntersectionObserver = class {
+    constructor(callback) { this.callback = callback }
+    observe(video) { observers.set(video, this.callback) }
+  }
+  for (const [key, value] of Object.entries({ document, window, IntersectionObserver })) {
+    const previous = Object.getOwnPropertyDescriptor(globalThis, key)
+    Object.defineProperty(globalThis, key, { configurable: true, value })
+    t.after(() => {
+      if (previous)
+        Object.defineProperty(globalThis, key, previous)
+      else
+        delete globalThis[key]
+    })
+  }
+  initMilaVideo()
+
+  garden.video.paused = false
+  observers.get(garden.video)([{ isIntersecting: false }])
+  assert.equal(garden.video.paused, true)
+  observers.get(garden.video)([{ isIntersecting: true }])
+  assert.equal(garden.video.paused, true)
+  assert.equal(garden.video.currentTime, 12)
+  assert.equal(garden.returnButton.hidden, true)
+
+  garden.video.paused = false
+  document.fullscreenElement = garden.stage
+  observers.get(garden.video)([{ isIntersecting: false }])
+  assert.equal(garden.video.paused, false)
+  document.fullscreenElement = null
+  document.dispatchEvent(new Event('fullscreenchange'))
+  assert.equal(garden.video.paused, true)
+
+  observers.get(garden.video)([{ isIntersecting: true }])
+  garden.video.paused = false
+  other.video.paused = false
+  document.hidden = true
+  document.dispatchEvent(new Event('visibilitychange'))
+  document.hidden = false
+  document.dispatchEvent(new Event('visibilitychange'))
+  assert.equal(garden.video.paused, true)
+  assert.equal(garden.video.currentTime, 12)
+  assert.equal(other.video.paused, false)
+  observers.get(other.video)([{ isIntersecting: false }])
+  assert.equal(other.returnButton.hidden, false)
+})
+
 test('the enclosure film leaves the final frame clear and replays from the bottom control', () => {
   const element = (properties = {}) => Object.assign(new EventTarget(), properties)
   const makePlayer = (replayBelow) => {

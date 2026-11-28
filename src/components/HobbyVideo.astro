@@ -8,12 +8,17 @@ interface Props {
   portrait?: boolean
   preload?: 'none' | 'metadata'
   replayBelow?: boolean
+  pauseWhenHidden?: boolean
 }
-const { src, hrSrc, poster, label, portrait = true, preload = 'none', replayBelow = false } = Astro.props
+const { src, hrSrc, poster, label, portrait = true, preload = 'none', replayBelow = false, pauseWhenHidden = false } = Astro.props
 ---
 
 <div class:list={['hobby-video', { portrait }]}>
-  <div class="mila-video-stage" data-replay-below={replayBelow ? 'true' : undefined}>
+  <div
+    class="mila-video-stage"
+    data-replay-below={replayBelow ? 'true' : undefined}
+    data-pause-when-hidden={pauseWhenHidden ? 'true' : undefined}
+  >
     <div class="mila-video-canvas">
       <button class="mila-video-play" type="button" aria-label="Play video" hidden>
         <span class="mila-play-wave" aria-hidden="true"
