@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import { toSlug } from '~/utils/slug'
@@ -45,7 +46,7 @@ const lesson = data.lesson
   <header class="page-heading">
     <p class="folio-label">PERSONAL FIELD NOTES / PRACTICAL PROJECT</p>
     <a href="/hobbies/" class="back-link">← All hands-on projects</a>
-    <h1>{data.title}</h1>
+    <h1><TopicIcon name={slug === 'garden-makeover' ? 'garden' : 'firmware'} heading />{data.title}</h1>
     {data.tags?.length ? <p class="project-tags">{data.tags.join(' · ')}</p> : null}
   </header>
 
@@ -83,7 +84,10 @@ const lesson = data.lesson
     beforeImage && data.cover && (
       <section class="garden-comparison" aria-labelledby="garden-comparison-title">
         <p class="folio-label">THE CHANGE</p>
-        <h2 id="garden-comparison-title">Before & after.</h2>
+        <h2 id="garden-comparison-title">
+          <TopicIcon name="image" heading />
+          Before & after.
+        </h2>
         <div class="hobby-photo-grid">
           <figure class="comparison-photo">
             <>
@@ -126,7 +130,10 @@ const lesson = data.lesson
         <div class="hobby-process-intro">
           <>
             <p class="folio-label">THE PROCESS / {String(data.steps.length).padStart(2, '0')} STAGES</p>
-            <h2>From idea to result.</h2>
+            <h2>
+              <TopicIcon name="hobbies" heading />
+              From idea to result.
+            </h2>
             <p>A photographic record of the work. Click any photograph to explore the full gallery.</p>
           </>
         </div>
@@ -167,7 +174,10 @@ const lesson = data.lesson
     lesson && (
       <section class="hobby-lesson" aria-labelledby="hobby-lesson-title">
         <p class="folio-label">A NOTE TO TAKE FORWARD</p>
-        <h2 id="hobby-lesson-title">What I learned.</h2>
+        <h2 id="hobby-lesson-title">
+          <TopicIcon name="education" heading />
+          What I learned.
+        </h2>
         <p>{lesson}</p>
       </section>
     )

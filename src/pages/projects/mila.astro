@@ -1,10 +1,8 @@
 ---
-import { getEntry, render } from 'astro:content'
+import TopicIcon from '~/components/TopicIcon.astro'
+import MilaStory from '~/components/MilaStory.astro'
 import '~/styles/video-player.css'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-const milaPost = await getEntry('spec', 'mila')
-if (!milaPost) throw new Error('No MILA post found')
-const { Content } = await render(milaPost)
 const sections = [
   ['from-frustration-to-a-project', 'The idea'],
   ['one-interface-for-everyday-listening', 'The app'],
@@ -29,7 +27,9 @@ const sections = [
     <a class="back-link" href="/projects/">← All project notes</a><p class="folio-label">
       SOFTWARE + MUSIC / FIELD NOTES 01
     </p><div class="mila-title-row">
-      <h1 id="mila">MILA*</h1><span class="mila-stable"><i aria-hidden="true"></i>Pi 1.0 · Stable private version</span>
+      <h1 id="mila"><TopicIcon name="audio" heading />MILA*</h1><span class="mila-stable"
+        ><i aria-hidden="true"></i>Pi 1.0 · Stable private version</span
+      >
     </div><p class="mila-deck">Press play and listen to your heart’s content.</p><p class="mila-intro">
       An audio application for your local music, internet radio and streaming. Developed on Raspberry Pi, controlled by
       touch or from your browser.
@@ -60,7 +60,7 @@ const sections = [
       ))
     }
   </nav>
-  <article class="prose"><Content /></article>
+  <article class="prose"><MilaStory /></article>
   <nav class="project-navigation" aria-label="Other projects">
     <a href="/projects/">← All projects</a><a href="/projects/grgagrow/">02 / grgaGrow →</a>
   </nav>

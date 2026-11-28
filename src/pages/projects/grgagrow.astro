@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import HobbyVideo from '~/components/HobbyVideo.astro'
 import { Code } from 'astro:components'
 import BenchResults from '~/components/BenchResults.astro'
@@ -79,7 +80,12 @@ const milestones = [
     'Two probes on one bus',
     'Both probes sent readings over RS485. The cloud acknowledged the uploads, and the wireless update succeeded.',
   ],
-  ['leaf', '24 November', 'Probes in the lawn', 'I installed both probes and received the first readings from the lawn.'],
+  [
+    'leaf',
+    '24 November',
+    'Probes in the lawn',
+    'I installed both probes and received the first readings from the lawn.',
+  ],
 ]
 
 const probeServiceTabs = [
@@ -294,7 +300,7 @@ const hardwareGallery = [
   <div class="lawn-notes" style={{ '--grow-th-light': thLiveGreen, '--grow-thp': thpLiveBlue }}>
     <header class="lawn-heading">
       <p class="eyebrow"><strong>grgaGrow</strong> / soil monitoring</p>
-      <h1>When does my lawn actually need water?</h1>
+      <h1><TopicIcon name="garden" heading />When does my lawn actually need water?</h1>
       <p class="lede">I want to see how quickly the soil on my 49 m² lawn dries out in the sun and in the shade.</p>
       <p class="body-copy">
         Since 24 November both probes are in the lawn. They share one controller, which sends their readings to the
@@ -306,8 +312,8 @@ const hardwareGallery = [
           href="/demos/my-garden/?public=grgagrow"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Live soil readings (opens in a new tab)"
-        ><span class="live-dot" aria-hidden="true"></span>Live</a>
+          aria-label="Live soil readings (opens in a new tab)"><span class="live-dot" aria-hidden="true"></span>Live</a
+        >
         <a href="#lawn-probe-service">How I found the cause</a>
         <a href="/projects/">← All project notes</a>
       </div>
@@ -386,7 +392,10 @@ const hardwareGallery = [
             role="button"
             aria-label="Enlarge the soil moisture guide"
           />
-          <figcaption>These ranges are provisional for this garden. Soil type and probe calibration affect how to interpret a reading.</figcaption>
+          <figcaption>
+            These ranges are provisional for this garden. Soil type and probe calibration affect how to interpret a
+            reading.
+          </figcaption>
         </figure>
       </details>
     </header>
@@ -398,12 +407,21 @@ const hardwareGallery = [
     </nav>
 
     <section id="lawn-probe-service" aria-labelledby="service-story-title">
-      <h2 id="service-story-title">Why the TH probe kept its old address</h2>
+      <h2 id="service-story-title"><TopicIcon name="diagnostics" heading />Why the TH probe kept its old address</h2>
       <div class="bench-grid">
         <div>
-          <p>Both probes arrived at Modbus address 02. On the bench I could read each one separately. To use them together, I needed to give the TH probe its own address.</p>
-          <p>I traced the fault to the controller. It passed the 8-byte read requests but dropped the 11-byte address write before it reached the probe.</p>
-          <p>After the fix, I changed the TH address to 03 and cycled the power. TH still answered at 03 and THP at 02. I could now read both on the same bus.</p>
+          <p>
+            Both probes arrived at Modbus address 02. On the bench I could read each one separately. To use them
+            together, I needed to give the TH probe its own address.
+          </p>
+          <p>
+            I traced the fault to the controller. It passed the 8-byte read requests but dropped the 11-byte address
+            write before it reached the probe.
+          </p>
+          <p>
+            After the fix, I changed the TH address to 03 and cycled the power. TH still answered at 03 and THP at 02. I
+            could now read both on the same bus.
+          </p>
         </div>
         <figure class="service-board" data-gallery-scope data-gallery-no-filmstrip>
           <img
@@ -421,8 +439,7 @@ const hardwareGallery = [
             aria-label="Enlarge the Probe Service Board screenshot"
           />
           <figcaption>
-            PROBE SERVICE / Full grgaGrow app window, 27 November 2026. Both probes were reporting over
-            Wi-Fi.
+            PROBE SERVICE / Full grgaGrow app window, 27 November 2026. Both probes were reporting over Wi-Fi.
           </figcaption>
         </figure>
       </div>
@@ -448,7 +465,7 @@ const hardwareGallery = [
         </dl>
         <div class="engineering-note firmware-example" aria-labelledby="bridge-example-title">
           <p class="small-label">SAFETY LIMIT / BRIDGE IMAGE</p>
-          <h3 id="bridge-example-title">Register reads and probe address changes.</h3>
+          <h3 id="bridge-example-title"><TopicIcon name="code" heading />Register reads and probe address changes.</h3>
           <p>
             The bridge forwards only CRC-valid frames to units 1–247: register reads, and one write to the address
             register with a value from 1 to 247. Everything else is answered with DENY.
@@ -470,7 +487,7 @@ const hardwareGallery = [
     </section>
 
     <section aria-labelledby="lawn-hardware">
-      <h2 id="lawn-hardware">How the system works</h2>
+      <h2 id="lawn-hardware"><TopicIcon name="firmware" heading />How the system works</h2>
       <BenchResults>
         <details slot="code" class="code-toggle bench-code">
           <DisclosureSummary icon="code">Show the C++ excerpt · modbus_rtu.cpp</DisclosureSummary>
@@ -487,7 +504,7 @@ const hardwareGallery = [
           />
         </details>
       </BenchResults>
-      <h3 id="lawn-install">Into the lawn.</h3>
+      <h3 id="lawn-install"><TopicIcon name="depth" heading />Into the lawn.</h3>
       <p>Both probes sit at 12 cm so I can compare the sunny and shaded parts of the lawn at the same depth.</p>
       <details class="evidence-block project-disclosure depth-disclosure" data-gallery-scope open>
         <DisclosureSummary icon="depth">Installation photos and probe depth</DisclosureSummary>
@@ -510,7 +527,10 @@ const hardwareGallery = [
             {enclosureCaptions.map((caption) => <span>{caption}</span>)}
           </figcaption>
         </figure>
-        <div class="software-gallery garden-gallery installation-preview" aria-label="grgaGrow garden installation gallery">
+        <div
+          class="software-gallery garden-gallery installation-preview"
+          aria-label="grgaGrow garden installation gallery"
+        >
           <div class="enclosure-pair">
             <figure>
               <img
@@ -545,12 +565,13 @@ const hardwareGallery = [
                 aria-label="Enlarge the open enclosure photograph"
               />
               <figcaption>
-                Inside the enclosure, the SHT31 measures air temperature and humidity. The controller uses both to calculate the dew point.
+                Inside the enclosure, the SHT31 measures air temperature and humidity. The controller uses both to
+                calculate the dew point.
               </figcaption>
             </figure>
           </div>
           <section id="enclosure-film" class="enclosure-film" aria-labelledby="enclosure-film-title">
-            <h4 id="enclosure-film-title">Inside the enclosure</h4>
+            <h4 id="enclosure-film-title"><TopicIcon name="image" heading />Inside the enclosure</h4>
             <p>Rain, snow and sunshine outside. Condensation and example SHT31 readings inside.</p>
             <HobbyVideo
               src="/videos/grgagrow/enclosure-music-en.mp4"
@@ -561,10 +582,9 @@ const hardwareGallery = [
               replayBelow
               pauseWhenHidden
             />
-            <a
-              href="/demos/my-garden/?public=grgagrow"
-              data-hr-src="/demos/my-garden/?public=grgagrow&amp;lang=hr"
-            >See actual readings in Live</a>
+            <a href="/demos/my-garden/?public=grgagrow" data-hr-src="/demos/my-garden/?public=grgagrow&lang=hr"
+              >See actual readings in Live</a
+            >
           </section>
           <figure>
             <img
@@ -601,7 +621,7 @@ const hardwareGallery = [
             <figcaption>BACKFILLED / After covering the probe with soil.</figcaption>
           </figure>
         </div>
-        <h4 class="probe-depth-title">Why 12 cm?</h4>
+        <h4 class="probe-depth-title"><TopicIcon name="depth" heading />Why 12 cm?</h4>
         <p class="probe-depth-explanation">
           I chose 12 cm because it falls within the recommended range for placing moisture sensors in the root zone of
           cool-season turfgrass. Both probes sit at the same depth so I can see when rain reaches them and compare how
@@ -626,23 +646,30 @@ const hardwareGallery = [
             aria-label="Enlarge the probe depth diagram"
           />
           <figcaption>
-            <a href="https://www.irrigation.org/IA/FileUploads/IA/Certification/SmartTechnologies_Final.pdf#page=18" target="_blank" rel="noopener noreferrer">Irrigation Association installation guidance (chapter 6) ↗</a>
+            <a
+              href="https://www.irrigation.org/IA/FileUploads/IA/Certification/SmartTechnologies_Final.pdf#page=18"
+              target="_blank"
+              rel="noopener noreferrer">Irrigation Association installation guidance (chapter 6) ↗</a
+            >
           </figcaption>
         </figure>
       </details>
       <details class="evidence-block project-disclosure firmware-disclosure">
         <DisclosureSummary icon="firmware">Bench photos and firmware notes</DisclosureSummary>
         <p>
-          The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture probe
-          and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over Wi-Fi.
+          The grgaGrow firmware runs on a Waveshare ESP32-S3-RS485-CAN Rev 2.2. It polls a temperature-and-moisture
+          probe and a second probe that also measures pH over one RS485 bus, queues the samples and uploads them over
+          Wi-Fi.
         </p>
         <section class="field-timeline" aria-labelledby="field-timeline-title">
-          <h3 id="field-timeline-title">From the workbench to the lawn</h3>
+          <h3 id="field-timeline-title"><TopicIcon name="history" heading />From the workbench to the lawn</h3>
           <ol class="milestones" role="list">
             {
               milestones.map(([icon, date, title, text]) => (
                 <li>
-                  <span class="milestone-marker"><Icon name={icon} /></span>
+                  <span class="milestone-marker">
+                    <Icon name={icon} />
+                  </span>
                   <span class="milestone-date">{date}</span>
                   <h4>{title}</h4>
                   <p>{text}</p>
@@ -650,9 +677,12 @@ const hardwareGallery = [
               ))
             }
           </ol>
-          <p class="next-field-step"><strong>Next step</strong> <span>Calibrate the pH and soil moisture readings.</span></p>
+          <p class="next-field-step">
+            <strong>Next step</strong>
+            <span>Calibrate the pH and soil moisture readings.</span>
+          </p>
         </section>
-        <h3 id="lawn-bench">First connections on the bench.</h3>
+        <h3 id="lawn-bench"><TopicIcon name="connector" heading />First connections on the bench.</h3>
         <div
           class="software-gallery bench-gallery"
           aria-label="Photographs from the first grgaGrow bench tests"
@@ -801,7 +831,9 @@ const hardwareGallery = [
           <DisclosureSummary icon="history">Earlier bench readings</DisclosureSummary>
           <ProbeReadingCards />
         </details>
-        <h3 id="lawn-firmware-log" class="block-title">Seven problems between the bench and the cloud.</h3>
+        <h3 id="lawn-firmware-log" class="block-title">
+          <TopicIcon name="firmware" heading />Seven problems between the bench and the cloud.
+        </h3>
         {
           fixGroups.map(({ heading, icon, cases, expanded }) => (
             <details class="evidence-block" open={expanded}>
@@ -832,7 +864,9 @@ const hardwareGallery = [
         }
         <div class="engineering-note firmware-example" aria-labelledby="scan-example-title">
           <p class="small-label">FIRMWARE / C++17</p>
-          <h3 id="scan-example-title">Find the probe instead of losing the reading.</h3>
+          <h3 id="scan-example-title">
+            <TopicIcon name="diagnostics" heading />Find the probe instead of losing the reading.
+          </h3>
           <p>
             When a probe stops answering, the driver asks once more, then sweeps the bus read-only. A unit that answers
             the temperature/moisture registers and a valid pH register is the THP probe; one without pH is the TH probe.
@@ -856,11 +890,12 @@ const hardwareGallery = [
 
         <div class="engineering-note">
           <p class="small-label">BEFORE THE FIRST FIELD READING</p>
-          <h3>A response is evidence. Accuracy needs more.</h3>
+          <h3><TopicIcon name="bench-meter" heading />A response is evidence. Accuracy needs more.</h3>
           <p>
-            On 17 November, separate single-query tests returned valid responses with one probe in water, dry soil and the
-            same soil after wetting. The moisture register changed after wetting. Temperature and moisture units follow
-            the seller manual; these checks do not establish calibration, accuracy or reliable long-term operation.
+            On 17 November, separate single-query tests returned valid responses with one probe in water, dry soil and
+            the same soil after wetting. The moisture register changed after wetting. Temperature and moisture units
+            follow the seller manual; these checks do not establish calibration, accuracy or reliable long-term
+            operation.
           </p>
           <p>
             On 21 November, the production firmware ran on the 12 V adapter with both probes reporting good readings in
@@ -878,72 +913,74 @@ const hardwareGallery = [
     <details id="lawn-equipment" class="evidence-block project-disclosure equipment-disclosure">
       <DisclosureSummary icon="equipment">Equipment, software and documentation</DisclosureSummary>
       <section class="preparation-module" aria-labelledby="lawn-parts">
-        <h3 id="lawn-parts">The equipment behind the readings.</h3>
+        <h3 id="lawn-parts"><TopicIcon name="equipment" heading />The equipment behind the readings.</h3>
         <p class="note">
           Most photos below show my own parts. The few marked as reference images show the component type only; models,
           dimensions and pictured quantities may differ from the parts I used.
         </p>
         {
-          [hardwareGallery.slice(0, mainHardwareCount), hardwareGallery.slice(mainHardwareCount)].map((items, group) => {
-            const gallery = (
-              <div class="hardware-gallery" data-gallery-scope>
-                {items.map((item, index) => (
-                  <figure class="hardware-photo">
-                    <img
-                      src={`/images/projects/smart-lawn/hardware/${item.image}`}
-                      width={item.width}
-                      height={item.height}
-                      alt={item.alt}
-                      loading="lazy"
-                      decoding="async"
-                      data-index={index + group * mainHardwareCount}
-                      data-group="grgagrow-hardware"
-                      data-title={`${item.title} — ${item.detail}.${'source' in item ? ' Reference image of this component type.' : ''}`}
-                      tabindex="0"
-                      role="button"
-                      aria-label={`Enlarge ${item.title}`}
-                    />
-                    <figcaption>
-                      <h4>{item.title}</h4>
-                      <p>{item.detail}</p>
-                      {'description' in item && <p class="hardware-description">{item.description}</p>}
-                      {'source' in item && (
-                        <a href={item.source} target="_blank" rel="noopener noreferrer">
-                          Photo: {item.vendor} ↗ (reference)
-                        </a>
-                      )}
-                      {'license' in item && item.license && (
-                        <a href={item.license.url} target="_blank" rel="noopener noreferrer">
-                          {item.license.label}
-                        </a>
-                      )}
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            )
-            return group === 0 ? (
-              gallery
-            ) : (
-              <section class="hardware-accessories" aria-labelledby="lawn-accessories">
-                <h4 id="lawn-accessories" class="hardware-accessories-title">
-                  <Icon sprite={growIcons} name="fittings" />
-                  <span>Assembly accessories and specifications</span>
-                </h4>
-                <p class="note">
-                  The assembly kit includes UK2.5B terminals, 120 Ω / 0.5 W termination resistors, five inline fuse
-                  holders and 5.5 × 2.1 mm DC adapters. The installation uses two T100 mA fuses.
-                </p>
-                <p class="note">
-                  The enclosure kit includes a 230 × 150 × 85 mm box, two 10 cm DIN rails, 2 m of 4 × 0.5 mm² wire and
-                  five PG7 glands. Cable fit, strain relief and sealing still need checking.
-                </p>
-                {gallery}
-              </section>
-            )
-          })
+          [hardwareGallery.slice(0, mainHardwareCount), hardwareGallery.slice(mainHardwareCount)].map(
+            (items, group) => {
+              const gallery = (
+                <div class="hardware-gallery" data-gallery-scope>
+                  {items.map((item, index) => (
+                    <figure class="hardware-photo">
+                      <img
+                        src={`/images/projects/smart-lawn/hardware/${item.image}`}
+                        width={item.width}
+                        height={item.height}
+                        alt={item.alt}
+                        loading="lazy"
+                        decoding="async"
+                        data-index={index + group * mainHardwareCount}
+                        data-group="grgagrow-hardware"
+                        data-title={`${item.title} — ${item.detail}.${'source' in item ? ' Reference image of this component type.' : ''}`}
+                        tabindex="0"
+                        role="button"
+                        aria-label={`Enlarge ${item.title}`}
+                      />
+                      <figcaption>
+                        <h4>{item.title}</h4>
+                        <p>{item.detail}</p>
+                        {'description' in item && <p class="hardware-description">{item.description}</p>}
+                        {'source' in item && (
+                          <a href={item.source} target="_blank" rel="noopener noreferrer">
+                            Photo: {item.vendor} ↗ (reference)
+                          </a>
+                        )}
+                        {'license' in item && item.license && (
+                          <a href={item.license.url} target="_blank" rel="noopener noreferrer">
+                            {item.license.label}
+                          </a>
+                        )}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )
+              return group === 0 ? (
+                gallery
+              ) : (
+                <section class="hardware-accessories" aria-labelledby="lawn-accessories">
+                  <h4 id="lawn-accessories" class="hardware-accessories-title">
+                    <Icon sprite={growIcons} name="fittings" />
+                    <span>Assembly accessories and specifications</span>
+                  </h4>
+                  <p class="note">
+                    The assembly kit includes UK2.5B terminals, 120 Ω / 0.5 W termination resistors, five inline fuse
+                    holders and 5.5 × 2.1 mm DC adapters. The installation uses two T100 mA fuses.
+                  </p>
+                  <p class="note">
+                    The enclosure kit includes a 230 × 150 × 85 mm box, two 10 cm DIN rails, 2 m of 4 × 0.5 mm² wire and
+                    five PG7 glands. Cable fit, strain relief and sealing still need checking.
+                  </p>
+                  {gallery}
+                </section>
+              )
+            },
+          )
         }
-        <h3 id="lawn-assembly">Assembling the enclosure.</h3>
+        <h3 id="lawn-assembly"><TopicIcon name="equipment" heading />Assembling the enclosure.</h3>
         <div
           class="software-gallery"
           aria-label="Photographs from assembling the grgaGrow enclosure"
@@ -964,7 +1001,9 @@ const hardwareGallery = [
               role="button"
               aria-label="Enlarge: controller and supply"
             />
-            <figcaption>CONTROLLER AND SUPPLY / The 12 V supply and the controller on a DIN rail in the enclosure.</figcaption>
+            <figcaption>
+              CONTROLLER AND SUPPLY / The 12 V supply and the controller on a DIN rail in the enclosure.
+            </figcaption>
           </figure>
           <figure>
             <img
@@ -1006,7 +1045,7 @@ const hardwareGallery = [
       </section>
 
       <section class="preparation-module" aria-labelledby="lawn-software" data-gallery-scope>
-        <h3 id="lawn-software">One garden. Live and private.</h3>
+        <h3 id="lawn-software"><TopicIcon name="web" heading />One garden. Live and private.</h3>
         <figure class="dashboard-figure">
           <img
             src="/images/projects/smart-lawn/grgagrow-public-live.jpg"
@@ -1037,7 +1076,7 @@ const hardwareGallery = [
         <div class="feature-grid">
           <article>
             <span class="small-label">HISTORY & WEEKLY REPORTS</span>
-            <h4>A week beneath the surface.</h4>
+            <h4><TopicIcon name="history" heading />A week beneath the surface.</h4>
             <p>
               Follow seven days of shared history as moisture and temperature curves with hourly bars, plus a report of
               hourly averages and missing intervals. The private workspace adds up to 30 days of history, metric and
@@ -1046,7 +1085,7 @@ const hardwareGallery = [
           </article>
           <article>
             <span class="small-label">REGIONAL WEATHER</span>
-            <h4>Weather above. Soil below.</h4>
+            <h4><TopicIcon name="moisture" heading />Weather above. Soil below.</h4>
             <p>
               Open-Meteo forecasts put air temperature, expected rainfall and precipitation chance beside the soil data.
               Forecasts use an approximate public location and remain clearly separate from measured soil conditions.
@@ -1054,7 +1093,7 @@ const hardwareGallery = [
           </article>
           <article>
             <span class="small-label">SUN PATH & BUILDING SHADE</span>
-            <h4>Follow the light.</h4>
+            <h4><TopicIcon name="power" heading />Follow the light.</h4>
             <p>
               When I share the sun view and an approximate location, Live shows the sun’s direction, elevation, sunrise
               and sunset. A shared building model adds the building and an animation of its estimated shade through the
@@ -1064,7 +1103,7 @@ const hardwareGallery = [
           </article>
           <article>
             <span class="small-label">PRIVATE / GARDEN & CARE</span>
-            <h4>A diary beside the graph.</h4>
+            <h4><TopicIcon name="history" heading />A diary beside the graph.</h4>
             <p>
               Save garden zones and sensor positions, then log watering, observed rain and completed mowing alongside
               moisture changes. Scheduled mowing stays separate until completion is recorded. The owner’s diary stays
@@ -1073,7 +1112,7 @@ const hardwareGallery = [
           </article>
           <article>
             <span class="small-label">PRIVATE / ALERTS & HISTORY</span>
-            <h4>From an alert to the evidence.</h4>
+            <h4><TopicIcon name="diagnostics" heading />From an alert to the evidence.</h4>
             <p>
               An alert links to the matching sensor history. Generic test push delivery to a locked Samsung S25 Ultra
               and opening Alerts were confirmed in Chrome and Samsung Internet. A push triggered by actual dry soil
@@ -1082,7 +1121,7 @@ const hardwareGallery = [
           </article>
           <article>
             <span class="small-label">PRIVATE / SENSOR SETUP</span>
-            <h4>Ready for the first probes.</h4>
+            <h4><TopicIcon name="connector" heading />Ready for the first probes.</h4>
             <p>
               A guide records installation checks and an estimated field-capacity reference for each sensor. System
               status separates controller contact from received readings. Saving a soil reference does not automatically
@@ -1132,7 +1171,7 @@ const hardwareGallery = [
       </section>
 
       <section class="preparation-module" aria-labelledby="lawn-reliability">
-        <h3 id="lawn-reliability">What if a reading never arrives?</h3>
+        <h3 id="lawn-reliability"><TopicIcon name="network" heading />What if a reading never arrives?</h3>
         <p>
           A reassuring number is only useful if it can be trusted. The app checks freshness and time quality, preserves
           gaps in the history, and withholds watering suggestions when readings are unreliable. A dry trend must remain
@@ -1171,7 +1210,7 @@ const hardwareGallery = [
       </section>
 
       <section class="preparation-module" aria-labelledby="lawn-next">
-        <h3 id="lawn-next">Measure first. Automate later.</h3>
+        <h3 id="lawn-next"><TopicIcon name="garden" heading />Measure first. Automate later.</h3>
         <ol class="roadmap">
           <li>
             <strong>Online now</strong><p>
@@ -1223,20 +1262,29 @@ const hardwareGallery = [
 
   document.addEventListener('astro:before-swap', () => iconObserver?.disconnect())
   document.addEventListener('astro:page-load', () => {
-    if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return
+    if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+      return
+    }
 
     const icons = document.querySelectorAll(
       '.lawn-notes :is(.milestone-marker, .data-node, .reading-flow-mark, .probe-heading, .root-heading, .hardware-accessories-title) svg.technical-icon',
     )
-    if (icons.length === 0) return
+    if (icons.length === 0) {
+      return
+    }
 
-    const observer = new IntersectionObserver((entries, observer) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue
-        entry.target.classList.add('project-icon-visible')
-        observer.unobserve(entry.target)
-      }
-    }, { threshold: 0.5 })
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue
+          }
+          entry.target.classList.add('project-icon-visible')
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.5 },
+    )
 
     icons.forEach((icon) => observer.observe(icon))
     iconObserver = observer
@@ -1393,9 +1441,10 @@ const hardwareGallery = [
       animation: live-ember 1.7s ease-in-out infinite;
     }
     @keyframes live-ember {
-      0%, 100% {
+      0%,
+      100% {
         box-shadow: 0 0 0 1px rgb(166 239 176 / 30%);
-        transform: scale(.85);
+        transform: scale(0.85);
       }
       50% {
         box-shadow: 0 0 10px 4px rgb(166 239 176 / 65%);
@@ -1825,7 +1874,9 @@ const hardwareGallery = [
     --track: color-mix(in srgb, currentColor 36%, transparent);
     margin: 26px 0;
   }
-  .field-timeline h3 { margin: 0 0 18px; }
+  .field-timeline h3 {
+    margin: 0 0 18px;
+  }
   .milestones {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1833,7 +1884,11 @@ const hardwareGallery = [
     margin: 0;
     list-style: none;
   }
-  .milestones li { position: relative; min-width: 0; padding: 0 16px 0 0; }
+  .milestones li {
+    position: relative;
+    min-width: 0;
+    padding: 0 16px 0 0;
+  }
   .milestones li:not(:last-child)::before {
     content: '';
     position: absolute;
@@ -1849,15 +1904,28 @@ const hardwareGallery = [
     border: 1px solid var(--track);
     border-radius: 50%;
   }
-  .milestone-marker :global(svg) { width: 17px; height: 17px; }
+  .milestone-marker :global(svg) {
+    width: 17px;
+    height: 17px;
+  }
   .milestones li:last-child .milestone-marker {
     color: var(--marker-ink);
     background: var(--field-accent);
     border-color: var(--field-accent);
   }
-  .milestone-date { display: block; margin: 10px 0 4px; font: 12px/1.5 var(--note-font); }
-  .milestones h4 { margin: 0 0 6px; font: 600 17px/1.3 var(--body-font); }
-  .milestones p { margin: 0; font: 14px/1.6 var(--body-font); }
+  .milestone-date {
+    display: block;
+    margin: 10px 0 4px;
+    font: 12px/1.5 var(--note-font);
+  }
+  .milestones h4 {
+    margin: 0 0 6px;
+    font: 600 17px/1.3 var(--body-font);
+  }
+  .milestones p {
+    margin: 0;
+    font: 14px/1.6 var(--body-font);
+  }
   .next-field-step {
     display: flex;
     flex-wrap: wrap;
@@ -1867,18 +1935,31 @@ const hardwareGallery = [
     padding-top: 12px;
     border-top: 1px dashed var(--track);
   }
-  .next-field-step strong { font: 600 12px/1.5 var(--note-font); }
+  .next-field-step strong {
+    font: 600 12px/1.5 var(--note-font);
+  }
   @container (max-width: 540px) {
-    .milestones { grid-template-columns: 1fr; }
-    .milestones li { padding: 0 0 20px 46px; }
-    .milestones li:last-child { padding-bottom: 0; }
-    .milestone-marker { position: absolute; inset: 0 auto auto 0; }
+    .milestones {
+      grid-template-columns: 1fr;
+    }
+    .milestones li {
+      padding: 0 0 20px 46px;
+    }
+    .milestones li:last-child {
+      padding-bottom: 0;
+    }
+    .milestone-marker {
+      position: absolute;
+      inset: 0 auto auto 0;
+    }
     .milestones li:not(:last-child)::before {
       inset: 32px auto 0 16px;
       border-top: 0;
       border-left: 1px solid var(--track);
     }
-    .milestone-date { margin-top: 0; }
+    .milestone-date {
+      margin-top: 0;
+    }
   }
   .block-title {
     margin-top: 40px;
@@ -1982,11 +2063,17 @@ const hardwareGallery = [
       }
     }
     @keyframes firmware-pulse {
-      40% { filter: drop-shadow(0 0 3px currentColor); }
+      40% {
+        filter: drop-shadow(0 0 3px currentColor);
+      }
     }
     @keyframes equipment-tilt {
-      35% { transform: rotate(-12deg); }
-      70% { transform: rotate(5deg); }
+      35% {
+        transform: rotate(-12deg);
+      }
+      70% {
+        transform: rotate(5deg);
+      }
     }
   }
   .evidence-block[open] > :global(.disclosure-summary) {

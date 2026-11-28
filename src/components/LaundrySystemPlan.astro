@@ -1,11 +1,13 @@
 ---
+import DisclosureSummary from './DisclosureSummary.astro'
 import LaundrySignalGuide from './LaundrySignalGuide.astro'
+import TopicIcon from './TopicIcon.astro'
 ---
 
 <section id="system-plan" class="system-plan" aria-labelledby="system-plan-title">
   <header class="plan-heading">
     <p class="plan-label">PLANNED ARCHITECTURE / ONE BUILDING</p>
-    <h2 id="system-plan-title">From machine readings to a shared view.</h2>
+    <h2 id="system-plan-title"><TopicIcon name="network" heading />From machine readings to a shared view.</h2>
     <p>
       A proposed setup for one building. Equipment selection, purchases, installation and a building pilot are not
       confirmed.
@@ -59,7 +61,7 @@ import LaundrySignalGuide from './LaundrySignalGuide.astro'
   <LaundrySignalGuide />
 
   <details class="setup-details">
-    <summary>Setup details</summary>
+    <DisclosureSummary icon="equipment">Setup details</DisclosureSummary>
     <p class="setup-intro">A setup plan to validate on site before a building pilot.</p>
     <ol>
       <li>

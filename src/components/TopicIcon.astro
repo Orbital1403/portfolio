@@ -1,0 +1,162 @@
+---
+interface Props {
+  name: string
+  heading?: boolean
+}
+const { name, heading = false } = Astro.props
+
+const diagrams: Record<string, { path: string; dot: [number, number]; advance: string }> = {
+  moisture: { path: 'M4 19h16M5 14l4-3 4 2 5-6M18 4v3', dot: [18, 7], advance: 'translate(-5px, 6px)' },
+  service: { path: 'M3 7h18v12H3zM5 13h4l2-3 3 5 2-2h3', dot: [16, 13], advance: 'translate(-7px, 0)' },
+  code: { path: 'm8 6-5 6 5 6m8-12 5 6-5 6m-3-13-2 14', dot: [13, 5], advance: 'translate(-2px, 14px)' },
+  depth: { path: 'M4 7h16M5 12h3m8 0h3M5 17h3m8 0h3M12 4v15m-3-3 3 3 3-3', dot: [12, 14], advance: 'translateY(-8px)' },
+  firmware: {
+    path: 'M7 7h10v10H7zM4 9h3m-3 6h3m10-6h3m-3 6h3M9 4v3m6-3v3m-6 10v3m6-3v3',
+    dot: [12, 12],
+    advance: 'scale(.35)',
+  },
+  history: { path: 'M4 5v14h16M7 15l4-4 4 1 5-6', dot: [20, 6], advance: 'translate(-9px, 5px)' },
+  power: { path: 'M6 5h12v14H6zM12 8l-3 5h6l-3 4', dot: [12, 8], advance: 'translateY(8px)' },
+  diagnostics: { path: 'M5 5h11v11H5zM16 16l4 4M8 12l2-3 2 4 2-2', dot: [10, 9], advance: 'translate(4px, 2px)' },
+  equipment: { path: 'M3 6h7v7H3zm11 0h7v7h-7zM7 16h10v4H7z', dot: [17.5, 9.5], advance: 'translateX(-11px)' },
+  'bench-meter': { path: 'M6 4h12v16H6zM9 8h6m-6 3h6M9 16h6', dot: [13, 16], advance: 'translateX(-3px)' },
+  connector: { path: 'M3 7h4v10H3zm14 0h4v10h-4zM7 12h10M9 9h6m-6 6h6', dot: [16, 12], advance: 'translateX(-8px)' },
+  home: { path: 'M3 11l9-7 9 7M6 10v10h12V10m-8 10v-6h4v6', dot: [12, 6], advance: 'translateY(6px)' },
+  about: { path: 'M5 20a7 7 0 0 1 14 0M8 8a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z', dot: [12, 14], advance: 'translateY(5px)' },
+  projects: { path: 'M3 8h18v12H3zm5 0V5h8v3m-13 5h18', dot: [12, 13], advance: 'translateX(5px)' },
+  hobbies: { path: 'm5 19 8-8m-6-6 12 12-2 2L5 7zM14 8l4-4 2 2-4 4', dot: [8, 16], advance: 'translate(5px, -5px)' },
+  mail: { path: 'M3 6h18v12H3zm0 1 9 7 9-7', dot: [12, 14], advance: 'translate(6px, -4px)' },
+  audio: { path: 'M3 13h3l2-5 3 11 3-14 2 8h5', dot: [12, 14], advance: 'translate(4px, -1px)' },
+  garden: {
+    path: 'M5 20h14m-7 0V9m0 7C7 16 4 12 4 8c4 0 8 2 8 6m0-2c0-5 4-8 8-8 0 5-3 8-8 8',
+    dot: [12, 16],
+    advance: 'translateY(-5px)',
+  },
+  laundry: {
+    path: 'M5 3h14v18H5zm0 5h14M8 5.5h1m-1 9a4 4 0 1 0 8 0 4 4 0 1 0-8 0Z',
+    dot: [12, 14.5],
+    advance: 'translateX(3px)',
+  },
+  web: { path: 'M3 5h18v14H3zm0 4h18M6 7h1m2 0h1m-3 6h10m-10 3h6', dot: [16, 13], advance: 'translateX(-7px)' },
+  paint: { path: 'M4 4h13v5H4zM17 6h3v6h-8v8m-2 0h4', dot: [7, 6.5], advance: 'translateX(7px)' },
+  shield: {
+    path: 'm12 3 7 3v5c0 5-4 8-7 10-3-2-7-5-7-10V6zm-3 9 2 2 4-5',
+    dot: [11, 14],
+    advance: 'translate(4px, -5px)',
+  },
+  education: { path: 'm3 9 9-5 9 5-9 5zm4 2v5q5 4 10 0v-5m4-2v8', dot: [12, 14], advance: 'translateY(4px)' },
+  image: { path: 'M4 5h16v14H4zm0 12 5-5 3 3 2-2 6 5', dot: [16, 9], advance: 'scale(.55)' },
+  location: { path: 'M12 21s-6-5-6-11a6 6 0 1 1 12 0c0 6-6 11-6 11Z', dot: [12, 10], advance: 'translateY(5px)' },
+  network: { path: 'M8 8h8m-4 0v8M5 5h3v6H5zm11 0h3v6h-3zM9 16h6v4H9z', dot: [12, 10], advance: 'translateY(6px)' },
+  database: {
+    path: 'M5 6c0-4 14-4 14 0v12c0 4-14 4-14 0zm0 0c0 4 14 4 14 0M5 12c0 4 14 4 14 0',
+    dot: [12, 14],
+    advance: 'translateY(-6px)',
+  },
+}
+
+const diagram = diagrams[name]
+if (!diagram) throw new Error(`Unknown topic icon: ${name}`)
+---
+
+<span class:list={['topic-icon', { 'topic-icon-heading': heading }]} aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" class="topic-icon-diagram" focusable="false">
+    <path d={diagram.path}></path>
+    <circle
+      class="topic-icon-signal"
+      cx={diagram.dot[0]}
+      cy={diagram.dot[1]}
+      r="2.2"
+      style={`--signal-advance: ${diagram.advance}`}></circle>
+  </svg>
+</span>
+
+<style is:global>
+  .topic-icon {
+    --topic-accent: #39776c;
+    display: inline-grid;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    color: var(--grow-accent, var(--topic-accent));
+  }
+  :is(summary, a[href], button:enabled) .topic-icon {
+    border: 1px solid color-mix(in srgb, currentColor 36%, transparent);
+    border-radius: 6px;
+    background: color-mix(in srgb, currentColor 8%, transparent);
+  }
+  html.dark .topic-icon {
+    --topic-accent: #80b9ad;
+  }
+  .topic-icon-heading {
+    margin-inline-end: 0.34em;
+    vertical-align: 0.06em;
+  }
+  h1 .topic-icon-heading {
+    width: 0.82em;
+    height: 0.82em;
+    min-width: 32px;
+    min-height: 32px;
+    vertical-align: 0.03em;
+  }
+  h1 .topic-icon-diagram {
+    width: 72%;
+    height: 72%;
+    max-width: 44px;
+    max-height: 44px;
+  }
+  h3 .topic-icon-heading,
+  h4 .topic-icon-heading {
+    width: 27px;
+    height: 27px;
+  }
+  h3 .topic-icon-diagram,
+  h4 .topic-icon-diagram {
+    width: 19px;
+    height: 19px;
+  }
+  :is(details[open] > summary, .nav-link[aria-current='page']) .topic-icon {
+    border-color: currentColor;
+    background: color-mix(in srgb, currentColor 26%, transparent);
+  }
+  .topic-icon-diagram {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .topic-icon-signal {
+    fill: currentColor;
+    stroke: none;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :is(summary, a[href], button:enabled) .topic-icon {
+      transition:
+        transform 150ms ease-out,
+        background-color 180ms ease-out,
+        border-color 180ms ease-out;
+    }
+    :is(summary, a[href], button:enabled):active .topic-icon {
+      transform: scale(0.88);
+    }
+    :is(summary, a[href], button:enabled) .topic-icon-signal {
+      animation: topic-icon-signal 1.2s ease-in-out infinite alternate;
+    }
+    :is(details:nth-of-type(even) > summary, li:nth-child(even) > .nav-link) .topic-icon-signal {
+      animation-delay: -0.8s;
+    }
+    :is(details:nth-of-type(3n) > summary, li:nth-child(3n) > .nav-link) .topic-icon-signal {
+      animation-delay: -1.6s;
+    }
+  }
+  @keyframes topic-icon-signal {
+    to {
+      transform: var(--signal-advance);
+    }
+  }
+</style>

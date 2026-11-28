@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import LaundrySystemPlan from '~/components/LaundrySystemPlan.astro'
 import ProjectOverview from '~/components/ProjectOverview.astro'
@@ -11,7 +12,7 @@ import ProjectOverview from '~/components/ProjectOverview.astro'
   <header class="page-heading">
     <a class="back-link" href="/projects/">← All projects</a>
     <p class="folio-label">MOBILE WEB + CONNECTED MACHINES / PROJECT 03</p>
-    <h1>Our laundry</h1>
+    <h1><TopicIcon name="laundry" heading />Our laundry</h1>
     <p class="lead">Check before you carry the laundry downstairs.</p>
     <a class="try-demo" href="/demos/praonica/">Try the prototype ↗</a>
     <a class="plan-link" href="#system-plan">How it works ↓</a>
@@ -21,12 +22,27 @@ import ProjectOverview from '~/components/ProjectOverview.astro'
       >Python prototype · Planned Wi-Fi system</span
     >
   </div>
-  <ProjectOverview id="our-laundry" items={[
-    { label: 'Today', text: 'Interactive demo with simulated states; initial read-only observations from my own washer and dryer.' },
-    { label: 'My role', text: 'Defining machine states, checking them against actual use and planning the path from appliances to the phone.' },
-    { label: 'Example', text: 'A finished cycle, an open door and an available machine are treated as separate facts.' },
-    { label: 'Next step', text: 'Verify live integration and complete interruption and recovery checks before a building pilot.' },
-  ]} />
+  <ProjectOverview
+    id="our-laundry"
+    items={[
+      {
+        label: 'Today',
+        text: 'Interactive demo with simulated states; initial read-only observations from my own washer and dryer.',
+      },
+      {
+        label: 'My role',
+        text: 'Defining machine states, checking them against actual use and planning the path from appliances to the phone.',
+      },
+      {
+        label: 'Example',
+        text: 'A finished cycle, an open door and an available machine are treated as separate facts.',
+      },
+      {
+        label: 'Next step',
+        text: 'Verify live integration and complete interruption and recovery checks before a building pilot.',
+      },
+    ]}
+  />
   <section class="laundry-storyboard" aria-label="The idea in two scenes">
     <figure>
       <img
@@ -63,13 +79,13 @@ import ProjectOverview from '~/components/ProjectOverview.astro'
   </section>
   <section class="project-story">
     <div class="prose">
-      <h2>A small everyday frustration.</h2>
+      <h2><TopicIcon name="laundry" heading />A small everyday frustration.</h2>
       <p>
         In buildings with a shared laundry room, you can carry a full basket downstairs only to find every machine
         occupied. This project starts with a simple question: can residents see the state of the machines before leaving
         their apartment?
       </p>
-      <h2>One view, made for a phone.</h2>
+      <h2><TopicIcon name="web" heading />One view, made for a phone.</h2>
       <p>
         The first version focuses on a washing machine and a dryer: running, paused, programme finished, door state and
         an honest indication when the connection is unavailable.
@@ -78,7 +94,7 @@ import ProjectOverview from '~/components/ProjectOverview.astro'
         A finished programme does not mean an empty machine. An open door does not prove that the laundry has been
         collected. Availability will need a separate, clearly defined confirmation.
       </p>
-      <h2>What has actually been checked?</h2>
+      <h2><TopicIcon name="diagnostics" heading />What has actually been checked?</h2>
       <p>
         Development starts with a personally owned washing machine and dryer, used only as test appliances. Read-only
         integration has returned real states for operation, the end of a washing cycle, pause and an open dryer door,
@@ -89,7 +105,7 @@ import ProjectOverview from '~/components/ProjectOverview.astro'
         separate check. The end of a drying cycle, all interruption paths and long-term reliability are not yet
         confirmed.
       </p>
-      <h2>A plan for one building.</h2>
+      <h2><TopicIcon name="network" heading />A plan for one building.</h2>
       <p>
         The planned system uses separate Wi-Fi electricity measurement for each washer and dryer. Manufacturer APIs can
         add explicit states on supported machines; the system does not depend on every machine having an API.

@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import Icon from '~/components/Icon.astro'
 ---
@@ -6,7 +7,7 @@ import Icon from '~/components/Icon.astro'
 <LayoutDefault title="Page not found — Gordan Grgić" description="This page does not exist on gordangrgic.com." noindex>
   <section class="not-found">
     <p class="folio-label">PERSONAL FIELD NOTES / 404</p>
-    <h1>Page not found.</h1>
+    <h1><TopicIcon name="diagnostics" heading />Page not found.</h1>
     <p>This address does not lead to a page. It may have moved when the site was reorganised.</p>
     <ul>
       <li><a href="/">Home <Icon name="arrow" /></a></li>

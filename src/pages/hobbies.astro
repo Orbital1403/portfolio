@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import HobbyCards from '~/components/HobbyCards.astro'
 ---
@@ -10,7 +11,9 @@ import HobbyCards from '~/components/HobbyCards.astro'
   imageAlt="The finished wall-mounted PC"
 >
   <section class="hobbies-intro page-heading">
-    <p class="folio-label">PERSONAL FIELD NOTES / HANDS-ON PROJECTS</p><h1>Hobbies & practical work</h1><p>
+    <p class="folio-label">PERSONAL FIELD NOTES / HANDS-ON PROJECTS</p><h1>
+      <TopicIcon name="hobbies" heading />Hobbies & practical work
+    </h1><p>
       Projects I have made for myself. A place to explore ideas, learn unfamiliar skills and work through the details.
     </p>
   </section>

@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import Icon from '~/components/Icon.astro'
 const configured = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://formspree.io/f/xjygepdn'
@@ -11,7 +12,7 @@ const endpoint = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(configured) ?
 >
   <section class="contact-page">
     <p class="folio-label">PERSONAL FIELD NOTES / CONTACT</p>
-    <h1>Let's talk.</h1>
+    <h1><TopicIcon name="mail" heading />Let's talk.</h1>
     <p class="contact-lead">
       Have a role in mind or a question about one of my technical projects? Use the form below or
       <a href="https://www.linkedin.com/in/gordan-grgic-0ba40a354/" target="_blank" rel="noopener noreferrer"
@@ -19,7 +20,7 @@ const endpoint = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(configured) ?
       >.
     </p>
     <form id="contactForm" method="POST" action={endpoint || undefined} data-endpoint={endpoint} novalidate>
-      <div class="form-heading"><Icon name="mail" /><span>A direct conversation.</span></div>
+      <div class="form-heading"><TopicIcon name="mail" /><span>A direct conversation.</span></div>
       <div class="field-pair">
         <div class="field">
           <label for="contact-name">Your name</label><input

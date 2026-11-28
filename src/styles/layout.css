@@ -34,10 +34,13 @@ main#main {
     color 0.18s ease,
     transform 0.18s ease;
 }
-.site-nav .nav-menu .nav-link .technical-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+.site-nav .nav-menu .topic-icon {
+  width: 28px;
+  height: 28px;
+}
+.site-nav .nav-menu .topic-icon-diagram {
+  width: 19px;
+  height: 19px;
 }
 .site-nav .nav-menu .nav-link[aria-current='page']::before {
   content: '';

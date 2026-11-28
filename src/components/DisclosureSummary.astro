@@ -1,44 +1,15 @@
 ---
 import Icon from '~/components/Icon.astro'
+import TopicIcon from '~/components/TopicIcon.astro'
 
 interface Props {
   icon: string
 }
 const { icon } = Astro.props
-
-const diagrams: Record<string, { path: string; dot: [number, number]; advance: string }> = {
-  moisture: { path: 'M4 19h16M5 14l4-3 4 2 5-6M18 4v3', dot: [18, 7], advance: 'translate(-5px, 6px)' },
-  service: { path: 'M3 7h18v12H3zM5 13h4l2-3 3 5 2-2h3', dot: [16, 13], advance: 'translate(-7px, 0)' },
-  code: { path: 'm8 6-5 6 5 6m8-12 5 6-5 6m-3-13-2 14', dot: [13, 5], advance: 'translate(-2px, 14px)' },
-  depth: { path: 'M4 7h16M5 12h3m8 0h3M5 17h3m8 0h3M12 4v15m-3-3 3 3 3-3', dot: [12, 14], advance: 'translateY(-8px)' },
-  firmware: {
-    path: 'M7 7h10v10H7zM4 9h3m-3 6h3m10-6h3m-3 6h3M9 4v3m6-3v3m-6 10v3m6-3v3',
-    dot: [12, 12],
-    advance: 'scale(.35)',
-  },
-  history: { path: 'M4 5v14h16M7 15l4-4 4 1 5-6', dot: [20, 6], advance: 'translate(-9px, 5px)' },
-  power: { path: 'M6 5h12v14H6zM12 8l-3 5h6l-3 4', dot: [12, 8], advance: 'translateY(8px)' },
-  diagnostics: { path: 'M5 5h11v11H5zM16 16l4 4M8 12l2-3 2 4 2-2', dot: [10, 9], advance: 'translate(4px, 2px)' },
-  equipment: { path: 'M3 6h7v7H3zm11 0h7v7h-7zM7 16h10v4H7z', dot: [17.5, 9.5], advance: 'translateX(-11px)' },
-  'bench-meter': { path: 'M6 4h12v16H6zM9 8h6m-6 3h6M9 16h6', dot: [13, 16], advance: 'translateX(-3px)' },
-  connector: { path: 'M3 7h4v10H3zm14 0h4v10h-4zM7 12h10M9 9h6m-6 6h6', dot: [16, 12], advance: 'translateX(-8px)' },
-}
-
-const diagram = diagrams[icon]
 ---
 
 <summary class="disclosure-summary">
-  <span class="disclosure-symbol" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" class="disclosure-diagram" focusable="false">
-      <path d={diagram.path}></path>
-      <circle
-        class="disclosure-signal"
-        cx={diagram.dot[0]}
-        cy={diagram.dot[1]}
-        r="1.8"
-        style={`--signal-advance: ${diagram.advance}`}></circle>
-    </svg>
-  </span>
+  <TopicIcon name={icon} />
   <span><slot /></span>
   <Icon name="right" class="disclosure-caret" />
 </summary>
@@ -62,45 +33,9 @@ const diagram = diagrams[icon]
     outline: 2px solid currentColor;
     outline-offset: 2px;
   }
-  .disclosure-symbol {
-    display: grid;
-    width: 32px;
-    height: 32px;
-    place-items: center;
-    color: var(--grow-accent);
-    border: 1px solid color-mix(in srgb, currentColor 36%, transparent);
-    border-radius: 6px;
-    background: color-mix(in srgb, currentColor 8%, transparent);
-  }
-  .disclosure-diagram {
-    width: 22px;
-    height: 22px;
-    stroke: currentColor;
-    stroke-width: 1.25;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .disclosure-signal {
-    fill: currentColor;
-    stroke: none;
-    transform-box: fill-box;
-    transform-origin: center;
-  }
   @media (prefers-reduced-motion: no-preference) {
-    .disclosure-summary:hover .disclosure-signal,
-    .disclosure-summary:focus-visible .disclosure-signal,
-    :global(details[open]) > .disclosure-summary .disclosure-signal {
-      animation: disclosure-signal 620ms ease-out both;
-    }
-  }
-  @keyframes disclosure-signal {
-    from {
-      opacity: 0.45;
-      transform: var(--signal-advance);
-    }
-    to {
-      opacity: 1;
-      transform: none;
+    .disclosure-summary :global(.disclosure-caret) {
+      transition: transform 180ms ease-out;
     }
   }
   .disclosure-summary :global(.disclosure-caret) {

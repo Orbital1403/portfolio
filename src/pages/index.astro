@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import HobbyCards from '~/components/HobbyCards.astro'
 import Icon from '~/components/Icon.astro'
@@ -13,14 +14,16 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     <section class="hero" aria-labelledby="home-title">
       <div class="hero-copy">
         <p class="eyebrow hero-label">GORDAN GRGIĆ / ZAGREB → BRUSSELS</p>
-        <h1 id="home-title">Curiosity.<br />A practical mind.</h1>
+        <h1 id="home-title"><TopicIcon name="home" heading />Curiosity.<br />A practical mind.</h1>
         <p class="hero-lead">I’m based in Brussels. I work on systems testing, fault diagnosis and integration.</p>
         <p class="hero-evidence">
           At Siemens I analysed returned pressure and temperature transmitters. At Altpro I calibrated railway safety
           equipment.
         </p>
         <div class="hero-actions">
-          <a class="primary-action not-underline-hover" href="#testing-examples">Explore my work <Icon name="arrow" /></a>
+          <a class="primary-action not-underline-hover" href="#testing-examples"
+            >Explore my work <Icon name="arrow" /></a
+          >
           <a class="quiet-link" href="/contact/">Get in touch <Icon name="arrow" /></a>
         </div>
       </div>
@@ -32,7 +35,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
 
     <section id="testing-examples" class="home-section testing-section" aria-labelledby="testing-title">
       <header class="section-header">
-        <h2 id="testing-title">How I test</h2>
+        <h2 id="testing-title"><TopicIcon name="diagnostics" heading />How I test</h2>
       </header>
       <div class="testing-grid">
         <a
@@ -40,8 +43,10 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           href="/projects/grgagrow/#lawn-probe-service"
           aria-labelledby="testing-grgagrow-title"
         >
-          <p class="testing-project"><img src="/demos/my-garden/icon-192.png" width="24" height="24" alt="" /> grgaGrow</p>
-          <h3 id="testing-grgagrow-title">Why the TH probe kept its old address</h3>
+          <p class="testing-project">
+            <img src="/demos/my-garden/icon-192.png" width="24" height="24" alt="" /> grgaGrow
+          </p>
+          <h3 id="testing-grgagrow-title"><TopicIcon name="garden" heading />Why the TH probe kept its old address</h3>
           <p>
             I traced the failed address change to the controller. After the fix, I powered it off and on to verify that
             the probe still answered at its new address.
@@ -54,11 +59,13 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           data-astro-reload
           aria-labelledby="testing-mila-title"
         >
-          <p class="testing-project"><img src="/images/projects/gstreamer/mila-app-icon.svg" width="24" height="24" alt="" /> MILA*</p>
-          <h3 id="testing-mila-title">A playback command with no reply</h3>
+          <p class="testing-project">
+            <img src="/images/projects/gstreamer/mila-app-icon.svg" width="24" height="24" alt="" /> MILA*
+          </p>
+          <h3 id="testing-mila-title"><TopicIcon name="audio" heading />A playback command with no reply</h3>
           <p>
-            I check what happens when a reply is lost. MILA reports an uncertain outcome and avoids repeating a
-            command that may already have run.
+            I check what happens when a reply is lost. MILA reports an uncertain outcome and avoids repeating a command
+            that may already have run.
           </p>
           <span class="project-link">Explore the app <Icon name="arrow" /></span>
         </a>
@@ -68,7 +75,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     <section id="selected-work" class="home-section" aria-labelledby="work-title">
       <header class="section-header">
         <p class="eyebrow">01 / SELECTED WORK</p>
-        <h2 id="work-title">Built around real problems.</h2>
+        <h2 id="work-title"><TopicIcon name="projects" heading />Built around real problems.</h2>
         <p>Music, a garden and a shared laundry room. Three practical reasons to connect hardware and software.</p>
       </header>
       <article class="home-project main-project">
@@ -85,7 +92,13 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
         </div>
         <div class="project-copy">
           <p class="project-stage"><i aria-hidden="true"></i>Working prototype</p>
-          <h3 id="home-mila-title"><a class="card-primary not-underline-hover" href="/projects/mila/#choose-an-album" data-astro-reload>MILA*</a></h3>
+          <h3 id="home-mila-title">
+            <TopicIcon name="audio" heading /><a
+              class="card-primary not-underline-hover"
+              href="/projects/mila/#choose-an-album"
+              data-astro-reload>MILA*</a
+            >
+          </h3>
           <p class="project-description">
             A personal audio streamer for local hi-res music, radio and streaming. Used for everyday listening, refined
             through testing on the real device.
@@ -108,7 +121,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           </div>
           <div class="project-copy">
             <p class="project-stage"><i aria-hidden="true"></i>In the lawn · Live readings</p>
-            <h3 id="home-grow-title">grgaGrow</h3>
+            <h3 id="home-grow-title"><TopicIcon name="garden" heading />grgaGrow</h3>
             <p class="project-description">
               Two probes in my 49 m² lawn send soil moisture and temperature to the cloud over Wi-Fi. The readings are
               public on a live page.
@@ -134,7 +147,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
           </div>
           <div class="project-copy">
             <p class="project-stage"><i aria-hidden="true"></i>Interactive demo · Integration in development</p>
-            <h3 id="home-laundry-title">Our laundry</h3>
+            <h3 id="home-laundry-title"><TopicIcon name="laundry" heading />Our laundry</h3>
             <p class="project-description">
               Check the machines before carrying your laundry downstairs. An interactive demo, informed by initial
               observations from my own test appliances.
@@ -150,14 +163,14 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     <section class="home-section" aria-labelledby="experience-title">
       <header class="section-header">
         <p class="eyebrow">02 / EXPERIENCE</p>
-        <h2 id="experience-title">Experience that connects.</h2>
+        <h2 id="experience-title"><TopicIcon name="about" heading />Experience that connects.</h2>
         <p>Industrial electronics, careful measurement and practical problem solving.</p>
       </header>
       <ol class="career-timeline" role="list">
         <li>
           <div class="career-meta"><p>Oct 2006 – Dec 2011</p><span>Zagreb</span></div>
           <div class="career-copy">
-            <h3>Siemens</h3><p class="career-role">Production → Quality Control</p>
+            <h3><TopicIcon name="firmware" heading />Siemens</h3><p class="career-role">Production → Quality Control</p>
             <p>
               Pressure and temperature transmitters. Detailed analysis of returned devices, with documentation later
               used for improvements within the department.
@@ -168,7 +181,9 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
         <li>
           <div class="career-meta"><p>Nov 2013 – Dec 2017</p><span>Zagreb</span></div>
           <div class="career-copy">
-            <h3>Altpro</h3><p class="career-role">Quality Control &amp; Calibration</p>
+            <h3><TopicIcon name="diagnostics" heading />Altpro</h3><p class="career-role">
+              Quality Control &amp; Calibration
+            </p>
             <p>
               Railway safety systems. Measurement, calibration and quality work in a department closely connected to
               development.
@@ -179,7 +194,9 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
         <li>
           <div class="career-meta"><p>Since 2022</p><span>Brussels</span></div>
           <div class="career-copy">
-            <h3>Independent technical work</h3><p class="career-role">Hands-on Technical Work</p>
+            <h3><TopicIcon name="equipment" heading />Independent technical work</h3><p class="career-role">
+              Hands-on Technical Work
+            </p>
             <p>
               Appliance repairs, installations and renovations. Learning unfamiliar tasks, diagnosing problems and
               making practical solutions work.
@@ -194,7 +211,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     <section class="home-section" aria-labelledby="skills-title">
       <header class="section-header">
         <p class="eyebrow">03 / SKILLS &amp; EXPERIENCE</p>
-        <h2 id="skills-title">A practical foundation. Still learning.</h2>
+        <h2 id="skills-title"><TopicIcon name="code" heading />A practical foundation. Still learning.</h2>
       </header>
       <dl class="capabilities">
         <div>
@@ -228,7 +245,7 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
     <section class="home-section" aria-labelledby="practical-title">
       <header class="section-header">
         <p class="eyebrow">04 / OTHER WORK</p>
-        <h2 id="practical-title">Made with my own hands.</h2>
+        <h2 id="practical-title"><TopicIcon name="hobbies" heading />Made with my own hands.</h2>
         <p>Different materials. The same curiosity and attention to detail.</p>
       </header>
       <HobbyCards compact />
@@ -236,9 +253,9 @@ import ProfilePortrait from '~/components/ProfilePortrait.astro'
 
     <section class="contact-note" aria-labelledby="next-title">
       <div>
-        <p class="eyebrow">NEXT CHAPTER</p><h2 id="next-title">Let's put that curiosity to work.</h2><p>
-          Get in touch about testing, diagnostics or systems integration.
-        </p>
+        <p class="eyebrow">NEXT CHAPTER</p><h2 id="next-title">
+          <TopicIcon name="mail" heading />Let's put that curiosity to work.
+        </h2><p>Get in touch about testing, diagnostics or systems integration.</p>
       </div>
       <a class="primary-action not-underline-hover" href="/contact/">Get in touch <Icon name="arrow" /></a>
     </section>

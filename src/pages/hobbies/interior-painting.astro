@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import HobbyVideo from '~/components/HobbyVideo.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 ---
@@ -13,7 +14,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
   <article class="painting-page">
     <div class="hero">
       <div class="hero-copy">
-        <p class="label">Interiors / Finishing work</p><h1>Interior painting</h1><p>
+        <p class="label">Interiors / Finishing work</p><h1><TopicIcon name="paint" heading />Interior painting</h1><p>
           Before painting, I cover the floors, woodwork and furniture. I use long, even passes on larger surfaces and
           slow down at the edges to keep a clean line.
         </p><a class="cta" href="#video">Watch the footage ↓</a>
@@ -30,7 +31,9 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </figure>
     </div>
     <section class="section" id="usporedba">
-      <div class="section-heading"><h2>Before and after</h2></div><div class="wall-comparison">
+      <div class="section-heading"><h2><TopicIcon name="image" heading />Before and after</h2></div><div
+        class="wall-comparison"
+      >
         <figure>
           <img
             data-group="painting"
@@ -55,7 +58,9 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </div>
     </section>
     <section class="section">
-      <div class="section-heading"><h2>Masking and finishing details</h2></div><div class="grid gallery-pair">
+      <div class="section-heading"><h2><TopicIcon name="paint" heading />Masking and finishing details</h2></div><div
+        class="grid gallery-pair"
+      >
         <figure class="photo">
           <img
             data-group="painting"
@@ -85,7 +90,9 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </div>
     </section>
     <section id="video" class="section media">
-      <div class="section-heading"><h2>The work on film</h2></div><div class="grid three">
+      <div class="section-heading"><h2><TopicIcon name="image" heading />The work on film</h2></div><div
+        class="grid three"
+      >
         <figure class="clip">
           <HobbyVideo
             src="/videos/interior-painting/zastita.mp4"
@@ -116,7 +123,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </div>
     </section>
     <section class="section gear">
-      <h2>Equipment I use</h2><div class="gear-grid">
+      <h2><TopicIcon name="equipment" heading />Equipment I use</h2><div class="gear-grid">
         <div class="gear-card">
           <img
             src="/images/hobbies/interior-painting/prospray-320.jpg"

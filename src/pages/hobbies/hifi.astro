@@ -1,4 +1,5 @@
 ---
+import TopicIcon from '~/components/TopicIcon.astro'
 import HobbyVideo from '~/components/HobbyVideo.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 ---
@@ -12,7 +13,9 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
   <article class="hifi-page">
     <a href="/hobbies/">← All hobbies</a>
     <header>
-      <p class="folio-label">MUSIC / HANDS-ON AUDIO</p><h1>Music & my hi-fi system</h1><p>
+      <p class="folio-label">MUSIC / HANDS-ON AUDIO</p><h1>
+        <TopicIcon name="audio" heading />Music & my hi-fi system
+      </h1><p>
         Music is part of my everyday life. I put this system together around the way I listen, and made the cables
         myself. The small details of connecting everything are part of the enjoyment.
       </p>
@@ -27,7 +30,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       />
     </figure>
     <section>
-      <h2 id="cables">Cables I made myself</h2><p>
+      <h2 id="cables"><TopicIcon name="connector" heading />Cables I made myself</h2><p>
         I assembled the cables for my own system using Van den Hul CS – 122 HYBRID speaker cable and Van den Hul
         connectors. Choosing the lengths and fitting the connectors let me adapt the wiring to the equipment and its
         position in the room.
@@ -48,7 +51,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       <a href="https://www.vandenhul.com/product/cs-122-hybrid-halogen-free/" target="_blank" rel="noopener noreferrer"
         >Cable specifications ↗</a
       >
-      <h3>Speaker jumpers I made myself</h3>
+      <h3><TopicIcon name="connector" heading />Speaker jumpers I made myself</h3>
       <p>
         I was not happy with the factory terminal links on my Polk R700 speakers, so I made replacement jumpers using
         Oehlbach Silverline SP-40 cable (silver-plated copper, 2 × 4 mm²) and Viborg VB401R banana plugs.
@@ -69,7 +72,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </p>
     </section>
     <section>
-      <h2 id="power-cable">A power cable I assembled</h2>
+      <h2 id="power-cable"><TopicIcon name="power" heading />A power cable I assembled</h2>
       <p>
         I also assembled the power cable for my hi-fi system. This photograph shows the mains plug and braided cable.
       </p>
@@ -87,7 +90,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </figure>
     </section>
     <section>
-      <h2>The system I listen to</h2><div class="equipment-grid">
+      <h2><TopicIcon name="audio" heading />The system I listen to</h2><div class="equipment-grid">
         <article class="equipment-card speaker-equipment">
           <img src="/images/hobbies/hifi/speaker.webp" alt="Polk R700" width="1200" height="1600" loading="lazy" /><div
             class="equipment-copy"
@@ -168,7 +171,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
     </section>
 
     <section>
-      <h2 id="room-measurements">Room measurements &amp; speaker placement</h2>
+      <h2 id="room-measurements"><TopicIcon name="bench-meter" heading />Room measurements &amp; speaker placement</h2>
       <p>I used my miniDSP UMIK-1 microphone with Room EQ Wizard (REW) to measure my listening room.</p>
       <p>
         The measurements showed more pronounced bass from the left speaker, which was closer to a wall. I used these
@@ -216,8 +219,14 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </p>
     </section>
     <section>
-      <h2 id="listening-testing">Listening room — testing<span class="testing-dots" aria-hidden="true">...</span></h2>
-      <h3>The system in use</h3><p>A short recording of my listening setup.</p><HobbyVideo
+      <h2 id="listening-testing">
+        <TopicIcon name="diagnostics" heading />Listening room — testing<span class="testing-dots" aria-hidden="true"
+          >...</span
+        >
+      </h2>
+      <h3><TopicIcon name="audio" heading />The system in use</h3><p>
+        A short recording of my listening setup.
+      </p><HobbyVideo
         portrait={false}
         src="/videos/hifi/system-test.mp4"
         poster="/images/hobbies/hifi/video-poster.jpg"
@@ -240,7 +249,7 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </div>
     </section>
     <section>
-      <h2>From listening to MILA</h2>
+      <h2><TopicIcon name="audio" heading />From listening to MILA</h2>
       <p>Press play and listen to your heart’s content.</p><p>
         Living with a music system also made me think about the interface I wanted to use every day. That interest led
         to MILA, my personal audio streamer project.

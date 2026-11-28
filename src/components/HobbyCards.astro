@@ -1,5 +1,6 @@
 ---
 import Icon from '~/components/Icon.astro'
+import TopicIcon from '~/components/TopicIcon.astro'
 import { thumbnail } from '~/utils/images'
 interface Props {
   compact?: boolean
@@ -9,6 +10,7 @@ const cards = [
   {
     number: '01',
     title: 'PC on the wall',
+    icon: 'firmware',
     category: 'COMPUTERS / HARDWARE',
     image: '/images/hobbies/pc_on_wall/final-look/cover-page-v2.webp',
     compactImage: '/images/home/pc-on-wall.webp',
@@ -20,6 +22,7 @@ const cards = [
   {
     number: '02',
     title: 'Garden makeover',
+    icon: 'garden',
     category: 'OUTDOORS / PRACTICAL WORK',
     image: '/images/hobbies/garden-makeover/final-look/cover-page-v2.jpeg',
     compactImage: '/images/home/garden-makeover.webp',
@@ -30,6 +33,7 @@ const cards = [
   {
     number: '03',
     title: 'Interior painting',
+    icon: 'paint',
     category: 'INTERIORS / FINISHING WORK',
     image: '/images/hobbies/interior-painting/bojanje-interijera.jpg',
     compactImage: '/images/hobbies/interior-painting/bojanje-interijera-800.jpg',
@@ -40,6 +44,7 @@ const cards = [
   {
     number: '04',
     title: 'My hi-fi system',
+    icon: 'audio',
     category: 'MUSIC / HANDS-ON AUDIO',
     image: '/images/hobbies/hifi/system-cropped-v2.webp',
     compactImage: '/images/hobbies/hifi/system-cropped-v2-800.webp',
@@ -70,7 +75,10 @@ const cards = [
         <div class="card-copy">
           <>
             <span class="category">{card.category}</span>
-            <h3>{card.title}</h3>
+            <h3>
+              <TopicIcon name={card.icon} heading />
+              {card.title}
+            </h3>
             <p>{card.description}</p>
             <span class="card-link">
               See the project <Icon name="arrow" />

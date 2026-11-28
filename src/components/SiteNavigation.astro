@@ -1,13 +1,14 @@
 ---
 import { themeConfig } from '~/.config'
 import Icon from '~/components/Icon.astro'
+import TopicIcon from '~/components/TopicIcon.astro'
 import ThemeToggle from '~/components/ThemeToggle.astro'
 import { isActivePath, normalizePath } from '~/utils/navigation'
 const navIcons: Record<string, string> = {
   HOME: 'home',
   ABOUT: 'about',
   PROJECTS: 'projects',
-  SKILLS: 'skills',
+  SKILLS: 'code',
   HOBBIES: 'hobbies',
   CONTACT: 'mail',
 }
@@ -28,7 +29,7 @@ const selected = (href: string) => isActivePath(current, normalizePath(href))
         <li>
           <a href={nav.href} class="nav-link" aria-current={selected(nav.href) ? 'page' : undefined}>
             <>
-              <Icon name={navIcons[nav.name] ?? 'projects'} />
+              <TopicIcon name={navIcons[nav.name] ?? 'projects'} />
               <span>{t(nav.name)}</span>
             </>
           </a>
